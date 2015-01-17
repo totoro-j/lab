@@ -1,0 +1,16 @@
+<include file="header" />
+<!--主体部分开始-->
+<div class="container">
+    <h2 style="text-align:left"><switch name='no.parentid' ><case value="1">焦点新闻</case><case value="2">综合新闻</case><case value="3">通知公告</case><case value="4">重要论文</case></switch></h2>
+    <div class="lecture">
+         <div class="lecture_title">
+	<input type='hidden' name='id' value="<{$no.id}>"/>
+              <h3 class="lecture_detail_title"  style="font-size:25px;"><{$no.title}></h3>
+              <p  class="lecture_detail_info" ><{$no.date}></p><span class="lecture_detail_author"><{$no.editor}></span>
+          </div>
+         <div class="lecture_detail"  style="margin-top:50px;text-align:left;min-height:160px"><{$no.content}></div>
+     </div>
+</div>
+<include file="footer" />
+
+

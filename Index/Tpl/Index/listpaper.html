@@ -1,0 +1,32 @@
+<include file="header" />
+<!--主体部分开始-->
+
+<div class="container">
+  <!-- 页面标题部分 -->
+  <div class="subtitle">
+     <h2>重要论文</h2>
+  </div>
+  <!--页面标题部分结束-->
+
+<!--summary list start-->
+  <div class="summary">
+	<volist name='article_list' id='vo'>
+        <div class="summary_list"  style="margin-left:0;">
+             <div  class="summry_list_info"  style="width:800px;margin-left:0;">
+		<h3 style="text-align:left;width:150px;display:block;height:40px;"><a href="__URL__/n/id/<{$vo.id}>"><{$vo.title}></a></h3>
+               
+                 <p style="text-align:left;float:left;display:block;width:500px;"><a href="__URL__/n/id/<{$vo.id}>"><{$vo.metacontent}></a></p>
+		   <span style="text-align:right;margin-top:-10px"><{$vo.date}></span>  <!--came out time-->
+             </div>
+        </div>
+	</volist>
+  </div>
+<!--summary list end-->
+<div class="list_show"><{$show}></div>
+</div>
+<!--主体部分结束  end-->  
+<include file="footer" />
+
+
+
+

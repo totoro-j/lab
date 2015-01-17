@@ -1,0 +1,36 @@
+<!--页脚开始-->
+   
+  <footer>
+  
+  <!--友情链接1-->
+  <div id="footerWrap">
+  <div class="link">
+  <h3>友情链接</h3>
+    <ul>
+      <li><a href="#">电子科大官网</a></li>
+      <li><a href="#">生命学院官网</a></li>
+      <li><a href="#">百度百科词条</a></li>
+    </ul>
+  </div>
+  <div class="link">
+  <h3>功能模块</h3>
+    <ul>
+      <li><a href="__ROOT__/default.php/Index/index">预约系统</a></li>
+      <li><a href="#">后台管理</a></li>
+      <li><a href="#">联系站长</a></li>
+    </ul>
+  </div>
+  <div class="link">
+  <h3>关于实验室</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">手机版</a></li>
+      <li><a href="#">投诉建议</a></li>
+    </ul>
+  </div>
+  </div>
+  <p><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small>
+  </p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+[ 2014-12-14T08:15:02+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=xca
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000434s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000471s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.031369s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'xca' ) LIMIT 1   [ RunTime:0.002203s ]
+
+[ 2014-12-14T08:15:05+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=xca
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000903s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000985s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010652s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'xca' ) LIMIT 1   [ RunTime:0.000329s ]
+
+[ 2014-12-14T09:44:48+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000956s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001020s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.008901s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196qq.com' ) LIMIT 1   [ RunTime:0.000259s ]
+
+[ 2014-12-14T09:52:10+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196%40qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001091s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001166s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.011260s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196@qq.com' ) LIMIT 1   [ RunTime:0.000336s ]
+
+[ 2014-12-14T09:53:39+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=wqrq1232
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000913s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000979s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.006387s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'wqrq1232' ) LIMIT 1   [ RunTime:0.000192s ]
+
+[ 2014-12-14T09:55:27+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=test
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001022s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001095s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010795s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'test' ) LIMIT 1   [ RunTime:0.000322s ]
+
+[ 2014-12-14T09:57:44+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=qq250448196
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001142s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010309s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'qq250448196' ) LIMIT 1   [ RunTime:0.000339s ]
+
+[ 2014-12-14T09:58:40+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196%40qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001086s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001168s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.005962s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196@qq.com' ) LIMIT 1   [ RunTime:0.000208s ]
+
+[ 2014-12-14T09:58:42+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000666s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.006525s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196qq.com' ) LIMIT 1   [ RunTime:0.000188s ]
+
+[ 2014-12-14T09:58:48+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=ccc
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000994s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001067s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010307s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'ccc' ) LIMIT 1   [ RunTime:0.000331s ]
+
+[ 2014-12-14T10:05:33+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=wangju
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000751s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000818s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.009766s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'wangju' ) LIMIT 1   [ RunTime:0.000314s ]
+
+[ 2014-12-14T10:32:34+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=qq250448196
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000696s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000760s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.013744s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'qq250448196' ) LIMIT 1   [ RunTime:0.000295s ]
+
+[ 2014-12-14T15:46:27+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196%40qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001068s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001160s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.007006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196@qq.com' ) LIMIT 1   [ RunTime:0.000195s ]
+
+[ 2014-12-14T20:46:52+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=2013090202013
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001099s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001190s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.006684s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '2013090202013' ) LIMIT 1   [ RunTime:0.000207s ]
+
+[ 2014-12-14T20:56:49+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=250448196%40qq.com
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.015788s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '250448196@qq.com' ) LIMIT 1   [ RunTime:0.000346s ]
+
+[ 2014-12-14T20:57:20+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=ccc
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000937s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001010s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.006822s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'ccc' ) LIMIT 1   [ RunTime:0.000196s ]
+
+[ 2014-12-14T21:05:55+08:00 ] ERR: (ThinkException) 非法操作:img
+[ 2014-12-14T21:05:58+08:00 ] ERR: (ThinkException) 非法操作:img
+[ 2014-12-14T21:11:20+08:00 ] ERR: (ThinkException) 非法操作:Index
+[ 2014-12-14T21:11:21+08:00 ] ERR: (ThinkException) 非法操作:Index
+[ 2014-12-14T21:13:14+08:00 ] ERR: (ThinkException) 非法操作:images
+[ 2014-12-14T21:13:42+08:00 ] ERR: (ThinkException) 无法加载模块:User
+[ 2014-12-14T21:13:43+08:00 ] ERR: (ThinkException) 无法加载模块:User
+[ 2014-12-14T21:15:45+08:00 ] ERR: (ThinkException) 非法操作:images
+[ 2014-12-14T21:16:15+08:00 ] ERR: (ThinkException) 非法操作:images
+[ 2014-12-14T21:50:11+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=Welkin_j
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001125s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.011448s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'Welkin_j' ) LIMIT 1   [ RunTime:0.000294s ]
+
+[ 2014-12-14T21:50:34+08:00 ] ERR: (ThinkException) 非法操作:Index
+[ 2014-12-14T21:51:01+08:00 ] ERR: (ThinkException) 非法操作:Index
+[ 2014-12-14T21:51:11+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=SSSSSS
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000952s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001025s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.009674s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'SSSSSS' ) LIMIT 1   [ RunTime:0.000341s ]
+
+[ 2014-12-14T21:52:41+08:00 ] 127.0.0.1 /lab/index.php/Register/checkName?username=dewfewg
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000841s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000914s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010277s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'dewfewg' ) LIMIT 1   [ RunTime:0.000331s ]
+

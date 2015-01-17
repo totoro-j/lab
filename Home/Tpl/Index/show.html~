@@ -1,0 +1,35 @@
+	<load href="__PUBLIC__/Css/Home/show.css" />
+	<table border='1' width="500" align='center' class="show_check">
+			<volist name='data' id='vo'>
+ 
+            <tr>
+			  <td>用户名：<{$vo.username}></td>
+			  <td>姓名：<{$vo.truename}></td>
+            </tr>  
+            <tr>
+			  <td>性别：<if condition='$vo.sex eq 1'>男<else />女</if></td>
+			  <td>单位：<{$vo.unit}></td>
+            </tr>  
+            <tr>
+
+			  <td>学院(部门)：<{$vo.department}></td>
+			  <td>身份：<switch name='vo.job'><case value="1">教师</case><case value="2">学生</case><default />其它</switch></td>
+            </tr>  
+            <tr>
+			  <td>学历：<if condition='$vo.degree eq 2'>博士<else />硕士</if></td>
+			  <td>年级：<{$vo.grade}></td>
+            </tr>  
+            <tr>
+			  <td>导师：<{$vo.tutor}></td>
+			  <td>课题负责人：<{$vo.principal}></td>
+           </tr>  
+            <tr>
+			  <td>联系电话：<{$vo.tel}></td>
+			  <td>邮箱：<{$vo.mail}></td>
+            </tr>
+           
+	    <td colspan="4" style='text-align:center;' class="correct" style="font-size:1.2em"><a href="__URL__/modify/id/<{$vo.id}>"><b>修改</b></a></td>
+                    
+          
+			</volist>
+		</table>

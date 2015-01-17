@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<load href="__PUBLIC__/Css/Home/show.css" />
+		<title>Index</title>
+	</head>
+	<h2 style="color:#219E69;margin:0 auto;"> 详细个人信息</h2>
+	<table border='1' width="500" align='center' class="show_check">
+		<input type='hidden' name='id' value="<{$data.id}>"/>
+           <tr>
+             <th colspan="4">个人信息</th>
+           </tr>  
+            <tr>
+			  <td>用户名：<{$data.username}></td>
+			  <td>姓名：<{$data.truename}></td>
+            </tr>  
+            <tr>
+			  <td>性别：<if condition='$data.sex eq 1'>男<else />女</if></td>
+			  <td>单位：<{$data.unit}></td>
+            </tr>  
+            <tr>
+
+			  <td>学院(部门)：<{$data.department}></td>
+			  <td>身份：<switch name='data.job'><case value="1">教师</case><case value="2">学生</case><default />其它</switch></td>
+            </tr>  
+            <tr>
+			  <td>学历：<if condition='$data.degree eq 2'>博士<else />硕士</if></td>
+			  <td>年级：<{$vo.grade}></td>
+            </tr>  
+            <tr>
+			  <td>导师：<{$data.tutor}></td>
+			  <td>课题负责人：<{$data.principal}></td>
+           </tr>  
+            <tr>
+			  <td>联系电话：<{$data.tel}></td>
+			  <td>邮箱：<{$data.mail}></td>
+            </tr>
+	    <tr>
+		    <td></td>	  <td style="font-size:1.3em;text-align:right"><a href="__URL__/usercheck"><b>返回</b></td>
+            </tr>
+                    
+          
+		</table>
+</html>

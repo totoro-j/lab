@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>综合新闻</title>
+</head>
+
+<body>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<load href="__PUBLIC__/Css/edit_news.css" />
+<load href="__PUBLIC__/Css/Home/reg.css" />
+<load href="__PUBLIC__/Js/jquery.js"/>
+
+<!--<script src="__PUBLIC__/ckeditor/ckeditor.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/ckfinder/ckfinder.js" type="text/javascript"></script>
+-->
+
+<load href="__PUBLIC__/ckeditor/ckeditor.js" />
+
+<load href="__PUBLIC__/ckfinder/ckfinder.js" />
+<title>综合新闻</title>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#s1").click(function(){
+      $("#add_to_s").toggle();
+    })
+   $(".title").blur(function(){
+    $(".warm").text("标题不能为空！").css("color","red").css("font-size","12px");
+  })
+  })
+
+ 
+</script>
+
+<script type="text/javascript">
+// 图片在线预览
+(function($) {
+    jQuery.fn.extend({
+        uploadPreview : function(opts) {
+            opts = jQuery.extend({
+                scalingWidth : 0,
+                scalingHeight : 0,
+                imgPreview : null,
+                imgType : [ "jpeg", "jpg", "bmp", "png" ],
+                callback : function() {
+                    return false;
+                }
+            }, opts || {});
+ 
+            var _self = this;
+            var _this = $(this);
+            var imgPreview = $(opts.imgPreview);
+            // 设置样式
+            autoScaling = function() {
+ 
+                var width = imgPreview.width();
+                var height = imgPreview.height();
+ 
+                if (width > opts.scalingWidth) {
+                    var scalingProperty = width / opts.scalingWidth;
+                    width = width / scalingProperty;
+                    height = height / scalingProperty;
+                }
+ 
+                if (height > opts.scalingHeight) {
+                    var scalingProperty = height / opts.scalingHeight;
+                    width = width / scalingProperty;
+                    height = height / scalingProperty;
+                }
+ 
+                imgPreview.css({
+                    "width" : width,
+                    "height" : height
+                });
+ 
+                imgPreview.show();
+            }
+            // file按钮出发事件
+            _this.change(function() {
+                if (this.value) {
+                    if (!RegExp("\.(" + opts.imgType.join("|") + ")$", "i").test(
+                            this.value.toLowerCase())) {
+                        alert("图片类型必须是" + opts.imgType.join(",") + "中的一种");
+                        this.value = "";
+                        return false;
+                    }
+                    // 判断浏览器是否有FileReader接口
+                    if (typeof FileReader == 'undefined') {
+                        alert('请使用支持HTML5的浏览器,如IE10,Chrome,FireFox等.');
+                        return false;
+                    } else {
+                        oFReader = new FileReader();
+                        oFReader.onload = function(oFREvent) {
+                            imgPreview.attr('src', oFREvent.target.result);
+                        };
+                        var oFile = this.files[0];
+                        oFReader.readAsDataURL(oFile);
+                    }
+                    imgPreview.css({
+                        "display" : 'none',
+                        "width" : 'auto',
+                        "height" : 'auto'
+                    });
+                    setTimeout("autoScaling()", 100);
+                }
+                opts.callback();
+            });
+        }
+    });
+})(jQuery);
+</script>
+
+
+</head>
+
+<body>
+
+<!--container begin-->
+<div class="container_wrapper">
+<!--each edit section begin-->
+<!--section No.1 begin-->
+  <h3>综合新闻</h3>
+  <div class="edit_section" >
+    
+     <form>
+     <div class="art_title" ><p>标题</p>
+      <input type="text" class="title"/><span class="warm"></span>
+       </div>
+    <div id="s1">
+    </br>
+    </br>
+     <input type="button" value="显示到主页">
+    </div>
+     <div id="add_to_s">
+      <div style="width:250px;float:left;">
+          <input type="file" id="input" class="upload"value="上传图片">
+	      <div style="border:none" > <img style="width:278px;height:100px;"id="img" alt="分辨率为278*100的图片显示效果最佳"> </div> 
+      </div>     <textarea type="text" class="describ" placeholder="请输入概括内容"></textarea>
+        
+	  <script>
+$(function(){
+    $('#input').uploadPreview({
+        scalingWidth : 278,
+        scalingHeight : 100,
+        imgPreview : "#img",
+        imgType : [ "bmp", "gif", "png", "jpg" ],
+        callback : function() {
+        }
+    });})
+</script>
+
+    </div>
+
+</br>
+</br>
+    <div class="new">
+    
+      <textarea name="myEditor" id="myEditor" ></textarea>
+<script>
+CKEDITOR.replace( 'myEditor',
+{
+filebrowserBrowseUrl : '__PUBLIC__/ckfinder/ckfinder.html',
+filebrowserImageBrowseUrl : '__PUBLIC__/ckfinder/ckfinder.html?Type=Images',
+filebrowserFlashBrowseUrl : '__PUBLIC__/ckfinder/ckfinder.html?Type=Flash',
+filebrowserUploadUrl : '__PUBLIC__/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+filebrowserImageUploadUrl : '__PUBLIC__/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+filebrowserFlashUploadUrl : '__PUBLIC__/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+});
+</script>
+         <input class="submit" type="submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交">
+    </div>
+
+</div>
+
+
+    
+     
+
+   
+     <!--<div class="edit_section_describ">
+       <p>新闻内容</p>
+       <textarea type="text" class="describ" placeholder="在此编辑新闻内容."></textarea> 对应banner 下面的文字描述内容
+       
+     </div>-->
+     
+   
+    
+   
+   </form>
+<!--section No.1 end--> 
+
+
+
+</body>
+</html>
+
+</body>
+</html>

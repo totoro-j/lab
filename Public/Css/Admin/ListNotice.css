@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:#fff;}
+*{
+	margin:0px;    /*外侧边框*/
+	padding:0px;   /*内侧边框*/
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+	color:inherit;
+}
+
+input,button,select,textarea{outline:none;}
+/* banner*/
+textarea{resize:none}
+h3{
+
+	border-left:20px solid #23a96f;
+	padding-left:8px;
+	margin-top:5px;
+	margin-left:20px;
+	
+}
+.container_wrapper{
+	width:960px;
+	margin:0 auto;
+	margin-top:50px;
+	border-radius:5px;}
+.edit_section_pic_describ{
+	margin:0 auto;
+	width:900px;
+	margin-top:20px;
+	padding-top:20px;
+	padding-left:35px;
+	}	
+.edit_section_pic_describ p{
+	float:left;
+	font-weight:bold;
+	margin-bottom:10px;
+}	
+.edit_section_pic{
+		float:left;
+	border:1px dashed #999;
+	width:200px;
+	height:150px;
+	border-radius:5px;}	
+	
+.edit_section_describ{
+	float:left;
+	}	
+input[type="submit"]{
+	float:left;
+	
+	
+
+	background:#15a76e;
+	color:#eee;
+	border:none;
+	padding: 4px 10px;
+	border-radius:3px;
+	
+	}
+input[type="file"]{
+	float:left;
+	margin-left:20px;
+	margin-bottom:0px;
+	border:none;
+	padding: 4px 10px;
+	border-radius:3px;
+	
+	}		
+.describ,.describ2{
+	clear:both;
+	text-indent:4px;
+	width:850px;
+	padding-bottom:30px;
+	margin-bottom:25px;
+	border-bottom:#CCC solid 1px;
+	color:#222;}	
+.describ2{
+	border:#CCC solid 1px;
+	margin-bottom:20px;
+}
+.describ2:hover,.describ2:focus{
+	border:1px solid #23a96f;
+	border-radius:3px;
+}
+	
+	
+.delete{
+	color:#23a96f;width:50px;
+	float:right;
+	text-align:right;
+	}	
+input[type="submit"]{
+	float:right;
+	margin-right:50px;
+	margin-top:-10px;
+	margin-bottom:50px;
+	}
+input[type="submit"]:hover{
+	background-color:#27C080;
+}
+#edit_focus{
+	padding-bottom:30px;
+	}	
