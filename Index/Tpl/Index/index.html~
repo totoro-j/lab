@@ -1,0 +1,93 @@
+<include file="header" />
+<!--banner-->
+<load href="__PUBLIC__/Js/Index/jquery.slideBox.js"/>
+<script>
+jQuery(function($){
+	$('#demo1').slideBox();
+	});
+</script>
+<!--end banner-->
+  <!--主体部分开始-->
+  <div class="content">
+  <!--图片展示开始-->
+  <div id="demo1" class="slideBox">
+  <ul class="items">
+ <volist name="banner" id="vo">
+	  <li><a href="#" title="<{$vo.metacontent}>"><img src="__PUBLIC__/Images/<{$vo.imgurl}>"></a></li>
+	  </volist>    
+  </ul>
+</div>
+  
+  <!--图片展示结束-->
+  <!--内容部分开始-->
+  <div class="mainWrap">
+  <!--焦点关注-->
+          <div class="focus">
+                <h2 class="focusSubtitle">
+                <a href="__URL__/list1" target="_blank">焦点关注</a>
+                </h2>
+                <ul class="fouceList">
+		<volist name="list" id="vo">
+                      <li>
+                             <div class="fdate">
+                             <span><{$vo.time}></span>
+			     <{$vo.date}>
+                             </div>
+                             <div class="focusctn">
+                                  <h3>
+					  <a href="__URL__/n/id/<{$vo.id}>" target="_blank"><{$vo.title}></a>
+                                  </h3>
+				  <p class="focusSummary"><{$vo.content}></p>
+                             </div>
+                      </li>
+		      </volist>
+                                 
+             </ul>
+             <span><a href="__URL__/list1" target="_blank">更多></a></span>
+          </div> 
+    <!--焦点关注结束-->
+    <!--综合新闻开始-->
+      <div class="news">
+                  <h2 class="newsSubtitle"><a href="__URL__/list2" target="_blank">综合新闻</a></h2>
+                  <ul class="newsList">
+			  <volist name="cnew" id="vo">
+                  <li id="li1_1">
+		  <h3><a href="__URL__/n/id/<{$vo.id}>" target="_blank"><{$vo.title}></a></h3>
+		  <a href="__URL__/n/id/<{$vo.id}>" target="_blank"><img align="center" src="__PUBLIC__/Images/m_<{$vo.metaimg}>" id="img_2"  height="100"/></a>
+		  <div class="newsSummary"><{$vo.content}>
+                    </div>
+                    </li>
+		    </volist>                   
+                    </ul>
+                    <span><a href="__URL__/list2" target="_blank">更多></a></span>                
+          </div>
+                             
+
+    <!--综合新闻结束-->
+
+       </div>
+    <!--内容部分结束-->
+    <!--通知公告开始-->
+    <div class="inform">
+    <div class="informWrap">
+    <h2 class="informSubtitle"><a href="__URL__/list3" target="_blank">通知公告</a></h2>
+    <ul class="ul_1">
+	    <volist name="list2" id="vo">
+	    <li class="informSummary"><a href="__URL__/n/id/<{$vo.id}>" target="_blank">【<{$vo.date}>】<{$vo.content}></a></li>
+	    </volist>
+    </ul>
+    
+    <ul class="ul_2">
+	    <volist name="list3" id="vo">
+	    <li class="informSummary"><a href="__URL__/n/id/<{$vo.id}>" target="_blank">【<{$vo.date}>】<{$vo.content}></a></li>	
+	    </volist>
+    </ul>
+    
+   <span><a href="__URL__/list3" target="_blank" >更多></a></span>
+    </div>
+     
+    </div>
+    <!--通知公告结束-->
+</div>
+<!--主体部分结束-->
+<include file="footer" />

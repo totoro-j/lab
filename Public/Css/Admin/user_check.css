@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0 auto;    /*外侧边框*/
+	padding:0px;   /*内侧边框*/
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+	color:inherit;
+}
+.check_table{
+	margin-top:40px;
+	width:1050px;
+	}
+.user_search
+{
+	width:116px;
+	height:25px;
+	border:1px solid #219E69;
+	color:#666;
+}
+
+.search_detail
+{
+	height:22px;
+	width:220px;
+	padding-left:4px;
+	border:1px solid #219E69;
+	color:#999;
+}
+.search_button
+{
+	width:50px;
+	height:23px;
+	line-height:15px;
+	color:#fff;
+	cursor: pointer;
+	background-color:#23a96f;
+	border:1px solid #8F9BB3;
+	font-family:"微软雅黑";
+	margin-left:4px;
+}
+table.appointment_check{
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #ccc;
+	border-collapse: collapse;
+	margin-top:20px;
+}
+table.appointment_check th{
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #ccc;
+	color:#eee;
+	background-color:#219E69;
+
+}
+table.appointment_check td{
+	width:133px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color:#CCC;
+	background-color: #ffffff;
+	text-align:center;
+}
+#notfound{
+	color:#999;
+	display:none;
+}
+.refuse1{
+	color:#F00;
+}
+.pass1{
+	color:#093;
+}
+.user_show
+{
+	margin-top:20px;
+    background:#23a96f;
+	color:#fff;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:15px;
+}

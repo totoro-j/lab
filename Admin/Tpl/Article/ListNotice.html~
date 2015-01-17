@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<load href="__PUBLIC__/Css/Admin/ListNotice.css"/>
+<title>通知公告</title>
+
+
+</head>
+
+<body>
+ <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">通知公告</h2>
+<!--container begin-->
+<div id="edit_focus1" class="container_wrapper">
+<!--each edit section begin-->
+<!--section No.1 begin-->
+  <h3>通知公告</h3> 
+
+  <div id="edit_focus2"class="edit_section_pic_describ">
+       <div class="edit_section_describ">
+ <volist name='data' id='vo'>
+   <input type='hidden' name='id' value="<{$vo.id}>" />
+ <p><{$vo.title}></p>
+            <div ><a href="__URL__/ListNoticeDel/id/<{$vo.id}>" class="delete"  onclick="return confirm('确认后将删除')">删除</a></div>
+	    <div type="text" class="describ" ><{$vo.content}><div style="font-size:11px;float:right;margin-top:20px;"><{$vo.date}></div>   </div>   
+	  
+	    </volist> 
+    </div>
+     
+  
+
+    
+    
+   <div id="edit_focus"class="edit_section_pic_describ" >
+     <form method="post" action="__URL__/ListNoticeadd/">
+     <div class="edit_section_describ">
+	     <p style="color:#23a96f;">添加公告: </p></br>
+         
+         <input type="text" class="describ2" placeholder="发布人" style="margin-left:-50px;margin-top:20px;height:15px;width:800px;padding:8px 8px;"name="title"/>
+      <textarea type="text" class="describ2" placeholder="公告内容..." name="myEditor"></textarea>        
+     </div>
+     <input type="submit" class="edit_section_describ_btn" value="提交文字"/>
+     </form>
+      
+  </div>
+  
+  </div>
+
+   
+
+
+   
+
+</body>
+</html>

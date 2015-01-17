@@ -1,0 +1,63 @@
+<include file="header" />
+<script type="text/javascript">
+      $(function(){  
+		$(".supnav").mouseover(function(){
+			$(this).children("ul").delay(200).slideDown(100);
+			
+			
+			})
+		  
+		  	
+		$(".supnav").mouseleave(function(){
+			$(this).children("ul").stop(true,true).slideUp(200);
+			
+			
+			})
+				
+	
+		
+		  })
+
+</script>
+  <!--内容开始-->
+<div class="container">  
+        
+       <!--页内导航开始-->
+       <div class="anchor">
+               <div class="subpage_title">关于实验室</div>
+               <ul class="subpage_anchor">
+                   <li><a href="#anchor_1">学术带头人</a></li>
+                   <li><a href="#anchor_2">XXX学者</a></li>
+                   <li><a href="#anchor_3">这里也是一个板块1</a></li>
+                   <li><a href="#anchor_4">这里也是一个板块2</a></li>
+                   <li><a href="#anchor_5">这里也是一个板块3</a></li>
+               </ul> 
+       </div>
+       
+        <!--页内导航结束-->
+       
+       <div class="detail">
+       		   <a name="anchor_1"></a>
+               <div class="subpage_title">学术带头人</div>
+               <div  class="subpage_detail"  id="id_id"><div class="subpage_detail_block">lalalal</div></div>
+               
+               <a name="anchor_2"></a>
+               <div class="subpage_title" name="anchor_2">XXX学者</div>
+               <div  class="subpage_detail"  id="id_id"><div class="subpage_detail_block">lalala</div></div>
+               
+               <a name="anchor_3"></a>
+               <div class="subpage_title" name="anchor_3">这里也是一个板1块</div>
+               <div  class="subpage_detail"  id="id_id"><div class="subpage_detail_block">lalalalal</div></div>
+               
+               <a name="anchor_4"></a>
+               <div class="subpage_title" name="anchor_4">这里也是一个板块2</div>
+               <div  class="subpage_detail"  id="id_id"><div class="subpage_detail_block">lalalalal</div></div>
+               
+               <a name="anchor_5"></a>
+               <div class="subpage_title" name="anchor_5">这里也是一个板块3</div>
+               <div  class="subpage_detail"  id="id_id"><div class="subpage_detail_block">lalalalal</div></div>
+       </div>
+        
+</div>
+   <!--内容结束-->
+<include file="footer" />

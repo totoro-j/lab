@@ -1,0 +1,30 @@
+<include file="header" />
+<!--主体部分开始-->
+
+<div class="container">
+  <!-- 页面标题部分 -->
+  <div class="subtitle">
+     <h2>焦点关注</h2>
+  </div>
+  <!--页面标题部分结束-->
+
+<!--summary list start-->
+  <div class="summary">
+	<volist name='focus_list' id='vo'>
+        <div class="summary_list">
+             <img  onerror="this.src='__PUBLIC__/Images/uestc.ico'" src="__PUBLIC__/Images/m_<{$vo.metaimg}>">
+             <div class="summry_list_info">
+                 <h3><a href="__URL__/n/id/<{$vo.id}>"><{$vo.title}></a></h3>
+                 <span><{$vo.date}></span>  <!--came out time-->
+                 <p style="text-align:left"><a href="__URL__/n/id/<{$vo.id}>"><{$vo.metacontent}></a></p>
+             </div>
+        </div>
+	</volist>
+  </div>
+<!--summary list end-->
+<div class="list_show"><{$show}></div>
+</div>
+<!--主体部分结束  end-->  
+<include file="footer" />
+
+
