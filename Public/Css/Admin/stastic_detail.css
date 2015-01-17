@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	font-family:"微软雅黑";
+	margin:0 auto;
+}
+
+a{
+	text-decoration:none;
+	color:inherit;
+}
+.check_detail{
+	width:600px;
+	
+	}
+
+/*日期框*/
+.inputtimebox{
+	margin:20px;
+	margin-left:135px;
+}
+.inputtime {width:138px;height:28px;line-height:28px;padding:0 7px;border:1px solid #23a96f;color:#999;margin-top:10px;font-family:Arial,"微软雅黑";}
+.to_login{width:70px;height: 30px;line-height:15px;color:#fff;cursor: pointer;background-color:#23a96f;border:1px solid #8F9BB3;font-family:"微软雅黑";
+
+}
+/*表格*/
+table.stastic_detail_check{
+	font-family: verdana,arial,sans-serif;
+	font-size:14px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #ccc;
+	border-collapse: collapse;
+}
+table.stastic_detail_check th{
+	color:#eee;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #ccc;
+	background-color:#219E69;
+}
+table.stastic_detail_check td{
+	width:100px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color:#CCC;
+	background-color: #ffffff;
+	text-align:center;
+	width:150px;
+
+}
+.stastic_detail_check tr:hover td {background:#ddf9ed;}
+.stastic_detail_words
+{
+	display:none;
+
+	padding-bottom:20px;
+}

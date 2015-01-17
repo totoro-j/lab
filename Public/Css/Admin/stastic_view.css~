@@ -1,0 +1,109 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{font-family:"微软雅黑";
+margin:0 auto;}
+
+a{
+	text-decoration:none;
+	color:inherit;
+}
+
+.check_stastic{
+	margin-top:40px;
+	width:880px;}
+/*搜索*/	
+.user_search
+{
+	width:116px;
+	height:25px;
+	border:1px solid #219E69;
+	color:#666;
+	
+}
+
+.search_detail
+{
+	height:22px;
+	width:220px;
+	padding-left:4px;
+	border:1px solid #219E69;
+	color:#999;
+}
+.search_button
+{
+	width:50px;
+	height:23px;
+	line-height:15px;
+	color:#fff;
+	cursor: pointer;
+	background-color:#23a96f;
+	border:1px solid #8F9BB3;
+	font-family:"微软雅黑";
+	margin-left:4px;
+}
+
+table.stastic_check{
+	font-family: verdana,arial,sans-serif;
+	font-size:14px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #ccc;
+	border-collapse: collapse;
+	margin-top:20px;
+	
+	
+}
+table.stastic_check th{
+	width:400px;
+	color:#eee;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #ccc;
+	background-color:#219E69;
+	
+	
+
+}
+table.stastic_check td{
+	width:100px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color:#CCC;
+	 background:#fff;
+		text-align:center;
+
+
+}
+table.stastic_check tr:hover td {background:#ddf9ed;
+
+ }
+.count_button{
+	color:#eee;
+	margin-top:20px;
+	width:148px;
+	height:35px;
+	background:#219E69;
+	border:none;
+	
+	border:1px solid #8F9BB3;
+}
+.stastic_words{
+	
+	width:700px;
+	display:none;
+    margin-top:-30px;
+	padding-left:155px;
+	padding-top:5px;
+}
+.user_show
+{
+	margin-top:20px;
+    background:#23a96f;
+	color:#fff;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:15px;
+}
+	

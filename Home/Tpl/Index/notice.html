@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta charset="UTF-8">
+<title>机时预约界面</title>
+<load href="__PUBLIC__/Css/Home/style.css"/>
+<load href="__PUBLIC__/Css/Home/animate.css"/>
+<load href="__PUBLIC__/Css/Home/animate.min.css"/>
+<load href="__PUBLIC__/Css/Home/common.css"/>
+<load href="__PUBLIC__/Js/jquery-2.0.3.min.js"/>
+<load href="__PUBLIC__/Js/index.js"/>
+<load href="__PUBLIC__/Js//tableRowCheckboxToggle.js"/>
+<load href="__PUBLIC__/Js/jquery.hDialog.js"/>
+<link rel="shortcut icon" href="__PUBLIC__/Images/logo.ico"/>
+<div id="body">
+</head>
+<body>
+   	<div id="nc">
+   		<div id="noteboarder">
+   			<!--公告栏-->
+   			<div class="can">
+		<div class="can_1">公告栏</div>
+		<div class="canin">
+			<article class="canin_1"></article>
+			<h3 class="canin_2"><{$time}><br>发布人：<{$editor}></h3>
+            <p ><{$content}></p>
+    </div>
+	</div>
+   		</div>
+        
+        <!--个人信息界面开始-->
+        <div id="infor">
+        <div class="can_1">个人信息</div>
+        <table>
+        <tr>
+          <th>用户名</th>
+	  <td><{$username}></td>
+        </tr>
+        <tr>
+          <th>姓名</th>
+          <td><{$truename}></td>
+        </tr>
+        <tr>
+          <th>性别</th>
+          <td><{$sex}></td>
+        </tr>
+        <tr>
+          <th>单位</th>
+          <td><{$unit}></td>
+        </tr>
+        <tr>
+          <th>院系部门</th>
+          <td><{$department}></td>
+        </tr>
+        <tr>
+          <th>身份</th>
+          <td><{$job}></td>
+        </tr>
+        <tr>
+          <th>课题组负责人</th>
+          <td><{$principal}></td>
+        </tr>
+        <tr>
+          <th>联系电话</th>
+          <td><{$tel}></td>
+        </tr>
+        <tr>
+          <th>邮箱</th>
+          <td><{$mail}></td>
+        </tr>
+        </table>
+        </div>
+        </div>
+	</body>
+	</html>

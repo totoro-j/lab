@@ -1,0 +1,49 @@
+﻿form {
+				width:450px;
+				height:180px;
+				margin:0 auto;
+				margin-top:20px;
+	}
+form h3{
+	font-family:"微软雅黑";
+	font-size:21px;
+	font-weight:bold;
+	border-left:#219E69 solid 22px;
+	padding-left:15px;
+	margin-bottom:36px;
+}
+form span{
+	width:262px;
+	height:30px;
+	margin-top:8px;
+	margin-left:37px;
+	font-family:"微软雅黑";
+	font-size:16px;
+	float:left;
+}
+form input{
+				width:180px;
+				height:25px;
+				margin:0 auto;
+				margin-bottom:8px;
+				margin-right:10px;
+				padding-left:4px;
+				font-family:Arial,"微软雅黑";
+				font-size:14px;
+	}
+form .login,.register {		
+				cursor:pointer;	
+}
+.code{
+	padding-top:8px;
+	float:right;
+	margin-right:90px;
+}
+.buttons{
+	width:450px;
+	margin:0 auto;
+}
+.login{clear:both;width:70px;font-family:"微软雅黑";height:30px;color:#fff;background:#23a96f;font-size:14px;text-align:center;line-height:28px;margin:0 auto;margin-left:150px;margin-top:12px;}
+.login:hover{
+	background-color:#2BB972;
+}

@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:#fff;}
+*{
+	margin:0px;    /*外侧边框*/
+	padding:0px;   /*内侧边框*/
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+	color:inherit;
+}
+h3{
+	border-left:20px solid #23a96f;
+	padding-left:8px;
+	margin-top:5px;
+	margin-left:20px;
+}
+
+.container{
+	width:960px;
+	margin:0 auto;
+	margin-top:50px;}
+
+table.article_list td{
+	width:60px;
+	height:45px;
+	font-size:12px;
+	color:#23a96f;
+	text-align:center;
+	vertical-align:central;
+	
+   
+}
+table.article_list th{
+	width:400px;
+	height:45px;
+	padding-left:10px;
+	text-align:left;
+	vertical-align:central;
+}	
+table.article_list{
+	border-radius:5px;
+	width:900px;
+	margin-left:40px;
+	margin-top:30px;
+	background:#E9FAF1;
+	font-family: verdana,arial,sans-serif;
+	color:#333333;
+}
+.article_list th,.article_list td{
+	border-bottom:#fff solid 1px;
+}
+.article_list tr:hover,.article_list tr:hover td{
+	background-color:#ACEED2;}	
+.add_article{
+	text-align:right;
+	padding-right:20px;
+	padding-bottom:15px;
+	font-size:16px;
+	font-weight:bold;
+	color:#23a96f;
+}
+.add_article:hover{
+}

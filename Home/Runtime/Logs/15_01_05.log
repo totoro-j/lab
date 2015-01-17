@@ -1,0 +1,71 @@
+[ 2015-01-05T14:57:32+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T14:57:32+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T15:47:58+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T15:47:58+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T15:50:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T15:50:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:06:46+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:06:46+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:10:10+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:10:10+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:14:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:14:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:28:51+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:28:51+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:29:12+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=2ua
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001528s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001666s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.010214s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '2ua' ) LIMIT 1   [ RunTime:0.000282s ]
+
+[ 2015-01-05T16:30:28+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:30:28+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:30:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:30:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:30:55+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:30:55+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:33:41+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:33:41+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:02+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:02+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:11+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:11+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:32+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:32+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:44+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:34:44+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:35:01+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:35:01+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:35:11+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T16:35:11+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T17:48:29+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T17:48:29+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:14+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:14+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:26+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:26+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:38+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:38+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:44+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:44+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:54+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:44:54+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:45:30+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:45:30+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T21:52:02+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=qq250448196
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000947s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.008323s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'qq250448196' ) LIMIT 1   [ RunTime:0.000211s ]
+
+[ 2015-01-05T21:52:12+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=qq250448196
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000787s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000857s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.012256s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'qq250448196' ) LIMIT 1   [ RunTime:0.000294s ]
+
+[ 2015-01-05T22:09:01+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-01-05T22:09:01+08:00 ] ERR: (ThinkException) 非法操作:js

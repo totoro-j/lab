@@ -1,0 +1,22 @@
+
+<div id="history">
+        <div class="can_1">历史操作</div>
+        <div id="his_infor">
+        <table class="his_infor">
+        <tr><th>申请时间</th><th>申请详情</th><th>申请状态</th></tr>
+	<volist name='list' id='vo'>
+	<tr class="pass"><td><{$vo.time}></td>
+		<td><ul><li>实验名称:<{$vo.testname}></li>
+		<li>实验描述:<{$vo.testcontent}></li>
+		<li>课题组负责人：<{$vo.principal}></li>
+		<li>预计被试次数:<{$vo.total}></li>
+		<li>每被试所需扫描时间:<{$vo.hour}>小时</li>
+              </ul>
+	 </td><td><{$vo.state}></td></td>
+	 </volist>
+	 </table>
+
+        </div>
+        </div>
+        </div>
+
