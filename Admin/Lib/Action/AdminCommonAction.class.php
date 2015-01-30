@@ -9,8 +9,8 @@
 			$nam=$_SESSION['username'];
 			$t['username']=array('eq',"$nam");
 			$myrole=$m->where($t)->getField('role');
-			if($myrole=="1"||$myrole=="0"){		
-				$this->error('没有权限!','__ROOT__/index.php/Index/index');
+			if($myrole=="1"||$myrole=="0"||$myrole=="3"){		
+				$this->error('没有权限!','__ROOT__/default.php/Index/index');
 			}
 		}
 	}
