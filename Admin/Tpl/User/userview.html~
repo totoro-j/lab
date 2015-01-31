@@ -42,7 +42,6 @@ function rep(){
 </head>
 
 <body>
-<h2 style="color:#219E69;margin:0 auto;"> 正式用户管理</h2>
 
 <div class="user_information">
 <table>
