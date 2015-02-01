@@ -1,0 +1,36 @@
+[ 2015-02-01T12:25:12+08:00 ] 127.0.0.1 /lab/
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000641s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000702s ]
+SQL: SHOW COLUMNS FROM `lab_banner` [ RunTime:0.010631s ]
+SQL: SELECT * FROM `lab_banner` ORDER BY id desc  [ RunTime:0.000211s ]
+SQL: SHOW COLUMNS FROM `lab_article` [ RunTime:0.011093s ]
+SQL: SELECT * FROM `lab_article` WHERE ( `parentid` = 1 ) AND ( `isshow` = 1 ) ORDER BY id desc  [ RunTime:0.000319s ]
+NOTIC: [8] Undefined offset: 2 C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 15 行.
+SQL: SELECT * FROM `lab_article` WHERE ( `parentid` = 2 ) AND ( `isshow` = 1 ) ORDER BY id desc  [ RunTime:0.000348s ]
+NOTIC: [8] Undefined offset: 3 C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 48 行.
+NOTIC: [8] Use of undefined constant 暂无新闻 - assumed '暂无新闻' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 49 行.
+NOTIC: [8] Use of undefined constant 新闻内容也是空 - assumed '新闻内容也是空' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 50 行.
+NOTIC: [8] Undefined offset: 4 C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 48 行.
+NOTIC: [8] Use of undefined constant 暂无新闻 - assumed '暂无新闻' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 49 行.
+NOTIC: [8] Use of undefined constant 新闻内容也是空 - assumed '新闻内容也是空' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 50 行.
+NOTIC: [8] Undefined offset: 5 C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 48 行.
+NOTIC: [8] Use of undefined constant 暂无新闻 - assumed '暂无新闻' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 49 行.
+NOTIC: [8] Use of undefined constant 新闻内容也是空 - assumed '新闻内容也是空' C:\wamp\www\lab\Index\Lib\Action\IndexAction.class.php 第 50 行.
+SQL: SELECT * FROM `lab_article` WHERE ( `parentid` = 3 ) AND ( `isshow` = 1 ) ORDER BY id desc  [ RunTime:0.000309s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.000772s ]
+INFO: [ view_template ] --END-- [ RunTime:0.000813s ]
+INFO: [ view_parse ] --START--
+INFO: Run ParseTemplate Behavior [ RunTime:0.028832s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028889s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000625s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000513s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000412s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000537s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002202s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000648s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000685s ]
+
