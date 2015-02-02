@@ -67,20 +67,20 @@ $.ajax({
 </table>
 <table class="stastic_check">
 <tr>
-  <th style="width:400px;">实验名称</th>
+  <th style="width:500px;">实验名称</th>
   <th>申请人姓名</th>
   <th>课题负责人姓名</th>
-  <th>单次预约机时</th>
-  <th>机时明细</th>
-  <th>取消预约</th>
-  <th>机时统计</th>
+  <th>预约机时统计</th>
+  <th>历史预约详情</th>
+  <th>停止实验</th>
+  <th>预约总计</th>
 </tr>
 <volist name='entry_list' id='vo'>
 <tr>
    <td><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
    <td><{$vo.principal}></td>
-   <td><{$vo.hour}>小时</td>
+   <td></td>
    <td><!--机时明细入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
    <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.id}>" class="cancel" onclick="return confirm('确认后将取消该预约！')">取消通过</a></td>
   <td><input type="checkbox" value="<{$vo.id}>" name="conditions"></td>

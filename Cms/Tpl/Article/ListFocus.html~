@@ -12,6 +12,7 @@
 </head>
 
 <body>
+ <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">焦点关注</h2>
     <div class="container">
        <h3>焦点关注列表</h3>
           

@@ -189,28 +189,6 @@
 <body onLoad="validateTel()">
 <h2 style="color:#219E69;margin:0 auto;"> 审核预约申请</h2>
    <div class="check_table">
-   <table>
-	<form name 'send' method="post" action="__URL__/search">	
-	<tr>
-	<td>
-    <select class="user_search" id="searchform" name="searchform">
-  	<option value="choose">-----请选择-----</option>
-  	<option value="name">姓名</option>
-  	<option value="sex">性别</option>
-  	<option value="unit">单位</option>
-  	<option value="department">学院(部门)</option>
-  	<option value="job">身份</option>
-  	<option value="principal">课题组负责人</option>
-  	<option value="tel">联系电话</option>
-  	<option value="email">邮箱</option>
-  	<option value="role">权限</option>
-	</select></td>
-	<td><input type="text"   class="search_detail" value="请输入搜索内容"  id="search" name="search" onFocus="clearContent(this)" onBlur="validateTel()" /></td>
-	<td><input type="submit" class="search_button" value="搜索"/></td>
-    </tr>
-	</form>
-</table>
-   <div class="check_table">
    <table class="appointment_check" id="appointment_check">
    <tr>
    <th>实验名称</th><th>用户姓名</th><th>课题负责人</th><th>申请时间</th><th>审核情况</th><th colspan="2">审核操作</th>

@@ -70,18 +70,18 @@ $.ajax({
   <th style="width:500px;">实验名称</th>
   <th>申请人姓名</th>
   <th>课题负责人姓名</th>
-  <th>单次预约机时</th>
-  <th>机时明细</th>
-  <th>取消预约</th>
-  <th>机时统计</th>
+  <th>预约机时统计</th>
+  <th>历史预约详情</th>
+  <th>停止实验</th>
+  <th>预约总计</th>
 </tr>
 <?php if(is_array($entry_list)): $i = 0; $__LIST__ = $entry_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
    <td><a href="__URL__/checkentry/id/<?php echo ($vo["id"]); ?>"><?php echo ($vo["testname"]); ?></td>
    <td><a href="__APP__/User/check/id/<?php echo ($vo["uid"]); ?>"><?php echo ($vo["truename"]); ?></td>
    <td><?php echo ($vo["principal"]); ?></td>
-   <td><?php echo ($vo["hour"]); ?>小时</td>
-   <td><!--机时明细入口--><a href="__URL__/checkentry/id/<?php echo ($vo["id"]); ?>">详情</a></td>
-   <td class="info_correct"><a href="__URL__/cancel/id/<?php echo ($vo["id"]); ?>" class="cancel" onclick="return confirm('确认后将取消该预约！')">取消通过</a></td>
+   <td></td>
+   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<?php echo ($vo["id"]); ?>">详情</a></td>
+   <td class="info_correct"><a href="__URL__/cancel/id/<?php echo ($vo["id"]); ?>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
   <td><input type="checkbox" value="<?php echo ($vo["id"]); ?>" name="conditions"></td>
 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
 </table>

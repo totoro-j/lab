@@ -50,7 +50,7 @@
 	      
        </div>
      
-       <div  style="width:100px;height:21px;display:block;margin-left:500px;font-size:11px;"><{$vo.date}></div>
+       <div  style="width:200px;height:21px;display:block;margin-left:500px;font-size:11px;"><{$vo.date}></div>
     
        
       </div>

@@ -6,12 +6,17 @@ class ArticleAction extends AdminCommonAction {
     }
 
     public function ListArticle(){
-	   	$m=M('Article');
-			$arr=$m->where('parentid=4')->select();
-			//var_dump($arr);
-			$this->assign('data',$arr);
-			$this->display();
-		}
+	$e=M('Article');
+	import('ORG.Util.Page');
+	$count=$e->where('parentid=4')->count();
+	$page  = new Page($count,5);
+	$page->setConfig('header','篇文章');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->select();
+	$this->assign('data',$arr);
+	$this->assign('show',$show);
+	$this->display();
+	}
     
 
     public function ListArticleEdit(){
@@ -79,9 +84,15 @@ class ArticleAction extends AdminCommonAction {
     
 
     public function ListBanner(){
-	$m=M('Banner');
-	$arr=$m->select();
+	$e=M('Banner');
+	import('ORG.Util.Page');
+	$count=$e->count();
+	$page  = new Page($count,3);
+	$page->setConfig('header','条记录');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->select();
 	$this->assign('data',$arr);
+	$this->assign('show',$show);
 	$this->display();
     }
 
@@ -130,9 +141,15 @@ class ArticleAction extends AdminCommonAction {
     }
 
     public function ListFocus(){
-        $m=M('Article');
-	$arr=$m->where('parentid=1')->select();
+        $e=M('Article');
+    	import('ORG.Util.Page');
+	$count=$e->where('parentid=1')->count();
+	$page  = new Page($count,5);
+	$page->setConfig('header','篇文章');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->select();
 	$this->assign('data',$arr);
+	$this->assign('show',$show);
 	$this->display();
     }
 
@@ -265,9 +282,15 @@ class ArticleAction extends AdminCommonAction {
 
 
     public function ListNews(){
-        $m=M('Article');
-	$arr=$m->where('parentid=2')->select();
+	$e=M('Article');
+    	import('ORG.Util.Page');
+	$count=$e->where('parentid=2')->count();
+	$page  = new Page($count,5);
+	$page->setConfig('header','条记录');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->select();
 	$this->assign('data',$arr);
+	$this->assign('show',$show);
 	$this->display();
      
     }
@@ -402,12 +425,16 @@ class ArticleAction extends AdminCommonAction {
 
 
     public function ListNotice(){
-        	$m=M('Article');
-		$arr=$m->where('parentid=3')->select();
-		$this->assign('data',$arr);
-		$this->display();
-         
-       
+	$e=M('Article');
+	import('ORG.Util.Page');
+	$count=$e->where('parentid=3')->count();
+	$page  = new Page($count,5);
+	$page->setConfig('header','条记录');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->select();
+	$this->assign('data',$arr);
+	$this->assign('show',$show);
+	$this->display();       
     }   
  
  

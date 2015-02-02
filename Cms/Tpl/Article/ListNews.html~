@@ -18,7 +18,7 @@
           
            <table class="article_list">
            
-           <caption class="add_article"><a href="__URL__/LisNewsEdit/">上传文章</a></caption>
+           <caption class="add_article"><a href="__URL__/ListNewsEdit/">上传文章</a></caption>
 	  
 	   <volist name='data' id='vo'>
 	   <if condition='$vo.isshow eq 1'>

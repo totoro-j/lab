@@ -163,19 +163,6 @@ function setSelectedBgColor()//设置选定行的背景色
              
              
         <!--日历 begin-->
-<<<<<<< HEAD
-	<div class="data_box" id="data_box"><input style="display:none" value="<?php echo ($time_disable); ?>" id="to_get_time_disable" />
-        <div class="can_1">机时预约</div>
- 
-       
-    		<form name="reserveDate" action="__URL__/index" method="get" id="reserveDateForm" >
-			<input type="text"  class="showDate" name="date" value="<?php echo ($time_date); ?>"  />
-	    		<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>
-    </form>
-   	   <div style="width:200px;margin:0 auto;margin-top:5px;">
-        <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
-        <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">过期时间</span>
-=======
 	<div class="data_box" id="data_box">
     
     <!--！！！！！！！！这里是要向后台获取的一些数据       -->
@@ -202,16 +189,11 @@ function setSelectedBgColor()//设置选定行的背景色
         <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
         <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
->>>>>>> 831f93fd804950b27836710528be6cc4c830821f
        </div>
         <form id="myForm">
      
  
-<<<<<<< HEAD
-            <p id="startTime">起始时间：</p>
-=======
             <p id="startTime" style="clear:left">起始时间：</p>
->>>>>>> 831f93fd804950b27836710528be6cc4c830821f
             <select id="mySelectStartTime" name="startTime" style="size="5"">
 			    <option value ="00:00:00">00:00</option>
  			    <option value ="00:30:00">00:30</option>
@@ -506,13 +488,8 @@ function setSelectedBgColor()//设置选定行的背景色
 				<h3>提交预约</h3>
                 <ul class="list">
 					<li>
-<<<<<<< HEAD
-						<strong><font color="#ff0000">*</font>实验名称 </strong>
-						<div class="fl"><textarea  type="text" name="expt_name" value="" class="ipt expt_name" ></textarea></div>
-=======
 						<strong><font color="#ff0000">*</font>实验名称: </strong>
 						<div class="fl"><select name="expt_name" class="ipt expt_name" id="expt_name"></select></div>
->>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 					</li>
 					<li>
 						<strong> <font color="#ff0000">*</font>实验描述</strong>
@@ -604,12 +581,6 @@ function setSelectedBgColor()//设置选定行的背景色
 </script>
 <script>
 
-<<<<<<< HEAD
-	
-				
-	//改变无效时间框颜色	
-=======
->>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 	
 				
 	//！！！！！！！！！！！！！！！！！！！！！时间框颜色函数以及创建可选实验名称	
@@ -711,9 +682,6 @@ function setSelectedBgColor()//设置选定行的背景色
 		 }   	
 		 
 	}
-<<<<<<< HEAD
-		
-=======
 	
 	//这里是开始创建可选的实验名称
 	time_ExperimentName=time_ExperimentName.split(":");
@@ -725,7 +693,6 @@ function setSelectedBgColor()//设置选定行的背景色
 	}
 	
 }
->>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 </script>
 
 <script>

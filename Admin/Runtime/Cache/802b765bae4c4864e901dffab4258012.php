@@ -79,7 +79,7 @@ function rep(){
    <td><?php echo ($vo["mail"]); ?></td>
    <td><?php echo ($vo["time"]); ?></td>
    <td><?php switch($vo["role"]): case "1": ?>正式用户<?php break; case "2": ?>预约管理员<?php break; case "3": ?>首页管理员<?php break; default: ?>未知<?php endswitch;?></td>
-   <td class="info_correct"><a href="__URL__/del/id/<?php echo ($vo["id"]); ?>)" class="delete" onclick="return confirm('确认后将删除该用户，请谨慎操作！')">删除用户</a></td>
+   <td class="info_correct"><a href="__URL__/del/id/<?php echo ($vo["id"]); ?>)" class="delete" onclick="return confirm('确认后将删除该用户，请谨慎操作！')">停用用户</a></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<?php echo ($vo["id"]); ?>" class="button"   onclick="return rep(this)">重置密码</a></td>
   </tr>
   <script>

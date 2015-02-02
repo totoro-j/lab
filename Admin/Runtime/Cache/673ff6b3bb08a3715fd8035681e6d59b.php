@@ -191,7 +191,7 @@
    <div class="check_table">
    <table class="appointment_check" id="appointment_check">
    <tr>
-   <th>实验名称</th><th>用户姓名</th><th>课题负责人</th><th>申请时间</th><th>审核情况</th><th colspan="2">审核操作</th>
+   <th>实验名称</th><th>申请人姓名</th><th>课题负责人姓名</th><th>申请时间</th><th>审核情况</th><th colspan="2">审核操作</th>
    </tr>
     <tr>
  <td colspan="7" id="notfound">未找到相关数据</td></tr>

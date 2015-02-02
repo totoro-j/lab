@@ -1,9 +1,9 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<load href="__PUBLIC__/Css/Admin/ListNotice.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/ListNotice.css" />
 <title>通知公告</title>
 
 
@@ -19,15 +19,12 @@
 
   <div id="edit_focus2"class="edit_section_pic_describ">
        <div class="edit_section_describ">
- <volist name='data' id='vo'>
-   <input type='hidden' name='id' value="<{$vo.id}>" />
- <p><{$vo.title}></p>
-            <div ><a href="__URL__/ListNoticeDel/id/<{$vo.id}>" class="delete"  onclick="return confirm('确认后将删除')">删除</a></div>
-	    <div type="text" class="describ" ><{$vo.content}><div style="font-size:11px;float:right;margin-top:20px;"><{$vo.date}></div>   </div>   
-	  
-	    </volist> 
+ <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><input type='hidden' name='id' value="<?php echo ($vo["id"]); ?>" />
+ <p><?php echo ($vo["title"]); ?></p>
+            <div ><a href="__URL__/ListNoticeDel/id/<?php echo ($vo["id"]); ?>" class="delete"  onclick="return confirm('确认后将删除')">删除</a></div>
+	    <div type="text" class="describ" ><?php echo ($vo["content"]); ?><div style="font-size:11px;float:right;margin-top:20px;"><?php echo ($vo["date"]); ?></div>   </div><?php endforeach; endif; else: echo "" ;endif; ?> 
     </div>
-   <div class="notice_show" style="float: left;"><{$show}></div>  
+   <div class="notice_show" style="float: left;"><?php echo ($show); ?></div>  
   
 
     

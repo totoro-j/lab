@@ -26,8 +26,13 @@
              <tr class="article_table"><th><a href="__URL__/ListArticleView/id/<{$vo.id}>"><{$vo.title}></a></th><td><a href="__URL__/ListArticledel/id/<{$vo.id}>" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>
           
 	   </volist>
+   
+   <div class="article_show"><{$show}></div>
     </table>
-    <div class="article_show"><{$show}></div>
+	  
+	  
+       
+
     </div>
 </body>
 </html>
