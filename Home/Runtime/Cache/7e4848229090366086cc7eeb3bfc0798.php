@@ -163,6 +163,7 @@ function setSelectedBgColor()//设置选定行的背景色
              
              
         <!--日历 begin-->
+<<<<<<< HEAD
 	<div class="data_box" id="data_box"><input style="display:none" value="<?php echo ($time_disable); ?>" id="to_get_time_disable" />
         <div class="can_1">机时预约</div>
  
@@ -174,11 +175,43 @@ function setSelectedBgColor()//设置选定行的背景色
    	   <div style="width:200px;margin:0 auto;margin-top:5px;">
         <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">过期时间</span>
+=======
+	<div class="data_box" id="data_box">
+    
+    <!--！！！！！！！！这里是要向后台获取的一些数据       -->
+    <input style="display:none" value="<?php echo ($time_disable_1); ?>" id="to_get_time_disable_1" />  <!--这个不可选时间是老师设定的 -->
+    <input style="display:none" value="<?php echo ($time_disable_2); ?>" id="to_get_time_disable_2" />  <!--这个不可选时间是已经被预约的时间 -->
+    <input style="display:none" value="<?php echo ($time_disable_3); ?>" id="to_get_time_disable_3" />  <!--这个不可选时间是自己已经预约了的时间 -->
+    <input style="display:none" value="<?php echo ($time_users); ?>" id="to_get_time_users" />        <!--对应时间的用户和联系方式 -->
+    <input style="display:none" value="<?php echo ($time_diabledReason); ?>" id="to_get_time_diabledReason" />    <!--老师设定的不可选时间对应的理由-->
+    <input style="display:none" value="<?php echo ($ExperimentName); ?>" id="to_get_ExperimentName" />    <!--可以选择的实验-->
+    
+        <div class="can_1">机时预约</div>
+  
+       
+    		<form name="reserveDate" action="__URL__/index" method="get" id="reserveDateForm" >
+			<input type="text"  class="showDate" name="date" value="<?php echo ($time_date); ?>" />
+	    	
+            
+    
+            
+            <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试   	<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
+            <div id="toSubmitSelectedDate" value="">查看所选日期可预约时间</div>   -->
+    </form>
+   	   <div style="width:300px;float:left;margin-left:50px;margin-top:4px">
+        <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
+        <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
+        <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
+>>>>>>> 831f93fd804950b27836710528be6cc4c830821f
        </div>
         <form id="myForm">
      
  
+<<<<<<< HEAD
             <p id="startTime">起始时间：</p>
+=======
+            <p id="startTime" style="clear:left">起始时间：</p>
+>>>>>>> 831f93fd804950b27836710528be6cc4c830821f
             <select id="mySelectStartTime" name="startTime" style="size="5"">
 			    <option value ="00:00:00">00:00</option>
  			    <option value ="00:30:00">00:30</option>
@@ -473,8 +506,13 @@ function setSelectedBgColor()//设置选定行的背景色
 				<h3>提交预约</h3>
                 <ul class="list">
 					<li>
+<<<<<<< HEAD
 						<strong><font color="#ff0000">*</font>实验名称 </strong>
 						<div class="fl"><textarea  type="text" name="expt_name" value="" class="ipt expt_name" ></textarea></div>
+=======
+						<strong><font color="#ff0000">*</font>实验名称: </strong>
+						<div class="fl"><select name="expt_name" class="ipt expt_name" id="expt_name"></select></div>
+>>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 					</li>
 					<li>
 						<strong> <font color="#ff0000">*</font>实验描述</strong>
@@ -566,41 +604,128 @@ function setSelectedBgColor()//设置选定行的背景色
 </script>
 <script>
 
+<<<<<<< HEAD
 	
 				
 	//改变无效时间框颜色	
+=======
+>>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 	
+				
+	//！！！！！！！！！！！！！！！！！！！！！时间框颜色函数以及创建可选实验名称	
+	function SetupDateTable(){
+		
+	//先进行初始化
+	var obj1=document.getElementsByClassName("time_period");
+	var obj2=document.getElementsByTagName("option");   
+	for(j=(start1+start2);j<(end1+end2);j++){    
+		obj1[j].setAttribute('title'," "); 	  
+		obj1[j].setAttribute('onclick',"javascript:function(){};"); 	
+		obj1[j].style.cursor="default";			
+		obj1[j].style.backgroundColor='#ffffff';
+		obj2[j].removeAttribute('disabled');      
+		obj2[j+48].removeAttribute('disabled');  	
+	}
 	
-	var time_disable=document.getElementById("to_get_time_disable").value;
-	if(time_disable==0)
+	//开始对 对应方框进行填色
+	var time_disable_1=document.getElementById("to_get_time_disable_1").value;
+	var time_disable_2=document.getElementById("to_get_time_disable_2").value;
+	var time_disable_3=document.getElementById("to_get_time_disable_3").value;
+	var time_users=document.getElementById("to_get_time_users").value;
+	var time_disabledReason=document.getElementById("to_get_time_disabledReason").value;
+	var time_ExperimentName=document.getElementById("to_get_time_ExperimentName").value;
+	if(time_disable_1==0)
 	{
+		
+		//若日期过期（即今天以前）
 		var obj=document.getElementsByClassName("time_period");
+		var obj2=document.getElementsByTagName("option");   
 		for(i=0;i<obj.length;i++)
-		
 		obj[i].style.backgroundColor='#e4dfde';
-	}else if(time_disable!=1){
+		obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
+		obj2[j+48].disabled="disabled";		
+	}else if(time_disable_1!=1){
 		
-		time_disable=time_disable.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
-		var N=time_disable.length/6;
+		//这里是对老师设置的不可选时间进行标注
+		time_disable_1=time_disable_1.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
+		time_disabledReason=time_disabledReason.split(":");
+		var N=time_disable_1.length/6;
 					
 		for(i=0;i<N;i++){
-			var start1=time_disable[6*i]/1*2;   
-			var start2=time_disable[6*i+1]/30;   
-			var end1=time_disable[6*i+3]/1*2;     
-			var end2=time_disable[6*i+4]/30;   
+			var start1=time_disable_1[6*i]/1*2;   
+			var start2=time_disable_1[6*i+1]/30;   
+			var end1=time_disable_1[6*i+3]/1*2;     
+			var end2=time_disable_1[6*i+4]/30;   
 			var obj1=document.getElementsByClassName("time_period");
 			var obj2=document.getElementsByTagName("option");   
 			for(j=(start1+start2);j<(end1+end2);j++){    //从"起始时间"开始把框弄灰，直到"结束时间"
-							
-				obj1[j].style.backgroundColor='#ffd3c3';
+				obj1[j].setAttribute('title',"不可选原因"+time_disabledReason[i]); 	  //鼠标放上去会显示理由
+				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因：'+time_disabledReason[i]);"); 	  //点击也会显示理由（通过"alert()"）
+				obj1[j].style.cursor="hand";			
+				obj1[j].style.backgroundColor='#e4dfde';
 				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";
-
-							
+				obj2[j+48].disabled="disabled";					
 			}
 		 }   	
+		 
+		 //这里是其他人已预约时间
+		time_disable_2=time_disable_2.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
+		time_users=time_users.split(":");
+		var N=time_disable_2.length/6;
+					
+		for(i=0;i<N;i++){
+			var start1=time_disable_2[6*i]/1*2;   
+			var start2=time_disable_2[6*i+1]/30;   
+			var end1=time_disable_2[6*i+3]/1*2;     
+			var end2=time_disable_2[6*i+4]/30;   
+			var obj1=document.getElementsByClassName("time_period");
+			var obj2=document.getElementsByTagName("option");   
+			for(j=(start1+start2);j<(end1+end2);j++){   
+				obj1[j].setAttribute('title',"姓名:"+time_users[2*i]+"  电话:"+time_users[2*i+1]); 	  //鼠标放上去会显示理由
+				obj1[j].setAttribute('onclick',"javascript:alert('姓名：'+time_users[2*i]+'\\n电话：'+time_users[2*i+1]);"); 	  //点击也会显示理由（通过"alert()"）
+				obj1[j].style.cursor="hand";	
+				obj1[j].style.backgroundColor='#ffd3c3';
+				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
+				obj2[j+48].disabled="disabled";					
+			}
+		 }   	
+		 
+		 //这里是已经被自己所预约的时间
+		time_disable_3=time_disable_3.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
+		var N=time_disable_3.length/6;
+					
+		for(i=0;i<N;i++){
+			var start1=time_disable_3[6*i]/1*2;   
+			var start2=time_disable_3[6*i+1]/30;   
+			var end1=time_disable_3[6*i+3]/1*2;     
+			var end2=time_disable_3[6*i+4]/30;   
+			var obj1=document.getElementsByClassName("time_period");
+			var obj2=document.getElementsByTagName("option");   
+			for(j=(start1+start2);j<(end1+end2);j++){   
+				obj1[j].setAttribute('title',"您已预约此时间段");
+				obj1[j].setAttribute('onclick',"javascript:alert('您已预约此时间段');");
+				obj1[j].style.backgroundColor='#52cc94';     //浅绿色
+				obj2[j].disabled="disabled";       //无效时间对应的option时间段不可选
+				obj2[j+48].disabled="disabled";					
+			}
+		 }   	
+		 
 	}
+<<<<<<< HEAD
 		
+=======
+	
+	//这里是开始创建可选的实验名称
+	time_ExperimentName=time_ExperimentName.split(":");
+	N=time_ExperimentName.length;
+	var obj=document.getElementById("expt_name");
+	obj.options.length=0;  //初始化可选实验名称长度为0
+	for(i=0;i<N;i++){
+		obj.options.add(new Option(time_ExperimentName[i],i));
+	}
+	
+}
+>>>>>>> 831f93fd804950b27836710528be6cc4c830821f
 </script>
 
 <script>
