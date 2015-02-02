@@ -34,3 +34,13 @@ INFO: [ view_end ] --START--
 INFO: Run ShowPageTrace Behavior [ RunTime:0.000648s ]
 INFO: [ view_end ] --END-- [ RunTime:0.000685s ]
 
+[ 2015-02-01T13:28:57+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:57+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:57+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:58+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:58+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:59+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:59+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:32:59+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T13:34:15+08:00 ] ERR: (ThinkException) Access denied for user 'root'@'localhost' (using password: NO)
+[ 2015-02-01T15:58:13+08:00 ] ERR: (ThinkException) 无法加载模块:undefined

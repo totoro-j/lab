@@ -56,11 +56,11 @@ ul{
 }
 /*日历*/
 
-#reserveDateForm{margin-left:320px;width:300px;margin-top:40px;}
+#reserveDateForm{margin-left:260px;width:300px;margin-top:40px;}
 #toSubmitSelectedDate{margin-left:270px;width:160px;height:32px;line-height:24px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;}
 
 
-#myForm{width:800px;height:45px;margin-top:45px;margin-left:250px;}
+#myForm{width:800px;height:45px;margin-top:115px;margin-left:230px;}
 
 #myForm p{display:block;width:80px;height:20px;line-height:30px;float:left;padding-left:30px;padding-bottom:30px;}
 
