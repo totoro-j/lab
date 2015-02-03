@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta charset="UTF-8">
+<title>信息修改</title>
+<link rel="stylesheet" type="text/css" href="../css/person.css">
+    <!--判断-->
+    <script>
+    function submit1(){
+      var phoneNum=document.all.tel.value;
+      var reg=/^1\d{10}$/;
+      var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+      var mail=document.all.mail.value;
+      if(phoneNum.length==0){
+        alert("电话不能为空！");
+        return false;
+      }else if(!reg.test(phoneNum))
+      {
+        alert("请输入11位有效手机号码！");
+        return false;
+      }else if(mail.length==0){
+        alert("邮箱不能为空！");
+        return false;
+      }else if(!re.test(mail)){
+        alert("请输入正的确邮箱！");
+        return false;
+      }
+    } 
+    </script>
+</head>
+<body>
+  <div id="infor">
+        <div class="can_1">修改信息</div>
+        <!--form-->
+        <form action="" method="post" name="person_change">
+        <table class="info_detail">
+        <tr>
+          <th>用户名</th>
+          <td>一二三<a href="person_password.html" style="color:#23a96f;padding-left:10px;">修改密码</a></td>
+        </tr>
+        <tr>
+          <th>姓名</th>
+          <td>王小二</td>
+        </tr>
+        <tr>
+          <th>性别</th>
+          <td><if condition="$data.sex eq 1">
+        男
+        <else/>
+        女
+        </if></td>
+        </tr>
+        <tr>
+          <th>单位</th>
+          <td>电子科技大学XX单位</td>
+        </tr>
+        <tr>
+          <th>院系部门</th>
+          <td>XX学院XX部门</td>
+        </tr>
+        <tr>
+          <th>身份</th>
+          <td><if condition="$data.job eq 1">
+      教师</if>
+        <if condition="$data.job eq 2">
+        学生</if>
+        <if condition="$data.job eq 0">
+                                 其他</if></td>
+        </tr>
+        <tr>
+          <th>学历</th>
+          <td>学生</td>
+        </tr>
+        <tr>
+          <th>导师</th>
+          <td>某某某</td>
+        </tr>
+        <tr>
+          <th>年级</th>
+          <td>13</td>
+        </tr>
+        <tr>
+          <th>课题组负责人</th>
+          <td>某某某</td>
+        </tr>
+
+        <tr>
+          <th>联系电话</th>
+          <td><input type="text" name='tel' value="123"/></td>
+        </tr>
+        <tr>
+          <th>邮箱</th>
+          <td><input type="text" name='mail' value="123@123"/></td>
+        </tr>
+        </table> 
+        <input  class="button" type="submit" value="提交修改" onClick="return submit1();" style="padding:10px;background:#23a96f;color:white;border:0px; cursor:pointer;"/>
+</form>
+<!--end form-->
+        </div>
+  
+</body>
+</html>

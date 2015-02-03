@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+a{
+	color:inherit;
+}
+a:hover{
+	color: #23a96f;
+}
+table{
+	margin:0 auto;}
+table .search_button{
+	width:80px;
+	height:20px;
+	background: #23a96f;
+	color:#fff;
+	border:0px;
+	-moz-box-shadow:1px 1px 3px #909090;
+	 -webkit-box-shadow:1px 1px 3px #909090;
+	box-shadow:1px 1px 3px #909090;
+	cursor: pointer;
+}
+table.stastic_check{
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #ccc;
+	border-collapse: collapse;
+	margin-top:20px;
+}
+table.stastic_check th{
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #ccc;
+	color:#eee;
+	background-color:#219E69;
+    
+}
+table.stastic_check td{
+	width:100px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color:#CCC;
+	background-color: #ffffff;
+	text-align:center;
+	height:30px;
+}
+	
+	

@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* 公共样式 */
+html {
+	overflow-y: hidden;
+}
+* {
+	margin:0;
+	padding:0;
+	font-size: 13px;
+	font-family: tahoma,arial,'Hiragino Sans GB','微软雅黑';
+}
+a,a:hover {
+	text-decoration:none;
+}
+img {
+	border:none;
+	float: left;
+}
+ul {
+	list-style:none;
+}
+table {
+	border-collapse:collapse;
+}
+.data_table>td{
+	border:1px solid #c9c9c9;
+	font-family:Arial,"微软雅黑";
+	font-size:12px;
+	text-align:center;
+}
+#header{
+	height: 60px;
+	width:auto;
+	margin:0 auto;
+	padding-top:10px;
+	padding-left: 225px;
+	border-bottom:#d3d3d3 2px solid;
+}
+#logo{
+	font-family:"微软雅黑";
+	width: 400px;
+	height: 36px;
+	float: left;
+}
+#logo a{
+	font-size: 32px;
+	padding: 0 auto;
+	text-decoration:none;
+	color:#23a96f;
+}
+
+#user{
+	width:320px;
+	height:30px;
+	float:right;
+	margin-top:43px;
+
+}
+#user ul li a{
+	float: left;
+	font-size:12px;
+	margin-left:20px;
+	text-decoration:none;
+	font-family:"微软雅黑";
+	color:#23a96f;
+}
+#menu {
+	overflow: hidden;
+	position: relative;
+	float: left;
+	
+}
+#left {
+	width: 190px;
+	/* background-color: #DDDDDD;
+	    background-image: -moz-linear-gradient(left center , #F2F2F2, #DDDDDD); */
+    background-color: #F2F2F2;
+    background-image: linear-gradient(to right, #F0F0F0, #F3F3F3);
+	position: relative;
+	overflow: hidden;
+}
+#left .l_menu_title  span {
+    float: left;
+    font-size: 15px;
+    margin-left: 5px;
+    font-weight: 400;
+}
+#left .l_menu {
+	display: none;
+}
+#left .l_menu  li {
+	height: 38px;
+	border-bottom: 1px solid #CCCCCC;
+	box-shadow: 0 1px 0 #FFFFFF;
+}
+#left .l_menu  li a {
+	display: block;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 48px;
+	color: #222;
+	font-size: 14px;
+}
+#left .l_menu  li a:hover {
+	background-color: #E5E5E5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
+}
+#left .l_menu  li a.hover {
+	color: #000;
+	background-color: #E5E5E5;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
+}
+#left .l_dragbar {
+	background: url(../images/bj_2.png) repeat-y;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 6px;
+}
+#left .l_dragbar_mid {
+	background: url(../images/bj_3.png) no-repeat;
+    height: 78px;
+    width: 6px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+#right {
+	float: right;
+	position: relative;
+}
+#right iframe {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border:0;
+	width:100%;
+	height:100%;
+}
