@@ -24,11 +24,11 @@
 			  <td>身份：<switch name='data.job'><case value="1">教师</case><case value="2">学生</case><default />其它</switch></td>
             </tr>  
             <tr>
-			  <td>学历：<if condition='$data.degree eq 2'>博士<else />硕士</if></td>
-			  <td>年级：<{$vo.grade}></td>
+			  <td>学历：<switch name='data.degree'><case value="1">硕士</case><case value="2">博士</case><default />略</switch></td>
+			  <td>年级：<if condition='$data.job eq 2'><{$data.grade}><else />略</if></td>
             </tr>  
             <tr>
-			  <td>导师：<{$data.tutor}></td>
+			  <td>导师：<if condition='$data.job eq 2'><{$data.tutor}><else />略</if></td>
 			  <td>课题负责人：<{$data.principal}></td>
            </tr>  
             <tr>

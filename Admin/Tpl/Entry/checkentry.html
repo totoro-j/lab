@@ -14,18 +14,14 @@
             <tr>
 			  <td>实验名称：<{$data.testname}></td>
 			  <td>课题负责人：<{$data.principal}></td>
-            </tr>  
-            <tr>
-			  <td>预计被试数：<{$data.total}></td>
-			  <td>总计预约时长：<{$data.hour}>小时</td>
+            </tr>
+	     <tr>
+	    <td><a href="__APP__/User/check/id/<{$data.uid}>">用户名：<{$data.truename}></a></td>
+		    <td><a href="__APP__/User/check/id/<{$data.uid}>">用户昵称：<{$data.username}></a></td>
             </tr>
             <tr>
-		    <td colspan="2"><center>预约起始时间：<{$data.starttime}></td>
-	    </tr>
-	    <tr>
-			   <td colspan="2"><center>预约结束时间：<{$data.finaltime}></td>
-            </tr>
-	 
+		    <td colspan="2"><center>预计被试数：<{$data.total}></td>
+	    </tr>	 
 	     <tr>
 			 <td colspan="2"><center>申请时间：<{$data.time}></td>
             </tr>

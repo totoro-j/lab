@@ -73,7 +73,7 @@ function rep(){
    <td><?php if($vo["sex"] == 1): ?>男<?php else: ?>女<?php endif; ?></td>
    <td><?php echo ($vo["unit"]); ?></td>
    <td><?php echo ($vo["department"]); ?></td>
-   <td><?php if($vo["degree"] == 2): ?>博士<?php else: ?>硕士<?php endif; ?></td>
+   <td><?php switch($data["degree"]): case "1": ?>硕士<?php break; case "2": ?>博士<?php break; default: ?>略<?php endswitch;?></td>
    <td><?php echo ($vo["principal"]); ?></td>
    <td><?php echo ($vo["tel"]); ?></td>
    <td><?php echo ($vo["mail"]); ?></td>

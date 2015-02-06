@@ -14,18 +14,14 @@
             <tr>
 			  <td>实验名称：<?php echo ($data["testname"]); ?></td>
 			  <td>课题负责人：<?php echo ($data["principal"]); ?></td>
-            </tr>  
-            <tr>
-			  <td>预计被试数：<?php echo ($data["total"]); ?></td>
-			  <td>总计预约时长：<?php echo ($data["hour"]); ?>小时</td>
+            </tr>
+	     <tr>
+	    <td><a href="__APP__/User/check/id/<?php echo ($data["uid"]); ?>">用户名：<?php echo ($data["truename"]); ?></a></td>
+		    <td><a href="__APP__/User/check/id/<?php echo ($data["uid"]); ?>">用户昵称：<?php echo ($data["username"]); ?></a></td>
             </tr>
             <tr>
-		    <td colspan="2"><center>预约起始时间：<?php echo ($data["starttime"]); ?></td>
-	    </tr>
-	    <tr>
-			   <td colspan="2"><center>预约结束时间：<?php echo ($data["finaltime"]); ?></td>
-            </tr>
-	 
+		    <td colspan="2"><center>预计被试数：<?php echo ($data["total"]); ?></td>
+	    </tr>	 
 	     <tr>
 			 <td colspan="2"><center>申请时间：<?php echo ($data["time"]); ?></td>
             </tr>

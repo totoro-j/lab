@@ -21,11 +21,11 @@
 						$('#umessage').css("color","red").text('该用户名已经注册');
 					}else{
 						error1['username']=0;
-						$('#umessage').css("color","#999").text('用户名可用');
+						$('#umessage').css("color","#23a946").text('用户名可用');
 					}
 				});
 				}
-				else{$('#umessage').css("color","#999").text('仅限阿拉伯数字、下划线和英文大小写');}
+				else{$('#umessage').css("color","red").text('仅限阿拉伯数字、下划线和英文大小写');}
 			});
 			
 			
@@ -34,14 +34,14 @@
 			$('input[name="password"]').blur(function(){
 				var password=$(this).val();
 				if(password.length<6 && password.length>0){
-					error2['passowrd1']=1;
+					error2['password1']=1;
 					$('#pmessage1').css("color","red").text("密码长度少于6位！");
 				}else if(password.length==0){
 					error2['password1']=1;
-					$('#pmessage1').css("color","#999").text("不少于六位数");
+					$('#pmessage1').css("color","red").text("密码不能为空！");
 				}else{
 					error2['password1']=0;
-					$('#pmessage1').css("color","#999").text("密码可用");
+					$('#pmessage1').css("color","#23a946").text("密码可用");
 				}
 			});
 			
@@ -55,7 +55,7 @@
 					$('#pmessage2').css("color","red").text("两次密码输入不一致！");
 				}else{
 					error3['password2']=0;
-					$('#pmessage2').css("color","#999").text("密码输入一致");
+					$('#pmessage2').css("color","#23a946").text("密码输入一致");
 				}
 			});
 			
@@ -71,13 +71,13 @@
 					var reg=/^1\d{10}$/;
 					if(reg.test(phoneNum)){
 						error4=0;
-						$('#nmessage').css("color","#999").text("Ok!");
+						$('#nmessage').css("color","#23a946").text("格式正确！");
 					}else{
 						error4=1;
 						$('#nmessage').css("color","red").text("请输入11位有效手机号码！");
 					}
 					if(phoneNum.length==0){
-						$('#nmessage').css("color","#999").text("请留下11位有效号码");
+						$('#nmessage').css("color","red").text("号码不能为空！");
 					}
 				})
 				

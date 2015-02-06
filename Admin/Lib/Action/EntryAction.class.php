@@ -91,7 +91,7 @@ class EntryAction extends AdminCommonAction {
 
 		public function checkentry(){
 			$id=$_GET['id'];
-			$m=D('Event');
+			$m=D('EventView');
 			$arr=$m->find($id);
 			$this->assign('data',$arr);
 			$this->display();

@@ -1,0 +1,7 @@
+[ 2015-02-06T14:16:27+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-06T14:16:27+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-06T14:16:28+08:00 ] ERR: (ThinkException) 非法操作:text
+[ 2015-02-06T14:16:30+08:00 ] ERR: (ThinkException) 非法操作:text
+[ 2015-02-06T14:36:14+08:00 ] ERR: (ThinkException) XML标签语法错误 : condition='$data.grade eq '''
+[ 2015-02-06T15:07:00+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-06T15:07:00+08:00 ] ERR: (ThinkException) 非法操作:js
