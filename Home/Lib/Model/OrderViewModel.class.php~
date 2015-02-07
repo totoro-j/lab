@@ -1,0 +1,9 @@
+<?php
+	class OrderViewModel extends ViewModel{
+		protected $viewFields=array(
+			'order'=>array('id','starttime','finaltime','hour','ordertime','_as'=>'Order'),
+		   	  'event'=>array('testname'=>'testname','id'=>'eid','_as'=>'event','_on'=>'Event.id=Order.eid'),
+			  'user'=>array('truename'=>'truename','principal'=>'principal','id'=>'uid','_as'=>'user','_on'=>'User.id=Order.uid'),
+  		 );
+	}
+?>

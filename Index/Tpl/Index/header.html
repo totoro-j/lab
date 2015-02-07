@@ -24,7 +24,8 @@
 		  
 		  	
 		$(".supnav").mouseleave(function(){
-			$(this).children("ul").stop(true,true).slideUp(200);
+			$(this).children("ul").stop(true,true).slideUp(200)
+			
 			
 			
 			})
@@ -33,6 +34,19 @@
 		
 		  })
 
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".supnav a").each(function(){
+        $(this).click(function(){
+			
+           $(".supnav .cur").removeClass("cur");
+          $(this).addClass("cur");	
+    
+        });
+    });
+});
 </script>
 <!--navigation-->
 
@@ -59,8 +73,8 @@
     <!--导航栏-->
     <div class="menu">
 		<ul id="nav">
-			<li class="supnav"><a class="cur" href="__URL__/index" style="background:#23a96f;color:#fff;">首页</a></li>
-			<li class="supnav"><a href="__URL__/brief">科研团队</a></li>
+			<li class="supnav "><a href="__URL__/index" style="background:#23a96f;color:#fff">首页</a></li>
+			<li class="supnav "><a href="__URL__/brief">科研团队</a></li>
 			<li class="supnav"><a href="__URL__/listpaper">重要论文</a></li>
 			<li class="supnav"><a href="#">开放基金</a></li>
 			<li class="supnav"><a href="#">Lab年报</a>

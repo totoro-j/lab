@@ -1,0 +1,52 @@
+
+* {
+	margin:0;
+	padding:0;
+	font-size: 14px;
+	font-family: '微软雅黑',Arial;
+}
+#infor{
+	margin: 20px;
+	text-align: center;
+	padding: 20px;
+	border: 1px  solid #eaeaea;
+	line-height: 35px;
+	 -moz-box-shadow:2px 2px 10px #909090;
+	 -webkit-box-shadow:2px 2px 10px #909090;
+	box-shadow:2px 2px 10px #909090;
+
+    
+}
+.can_1
+{
+	background: #23a96f;
+	width: 80px;
+	height: 20px;
+	margin: -20px;
+	padding:0px 20px 20px 20px;
+	font-size: 20px;
+	color: #fff;
+}
+
+/*form*/
+
+input
+{
+	width: 200px;
+	height: 30px;
+    margin: 20px;
+
+
+}
+#password_btn
+{
+	background: #23a96f;
+	border: 0px;
+	color: #fff;
+	margin-left:90px; 
+	cursor: pointer;
+	-moz-box-shadow:1px 1px 3px #909090;
+	 -webkit-box-shadow:1px 1px 3px #909090;
+	box-shadow:1px 1px 3px #909090;
+
+}

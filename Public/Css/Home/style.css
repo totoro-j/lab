@@ -56,20 +56,21 @@ ul{
 }
 /*日历*/
 
-#reserveDateForm{margin-left:320px;width:300px;margin-top:40px;}
-#toSubmitSelectedDate{margin-left:270px;width:160px;height:32px;line-height:24px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;}
+#reserveDateForm{margin-left:260px;width:300px;margin-top:40px;}
+#toSubmitSelectedDate{margin-left:40px;;width:70px;height:30px;line-height:27px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';float:left;cursor:pointer}
 
 
-#myForm{width:800px;height:45px;margin-top:45px;margin-left:250px;}
+#myForm{width:800px;height:45px;margin-top:115px;margin-left:230px;}
 
-#myForm p{display:block;width:80px;height:20px;line-height:30px;float:left;padding-left:30px;padding-bottom:30px;}
+#myForm p{display:block;width:80px;height:20px;line-height:30px;float:left;padding-left:23px;padding-bottom:30px;}
 
-#mySelectStartTime{float:left;width:100px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
-#mySelectEndTime{float:left;width:100px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
+#mySelectStartTime{float:left;width:90px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
+#mySelectEndTime{float:left;width:90px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
 
 #mySelect{width:80px;height: 20pxcolor:#000;cursor: pointer;border:1px solid #23a96f;font-family:"微软雅黑";text-align:center;font-size:13px;float:left;}
 
 .showDate{float:left;position:relative;top:20px;}
+#expt_name{float:left;width:220px;margin-left:-30px;height:30px;border:1px solid #23a96f;text-align:left;font-size:15px;}
 
 
 

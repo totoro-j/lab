@@ -29,7 +29,7 @@ a:focus{outline:none}
 .HTooltip{border-radius:3px;}
 /*------------------- 表单样式 -----------------------*/
 .list{padding:25px 0;}
-.list li{width:80%;margin:10px auto auto;overflow: hidden;}
+.list li{width:80%;margin:30px auto auto;overflow: hidden;}
 .list li strong{width:30%;float:left;display:inline-block;margin-right:10px;text-align: right;}
 .list .fl{width:62%;}
 .ipt{width:100%;text-indent:4px;border:1px solid #ccc;box-shadow:0 0 3px #ddd inset;-webkit-box-shadow:0 0 3px #ddd inset;}\
@@ -55,7 +55,7 @@ h3{
 	width:10px;
 	color:#23a96f}
 .expt_detail{
-	height:150px;
+	height:230px;
 	}
 .expt_time{
 	width:345px;
@@ -66,5 +66,5 @@ h3{
 .expt_time span{
 	color:#23a96f;}		
 	
-textarea{max-width:270px;max-height:130px;}
+textarea{max-width:270px;max-height:230px;}
 .expt_times,.expt_name,.expt_charge{max-height:50px;}

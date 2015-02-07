@@ -39,6 +39,30 @@ LiChang = {
                 _self.showNow();
                 //_self.dateText.blur();
             }
+			
+			//这里设置了日历消失之后0.2秒出发提交所选日期以及相应方格变色功能
+			 _self.dateText.onblur = function () {
+               setTimeout(function(){
+				   
+				 
+				  var time_date = $('input[name = "date"]').val();
+
+				  $.ajax({
+  				  	type : 'post',
+ 				  	url: "__URL__/index",
+ 				  	dataType:'json',
+ 				  	data : {
+ 				    	      interface :time_date
+  					 },
+  					 success: function(data){
+    					   SetupDateTable(); 
+  					 }
+					});
+	
+			   
+				   },200)
+				
+            }
             //点击空白 隐藏日历
             document.onclick = function (event) {
                 event = event || window.event;
@@ -160,7 +184,7 @@ LiChang = {
             if (!isChild && _self.dateBox.className.indexOf("dn") == -1) {
                 _self.dateBox.className += " ";
                 _self.dateBox.className += "dn";
-                _self.changeDefault2(_self.dateText);
+                _self.changeDefault2(_self.dateText); 
             }
             
         }

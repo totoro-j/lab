@@ -4,4 +4,8 @@ class IndexAction extends AdminCommonAction {
     public function index(){
 	$this->display();
     }
+
+    public function greet(){
+	$this->display();
+    }
 }

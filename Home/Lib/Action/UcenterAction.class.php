@@ -1,0 +1,136 @@
+<?php
+	class UcenterAction extends CommonAction{
+		public function index(){
+			$this->display();
+		}
+		public function info(){
+			$m=M('User');
+			$where['id']=$_SESSION['id'];
+			$arr=$m->where($where)->find();
+			$this->assign('data',$arr);
+			$this->display();
+		}
+
+		public function info_edit(){
+			$m=M('User');
+			$where['id']=$_SESSION['id'];
+			$arr=$m->where($where)->find();
+			$this->assign('data',$arr);
+			$this->display();
+		}
+
+		public function con_edit(){
+			$tel=$_POST['tel'];
+			$mail=$_POST['mail'];
+			$code=$_POST['code'];
+			if(md5($code)!=$_SESSION['code']){
+				$this->error('验证码不正确');
+			}
+			$m=M('User');
+			$where['id']=$_SESSION['id'];
+			$data = array('tel'=>$tel,'mail'=>$mail);			
+			$count=$m->where($where)->setField($data);
+			if($count>0){
+				$this->success('修改成功','info');
+			}else{
+				$this->error('尚未做任何修改',U('info_edit'));		
+			}
+		}
+
+		public function info_pwd(){
+			$this->display();
+		}
+
+		public function pwd(){
+			$password=md5($_POST['password']);
+			$newpwd=md5($_POST['newpwd']);
+			$repwd=md5($_POST['repwd']);
+			$code=$_POST['code'];
+			if(md5($code)!=$_SESSION['code']){
+				$this->error('验证码不正确');
+			}
+			
+			$m=M('User');
+			$where['id']=$_SESSION['id'];
+			$arr=$m->where($where)->getField('password');
+			if($arr == $password){
+				if($password == $newpwd){
+						$this->error('请勿与原密码重复',U('info_pwd'));
+					}else{
+						$count=$m->where($where)->setField('password',$newpwd);
+							if($count>0){
+								$this->success('修改成功','info');
+							}else{
+								$this->error('修改失败',U('info_pwd'));		
+							}			
+					}
+			}else{
+						$this->error('原密码错误！',U('info_pwd'));
+					}
+			}
+
+		public function event(){
+			$m=D('EventView');
+			import('ORG.Util.Page');
+			$where['uid']=$_SESSION['id'];
+			$count=$m->where($where)->order('id desc')->count();
+			$page  = new Page($count,5);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
+			$this->assign('event_list',$arr);
+			$this->assign('show',$show);
+			$this->display();
+		}
+
+
+		public function event_detail(){
+			$m=D('EventView');
+			$id=$_GET['id'];
+			$where['id']=$id;
+			$arr=$m->where($where)->find();
+			$this->assign('dat',$arr);
+			$this->display();
+		}
+
+		public  function order(){
+			$m=D('EventView');		
+			$where['uid']=$_SESSION['id'];
+			$where['state']=1;
+			$arr=$m->where($where)->select();		
+			$this->assign('chosen_list',$arr);
+			$e=D('OrdersView');
+			import('ORG.Util.Page');
+			$map['uid']=$_SESSION['id'];
+			$count=$e->where($map)->order('id desc')->count();
+			$page  = new Page($count,5);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($map)->order('id desc')->select();
+			$this->assign('order_list',$arr);
+			$this->assign('show',$show);
+			$this->display();
+		}
+
+		public function order_search(){
+			$e=D('EventView');
+			$map['uid']=$_SESSION['id'];
+			$map['state']=1;
+			$array=$e->where($map)->select();
+			$this->assign('chosen_list',$array);
+			$m=D('OrdersView');	
+			import('ORG.Util.Page');
+			$content=$_POST['searchform'];
+			$where['uid']=$_SESSION['id'];
+			$where['testname']=$content;
+			$count=$m->where($where)->order('id desc')->count();
+			$page  = new Page($count,5);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
+			$this->assign('order_list',$arr);
+			$this->assign('show',$show);
+			$this->display('order');
+		}
+	}
+?>

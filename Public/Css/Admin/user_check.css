@@ -87,3 +87,64 @@ table.appointment_check td{
 	padding-bottom:5px;
 	padding-left:15px;
 }
+
+#fullbg { 
+background-color:#23a96f; 
+left:0; 
+opacity:0.5; 
+position:absolute; 
+top:0; 
+z-index:3; 
+filter:alpha(opacity=50); 
+-moz-opacity:0.5; 
+-khtml-opacity:0.5; 
+} 
+#dialog { 
+background-color:#fff; 
+border:5px solid #23a96f; 
+height:400px; 
+left:50%; 
+margin:-200px 0 0 -200px; 
+padding:1px; 
+position:fixed !important; /* 浮动对话框 */ 
+position:absolute; 
+top:50%; 
+width:400px; 
+z-index:5; 
+border-radius:5px; 
+display:none; 
+} 
+#dialog p { 
+margin:0 0 12px; 
+height:24px; 
+margin-left:23px;
+line-height:24px; 
+color:#23a96f;
+} 
+#dialog p.close { 
+text-align:right; 
+padding-right:10px; 
+backgroud:#23a96f;
+} 
+#dialog p.close a { 
+color:#666; 
+text-decoration:none; 
+} 
+.refuse_dia textarea{
+	resize:none;
+	width:330px;
+	height:100px;
+	margin-left:30px;
+	}
+.btn{
+	 
+	 float:left;
+	color:#fff;
+	background:#23a96f;
+	width:80px;
+	padding:3px 10px;
+	text-align:center;
+	margin-left:34%;
+	margin-top:20px;
+   	
+	}	
