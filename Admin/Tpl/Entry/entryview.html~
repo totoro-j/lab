@@ -77,12 +77,12 @@ $.ajax({
 </tr>
 <volist name='entry_list' id='vo'>
 <tr>
-   <td><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
+   <td><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.eid}></td>
    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
    <td><{$vo.principal}></td>
    <td></td>
-   <td><!--机时明细入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
-   <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.id}>" class="cancel" onclick="return confirm('确认后将取消该预约！')">取消通过</a></td>
+   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
+   <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.id}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
   <td><input type="checkbox" value="<{$vo.id}>" name="conditions"></td>
 </tr>
 </volist>

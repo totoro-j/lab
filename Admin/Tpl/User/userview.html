@@ -74,7 +74,7 @@ function rep(){
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
-   <td><if condition='$vo.degree eq 2'>博士<else />硕士</if></td>
+   <td><switch name='data.degree'><case value="1">硕士</case><case value="2">博士</case><default />略</switch></td>
    <td><{$vo.principal}></td>
    <td><{$vo.tel}></td>
    <td><{$vo.mail}></td>

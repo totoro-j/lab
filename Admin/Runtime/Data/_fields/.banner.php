@@ -1,1 +1,0 @@
-<?php	return array ( 0 => 'id', 1 => 'imgurl', 2 => 'metacontent', 3 => 'date', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'imgurl' => 'varchar(60)', 'metacontent' => 'varchar(60)', 'date' => 'timestamp', ), );?>

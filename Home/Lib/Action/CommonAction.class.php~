@@ -1,5 +1,5 @@
 <?php
-	class AdminCommonAction extends Action{
+	class CommonAction extends Action{
 		Public function _initialize(){
 			// 初始化的时候检查用户权限
 			$m=M('User');
@@ -9,9 +9,12 @@
 			$nam=$_SESSION['id'];
 			$t['id']=array('eq',"$nam");
 			$myrole=$m->where($t)->getField('role');
-			if($myrole=="1"||$myrole=="0"||$myrole=="2"){		
-				$this->error('没有系统管理权限!','__ROOT__/index.php/Index/index');
+			if($myrole=="3"){		
+				$this->error('没有权限!','__ROOT__/default.php/Index/index');
+			}else if($myrole=="0"){
+				$this->error('您的账号正在审核中!','__ROOT__/default.php/Index/index');
 			}
+
 		}
 	}
 ?>
