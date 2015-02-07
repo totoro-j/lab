@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
  
-	  
+	
 	      $(function(){  
 		$(".pass1").click
 		(
@@ -22,22 +22,51 @@
 		);
 			
 			})
+		
+		
+	
 </script>
 
 <script type="text/javascript">
+
+
            $(function(){  
-		$(".refuse1").click
+		$(".btn").click
 		(
 		function(){
 		if($('#check_button1').text()=='等待通过'){
 				
 		if(confirm('确认拒绝？')){$('#check_button1').text("未通过").css("color","#F33");return true;}
+		closeBg();
 		return false;
 		}}
-		
+	
 		);
+		
 			
 			})
+			
+		function showBg() { 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+   $("#dialog").show(); 
+   } 
+//关闭灰色 jQuery 遮罩 
+    function closeBg() { 
+    $("#fullbg,#dialog").hide(); 
+   }  		
+	$(function(){
+		if(del==1){
+			showBg();}
+			
+		})
+				
+		
 </script>
 <script type="text/javascript">
 
@@ -202,10 +231,19 @@
   <td><?php echo ($vo["time"]); ?></td>
   <td><div id="check_button1" class="check_button"><a >等待通过</a></div></td>
  <td><a href="__URL__/pass/id/<?php echo ($vo["id"]); ?>"><div class="pass1">通过</div></a></td>    
-  <td><a href="__URL__/refuse/id/<?php echo ($vo["id"]); ?>"><div class="refuse1">拒绝</div></a></td>
+  <td><a href="#" ><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
   </table><div class="user_show"><?php echo ($show); ?></div>
    </table>
+   </div>
+   <div id="fullbg"></div> 
+   <div id="dialog"> 
+   <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
+   <form><div class="refuse_dia">
+   <p>请输入拒绝的理由：</p>
+   <textarea maxlength="100" placeholder="字数在一百字以内..."></textarea>
+   <a href="__URL__/refuse/id/<?php echo ($vo["id"]); ?>" ><div class="btn">确认拒绝</div></a>
+   </div></form> 
    </div>
 </body>
 </html>
