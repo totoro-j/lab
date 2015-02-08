@@ -32,12 +32,10 @@ h3{
 	border-radius:5px;}
 .edit_section_pic_describ{
 	margin:0 auto;
-	background:#fff;
+	background:#ADFFE0;
 	height:200px;
-	width:900px;
-	margin-top:20px;
-	padding-top:20px;
-	padding-left:20px;
+	width:960px;
+	
 
 	}	
 .edit_section_pic_describ p,.edit_section_pic_describ h2{
@@ -45,7 +43,7 @@ h3{
 	margin-right:10px;
 }	
 .edit_section_pic_describ h2{
-	font-size:16px;
+	font-size:30px;
 	font-weight:bold;
 }
 .edit_section_pic_describ p{
@@ -56,7 +54,7 @@ h3{
 	
 	width:600px;
 	height:150px;
-
+	
 	border-radius:5px;}	
 .edit_section_pic  img{
 	height:150px;}	

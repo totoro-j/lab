@@ -27,7 +27,8 @@ h3{
 	width:960px;
 	margin:0 auto;
 	margin-top:50px;
-	border-radius:5px;}
+	border-radius:5px;
+}
 .edit_section_pic_describ{
 	margin:0 auto;
 	width:900px;
@@ -49,6 +50,7 @@ h3{
 	
 .edit_section_describ{
 	float:left;
+
 	}	
 input[type="submit"]{
 	float:left;
@@ -105,4 +107,5 @@ input[type="submit"]:hover{
 }
 #edit_focus{
 	padding-bottom:30px;
+	padding-top:50px;
 	}	
