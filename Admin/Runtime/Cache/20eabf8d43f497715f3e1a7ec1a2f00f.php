@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?>﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 	<title>核磁共振中心后台管理系统</title>
-	<load href="__PUBLIC__/Css/Admin/admin.css" />
-	<load href="__PUBLIC__/Js/jquery.js" />
-	<load href="__PUBLIC__/Js/admin.js" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/admin.css" />
+	<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Js/admin.js"></script>
 	<base href="__URL__/greet" target="iframe">
 	<script type="text/javascript">
 $("document").ready(function(){
@@ -30,7 +30,7 @@ $("img").click(function(){
     
     </ul>
     <ul class="t_user">
-    	<li><em class="t_user_ico1"></em>欢迎你，管理员 <{$Think.session.username}></li>
+    	<li><em class="t_user_ico1"></em>欢迎你，管理员 <?php echo (session('username')); ?></li>
 	<li><a href="__ROOT__/index.php/Index/index">实验室首页</li>
 	<li><a href="__ROOT__/default.php/Index/index">预约系统首页</li>
     	<li><a href="__APP__/Login/doLogout" target="_top">退出登陆</a></li>

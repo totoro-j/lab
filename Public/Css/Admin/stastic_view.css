@@ -37,7 +37,8 @@ a{
 	color:#fff;
 	cursor: pointer;
 	background-color:#23a96f;
-	border:1px solid #8F9BB3;
+	border:0px;
+	
 	font-family:"微软雅黑";
 	margin-left:4px;
 }

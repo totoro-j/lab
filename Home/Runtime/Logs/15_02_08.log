@@ -1,0 +1,27 @@
+[ 2015-02-08T11:02:14+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T11:10:13+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T11:36:06+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T11:36:33+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T11:36:59+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T11:37:46+08:00 ] ERR: (ThinkException) 在其上下文中，该请求的地址无效。
+
+[ 2015-02-08T13:09:49+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T13:09:49+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T13:20:40+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=123
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001985s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002378s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.023224s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '123' ) LIMIT 1   [ RunTime:0.001405s ]
+
+[ 2015-02-08T13:25:13+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T13:25:13+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T13:28:13+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T13:28:13+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T20:49:17+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js
+[ 2015-02-08T20:49:17+08:00 ] ERR: (ThinkException) 闈炴硶鎿嶄綔:js

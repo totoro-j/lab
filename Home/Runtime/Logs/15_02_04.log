@@ -1,0 +1,91 @@
+[ 2015-02-04T10:47:22+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=11
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.002071s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002537s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.015901s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '11' ) LIMIT 1   [ RunTime:0.017053s ]
+
+[ 2015-02-04T10:47:34+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=ff
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.005234s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005564s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.290477s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = 'ff' ) LIMIT 1   [ RunTime:0.001407s ]
+
+[ 2015-02-04T10:47:49+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=11
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.004079s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004457s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.014613s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '11' ) LIMIT 1   [ RunTime:0.002082s ]
+
+[ 2015-02-04T10:48:16+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:48:16+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:50:16+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:50:16+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:50:30+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=123
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.004158s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004501s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.020063s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '123' ) LIMIT 1   [ RunTime:0.001804s ]
+
+[ 2015-02-04T10:50:58+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=123
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.003200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003950s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.013307s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '123' ) LIMIT 1   [ RunTime:0.001436s ]
+
+[ 2015-02-04T10:54:44+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=1
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.002369s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002731s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.015774s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '1' ) LIMIT 1   [ RunTime:0.001943s ]
+
+[ 2015-02-04T10:55:33+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:55:33+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:57:47+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:57:47+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:57:51+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:57:51+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:58:08+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T10:58:08+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:13+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:13+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:24+08:00 ] ERR: (ThinkException) 非法操作:__URL__
+[ 2015-02-04T11:13:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:13:39+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:16:28+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:16:28+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:16:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:16:36+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:19:12+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T11:19:12+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T19:06:11+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=1
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.002437s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002796s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.120496s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '1' ) LIMIT 1   [ RunTime:0.002588s ]
+
+[ 2015-02-04T19:06:15+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=12
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001787s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002094s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.013530s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '12' ) LIMIT 1   [ RunTime:0.001135s ]
+
+[ 2015-02-04T19:06:19+08:00 ] 127.0.0.1 /lab/default.php/Register/checkName?username=2
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001793s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002115s ]
+SQL: SHOW COLUMNS FROM `lab_user` [ RunTime:0.014514s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lab_user` WHERE ( `username` = '2' ) LIMIT 1   [ RunTime:0.001210s ]
+
+[ 2015-02-04T19:06:49+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T19:06:50+08:00 ] ERR: (ThinkException) 非法操作:js
+[ 2015-02-04T19:07:08+08:00 ] ERR: (ThinkException) 非法操作:__URL__
