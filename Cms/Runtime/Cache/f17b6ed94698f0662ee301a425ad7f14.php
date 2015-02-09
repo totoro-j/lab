@@ -14,19 +14,19 @@
 <body>
  <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">焦点关注</h2>
     <div class="container">
-       <h3>焦点关注列表</h3>
+       <h3 style="color:#000;">焦点关注列表</h3>
           
            <table class="article_list">
            
            <caption class="add_article"><a href="__URL__/ListFocusEdit/">上传文章</a></caption>
 	  
-	   <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["isshow"] == 1): ?><tr class="article_table"><th><a href="__URL__/ListFocusView/id/<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></a></th><td><a href="__URL__/ListFocusIsshowCancel/id/<?php echo ($vo["id"]); ?>" class="opendiv3" id="setnews3">取消显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<?php echo ($vo["id"]); ?>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>                              	  
+	   <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["isshow"] == 1): ?><tr class="article_table"><th><a href="__URL__/ListFocusView/id/<?php echo ($vo["id"]); ?>" style="color:#1a1a1a;font-size:15px;"><?php echo ($vo["title"]); ?></a></th><td><a href="__URL__/ListFocusIsshowCancel/id/<?php echo ($vo["id"]); ?>" class="opendiv3" id="setnews3">取消显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<?php echo ($vo["id"]); ?>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>                              	  
 	   <?php else: ?>	  
-	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></a></th><td><a href="__URL__/ListFocusIsshow/id/<?php echo ($vo["id"]); ?>" class="opendiv3" id="setnews3">显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<?php echo ($vo["id"]); ?>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr><?php endif; endforeach; endif; else: echo "" ;endif; ?> 
+	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<?php echo ($vo["id"]); ?>" style="color:#1a1a1a;font-size:15px;"><?php echo ($vo["title"]); ?></a></th><td><a href="__URL__/ListFocusIsshow/id/<?php echo ($vo["id"]); ?>" class="opendiv3" id="setnews3">显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<?php echo ($vo["id"]); ?>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr><?php endif; endforeach; endif; else: echo "" ;endif; ?> 
               
               <tr class="no_article"><th colspan="4" style="text-align:center;color:#ccc;fontsize:10px;display:none;">暂无文章</th></tr>
             
            </table>
-	   <div class="focus_show"><?php echo ($show); ?></div>
+	   <div class="focus_show" style="margin-left:40px;"><?php echo ($show); ?></div>
 </body>
 </html>

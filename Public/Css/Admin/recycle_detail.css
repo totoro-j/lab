@@ -1,0 +1,16 @@
+
+.detail{
+	width:800px;
+	-moz-box-shadow:2px 2px 3px #909090;
+	-webkit-box-shadow:2px 2px 3px #909090;
+	box-shadow:2px 2px 3px #909090;
+	background-color: #eee;
+	margin:0 auto;
+	margin-top:70px;
+	padding:40px;
+}
+h3{
+	color:#219E69;
+	margin-bottom:20px;
+	margin-top:20px;
+}

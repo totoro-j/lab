@@ -7,7 +7,15 @@
 	<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
 	<script type="text/javascript" src="__PUBLIC__/Js/admin.js"></script>
 	<base href="__ROOT__/index.php/Index/index" target="iframe">
-	
+	<script type="text/javascript">
+$("document").ready(function(){
+$("img").click(function(){
+  $(".detail").toggle();
+  
+})
+
+})
+</script>
 
 </head>
 <body>
@@ -44,7 +52,14 @@
             <li><a href="__APP__/Article/ListNews">综合新闻</a></li>
             <li><a href="__APP__/Article/ListNotice">通知公告</a></li>
 	    <li><a href="__APP__/Article/ListArticle">论文管理</a></li>
-	    <li><a href="#">项目回收站</a></li>
+	    <li><a href="__APP__/Recycle/index">项目回收站<img src="__PUBLIC__/Images/detail.png" style="width:13px;height:13px;margin-bottom:-13px;margin-left:50px"/></a></li>
+	    <ul style="display:none;" class="detail">
+	        	 <li><a href="__APP__/Recycle/recycle_picture">滚动图片回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_focus">焦点关注回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_news">综合新闻回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_notify">通知公告回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_thesis">论文管理回收站</a></li>
+	        </ul>
 		
 	</div>
 </div>
