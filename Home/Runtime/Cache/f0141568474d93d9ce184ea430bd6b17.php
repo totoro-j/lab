@@ -22,13 +22,16 @@
 	<body>
 		<form action='__URL__/doLogin' method='post' name='myForm'>
         <h3>预约系统登录</h3>
+        <div class="detail">
 			<span class="title">用户名：<input type='text' name='username' autofocus="autofocus" autocomplete="off"/></span><br/>
 			<span class="title">密　码：<input type='password' name='password'/></span><br/>
-			<span class="title">验证码：<input type='text' name='code'/></span><div class="code"><img src='__APP__/Public/code?w=60&h=25' onclick='this.src=this.src+"?"+Math.random()'/></div>
+			<span class="title"  >验证码：<input type='text' name='code'/></span><div class="code"><img src='__APP__/Public/code?w=60&h=25' onclick='this.src=this.src+"?"+Math.random()'/></div>
                      <div class="buttons">
 			<div class="login">登录</div>
 			<div class="register">注册</div>
-            </div>
+        </div>
+        </div>
 		</form>
+	<div id="footer" style="text-align:center;padding-top:100px;"><small >©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
 	</body>
 </html>

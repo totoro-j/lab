@@ -133,6 +133,7 @@
 	</head>
 	<body>
 		<form action='__URL__/doReg' method='post' name='myForm'>
+			<h3>注册页面</h3>
 		   <span class="title">登录用户名：</span><input type='text' name='username' onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限阿拉伯数字、下划线和英文大小写</span><br/>
 			<span class="title">真实姓名：</span><input type='text' name='truename'/><br/>
 			 <span class="title"> 密码：</span><input type='password' name='password' /> <span id="pmessage1">不少于六位数</span><br/>
@@ -156,7 +157,7 @@
 		      <span class="title">联系电话：</span><input type='text' name='tel' onkeyup="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
 		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><br/> 
 			<span class="title">验 证 码：</span><input type='text' name='code'/><br/>
-					 <div style="position:relative;top:-40px;right:-305px;"> <img src='__APP__/Public/code?w=60&h=30' onclick='this.src=this.src+"?"+Math.random()'/>	 </div> 
+					 <div style="position:relative;width:100px;top:-40px;right:-305px;background:#fff;"> <img src='__APP__/Public/code?w=60&h=30' onclick='this.src=this.src+"?"+Math.random()'/>	 </div> 
 				      <br/>
             
 		</form>
@@ -165,5 +166,6 @@
 			<div class='register'>注册</div>
 			<div class='reset'>重置</div>
             </div>
+           <div id="footer" style="text-align:center;padding-top:100px;"><small >©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
 	</body>
 </html>

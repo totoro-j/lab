@@ -1,16 +1,28 @@
-﻿form {
+﻿*{
+	background-color: #eee;
+    font-family: "微软雅黑";
+}
+form {
 				width:450px;
 				height:180px;
 				margin:0 auto;
 				margin-top:20px;
+				background-color: #fff;
+				-moz-box-shadow:2px 2px 3px #909090;
+	           -webkit-box-shadow:2px 2px 3px #909090;
+	            box-shadow:2px 2px 3px #909090;
+	            border-radius: 15px;
 	}
 form h3{
 	font-family:"微软雅黑";
 	font-size:21px;
 	font-weight:bold;
 	border-left:#219E69 solid 22px;
-	padding-left:15px;
 	margin-bottom:36px;
+	padding:10px;
+	margin-top:150px;
+	margin-bottom:36px;
+
 }
 form span{
 	width:262px;
@@ -20,6 +32,8 @@ form span{
 	font-family:"微软雅黑";
 	font-size:16px;
 	float:left;
+	padding-top: 15px;
+	background-color: #fff;
 }
 form input{
 				width:180px;
@@ -30,20 +44,38 @@ form input{
 				padding-left:4px;
 				font-family:Arial,"微软雅黑";
 				font-size:14px;
+				border-radius: 5px;
+				background-color: #ffe;
+				border:1px #909090 solid;
 	}
 form .login,.register {		
-				cursor:pointer;	
+				cursor:pointer;
+
 }
 .code{
-	padding-top:8px;
+	padding-top:23px;
 	float:right;
 	margin-right:90px;
+	background-color: #fff;
 }
 .buttons{
 	width:450px;
 	margin:0 auto;
+	background-color: #fff;
+	-moz-box-shadow:2px 2px 3px #909090;
+	           -webkit-box-shadow:2px 2px 3px #909090;
+	            box-shadow:2px 2px 3px #909090;
+	            border-bottom-right-radius:15px;
+	            border-bottom-left-radius:15px;
+
 }
-.login{clear:both;width:70px;font-family:"微软雅黑";height:30px;color:#fff;background:#23a96f;font-size:14px;text-align:center;line-height:28px;margin:0 auto;margin-left:150px;margin-top:12px;}
+
+.login{clear:both;width:70px;font-family:"微软雅黑";height:30px;color:#fff;background:#23a96f;font-size:14px;text-align:center;line-height:28px;margin:0 auto;margin-left:160px;margin-top:12px;margin-bottom:15px;}
 .login:hover{
 	background-color:#2BB972;
+}
+.footer{
+	height: 20px;
+	text-align: center;
+	margin-top:250px;
 }

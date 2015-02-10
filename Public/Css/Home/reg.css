@@ -1,9 +1,30 @@
-
+*{
+	background-color: #eee;
+    font-family: "微软雅黑";
+}
+h3{
+	font-family:"微软雅黑";
+	font-size:21px;
+	font-weight:bold;
+	border-left:#219E69 solid 22px;
+	padding: 5px;
+}
+.block{
+	width: 20px;
+	height: 20px;
+	background-color: #23a96f;
+	display: inline-block;
+}
 form {			
 				width:600px;
 				margin:0 auto;
 				text-align:left;
 				font-size:12px;
+				background-color: #fff;
+				-moz-box-shadow:2px 2px 3px #909090;
+	           -webkit-box-shadow:2px 2px 3px #909090;
+	            box-shadow:2px 2px 3px #909090;
+	            border-radius: 15px;
 	}
 form input {
 				width:120px;
@@ -11,10 +32,13 @@ form input {
 				margin-top:15px;
 			    clear:both;
 				padding-left:5px;
+				border-radius: 5px;
+				background-color: #ffe;
+				border:1px #909090 solid;
 				
 	}
 
-form input.password:focus,form input.text:focus{border:1px solid #23a96f;box-shadow:0 0 5px #23a96f;}
+form input.password:focus,form input.text:focus{border:1px solid #23a96f;box-shadow:0 0 5px #23a96f;background-color: #fff;}
 
 form input.radio{
 				width:20px;
@@ -23,19 +47,28 @@ form input.radio{
 				position:relative;
 				top:7px;
 				padding-left:20px;
+
 }
 form img {
 				position:relative;
 				top:10px;
+				background-color: #fff;
 }
 form .reset,.register {		
+
 				cursor:pointer;	
 }
 
-.input_wrapper{marigin:0;width:60px;height:30px;}
-span{color:#999;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-left:4px;}
-span.title{font-size:15px;color:#000;font-family:"微软雅黑";display:inline-block;width:140px;margin-right:20px;text-align:right;}
+.input_wrapper{marigin:0;width:60px;height:30px;background-color: #fff;}
+span{color:#999;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-left:4px;background-color: #fff;}
+span.title{background-color: #fff;font-size:15px;color:#000;font-family:"微软雅黑";display:inline-block;width:140px;margin-right:20px;text-align:right;}
 
 
 .button{margin:0 auto;text-align:center;width:450px;}
-.register,.reset{width:70px;height:30px;color:#fff;background:#23a96f;font-size:16px;text-align:center;float:left;line-height:32px;margin-left:50px;}
+.register,.reset{
+                margin-top: 20px;
+                margin-right: 100px;
+	           -moz-box-shadow:2px 2px 1px #909090;
+	           -webkit-box-shadow:2px 2px 1px #909090;
+	            box-shadow:2px 2px 1px #909090;
+	            border-radius: 5px;width:70px;height:30px;color:#fff;background:#23a96f;font-size:16px;text-align:center;float:left;line-height:32px;margin-left:50px;}

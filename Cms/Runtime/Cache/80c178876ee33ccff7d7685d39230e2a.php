@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+ <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">论文列表</h2>
     <div class="container">
        <h3 style="color:#000;">论文列表</h3>
           
