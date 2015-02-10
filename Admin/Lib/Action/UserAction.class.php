@@ -133,7 +133,7 @@ class UserAction extends AdminCommonAction {
 		if($count>0){
 			$this->redirect(usercheck);
 		}else{
-			$this->error('shibai');
+			$this->error('Error!');
 		}  
 		
 	}
@@ -141,14 +141,20 @@ class UserAction extends AdminCommonAction {
 
 	public function refuse(){
 		$m=M('User');
+		$n=M('User_del');
 		$id=$_GET['id'];
 		$arr=$m->find($id);
-                $arr['role']='2';		
+		$array=$arr;
+		$arr['role']='9';
+		$delinfo=$_POST['delinfo'];
+		$array['delinfo']=$delinfo;
+		$array['delstate']='1';
+		$cou=$n->add($array);			
 		$count=$m->save($arr);
-		if($count>0){
+		if($count>0 && $cou>0){
 		$this->redirect(usercheck);
 		}else{
-			$this->error('error');
+			$this->error('删除失败');
 		}   
 		
 	}

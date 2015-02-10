@@ -9,14 +9,16 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/recycle_detail.css" />
 </head>
 <body>
-	<h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">文章详细</h2>
+	<h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;"><?php switch($no["parentid"]): case "1": ?>焦点新闻<?php break; case "2": ?>综合新闻<?php break; case "3": ?>通知公告<?php break; case "4": ?>重要论文<?php break; endswitch;?></h2>
 <div class="detail">
 	<h3>标题</h3>
-	<h4>这里是标题</h4>
+	<h4><?php echo ($no["title"]); ?></h4>
 	<h3>作者</h3>
-	<h4>我是啦啦啦</h4>
+	<h4><?php echo ($no["editor"]); ?></h4>
+	<h3>上传时间</h3>
+	<h4><?php echo ($no["date"]); ?></h4>
 	<h3>内容</h3>
-	<p>这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容</p>
+	<p><?php echo ($no["content"]); ?></p>
 </div>
 	<!--执行选项-->
     <table style="margin-top:30px;">

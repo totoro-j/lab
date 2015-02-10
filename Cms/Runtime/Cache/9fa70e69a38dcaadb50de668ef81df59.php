@@ -1,11 +1,11 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>项目回收站</title>
 
-<load href="__PUBLIC__/Js/jquery.js" />
-<load href="__PUBLIC__/Css/Admin/stastic_view.css" />
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/stastic_view.css" />
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
 </head>
 
 <body>
-    <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">综合新闻回收站</h2>
+    <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">通知公告回收站</h2>
     <!--搜索框-->
     <table>
     <form name="search" method="post" action="">
@@ -52,24 +52,21 @@ $(document).ready(function(){
             <th></th>
             <th>标题</th>
             <th>作者</th>
-            <th>简介</th>
             <th>上传时间</th>
             <th>删除时间</th>
             <th>详情</th>
+            
         </tr>
-	<volist name='data' id='vo'>
-        <tr>
+	<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
             <td><input type="checkbox"name="checkbox" ></td>
-            <td><{$vo.title}></td>
-            <td><{$vo.editor}></td>
-            <td><{$vo.metacontent}></td>
-            <td><{$vo.date}></td>
-            <td><{$vo.deltime}></td>
-            <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
-        </tr>
-	</volist>
+            <td><?php echo ($vo["title"]); ?></td>
+            <td><?php echo ($vo["editor"]); ?></td>
+            <td><?php echo ($vo["date"]); ?></td>
+            <td><?php echo ($vo["deltime"]); ?></td>
+            <td style="width:300px;"><a href="__APP__/Recycle/recycle_detail">详情</a></td>
+        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     </table>
-    <div class="news_show" style="margin-left:40px;"><{$show}></div>
+    <div class="focus_show" style="margin-left:40px;"><?php echo ($show); ?></div>
     <!--详细表格完-->
     <!--执行选项-->
     <table style="margin-top:30px;">

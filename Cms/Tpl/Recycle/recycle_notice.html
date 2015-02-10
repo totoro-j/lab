@@ -26,7 +26,7 @@ $(document).ready(function(){
 </head>
 
 <body>
-    <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">综合新闻回收站</h2>
+    <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">通知公告回收站</h2>
     <!--搜索框-->
     <table>
     <form name="search" method="post" action="">
@@ -52,24 +52,23 @@ $(document).ready(function(){
             <th></th>
             <th>标题</th>
             <th>作者</th>
-            <th>简介</th>
             <th>上传时间</th>
             <th>删除时间</th>
             <th>详情</th>
+            
         </tr>
 	<volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox"name="checkbox" ></td>
             <td><{$vo.title}></td>
             <td><{$vo.editor}></td>
-            <td><{$vo.metacontent}></td>
             <td><{$vo.date}></td>
             <td><{$vo.deltime}></td>
             <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
         </tr>
 	</volist>
     </table>
-    <div class="news_show" style="margin-left:40px;"><{$show}></div>
+    <div class="notice_show" style="margin-left:40px;"><{$show}></div>
     <!--详细表格完-->
     <!--执行选项-->
     <table style="margin-top:30px;">

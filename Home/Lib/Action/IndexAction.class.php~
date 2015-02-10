@@ -84,7 +84,7 @@ class IndexAction extends CommonAction{
 		$t=M('User');
 		$where['username']=$_SESSION['username'];
 		$ar=$t->where($where)->select();
-		$this->assign('data',$ar);
+		$this->assign('dat',$ar);
 		$this->display();
 	 	
 	}
@@ -232,7 +232,9 @@ class IndexAction extends CommonAction{
 		}
 		$this->assign('list',$history);
 		$this->display();
-
 		} 
- 
+		
+	public function refuse(){
+		$this->display();
+	}
 }

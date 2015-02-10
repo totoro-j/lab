@@ -44,9 +44,12 @@ class ArticleAction extends AdminCommonAction {
 
     
     public function ListArticleDel(){
-        $m=M('Article');
-  	$id=$_GET['id'];
+	$m=M('Article');
+	$n=M('Article_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListArticle');
 	}
   
@@ -134,9 +137,12 @@ class ArticleAction extends AdminCommonAction {
      }        
 
     public function ListBannerDel(){
-    	$m=M('Banner');
-  	$id=$_GET['id'];
+	$m=M('Banner');
+	$n=M('Banner_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListBanner');
     }
 
@@ -154,9 +160,12 @@ class ArticleAction extends AdminCommonAction {
     }
 
  public function ListFocusDel(){
-        $m=M('Article');
-  	$id=$_GET['id'];
+	$m=M('Article');
+	$n=M('Article_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListFocus');
     }
 
@@ -296,9 +305,12 @@ class ArticleAction extends AdminCommonAction {
     }
 
  public function ListNewsDel(){
-        $m=M('Article');
-  	$id=$_GET['id'];
+	$m=M('Article');
+	$n=M('Article_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListNews');
     }
 
@@ -457,9 +469,12 @@ class ArticleAction extends AdminCommonAction {
     }
 
     public function ListNoticeDel(){
-        $m=M('Article');
-  	$id=$_GET['id'];
+	$m=M('Article');
+	$n=M('Article_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListNotice');
     }
 

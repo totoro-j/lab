@@ -232,7 +232,9 @@ class IndexAction extends CommonAction{
 		}
 		$this->assign('list',$history);
 		$this->display();
-
 		} 
- 
+		
+	public function urefuse(){
+		$this->display();
+	}
 }

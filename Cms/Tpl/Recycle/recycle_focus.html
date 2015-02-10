@@ -12,10 +12,10 @@ $(document).ready(function(){
 
   $("#all").click(function(){   
         if(this.checked){   
-            $("input[name='checkbox']").each(function(){this.checked=true;});
+            $("input[name='recover[]']").each(function(){this.checked=true;});
              
         }else{   
-            $("input[name='checkbox']").each(function(){this.checked=false;});   
+            $("input[name='recover[]']").each(function(){this.checked=false;});   
            
         }   
     }); 
@@ -36,8 +36,7 @@ $(document).ready(function(){
             <option value="choose">----请选择----</option>
             <option value="title">标题</option>
             <option value="author">作者</option>
-            <option value="time">上传时间</option>
-            
+            <option value="time">上传时间</option>            
         </select>
         </td>
         <td><input type="text" name="search_input" /></td>
@@ -46,7 +45,7 @@ $(document).ready(function(){
     </form>
     </table>
     <!--详细表格-->
-    <form name="notice_detail" method="post" action="">
+    <form name="myForm" method="post" action="__URL__/recover_focus">
     <table class="stastic_check" title="点击查看详情">
         <tr>
             <th></th>
@@ -54,18 +53,22 @@ $(document).ready(function(){
             <th>作者</th>
             <th>简介</th>
             <th>上传时间</th>
+            <th>删除时间</th>
             <th>详情</th>
         </tr>
-
-        <tr>
-            <td><input type="checkbox"name="checkbox" ></td>
-            <td ></td>
-            <td>王二小</td>
-            <td>20130502</td>
-            <td></td>
-            <td style="width:300px;"><a href="__APP__/Recycle/recycle_detail">详情</a></td>
+	<volist name='data' id='vo'>
+        <tr>		
+            <td><input type="checkbox"name="recover[]" value="<{$vo.id}>"></td>
+            <td ><{$vo.title}></td>
+            <td><{$vo.editor}></td>
+            <td><{$vo.metacontent}></td>
+            <td><{$vo.date}></td>
+            <td><{$vo.deltime}></td>
+            <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
         </tr>
+	</volist>
     </table>
+    <div class="focus_show" style="margin-left:40px;"><{$show}></div>
     <!--详细表格完-->
     <!--执行选项-->
     <table style="margin-top:30px;">

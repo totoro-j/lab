@@ -1,7 +1,0 @@
-<?php
-        class RecycleAction extends AdminCommonAction{
-		          public function index(){
-				  $this->display;
-				  }
-		}
-?>

@@ -52,6 +52,7 @@ $("img").click(function(){
             <li><a href="__APP__/User/usercheck">审核注册用户</a></li>
             <li><a href="__APP__/User/userview">正式用户管理</a></li>
 	        <li><a href="__APP__/Recycle/index">项目回收站<img src="__PUBLIC__/Images/detail.png" style="width:13px;height:13px;margin-bottom:-13px;margin-left:50px"/></a></li>
+	        <!--子列表-->
 	        <ul style="display:none;" class="detail">
 	        	 <li><a href="__APP__/Recycle/recycle_notice">通知公告回收站</a></li>
                  <li><a href="__APP__/Recycle/recycle_search_apply">实验申请回收站</a></li>

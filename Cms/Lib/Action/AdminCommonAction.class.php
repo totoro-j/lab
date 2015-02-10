@@ -9,7 +9,7 @@
 			$nam=$_SESSION['id'];
 			$t['id']=array('eq',"$nam");
 			$myrole=$m->where($t)->getField('role');
-			if($myrole=="1"||$myrole=="0"||$myrole=="2"){		
+			if($myrole != "3"){		
 				$this->error('没有系统管理权限!','__ROOT__/index.php/Index/index');
 			}
 		}

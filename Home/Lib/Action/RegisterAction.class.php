@@ -33,6 +33,7 @@
 			$mail=$_POST['mail'];
 			
 			$user=M('User');
+			$m=m('Temp');
 			$data['username']=$username;
 			$data['truename']=$truename;
 			$data['password']=$password;
@@ -48,7 +49,9 @@
 			$data['tel']=$tel;
 			$data['mail']=$mail;
 			$lastId=$user->add($data);
-			if($lastId){
+			$map['new_user']='1';
+			$add=$m->add($map);
+			if($lastId && $add>0){
 				$this->success('注册成功','__APP__/Index/index');
 			}else{
 				$this->error('注册失败');

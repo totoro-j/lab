@@ -224,7 +224,7 @@
    <th>用户名</th><th>用户姓名</th><th>课题组负责人</th><th>注册时间</th><th>审核情况</th><th colspan="2">审核操作</th>
    </tr>
  <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
-   		<volist name='list' id='vo'>
+<volist name='list' id='vo'>
 <tr>
   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.username}></a></td>
   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.truename}></a></td>
@@ -234,8 +234,7 @@
  <td><a href="__URL__/pass/id/<{$vo.id}>"><div class="pass1">通过</div></a></td>    
   <td><a href="#" ><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
 </tr>
-   
-			</volist>
+   </volist>
   </table><div class="user_show"><{$show}></div>
    </table>
    </div>
@@ -244,7 +243,7 @@
    <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
    <form><div class="refuse_dia">
    <p>请输入拒绝的理由：</p>
-   <textarea maxlength="100" placeholder="字数在一百字以内..."></textarea>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    <a href="__URL__/refuse/id/<{$vo.id}>" ><div class="btn">确认拒绝</div></a>
    </div></form> 
    </div>

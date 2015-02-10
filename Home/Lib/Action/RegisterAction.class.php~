@@ -33,6 +33,7 @@
 			$mail=$_POST['mail'];
 			
 			$user=M('User');
+			$m=m('Temp');
 			$data['username']=$username;
 			$data['truename']=$truename;
 			$data['password']=$password;
@@ -49,7 +50,7 @@
 			$data['mail']=$mail;
 			$lastId=$user->add($data);
 			if($lastId){
-				$this->success('注册成功','__URL__/Index/index');
+				$this->success('注册成功','__APP__/Index/index');
 			}else{
 				$this->error('注册失败');
 			}

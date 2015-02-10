@@ -54,18 +54,20 @@ $(document).ready(function(){
             <th>作者</th>
             <th>简介</th>
             <th>上传时间</th>
+            <th>删除时间</th>
             <th>详情</th>
         </tr>
-
-        <tr>
+	<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
             <td><input type="checkbox"name="checkbox" ></td>
-            <td></td>
-            <td>王二小</td>
-            <td>20130502</td>
-            <td></td>
-            <td style="width:300px;"><a href="__APP__/Recycle/recycle_detail">详情</a></td>
-        </tr>
+            <td><?php echo ($vo["title"]); ?></td>
+            <td><?php echo ($vo["editor"]); ?></td>
+            <td><?php echo ($vo["metacontent"]); ?></td>
+            <td><?php echo ($vo["date"]); ?></td>
+            <td><?php echo ($vo["deltime"]); ?></td>
+            <td style="width:300px;"><a href="__URL__/recycle_detail/id/<?php echo ($vo["id"]); ?>">详情</a></td>
+        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     </table>
+    <div class="news_show" style="margin-left:40px;"><?php echo ($show); ?></div>
     <!--详细表格完-->
     <!--执行选项-->
     <table style="margin-top:30px;">

@@ -1,12 +1,12 @@
-<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>项目回收站</title>
 
-<script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/stastic_view.css" />
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/Admin/recycle_detail.css" />
+<load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Css/Admin/stastic_view.css" />
+<load href="__PUBLIC__/Css/Admin/recycle_detail.css" />
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -31,12 +31,14 @@ $(document).ready(function(){
 
     <!--图片开始-->
     <div class="detail" style="margin-top:20px;">
-	<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><input type="checkbox" name="checkbox" /><span style="padding-left:10px;">上传时间:<?php echo ($vo["date"]); ?></span>
+	<volist name='data' id='vo'>
+    <input type="checkbox" name="checkbox" /><span style="padding-left:10px;">上传时间:<{$vo.date}></span>
     <h3>图片简介</h3>
-    <p><?php echo ($vo["metacontent"]); ?></p>
-    <img style="width:800px;padding-top:20px;" src="__PUBLIC__/Images/<?php echo ($vo["imgurl"]); ?>"/><?php endforeach; endif; else: echo "" ;endif; ?>
+    <p><{$vo.metacontent}></p>
+    <img style="width:800px;padding-top:20px;" src="__PUBLIC__/Images/<{$vo.imgurl}>"/>
+    	</volist>
     </div>
-    <div class="banner_show" style="margin-left:20px;color:#666;"><?php echo ($show); ?></div>
+    <div class="banner_show" style="margin-left:20px;color:#666;"><{$show}></div>
     <!--执行选项-->
     <table style="margin-top:30px;">
     <tr>
@@ -48,3 +50,4 @@ $(document).ready(function(){
 <!--执行选项完-->
 </body>
 </html>
+   

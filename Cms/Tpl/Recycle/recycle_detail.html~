@@ -15,8 +15,6 @@
 	<h4><{$no.title}></h4>
 	<h3>作者</h3>
 	<h4><{$no.editor}></h4>
-	<h3>上传时间</h3>
-	<h4><{$no.date}></h4>
 	<h3>内容</h3>
 	<p><{$no.content}></p>
 </div>

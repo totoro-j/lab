@@ -241,7 +241,7 @@
    <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
    <form><div class="refuse_dia">
    <p>请输入拒绝的理由：</p>
-   <textarea maxlength="100" placeholder="字数在一百字以内..."></textarea>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    <a href="__URL__/refuse/id/<?php echo ($vo["id"]); ?>" ><div class="btn">确认拒绝</div></a>
    </div></form> 
    </div>

@@ -65,7 +65,7 @@ $(document).ready(function(){
             <td><{$vo.metacontent}></td>
             <td><{$vo.date}></td>
             <td><{$vo.deltime}></td>
-            <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
+            <td style="width:300px;"><a href="__APP__/Recycle/recycle_detail">详情</a></td>
         </tr>
 	</volist>
     </table>

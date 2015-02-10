@@ -134,9 +134,12 @@ class ArticleAction extends AdminCommonAction {
      }        
 
     public function ListBannerDel(){
-    	$m=M('Banner');
-  	$id=$_GET['id'];
+	$m=M('Banner');
+	$n=M('Banner_del');
+	$id=$_GET['id'];
+	$field=$m->find($id);
 	$m->delete($id);
+	$n->add($field);
 	$this->redirect('ListBanner');
     }
 
@@ -425,12 +428,16 @@ class ArticleAction extends AdminCommonAction {
 
 
     public function ListNotice(){
-        	$m=M('Article');
-		$arr=$m->where('parentid=3')->select();
-		$this->assign('data',$arr);
-		$this->display();
-         
-       
+	$e=M('Article');
+	import('ORG.Util.Page');
+	$count=$e->where('parentid=3')->count();
+	$page  = new Page($count,5);
+	$page->setConfig('header','条记录');
+	$show=$page->show();
+	$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->select();
+	$this->assign('data',$arr);
+	$this->assign('show',$show);
+	$this->display();       
     }   
  
  

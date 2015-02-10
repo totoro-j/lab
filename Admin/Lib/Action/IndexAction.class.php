@@ -9,3 +9,4 @@ class IndexAction extends AdminCommonAction {
 	$this->display();
     }
 }
+?>
