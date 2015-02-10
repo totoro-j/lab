@@ -24,5 +24,6 @@
 			<input title='login' class="login" type="submit" value="登录" />
             	</div>
 		</form>
+		<div class="footer"><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
 	</body>
 </html>
