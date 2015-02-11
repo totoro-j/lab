@@ -56,7 +56,7 @@ $(document).ready(function(){
     <table style="margin-top:30px;">
     <tr>
       <td style="color:#219E69;"><input type="checkbox" id="all" style="margin-right:5px"/>全选</td>
-       <td><input type="submit" value="恢复" class="search_button" id="re" onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
+       <td><input type="submit" value="恢复" class="search_button" id="recover" onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
       <td><input type="submit" value="删除所选" class="search_button" id="delete" onClick="del()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
       <td><a style="margin-left:10px; color:#219E69;"  href="__APP__/Recycle/index">返回</a></td>
      </tr>

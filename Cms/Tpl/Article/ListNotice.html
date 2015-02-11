@@ -17,7 +17,19 @@
 <!--each edit section begin-->
 <!--section No.1 begin-->
   <h3 style="margin-left:50px;color:#000;">通知公告</h3> 
-
+<table>
+    <form name="search" method="post" action="__URL__/search_notice">
+        <tr>
+        <td>
+        <select class="user_search">
+            <option value="title">标题</option>         
+        </select>
+        </td>
+        <td><input type="text" name="search_input" /></td>
+        <td><input type="submit" value="搜索" class="search_button" /></td>
+        </tr> 
+    </form>
+</table>
   <div id="edit_focus2"class="edit_section_pic_describ">
        <div class="edit_section_describ" style="background-color: #E9FAF1;padding-top:30px;padding-left:30px;padding-right:30px;">
  <volist name='data' id='vo'>

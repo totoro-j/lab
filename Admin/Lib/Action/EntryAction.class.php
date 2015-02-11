@@ -76,17 +76,17 @@ class EntryAction extends AdminCommonAction {
 
 		public function refuse(){
 			$m=M('Event');
+			$n=M('Event_del');
 			$id=$_GET['id'];
-			$arr=$m->find($id);
-                        $arr['state']='2';
-		
-			$count=$m->save($arr);
-			if($count>0){
-                   	$this->redirect(entrycheck);
-			}else{
-				$this->error('审核失败');
-			}   
-		
+			$delinfo=$_GET['delinfo'];
+			$field=$m->find($id);
+			$tem=$field;
+                        $field['state']='2';		
+			$m->save($field);
+			$tem['delinfo']=$delinfo;
+			$tem['delstate']='1';
+			$n->add($tem);
+                   	$this->redirect('entrycheck');		
 		}
 
 		public function checkentry(){
@@ -110,13 +110,17 @@ class EntryAction extends AdminCommonAction {
 			}
 			echo json_encode($u);
 		}
+
 		public function cancel(){
 			$m=M('Event');
+			$n=M('Event_del');
 			$id=$_GET['id'];
-			$data['id']=$id;
-			$data['state']=0;
-		//	var_dump($data);
-			$m->save($data);
+			$field=$m->find($id);
+			$tem=$field;
+			$field['state']='3';
+			$m->save($field);
+			$tem['delstate']='2';
+			$n->add($tem);
 			$this->redirect('entryview');
 		}		
 }

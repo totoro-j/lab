@@ -1,5 +1,5 @@
 <?php
-class NoticeAction extends Action{
+class NoticeAction extends AdminCommonAction{
 	public function index(){
 		$m=D('Notice');
 		$arr=$m->relation(true)->order('id desc')->select();

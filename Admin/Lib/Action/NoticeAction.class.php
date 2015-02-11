@@ -28,14 +28,12 @@ class NoticeAction extends AdminCommonAction{
 
 	public function del(){
 		$m=D('Notice');
+		$n=D('Notice_del');
 		$id=$_GET['id'];
-		$count=$m->relation(true)->delete($id);
-		if($count>0){
-			$this->redirect('Notice/index');
-		}else{
-			$this->error{'文章删除失败'};
-		}
-	 
+		$field=$m->relation(true)->find($id);
+		$m->relation(true)->delete($id);
+		$n->add($field);
+		$this->redirect('Notice/index');	 
 		}
 	}
 ?>

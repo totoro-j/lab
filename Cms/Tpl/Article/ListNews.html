@@ -15,7 +15,21 @@
  <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">综合新闻</h2>
     <div class="container">
        <h3 style="color:#000;">新闻列表</h3>
-          
+             <table>
+    <form name="search" method="post" action="__URL__/search_news">
+        <tr>
+        <td>
+        <select class="user_search">
+            <option value="choose">----请选择----</option>
+            <option value="title">标题</option>
+            <option value="editor">作者</option>            
+        </select>
+        </td>
+        <td><input type="text" name="search_input" /></td>
+        <td><input type="submit" value="搜索" class="search_button" /></td>
+        </tr> 
+    </form>
+    </table> 
            <table class="article_list">
            
            <caption class="add_article"><a href="__URL__/ListNewsEdit/">上传文章</a></caption>
