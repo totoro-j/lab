@@ -112,51 +112,80 @@ function setSelectedBgColor()//设置选定行的背景色
    			<!--公告栏-->
    			<div class="can">
 		<div class="can_1">公告栏</div>
-		<div class="canin">
-			<article class="canin_1"></article>
-			<h3 style='border:none;' class="canin_2"><{$time}><br>发布人：<{$editor}></h3>
-            <p ><{$content}></p>
+		<div class="canin" style="margin-top:30px;padding-top:10px;height:230px;">
+			
+             <p><{$content}></p>
+			<h3 style="border:none; margin-top:15px;" class="canin_2"><{$time}><br>发布人：<{$editor}></h3>
+           
     </div>
 	</div>
    		</div>
+
         
         <!--个人信息界面开始-->
 	<load href="__PUBLIC__/Css/Home/show.css" />
-        <div id="infor">
-        <div class="can_1">个人信息</div>
-        	<table border='1' width="500" align='center' class="show_check">
+    <div class="cant">
+        <div class="can_1" style="float:left;width:500px;margin-top:15px;margin-left:50px;">资料下载</div>
+        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll">
+        
+        	<table border='1' align='center' class="show_check" style="width:500px;">
 			<volist name='dat' id='vo'>
             <tr>
-			  <td>用户名：<{$vo.username}></td>
-			  <td>姓名：<{$vo.truename}></td>
+			  <td style="width:600px;"><{$vo.username}></td>
+			  <td style="width:80px;"><{$vo.truename}></td>
+              <td style="width:80px;"><a>下载</a></td>
             </tr>  
             <tr>
-			  <td>性别：<if condition='$vo.sex eq 1'>男<else />女</if></td>
-			  <td>单位：<{$vo.unit}></td>
+			  <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
             </tr>  
             <tr>
-
-			  <td>学院(部门)：<{$vo.department}></td>
-			  <td>身份：<switch name='vo.job'><case value="1">教师</case><case value="2">学生</case><default />其它</switch></td>
+              <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>  
             </tr>  
             <tr>
-			  <td>学历：<if condition='$vo.degree eq 2'>博士<else />硕士</if></td>
-			  <td>年级：<{$vo.grade}></td>
+			  <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
             </tr>  
             <tr>
-			  <td>导师：<{$vo.tutor}></td>
-			  <td>课题负责人：<{$vo.principal}></td>
+			  <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
            </tr>  
             <tr>
-			  <td>联系电话：<{$vo.tel}></td>
-			  <td>邮箱：<{$vo.mail}></td>
+			  <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
             </tr>
            
-	    <td colspan="4" class="correct" style="font-size:1.1em;text-align:right;"><a href="__URL__/modify/id/<{$vo.id}>"><b>修改</b></a></td>
+	        <tr>
+              <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
+            </tr>
+                <tr>
+              <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
+            </tr>
+                <tr>
+              <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
+            </tr>
+              <tr>
+              <td><{$vo.username}></td>
+              <td><{$vo.truename}></td>
+              <td><a>下载</a></td>
+            </tr>
                     
           
 			</volist>
 		</table>
+        </div>
         </div>
         </div>
  
