@@ -111,7 +111,7 @@ $(document).ready(function(){
   <td style="display:none" class="search_detail_1" >
     <!--起始时间的日历-->
     <div class="data_box" id="data_box" style="margin-left:35px;">  
-     <input type="text"  class="showDate" name="date" value="" placeholder="点击选择起始时间" />
+     <input type="text"  class="showDate" name="date1" value="" placeholder="点击选择起始时间" />
        <div class="sel_date dn">
                 <div class="clearfix">
                     <span class="prev_y fl">&lt;&lt;</span><span class="prev_m fl">&lt;</span>
@@ -157,7 +157,7 @@ $(document).ready(function(){
     <!--结束时间日历开始-->
   <td style="display:none" class="search_detail_1" >
     <div class="data_box" id="data_box_2">
-   <input type="text"  class="showDate" name="date" value="" placeholder="点击选择结束时间" />
+   <input type="text"  class="showDate" name="date2" value="" placeholder="点击选择结束时间" />
        <div class="sel_date dn">
                 <div class="clearfix">
                     <span class="prev_y fl">&lt;&lt;</span><span class="prev_m fl">&lt;</span>
@@ -223,12 +223,12 @@ $(document).ready(function(){
 </tr>
 <volist name='entry_list' id='vo'>
 <tr>
-   <td><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
+   <td><a href="__URL__/checkentry/id/<{$vo.eid}>"><{$vo.testname}></td>
    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
    <td><{$vo.principal}></td>
-   <td></td>
-   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
-   <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.id}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
+   <td><{$vo.hours}></td>
+   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.eid}>">详情</a></td>
+   <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.eid}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
   <td><input type="checkbox" value="<{$vo.id}>" name="conditions"></td>
 </tr>
 </volist>

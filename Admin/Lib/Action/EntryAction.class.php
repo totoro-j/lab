@@ -6,14 +6,14 @@ class EntryAction extends AdminCommonAction {
 	}
 
 	public function entryview(){
-		$e=D('EventView');
+		$e=D('OrdersView');
 		import('ORG.Util.Page');
 		$count=$e->where('state=1')->count();
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->select();
-		$this->assign('entry_list',$arr);
+		$this->assign('entry_list',$arr);	
 		$this->assign('show',$show);
 		$this->display();
 	}
@@ -32,11 +32,16 @@ class EntryAction extends AdminCommonAction {
 		}
 
 	public function search(){
-		$e=D('EventView');
+		$e=D('OrdersView');
 		$field=$_POST['searchform'];
 		$content=$_POST['search'];
+		$date[0]=$_POST['date1'];
+                $date[1]=$_POST['date2'];
 		switch ($field)
 		{
+		case "choose":
+				$where=array();
+				break;
 		case "testname":
 			if(isset($content) && $content!=null){
 				$where['testname']=array('like',"%{$content}%");}
@@ -48,13 +53,24 @@ class EntryAction extends AdminCommonAction {
 		case "principal":
 			if(isset($content) && $content!=null){
 				$where['principal']=array('like',"%{$content}%");}
+			break;
+		case "time":
+			if(isset($date) && $date!=null){
+			        $where['starttime']=array('like',"%{$date[0]}%");
+			        $where['finaltime']=array('like',"%{$date[1]}%");      
+			}
 				break;
+
+
+		break;
+
 		default:
 			if(isset($content) && $content!=null){
 				$where['testname']=array('like',"%{$content}%");}
 				break;
 		}
-		$arr=$e->where($where)->select();	
+	
+		$arr=$e->where($where)->select(); 
 		$this->assign('entry_list',$arr);
 		$this->display('entryview');
 	}
