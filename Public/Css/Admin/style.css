@@ -121,7 +121,7 @@ ul{
 /*公告栏*/
 .can{
 		width: 450px;
-		height: 300px;
+		height: 200px;
 		float: left;
 
 		margin-top:15px;
@@ -135,6 +135,7 @@ ul{
 	border-left:#23a96f solid 20px;
 	text-align:left;
 	}
+
 	
 
 
@@ -152,15 +153,7 @@ ul{
 		width:130px;
 		height:30px;
 	}
-.canin_2{width:130px;
-		height:30px;
-		float:right;
-		color:#555;
-		text-align:right;
-		font-size: 13px;
-		margin-top:-30px;
-		padding-right:10px;
-		}
+
 
 .canin p{
 	font-family:"微软雅黑";
@@ -180,8 +173,7 @@ ul{
 	float:left;
 	height:300px;
 	margin-top:15px;
-	margin-left:95px;
-}
+	}
 #infor>table{
 	width:320px;
 	margin-top:14px;

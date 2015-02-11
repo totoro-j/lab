@@ -64,6 +64,7 @@ width:1180px;}
 	background:#eee;
 	padding:30px 40px; 
 	line-height:25px;
+	overflow-y:scroll;
 }	
 .billboard_history_detail a{
 	float:right;}
