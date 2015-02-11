@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <taglib name='Message' />
 <html>
 <head><meta charset="UTF-8">
 <title>个人信息界面</title>
-<load href="__PUBLIC__/Css/Home/ucenter_pwd.css" />>
+<load href="__PUBLIC__/Css/Home/ucenter_pwd.css" />
 <load href="__PUBLIC__/Js/jquery.js" />
 <script>
 	$(function(){
@@ -66,11 +66,21 @@
 	<div class="can_1">密码修改</div>
 	<!--form-->
 	<form action="__URL__/pwd" method="post" name="password_change" >
-	<span class="title"> 输入原密码：</span><input type='password' name='password' id="pass0" placeholder="密码不少于六位数" /> <span id="pmessage0"></span><br/>
-	<span class="title"> 输入新密码：</span><input type='password' name='newpwd' id="pass1" placeholder="密码不少于六位数" /> <span id="pmessage1"></span><br/>
-	<span class="title"> 请确认密码：</span><input type='password' name='repwd' id="pass2"/><span id="pmessage2"></span><br/>
-	<span class="title"> 请输入验证码：<input type='text' name='code'/></span><div class="code"><Message:code width='60' height='25' /></div>
-	<div class='password_btn'>提交</div>
+    <div class="pwd_form">
+   <div class="title_col">
+	<span class="title"> 输入原密码：</span><input type='password' name='password' id="pass0" placeholder="密码不少于六位数" /> <span class="pmessage" id="pmessage0"></span><br/>
+   </div>
+   <div class="title_col">
+    <span class="title"> 输入新密码：</span><input type='password' name='newpwd' id="pass1" placeholder="密码不少于六位数" /> <span class="pmessage" id="pmessage1"></span><br/>
+	</div>
+   <div class="title_col">
+    <span class="title"> 请确认密码：</span><input type='password' name='repwd' id="pass2"/><span class="pmessage" id="pmessage2"></span><br/>
+   </div>
+   <div class="title_col">	
+    <span class="title" > 请输入验证码：<input type='text' name='code' style="width:100px;"/></span><div class="code"><Message:code width='60' height='25'/></div>
+   </div>	
+    <div class='password_btn'>提交</div>
+    </div>
     </form>
     <!--end form-->
 </div>

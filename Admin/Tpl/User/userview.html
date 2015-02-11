@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -25,10 +25,43 @@
 	}
 </script>
 <script type="text/javascript">
-	 function delect()
-	 { if(confirm("确认删除此用户？")) {return true;}
-		 else{ return false;}
-	 }
+
+	 
+	  $(function(){  
+		$(".btn").click
+		(
+		function(){
+		
+				
+		if(confirm('确认拒绝？'))return true;
+		closeBg();
+		return false;
+		}
+	
+		);
+		
+			
+			})
+			
+		function showBg() { 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+   $("#dialog").show(); 
+   } 
+//关闭灰色 jQuery 遮罩 
+    function closeBg() { 
+    $("#fullbg,#dialog").hide(); 
+   }  		
+	$(function(){
+		if(del==1){
+			showBg();}
+			
+		})
 </script>
 <script  type="text/javascript">
 function rep(){
@@ -70,7 +103,7 @@ function rep(){
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
-   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.truename}></td>
+   <td><a   id="<{$vo.truename}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
@@ -80,8 +113,8 @@ function rep(){
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
    <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
-   <td class="info_correct"><a href="__URL__/del/id/<{$vo.id}>)" class="delete" onclick="return confirm('确认后将删除该用户，请谨慎操作！')">停用用户</a></td>
-   <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"   onclick="return rep(this)">重置密码</a></td>
+   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
+   <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){
@@ -100,5 +133,31 @@ function rep(){
    </table>
    <div class="user_show"><{$show}></div>
 </div>
+
+
+ <div id="fullbg"></div> 
+   <div id="dialog"> 
+   <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
+
+   <form>
+   <div class="refuse_dia">
+   <p>请输入拒绝的理由：</p>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
+   
+   <a class="refuse_btn" href="#" ><div class="btn">确认拒绝</div></a>
+   </div></form> 
+   </div>
+
 </body>
+
+   
+   <script type="text/javascript">
+	function showId(num){
+		
+		var numberType=num.getAttribute("data-number");
+		
+		
+		$('.refuse_btn').attr("href","__URL__/del/id/"+numberType);
+	}
+</script>
 </html>

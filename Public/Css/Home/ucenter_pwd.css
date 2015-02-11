@@ -1,6 +1,6 @@
-
+﻿
 * {
-	margin:0;
+	margin:0 auto;
 	padding:0;
 	font-size: 14px;
 	font-family: '微软雅黑',Arial;
@@ -38,15 +38,27 @@ input
 
 
 }
-#password_btn
+.password_btn
 {
-	background: #23a96f;
+	background:#23a96f;
 	border: 0px;
 	color: #fff;
-	margin-left:90px; 
+	margin-left:13%; 
 	cursor: pointer;
 	-moz-box-shadow:1px 1px 3px #909090;
 	 -webkit-box-shadow:1px 1px 3px #909090;
 	box-shadow:1px 1px 3px #909090;
-
+    width:100px;
+	clear:both;
 }
+.title_col{
+	
+  clear:left;
+   float:left;
+	}
+	
+.pwd_form{
+	margin-left:35%;}	
+.code{
+	
+	margin-left:100px;}

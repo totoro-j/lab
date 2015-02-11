@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <taglib name='Message' />
 <html>
 <head><meta charset="UTF-8">
 <title>信息修改</title>
-<load href="__PUBLIC__/Css/Home/ucenter_info.css" />>
+<load href="__PUBLIC__/Css/Home/ucenter_pwd.css" />>
     <!--判断-->
     <script>
 	$(function(){
@@ -30,7 +30,7 @@
 					$('form[name="connection_change"]').submit();
 				}
 		});
-	})；
+	});
     </script>
 </head>
 <body>
@@ -38,11 +38,19 @@
         <div class="can_1">修改信息</div>
         <!--form-->
         <form action="__URL__/con_edit" method="post" name="connection_change">
-		<span class="title">联系电话：</span><input type='text' name='tel' onkeyup="value=this.value.replace(/\D+/g,'')" value='<{$data.tel}>'/> <span id="nmessage"></span><br/>
-		<span class="title"> 邮箱：</span><input type='text' name='mail' value="<{$data.mail}>"/><br/> 
-		<span class="title"> 请输入验证码：<input type='text' name='code'/></span><div class="code"><Message:code width='60' height='25' /></div>
-		<div class='con'>提交</div>
-		<input class="login" type="submit" value="提交" />
+		 <div class="pwd_form" style="height:500px;">
+        <div class="title_col">
+        <span class="title">联系电话：</span><input type='text' name='tel' onkeyup="value=this.value.replace(/\D+/g,'')" value='<{$data.tel}>'/> <span id="nmessage"></span><br/>
+		</div>
+        <div class="title_col">
+        <span class="title"> 邮箱：</span><input type='text' name='mail' value="<{$data.mail}>" style="margin-left:50px;"/><br/> 
+		</div>
+        <div class="title_col">
+        <span class="title"> 请输入验证码：<input type='text' name='code' style="width:80px;"/></span><div class="code"><Message:code width='60' height='25' /></div>
+		</div>
+       
+		<div  class="title_col"><input class="password_btn" style="margin-left:110px;" type="submit" value="提交" /></div>
+        </div>
 	</form>
 <!--end form-->
  </div>
