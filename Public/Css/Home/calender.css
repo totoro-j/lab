@@ -1,0 +1,25 @@
+ <style>
+        * {padding:0;margin:0;font-size:12px;}
+        .fl {float:left}
+        .fr {float:right}
+        .dn {display:none}
+        .data_box p{
+  font-family:"微软雅黑";
+}
+        /*日历 begin*/
+.data_box           {width:260px; }
+.showDate           {width:230px;height:25px;line-height:30px;padding:0 5px;border:1px solid #23a96f;color:#999;display:block;cursor:pointer}
+.show_mn            {text-align:center;padding:0 20px;}
+.sel_date           {width:230px;border:1px solid #999;padding:3px;position:absolute;background-color:#fff;z-index:5;}
+.data_table         {width:100%;margin-top:10px;}
+.data_table td      {text-align:center;cursor:pointer;height:24px;font-size:14px;}
+.data_table td.active      {color:#fff;background-color:#23a96f}
+.data_table td.hover{color:blue;}
+.showDate2          {width:35px;padding:3px 5px;color:#999;border:1px solid #e1e1e1;text-align:center}
+.showDate2.active   {border:1px solid #c50000; }
+.prev_m,.next_m     {width:10px;height:22px;display:block;background-color:#fff;color:#23a96f;cursor:pointer;text-align:center;font: bold 12px/22px "宋体"}
+
+.prev_y,.next_y     {width:18px;height:22px;display:block;background-color:#fff;color:#23a96f;cursor:pointer;text-align:center;font: bold 12px/22px "宋体";margin:0 5px;}
+
+/*日历 end*/
+    </style>
