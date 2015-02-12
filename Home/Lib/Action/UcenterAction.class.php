@@ -132,5 +132,38 @@
 			$this->assign('show',$show);
 			$this->display('order');
 		}
+
+		public function cancel(){
+			$m=M('Orders');
+			$id=$_GET['id'];
+			$where['id']=$id;
+			$arr=$m->where($where)->find();
+			$a=$arr['starttime'];
+			$array = explode("-",$a);
+			$year = $array[0];
+			$month = $array[1];
+
+			$array = explode(":",$array[2]);
+			$minute = $array[1];
+			$second = $array[2];
+
+			$array = explode(" ",$array[0]);
+			$day = $array[0];
+			$hour = $array[1];
+
+			$field = mktime($hour,$minute,$second,$month,$day,$year);
+			
+			$now=time();
+			$span=$field-$now;
+			if($now >= $field){
+				$this->error('预约已生效，不可删除！','__URL__/order');
+			}else if($span<3600*24 && $now < $field){
+					$this->error('24小时内相近预约不可删除！请联系管理员！','__URL__/order');	
+			}else if($span>=3600*24 && $now < $field){
+					$m->where($where)->delete();
+					$this->redirect('order');
+			
+			};
+		}
 	}
 ?>
