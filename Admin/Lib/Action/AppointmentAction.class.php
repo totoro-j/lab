@@ -1,7 +1,7 @@
 <?php
 class AppointmentAction extends AdminCommonAction{
 	public function index(){
-		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
+	$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
 		$date=isset($_GET['date'])?$_GET['date']:'点击选择';
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		//如果为单数时，改变日期格式
@@ -22,45 +22,71 @@ class AppointmentAction extends AdminCommonAction{
 		$time.='-';
 		$time.=$r;
 		//结束
-		$m=M('event');
+		$m=M('orders');
 		$map['starttime']=array('like',''.$time.'%');
-		$result=$m->field('starttime,finaltime')->where($map)->select();//检索今天的预约情况
+		$result=$m->field('starttime,finaltime,eid,uid')->where($map)->select();//检索今天的预约情况
+		//复杂的判断过程
 		$n=count($result);
-		//为输出的时间段赋予输出格式
 		for($i=0;$i<$n;$i++){
-			if($i==$n-1){
+			$user=M('user');//建立user
+			$condition['uid']=$result[$i]['uid'];
+			$user_content=$user->field('role,tel,truename,id')->where($condition)->select();
+			//管理员的设置
+			if($user_content[0]['role']==2){
 				list($a,$b)=explode(" ",$result[$i]['starttime']);
-				$judge.=$b;
-				$judge.=':';
+				$time_disable_1.=$b;
+				$time_disable_1.=':';
 				list($a,$b)=explode(" ",$result[$i]['finaltime']);
-				$judge.=$b;
+				$time_disable_1.=$b;
+				$time_disable_1.=':';
+			}else if($user_content[0]['role']==1&&$user_content[0]['id']==$_SESSION['id']){
+				list($a,$b)=explode(" ",$result[$i]['starttime']);
+				$time_disable_3.=$b;
+				$time_disable_3.=':';
+				list($a,$b)=explode(" ",$result[$i]['finaltime']);
+				$time_disable_3.=$b;
+				$time_disable_3.=':';
+				//用户自身时间段
+				$ExperimentCondition['id']=$result[$i]['eid'];
+				$experiment=M('event');
+				$exName=$experiment->field('testname')->where($ExperimentCondition)->select();
+				$ExperimentName.=$exName[0]['testname'];
+				$ExperimentName.=':';
+			}else if($user_content[0]['role']==1){
+				list($a,$b)=explode(" ",$result[$i]['starttime']);
+				$time_disable_2.=$b;
+				$time_disable_2.=':';
+				list($a,$b)=explode(" ",$result[$i]['finaltime']);
+				$time_disable_2.=$b;
+				$time_disable_2.=':';
+				//时间格式
+				$time_users.=$user_content[$i]['truename'];
+				$time_users.=':';
+				$time_users.=$user_content[$i]['tel'];
+				$time_users.=':';
+				//用户：电话
+
 			}else{
-				list($a,$b)=explode(' ',$result[$i]['starttime']);
-				$judge.=$b;
-				$judge.=':';
-				list($a,$b)=explode(' ',$result[$i]['finaltime']);
-				$judge.=$b;
-				$judge.=':';
-				}	
+				$this->error("对不起，您的权限还不够哦");
+			}
+		
+			
+
+
 		}
-		if($judge==''){
-			$judge=1;
-		}
-		//判断是否过期
-		list($y,$m,$d)=explode('-',$time);
-		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
-		$a=mktime(0,0,0,$m,$d,$y);//输入日期
-		$b=mktime(0,0,0,$w,$e,$q);//今天的日期
-		if($a<$b){
-			$judge=0;
-		}
-	
-		//判断是否可选
 		$this->assign('time_date2',$date2);
 		$this->assign('time_date',$date);
-		$this->assign('time_disable',$judge);//判断今日不可选区
-		//	$this->assign('date',$time);//选择的日期
-		$this->display();	
+		$this->assign('time_disable_1',$time_disable_1);
+		$this->assign('time_disable_2',$time_disable_2);
+		$this->assign('time_disable_3',$time_disable_3);
+		$this->assign('time_users',$time_users);
+		$this->assign('ExperimentName',$ExperimentName);
+	//	var_dump($time_disable_1);
+	//	var_dump($time_disable_2);
+	//	var_dump($time_disable_3);
+	//	var_dump($time_users);
+	//	var_dump($ExperimentName);
+		$this->display();
 	}	
 	public function submit(){
 		$m=M('user');
