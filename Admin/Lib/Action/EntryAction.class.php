@@ -4,6 +4,9 @@ class EntryAction extends AdminCommonAction {
 	public function entrydetail(){
 		$this->display();
 	}
+	public function entrytime(){
+		$this->display();
+	}
 
 	public function entryview(){
 		$e=D('EventView');
