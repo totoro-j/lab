@@ -39,76 +39,100 @@ class UserAction extends AdminCommonAction {
 		{
 		case "name":
 			if(isset($content) && $content!=null){
-				$where['truename']=array('like',"%{$content}%");}
+				$where['truename']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "sex":
 			switch($content)
 			{
 			case "男":
 				$where['sex']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "女":
 				$where['sex']=array('eq',"0");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['sex']=array('elt',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		case "unit":
 			if(isset($content) && $content!=null){
-				$where['unit']=array('like',"%{$content}%");}
+				$where['unit']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "department":
 			if(isset($content) && $content!=null){
-				$where['department']=array('like',"%{$content}%");}
+				$where['department']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "job":
 			switch($content)
 			{
 			case "教师":
 				$where['job']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "学生":
 				$where['job']=array('eq',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "其它":
 				$where['job']=array('eq',"0");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['job']=array('elt',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		case "principal":
 			if(isset($content) && $content!=null){
-				$where['principal']=array('like',"%{$content}%");}
+				$where['principal']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "tel":
 			if(isset($content) && $content!=null){
-				$where['tel']=array('like',"%{$content}%");}
+				$where['tel']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "email":
 			if(isset($content) && $content!=null){
-				$where['email']=array('like',"%{$content}%");}
+				$where['email']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "role":
 			switch($content)
 			{
 			case "正式用户":
 				$where['role']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "管理员":
 				$where['role']=array('eq',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['role']=array('egt',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		default:
 			if(isset($content) && $content!=null){
-				$where['name']=array('like',"%{$content}%");}
+				$where['name']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		}
 		$arr=$m->where($where)->order('id desc')->select();
@@ -152,14 +176,22 @@ class UserAction extends AdminCommonAction {
 		$n=M('User_del');
 		$id=$_POST['refuse_ipt'];
 		$delinfo=$_POST['delinfo'];
+		$yid=$_SESSION['id'];
 		$field=$m->find($id);
+		$yrole=$m->find($yid);
 		$tem=$field;
-		$field['role']='5';
-		$m->save($field);
-		$tem['delstate']='2';
-		$tem['delinfo']=$delinfo;
-		$n->add($tem);
-		$this->redirect('userview');
+		if($yrole['role'] != "9" && $field['role']==array('in','2,3,9')){
+			var_dump($yrole['role']);
+			var_dump($field['role']);
+			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
+		}else{
+			$field['role']='5';
+			$m->save($field);
+			$tem['delstate']='2';
+			$tem['delinfo']=$delinfo;
+			$n->add($tem);
+			$this->redirect('userview');
+		}
 	}	
 
 	public function check(){
@@ -173,13 +205,15 @@ class UserAction extends AdminCommonAction {
 	public function repwd(){
 		$m=M('User');
 		$id=$_GET['id'];
+		$yid=$_SESSION['id'];
+		$yrole=$m->find($yid);
 		$t['id']=array('eq',"$id");
 		$myrole=$m->where($t)->order('id desc')->getField('role');
-		if($myrole=="2"){
-			echo"<script type='text/javascript'>alert('不可重置');history.back(-1);</script>";
+		if($yrole['role'] != "9" && $myrole==array('in','2,3,9')){
+			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
 		}else{
 			$m->where($t)->setField('password',MD5('MRIcenter'));	
-			$this->redirect(userview);		
+			$this->redirect('userview');		
 		}
 	}
 

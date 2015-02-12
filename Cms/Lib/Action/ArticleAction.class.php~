@@ -521,5 +521,38 @@ class ArticleAction extends AdminCommonAction {
 		$this->assign('data',$arr);
 		$this->display('ListFocus');
 	}
+
+	public function search_news(){
+		$e=M('Article');
+		$field=$_POST['user_search'];
+		$content=$_POST['search_input'];
+		switch ($field)
+		{
+		case "title":
+			if(isset($content) && $content!=null){
+				$where['title']=array('like',"%{$content}%");
+				$where['parentid']="2";}else{
+				$where['parentid']="2";
+				}
+				break;
+		case "editor":
+			if(isset($content) && $content!=null){
+				$where['editor']=array('like',"%{$content}%");
+				$where['parentid']="2";}else{
+				$where['parentid']="2";
+				}
+				break;
+		default:
+			if(isset($content) && $content!=null){
+				$where['title']=array('like',"%{$content}%");
+				$where['parentid']="2";}else{
+				$where['parentid']="2";
+				}
+				break;
+		}
+		$arr=$e->where($where)->select();	
+		$this->assign('data',$arr);
+		$this->display('ListNews');
+	}
 }
 ?>

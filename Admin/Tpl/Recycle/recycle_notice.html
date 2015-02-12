@@ -23,6 +23,16 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +50,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">通知公告回收站</h2>
     <!--搜索框-->
     <table>

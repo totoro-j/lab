@@ -3,9 +3,15 @@
 class FileAction extends AdminCommonAction {
 	public function index(){
 		$file=D('ZipView');
-    		$list=$file->select();
-    		$this->assign('data',$list);
-    		$this->display();  
+		import('ORG.Util.Page');
+		$count=$file->order('id desc')->count();
+		$page  = new Page($count,5);
+		$page->setConfig('header','个文件');
+		$show=$page->show();
+    		$list=$file->order('id desc')->select();
+		$this->assign('data',$list);
+		$this->assign('show',$show);
+		$this->display(); 
 	}
       	
 	public function ListFileIsshowupload(){        

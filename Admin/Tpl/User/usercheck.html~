@@ -104,7 +104,7 @@
   <td><{$vo.time}></td>
   <td><div id="check_button1" class="check_button"><a>等待通过</a></div></td>
  <td><a href="__URL__/pass/id/<{$vo.id}>"><div class="pass1">通过</div></a></td>    
-  <td><a onclick="showId(<{$vo.testname}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
+  <td><a onclick="showId(<{$vo.username}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
 </tr>
    </volist>
 

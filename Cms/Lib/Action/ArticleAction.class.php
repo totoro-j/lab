@@ -12,7 +12,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','篇文章');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->->order('id desc')select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -78,7 +78,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,3);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -138,7 +138,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','篇文章');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->order('id desc')->select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -268,7 +268,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->order('id desc')->select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -397,7 +397,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->order('id desc')->select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();       

@@ -105,20 +105,13 @@
 			$rec=$_POST['recover'];
 			$m=M('Event');
 			$n=M('Event_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['testname']=$field[$i]['testname'];
-				$where[$i]['testcontent']=$field[$i]['testcontent'];
-				$where[$i]['total']=$field[$i]['total'];
-				$where[$i]['state']='0';
-				$where[$i]['time']=$field[$i]['time'];
-				$where[$i]['uid']=$field[$i]['uid'];
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('state','0');
+			$n->where($where)->delete();
 			$this->redirect('recycle_event0');
 		}
 
@@ -126,20 +119,13 @@
 			$rec=$_POST['recover'];
 			$m=M('Event');
 			$n=M('Event_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['testname']=$field[$i]['testname'];
-				$where[$i]['testcontent']=$field[$i]['testcontent'];
-				$where[$i]['total']=$field[$i]['total'];
-				$where[$i]['state']='1';
-				$where[$i]['time']=$field[$i]['time'];
-				$where[$i]['uid']=$field[$i]['uid'];
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('state','1');
+			$n->where($where)->delete();
 			$this->redirect('recycle_event1');
 		}
 
@@ -148,29 +134,13 @@
 			$rec=$_POST['recover'];
 			$m=M('User');
 			$n=M('User_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['username']=$field[$i]['username'];
-				$where[$i]['truename']=$field[$i]['truename'];
-				$where[$i]['password']=$field[$i]['password'];
-				$where[$i]['sex']=$field[$i]['sex'];
-				$where[$i]['unit']=$field[$i]['unit'];
-				$where[$i]['department']=$field[$i]['department'];
-				$where[$i]['job']=$field[$i]['job'];
-				$where[$i]['principal']=$field[$i]['principal'];	
-				$where[$i]['tel']=$field[$i]['tel'];	
-				$where[$i]['mail']=$field[$i]['mail'];	
-				$where[$i]['degree']=$field[$i]['degree'];	
-				$where[$i]['tutor']=$field[$i]['tutor'];	
-				$where[$i]['grade']=$field[$i]['grade'];	
-				$where[$i]['time']=$field[$i]['time'];	
-				$where[$i]['role']='0';	
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('role','0');
+			$n->where($where)->delete();
 			$this->redirect('recycle_user0');
 		}
 
@@ -178,29 +148,13 @@
 			$rec=$_POST['recover'];
 			$m=M('User');
 			$n=M('User_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['username']=$field[$i]['username'];
-				$where[$i]['truename']=$field[$i]['truename'];
-				$where[$i]['password']=$field[$i]['password'];
-				$where[$i]['sex']=$field[$i]['sex'];
-				$where[$i]['unit']=$field[$i]['unit'];
-				$where[$i]['department']=$field[$i]['department'];
-				$where[$i]['job']=$field[$i]['job'];
-				$where[$i]['principal']=$field[$i]['principal'];	
-				$where[$i]['tel']=$field[$i]['tel'];	
-				$where[$i]['mail']=$field[$i]['mail'];	
-				$where[$i]['degree']=$field[$i]['degree'];	
-				$where[$i]['tutor']=$field[$i]['tutor'];	
-				$where[$i]['grade']=$field[$i]['grade'];	
-				$where[$i]['time']=$field[$i]['time'];	
-				$where[$i]['role']='1';	
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('role','1');
+			$n->where($where)->delete();
 			$this->redirect('recycle_user1');
 		}
 

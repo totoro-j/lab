@@ -4,6 +4,9 @@ class EntryAction extends AdminCommonAction {
 	public function entrydetail(){
 		$this->display();
 	}
+	public function entrytime(){
+		$this->display();
+	}
 
 	public function entryview(){
 		$e=D('EventView');
@@ -12,7 +15,7 @@ class EntryAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->order('id desc')->select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->select();
 		$this->assign('entry_list',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -25,24 +28,11 @@ class EntryAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('state=0')->order('id desc')->select();
+		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('state=0')->select();
 		$this->assign('list',$arr);
 		$this->assign('show',$show);
 		$this->display();
 		}
-
-	public function entrytime(){
-		$e=D('OrdersView');
-		$date[0]=$_POST['date1'];
-		$date[1]=$_POST['date2'];
-			if(isset($date) && $date!=null){
-			        $where['starttime']=array('like',"%{$date[0]}%");
-			        $where['finaltime']=array('like',"%{$date[1]}%");      
-			}
-			$arr=$e->where($where)->select(); 
-		$this->assign('entry_list',$arr);     
-		$this->display();
-	}
 
 	public function search(){
 		$e=D('EventView');
@@ -88,7 +78,7 @@ class EntryAction extends AdminCommonAction {
 		
 			$count=$m->save($arr);
 			if($count>0){
-				$this->redirect('entrycheck');
+				$this->redirect(entrycheck);
 			}else{
 				$this->error('审核失败');
 			}   
@@ -118,7 +108,7 @@ class EntryAction extends AdminCommonAction {
 			$this->display();
 		}
 
-/**		public function entrystatic(){
+		public function entrystatic(){
 			$m=D('Event');
 			$arr=$_POST['interface'];
 			$array=explode('^',$arr);
@@ -130,7 +120,7 @@ class EntryAction extends AdminCommonAction {
 				$u[2]=$r[$i]["hour"]+$u[2];
 			}
 			echo json_encode($u);
-}**/
+		}
 
 		public function cancel(){
 			$m=M('Event');

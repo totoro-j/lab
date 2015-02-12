@@ -23,6 +23,26 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("stastic_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +60,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">实验申请回收站</h2>
     <!--搜索框-->
     <table>
@@ -62,7 +82,7 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table class="stastic_check" id="stastic_check"title="点击查看详情">
         <tr>
             <th></th>
             <th>实验名称</th>

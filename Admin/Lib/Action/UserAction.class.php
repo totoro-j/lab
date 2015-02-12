@@ -176,14 +176,22 @@ class UserAction extends AdminCommonAction {
 		$n=M('User_del');
 		$id=$_POST['refuse_ipt'];
 		$delinfo=$_POST['delinfo'];
+		$yid=$_SESSION['id'];
 		$field=$m->find($id);
+		$yrole=$m->find($yid);
 		$tem=$field;
-		$field['role']='5';
-		$m->save($field);
-		$tem['delstate']='2';
-		$tem['delinfo']=$delinfo;
-		$n->add($tem);
-		$this->redirect('userview');
+		if($yrole['role'] != "9" && $field['role']==array('in','2,3,9')){
+			var_dump($yrole['role']);
+			var_dump($field['role']);
+			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
+		}else{
+			$field['role']='5';
+			$m->save($field);
+			$tem['delstate']='2';
+			$tem['delinfo']=$delinfo;
+			$n->add($tem);
+			$this->redirect('userview');
+		};
 	}	
 
 	public function check(){
@@ -197,14 +205,16 @@ class UserAction extends AdminCommonAction {
 	public function repwd(){
 		$m=M('User');
 		$id=$_GET['id'];
+		$yid=$_SESSION['id'];
+		$yrole=$m->find($yid);
 		$t['id']=array('eq',"$id");
 		$myrole=$m->where($t)->order('id desc')->getField('role');
-		if($myrole=="2"){
-			echo"<script type='text/javascript'>alert('不可重置');history.back(-1);</script>";
+		if($yrole['role'] != "9" && $myrole==array('in','2,3,9')){
+			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
 		}else{
 			$m->where($t)->setField('password',MD5('MRIcenter'));	
-			$this->redirect(userview);		
-		}
+			$this->redirect('userview');		
+		};
 	}
 
 	public function checkPwd(){

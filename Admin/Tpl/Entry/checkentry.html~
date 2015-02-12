@@ -16,8 +16,8 @@
 			  <td>课题负责人：<{$data.principal}></td>
             </tr>
 	     <tr>
-			  <td><a href="__APP__/User/check/id/<{$data.uid}>">用户名：<{$data.truename}></td>
-			  <td>用户昵称：<{$data.username}></td>
+	    <td><a href="__APP__/User/check/id/<{$data.uid}>">用户名：<{$data.truename}></a></td>
+		    <td><a href="__APP__/User/check/id/<{$data.uid}>">用户昵称：<{$data.username}></a></td>
             </tr>
             <tr>
 		    <td colspan="2"><center>预计被试数：<{$data.total}></td>

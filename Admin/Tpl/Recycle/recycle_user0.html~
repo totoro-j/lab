@@ -23,6 +23,16 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +50,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">用户申请回收站</h2>
     <!--搜索框-->
     <table>
@@ -77,6 +87,7 @@ $(document).ready(function(){
 	    <th>状态</th>
 	    <th>拒绝原因</th>
         </tr>
+	 <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
@@ -87,7 +98,7 @@ $(document).ready(function(){
             <td><{$vo.tel}></td>
             <td><{$vo.mail}></td>
             <td><{$vo.time}></td>	    
-            <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
+            <td><switch name='vo.role'><case value="0">待审核</case><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
 	    <td><{$vo.deltime}></td>
 	    <td><switch name='vo.delstate'><case value="1">账号存在</case><case value="3">已注销，可删除</case><default />未知</switch></td>
 	    <td><{$vo.delinfo}></td>

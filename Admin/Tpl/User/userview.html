@@ -168,7 +168,7 @@ function rep(){
 </table>
     <table  class="user_info">
       <tr>
-	      <th>姓名</th><th>性别</th><th>单位</th><th>学院(部门)</th><th>身份</th><th>课题组负责人</th><th>联系电话</th><th>邮箱</th><th>注册时间</th><th>权限</th><th>操作</th><th>密码重置</th>
+	      <th>姓名</th><th>性别</th><th>单位</th><th>学院(部门)</th><th>身份</th><th>课题组负责人</th><th>联系电话</th><th>邮箱</th><th>注册时间</th><th>权限</th><th>操作</th><th>密码重置</th><th>站长权限</th>
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
@@ -184,6 +184,7 @@ function rep(){
    <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
    <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
+   <td>用户权限</td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){

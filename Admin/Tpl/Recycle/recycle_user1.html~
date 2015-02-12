@@ -23,6 +23,16 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +50,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">停用用户回收站</h2>
     <!--搜索框-->
     <table>
@@ -76,11 +86,12 @@ $(document).ready(function(){
 	    <th>停用账户原因</th>
 	    <th>停用账户时间</th>
         </tr>
+	 <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
-             <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.username}></td>
-  	    <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.truename}></td>
+             <td><a href="__APP__/User/check/id/<{$vo.id}>"><{$vo.username}></td>
+  	    <td><a href="__APP__/User/check/id/<{$vo.id}>"><{$vo.truename}></td>
    	    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
             <td><{$vo.principal}></td>
             <td><{$vo.tel}></td>
@@ -97,7 +108,7 @@ $(document).ready(function(){
     <table style="margin-top:30px;">
     <tr>
       <td style="color:#219E69;"><input type="checkbox" id="all" style="margin-right:5px"/>全选</td>
-      <td><input type="submit" value="恢复" class="search_button" id="rec"  onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
+      <td><input type="submit" value="恢复并重置用户" class="search_button" id="rec"  onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
       <td><input type="submit" value="删除" class="search_button" id="delete" onClick="del()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-left:10px;"/></td>
       <td><a style="margin-left:10px; color:#219E69;"  href="__APP__/Recycle/index">返回</a></td>
      </tr>

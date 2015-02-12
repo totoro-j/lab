@@ -23,6 +23,16 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +50,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">通知公告回收站</h2>
     <!--搜索框-->
     <table>
@@ -70,9 +80,10 @@ $(document).ready(function(){
             <th>发布时间</th>
 	    <th>删除时间</th>
         </tr>
+	 <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
-            <td><input type="checkbox"name="checkbox" ></td>
+            <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
             <td style="width:300px;"><{$vo.filename}></td>
             <td><{$vo.size}></td>
             <td><{$vo.truename}></td>

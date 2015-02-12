@@ -168,11 +168,11 @@ function rep(){
 </table>
     <table  class="user_info">
       <tr>
-	      <th>姓名</th><th>性别</th><th>单位</th><th>学院(部门)</th><th>身份</th><th>课题组负责人</th><th>联系电话</th><th>邮箱</th><th>注册时间</th><th>权限</th><th>操作</th><th>密码重置</th>
+	      <th>姓名</th><th>性别</th><th>单位</th><th>学院(部门)</th><th>身份</th><th>课题组负责人</th><th>联系电话</th><th>邮箱</th><th>注册时间</th><th>权限</th><th>操作</th><th>密码重置</th><th>站长权限</th>
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
-   <td><a   id="<{$vo.truename}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
+	<td><a  href="__URL__/check/id/<{$vo.id}>" ><{$vo.truename}></a></td>
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
@@ -181,9 +181,10 @@ function rep(){
    <td><{$vo.tel}></td>
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
-   <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
+   <td><a id="<{$vo.truename}>" data-number="<{$vo.id}>"><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></a></td>
    <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
+   <td>用户权限</td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){
@@ -212,7 +213,7 @@ function rep(){
    <div class="refuse_dia">
 	   <input type="hidden" name="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入拒绝的理由：</p>
-   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在二十字以内..."></textarea>
    
    <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
    </div></form> 
@@ -222,10 +223,8 @@ function rep(){
 
    
    <script type="text/javascript">
-	function showId(num){
-		
+	function showId(num){		
 		var numberType=num.getAttribute("data-number");
-
 		$('.refuse_ipt').attr("value",numberType);
 	}
 </script>

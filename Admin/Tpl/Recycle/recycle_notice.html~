@@ -23,6 +23,16 @@ $(document).ready(function(){
 
 });
 </script>
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("appointment_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -40,7 +50,7 @@ $(document).ready(function(){
 </Script>
 </head>
 
-<body>
+<body onLoad="validateTel()">
     <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">通知公告回收站</h2>
     <!--搜索框-->
     <table>
@@ -50,7 +60,7 @@ $(document).ready(function(){
         <select class="user_search">
             <option value="choose">----请选择----</option>
             <option value="truename">发布者</option>
-            <option value="date">发布时间(按Y-M-D)</option>
+            <option value="time">发布时间(按Y-M-D)</option>
         </select>
         </td>
         <td><input type="text" name="search_input" /></td>
@@ -68,12 +78,13 @@ $(document).ready(function(){
             <th>发布时间</th>
 	    <th>删除时间</th>
         </tr>
+	 <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
             <td style="width:300px;"><{$vo.content}></td>
             <td><{$vo.truename}></td>
-            <td><{$vo.date}></td>
+            <td><{$vo.time}></td>
             <td><{$vo.deltime}></td>
         </tr>
 </volist>
