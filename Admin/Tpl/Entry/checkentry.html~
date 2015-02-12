@@ -2,7 +2,16 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<load href="__PUBLIC__/Css/Home/show.css" />
+		<load href="__PUBLIC__/Css/Admin/stastic_view.css" />
+		<load href="__PUBLIC__/Js/jquery.js" />
 		<title>详细信息</title>
+		<script type="text/javascript">
+$(document).ready(function(){
+        $(".search_button").click(function(){                
+                $(".stastic_check").toggle();
+        })
+})
+</script>
 	</head>
 	<body>
 	<h2 style="color:#219E69;margin:0 auto;"> 预约详细信息</h2>
@@ -29,8 +38,39 @@
 		    <td colspan="2">实验描述：<{$data.testcontent}></td>
 	    </tr>
 	    <tr>
+            <td class="search_button" colspan="2" style="color:#219E69;font-color:white;text-align:center;">点击查看相关预约</td>
+        </tr>
+	    <tr>
 		  	  <td colspan="2" style="background-color:#219E69;font-color:white;text-align:center;"><a onClick="history.go(-1);"style="color:#eee;cursor:pointer;">返回</td>
             </tr>
+        
 		</table>
+	
+<!--这里是直接复制的表格，自行修改里面内容-->
+  <table class="stastic_check" style="display:none;">
+  <tr >
+  <th style="width:500px;">实验名称</th>
+  <th>课题负责人姓名</th>
+  <th>起始时间</th>
+  <th>结束时间</th>
+  <th>总时长</th>
+  <th>申请时间</th>
+  <th>实验状态</th>
+  <th>备注</th>
+  </tr>
+   <volist name='order_list' id='vo'>
+  <tr>	 
+<td><{$vo.testname}></a></td>
+   <td><{$vo.principal}></td>
+   <td><{$vo.starttime}></td>
+   <td><{$vo.finaltime}></td>
+   <td><{$vo.hours}></td>
+   <td><{$vo.ordertime}></td>
+   <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
+   <td><if condition='$vo.edit eq 1'>管理员修改操作！<else />无</if></td>   
+  </tr>
+</volist>
+  </table>
+  <!--表格结束-->
 	</body>
 </html>

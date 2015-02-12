@@ -113,8 +113,12 @@ class EntryAction extends AdminCommonAction {
 		public function checkentry(){
 			$id=$_GET['id'];
 			$m=D('EventView');
+			$n=D('OrdersView');
 			$arr=$m->find($id);
 			$this->assign('data',$arr);
+			$where['eid']=$id;
+			$field=$n->where($where)->select();
+			$this->assign('order_list',$field);
 			$this->display();
 		}
 
@@ -135,7 +139,7 @@ class EntryAction extends AdminCommonAction {
 		public function cancel(){
 			$m=M('Event');
 			$n=M('Event_del');
-			$id=$_POST['refuse_ipi'];
+			$id=$_POST['refuse_ipt'];
 			$field=$m->find($id);
 			$tem=$field;
 			$field['state']='3';

@@ -161,7 +161,7 @@
 					$this->error('24小时内相近预约不可删除！请联系管理员！','__URL__/order');	
 			}else if($span>=3600*24 && $now < $field){
 					$m->where($where)->delete();
-					$this->redirect('__URL__/order');
+					$this->redirect('order');
 			
 			};
 		}

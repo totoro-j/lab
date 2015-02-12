@@ -156,12 +156,12 @@
 			$now=time();
 			$span=$field-$now;
 			if($now >= $field){
-				$this->error('预约已生效，不可删除！','__URL__/order');
+				echo"<script type='text/javascript'>alert('预约已生效，不可删除！');history.back(-1);</script>";
 			}else if($span<3600*24 && $now < $field){
-					$this->error('24小时内相近预约不可删除！请联系管理员！','__URL__/order');	
+				echo"<script type='text/javascript'>alert('24小时内相近预约不可删除,请联系管理员！');history.back(-1);</script>";
 			}else if($span>=3600*24 && $now < $field){
-					$m->where($where)->delete();
-					$this->redirect('order');
+				$m->where($where)->delete();
+				$this->redirect('order');
 			
 			};
 		}

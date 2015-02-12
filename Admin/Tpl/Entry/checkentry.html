@@ -14,7 +14,7 @@ $(document).ready(function(){
 </script>
 	</head>
 	<body>
-	<h2 style="color:#219E69;margin:0 auto;"> 预约详细信息</h2>
+	<h2 style="color:#219E69;margin:0 auto;"> 实验详细信息</h2>
 	<table border='1' width="500" align='center' class="show_check">
 		<input type='hidden' name='id' value="<{$data.id}>"/>
            <tr>
@@ -56,22 +56,20 @@ $(document).ready(function(){
   <th>总时长</th>
   <th>申请时间</th>
   <th>实验状态</th>
-  <th>操作</th>
   <th>备注</th>
   </tr>
-  <tr>
-
-   <td>lala</td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
+   <volist name='order_list' id='vo'>
+  <tr>	 
+<td><{$vo.testname}></a></td>
+   <td><{$vo.principal}></td>
+   <td><{$vo.starttime}></td>
+   <td><{$vo.finaltime}></td>
+   <td><{$vo.hours}></td>
+   <td><{$vo.ordertime}></td>
+   <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
+   <td><if condition='$vo.edit eq 1'>管理员修改操作！<else />无</if></td>   
   </tr>
-
+</volist>
   </table>
   <!--表格结束-->
 	</body>

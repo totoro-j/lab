@@ -172,7 +172,7 @@ function rep(){
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
-	<td><a  href="__URL__/check/id/<{$vo.id}>" ><{$vo.truename}></a></td>
+   <td><a   id="<{$vo.truename}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
@@ -181,7 +181,7 @@ function rep(){
    <td><{$vo.tel}></td>
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
-   <td><a id="<{$vo.truename}>" data-number="<{$vo.id}>"><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></a></td>
+   <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
    <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
    <td>用户权限</td>
