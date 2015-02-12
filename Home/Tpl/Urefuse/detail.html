@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拒绝通过用户</title>
+<link rel="stylesheet" href="__PUBLIC__/Css/Home/urefuse.css" > 
+</head>
+
+<body>
+
+  <div class="dialog">
+      <h2><switch name='yrole.role'><case value="4">抱歉，您的注册申请未通过</case><case value="5">抱歉，您的账号已被停用</case><default />未知错误</switch></h2>
+      <p>公告如下：</p>
+      <span><{$yinfo.delinfo}></span>
+      
+      <div class="checker">
+	<{$yinfo.deltime}>
+      </div>
+      <div class="buttons">
+      <a href="__URL__/logoff"><div class="btn">注销并重新注册</div></a>
+      <a href="__APP__/Register/reg"><div class="btn">注册新账号</div></a>
+      <a href="__ROOT__/index.php/Index"><div class="btn">返回主页</div></div></a>
+  </div>
+
+</body>
+</html>

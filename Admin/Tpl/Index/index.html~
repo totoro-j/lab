@@ -6,8 +6,16 @@
 	<load href="__PUBLIC__/Css/Admin/admin.css" />
 	<load href="__PUBLIC__/Js/jquery.js" />
 	<load href="__PUBLIC__/Js/admin.js" />
-	<base href="#" target="iframe">
-	
+	<base href="__URL__/greet" target="iframe">
+	<script type="text/javascript">
+$("document").ready(function(){
+$("img").click(function(){
+  $(".detail").toggle();
+  
+})
+
+})
+</script>
 
 </head>
 <body>
@@ -43,7 +51,17 @@
 			<li><a href="__APP__/Entry/entryview">实验列表查询</a></li>
             <li><a href="__APP__/User/usercheck">审核注册用户</a></li>
             <li><a href="__APP__/User/userview">正式用户管理</a></li>
-	    <li><a href="#">项目回收站</a></li>
+            <li><a href="__APP__/File/index">上传文件管理</a></li>
+	        <li><a href="__APP__/Recycle/index">项目回收站<img src="__PUBLIC__/Images/detail.png" style="width:13px;height:13px;margin-bottom:-13px;margin-left:50px"/></a></li>
+	        <!--子列表-->
+	        <ul style="display:none;" class="detail">
+	        	 <li><a href="__APP__/Recycle/recycle_notice">通知公告回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_search_apply">实验申请回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_search_stop">停用实验回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_user_apply">用户申请回收站</a></li>
+                 <li><a href="__APP__/Recycle/recycle_user_stop">停用用户回收站</a></li>
+		 <li><a href="__APP__/Recycle/recycle_zip">上传资料回收站</a></li>
+	        </ul>
 			
 		</ul>
 	

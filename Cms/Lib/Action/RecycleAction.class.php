@@ -11,7 +11,7 @@
 			$page  = new Page($count,3);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->select();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 			$this->assign('data',$arr);
 			$this->assign('show',$show);
 			$this->display();
@@ -24,7 +24,7 @@
 			$page  = new Page($count,5);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->select();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->order('id desc')->select();
 			$this->assign('data',$arr);
 			$this->assign('show',$show);
 			$this->display();
@@ -37,7 +37,7 @@
 			$page  = new Page($count,5);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->select();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->order('id desc')->select();
 			$this->assign('data',$arr);
 			$this->assign('show',$show);
 			$this->display();
@@ -50,7 +50,7 @@
 			$page  = new Page($count,5);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->select();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->order('id desc')->select();
 			$this->assign('data',$arr);
 			$this->assign('show',$show);
 			$this->display();
@@ -63,7 +63,7 @@
 			$page  = new Page($count,5);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->select();
+			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->order('id desc')->select();
 			$this->assign('data',$arr);
 			$this->assign('show',$show);
 			$this->display();
@@ -176,7 +176,7 @@
 			$map['id']=array('in',$rec);
 			$field=$n->where($map)->select();
 			$t=count($field);
-			//$n->where($map)->delete();
+			$n->where($map)->delete();
 			for($i=0;$i<$t;$i++){
 				$where[$i]['id']=$field[$i]['id'];
 				$where[$i]['imgurl']=$field[$i]['imgurl'];
@@ -303,7 +303,7 @@
 				if(isset($content) && $content!=null){
 					$where['title']=array('like',"%{$content}%");
 					$where['parentid']="4";}else{
-					$where['parentid']="4";
+					$where['parntid']="4";
 					}
 					break;
 			}
@@ -316,7 +316,6 @@
 			$rec=$_POST['recover'];
 			$n=M('Banner_del');
 			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
 			$n->where($map)->delete();
 			$this->redirect('recycle_banner');
 		}
@@ -325,7 +324,6 @@
 			$rec=$_POST['recover'];
 			$n=M('Article_del');
 			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
 			$n->where($map)->delete();		
 			$this->redirect('recycle_article');
 		}
@@ -334,7 +332,6 @@
 			$rec=$_POST['recover'];
 			$n=M('Article_del');
 			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
 			$n->where($map)->delete();
 			$this->redirect('recycle_focus');
 		}
@@ -343,7 +340,6 @@
 			$rec=$_POST['recover'];
 			$n=M('Article_del');
 			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
 			$n->where($map)->delete();
 			$this->redirect('recycle_news');
 		}
@@ -352,7 +348,6 @@
 			$rec=$_POST['recover'];
 			$n=M('Article_del');
 			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
 			$n->where($map)->delete();
 			$this->redirect('recycle_notice');
 		}

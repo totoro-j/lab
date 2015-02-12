@@ -27,42 +27,28 @@
 <!--显示已上传文件-->
 
   <h3 style="margin-left:20px;color:#000;">上传文件管理</h3>
-     <table style="margin:0 auto;">
+    <table style="margin:0 auto;">
      <tr><td>
 	<h2 style="color:#0f0f0f;">已上传文件</h2>
-	 <volist name='data' id='vo'>
-    <div id="edit3" class="edit_section_pic_describ" style="background:#E9FAF1;margin-top:10px;padding-bottom:10px;">
-     
-     
-    
-     
-    
-   
+<volist name='data' id='vo'>
+    <div id="edit3" class="edit_section_pic_describ" style="background:#E9FAF1;margin-top:10px;padding-bottom:10px;">  
     <div class="edit_section_pic">
-	    <h2>文件简介：</h2> <p><{$vo.metacontent}></p>
+	    <{$vo.filename}>
+	    </br></br></br>
+	<{$vo.size}>KB
+		</br></br></br>
+	发布人：<{$vo.truename}>
+    </div>
 	     </br>
-       </br>
-	    <notempty name="data"><img src="__PUBLIC__/Images/<{$vo.imgurl}>" /></notempty>
-	    </br>
-
- 
-       </div>
-	     </br>
-       <div ><a href="__URL__/ListBannerDel/id/<{$vo.id}>)" class="delete"  onClick="return confirm('确认删除？')">删除</a>	
-	      
-       </div>
-     
+	     <div><a href='__URL__/download/id/<{$vo.id}>'>下载</a></div>
+       <div ><a href="__URL__/FileDel/id/<{$vo.id}>" class="delete"  onClick="return confirm('确认删除？')">删除</a></div>
        <div  style="width:200px;height:21px;display:block;margin-left:500px;font-size:11px;color:#666;"><{$vo.date}></div>
-    
-       
-      </div>
-       </volist>
+       </div>
+</volist>
       </td>
       </tr>
-
-      
-       </table>
-       <div class="banner_show" style="margin-left:20px;color:#666;"><{$show}></div>
+      </table>
+<div class="file_show" style="margin-left:20px;color:#666;"><{$show}></div>
   
   <!--上传文件-->
   <div id="edit2" class="edit_section_pic_describ">
@@ -71,14 +57,12 @@
      
         <div style="font-size:12px;color:#999;" ></div></br>
   <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:30px;padding-bottom:50px;">
-    <form action="__URL__/ListBannerupload" method="post" enctype="multipart/form-data">
-    <input type="text" name="metacontent" placeholder="文件文字描述" maxlength="40" style="margin-bottom:20px;"/>
-    <input type="file" name="imgurl" style="border:none;" id="metaimg"/>
+    <form action="__URL__/ListFileIsshowupload" method="post" name='myForm' enctype="multipart/form-data">
+    <input type="file" name="fileurl" style="border:none;" id="fileurl"/>
     <input type="submit" value="上传" style="float:right;" id="button"> 
-     </form> 
- </div>
- </div>
+    </form> 
 </div>
-
+</div>
+</div>
 </body>
 </html>

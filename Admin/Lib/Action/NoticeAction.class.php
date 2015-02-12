@@ -30,7 +30,7 @@ class NoticeAction extends AdminCommonAction{
 		$m=D('Notice');
 		$n=D('Notice_del');
 		$id=$_GET['id'];
-		$field=$m->relation(true)->find($id);
+		$field=$m->find($id);
 		$m->relation(true)->delete($id);
 		$n->add($field);
 		$this->redirect('Notice/index');	 

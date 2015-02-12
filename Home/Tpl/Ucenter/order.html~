@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<load href="__PUBLIC__/Css/Home/ucenter_info.css" />
+        <load href="__PUBLIC__/Css/Home/ucenter_detail.css" />>
+		<title>预约记录</title>
+	</head>
+<body>
+  <div id="infor">
+    <div class="can_1">预约记录</div>
+<!--table1-->
+  <table >
+	<form name="person_app"  method="post" action="__URL__/order_search">	
+	<tr>
+	<td>
+    <select class="user_search" id="searchform" name="searchform">
+  	<option value="choose">---请选择实验课题---</option>
+	<volist name='chosen_list' id='vo'>
+  	<option value='<{$vo.testname}>'><{$vo.testname}></option>
+	</volist>	
+	</select></td>
+	<td><input type="submit" class="search_button" value="搜索"/></td>
+    </tr>
+	</form>
+  </table>
+<!--table2-->
+  <table class="stastic_check">
+  <tr >
+  <th style="width:500px;">实验名称</th>
+  <th>课题负责人姓名</th>
+  <th>起始时间</th>
+  <th>结束时间</th>
+  <th>总时长</th>
+  <th>申请时间</th>
+  <th>实验状态</th>
+  <th>操作</th>
+  <th>备注</th>
+  </tr>
+  <tr>
+<volist name='order_list' id='at'>
+   <td><a href="__URL__/event_detail/id/<{$at.eid}>"><{$at.testname}></a></td>
+   <td><{$at.principal}></td>
+   <td><{$at.starttime}></td>
+   <td><{$at.finaltime}></td>
+   <td><{$at.hours}></td>
+   <td><{$at.ordertime}></td>
+   <td><switch name='at.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
+   <td><a href="#">删除预约</a></td>
+   <td><if condition='$at.edit eq 1'>管理员修改操作！<else />无</if></td>
+  </tr>
+</volist>
+  </table>
+    <div>鹅鹅鹅<{$show}></div>
+</div>
+
+</body>
+</html>

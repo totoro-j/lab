@@ -109,7 +109,8 @@
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($map)->order('id desc')->select();
 			$this->assign('order_list',$arr);
 			$this->assign('show',$show);
-			$this->display();
+			var_dump($arr);
+			//$this->display();
 		}
 
 		public function order_search(){
@@ -123,11 +124,11 @@
 			$content=$_POST['searchform'];
 			$where['uid']=$_SESSION['id'];
 			$where['testname']=$content;
-			$count=$e->where($where)->order('id desc')->count();
+			$count=$m->where($where)->order('id desc')->count();
 			$page  = new Page($count,5);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
-			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
+			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
 			$this->assign('order_list',$arr);
 			$this->assign('show',$show);
 			$this->display('order');

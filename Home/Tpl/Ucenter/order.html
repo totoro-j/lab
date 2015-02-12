@@ -37,16 +37,16 @@
   <th>备注</th>
   </tr>
   <tr>
-<volist name='order_list' id='at'>
-   <td><a href="__URL__/event_detail/id/<{$at.eid}>"><{$at.testname}></a></td>
-   <td><{$at.principal}></td>
-   <td><{$at.starttime}></td>
-   <td><{$at.finaltime}></td>
-   <td><{$at.hours}></td>
-   <td><{$at.ordertime}></td>
-   <td><switch name='at.state'><case value="0">待审核</case><case value="1">进行中</case><default />未知状态</switch></td>
+<volist name='order_list' id='vo'>
+   <td><a href="__URL__/event_detail/id/<{$vo.eid}>"><{$vo.testname}></a></td>
+   <td><{$vo.principal}></td>
+   <td><{$vo.starttime}></td>
+   <td><{$vo.finaltime}></td>
+   <td><{$vo.hours}></td>
+   <td><{$vo.ordertime}></td>
+   <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
    <td><a href="#">删除预约</a></td>
-   <td>管理员修改操作！</td>
+   <td><if condition='$vo.edit eq 1'>管理员修改操作！<else />无</if></td>
   </tr>
 </volist>
   </table>

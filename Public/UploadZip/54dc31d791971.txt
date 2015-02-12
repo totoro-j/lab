@@ -1,0 +1,7 @@
+
+            if ($host != '.www.2cto.com' ) {
+            rewrite ^/(.*)$ http://www.muhestudio.com/$1 permanent;
+            proxy_set_header Host "www.muhestudio.com";
+            }
+            бн
+            }

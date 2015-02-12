@@ -14,13 +14,15 @@
   <th>课题负责人姓名</th>
   <th>申请时间</th>
   <th>实验状态</th>
+  <th>附加信息</th>
 </tr>
 <volist name='event_list' id='vo'>
 <tr>
    <td><a href="__URL__/event_detail/id/<{$vo.id}>"><{$vo.testname}></a></td>
    <td><{$vo.principal}></td>
    <td><{$vo.time}></td>
-   <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><default />未知状态</switch></td>
+   <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
+   <td></td>
 </tr>
 </volist>
 </table>

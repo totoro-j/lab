@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>项目回收站</title>
+
+<load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Css/Admin/stastic_view.css" />
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+  $("#all").click(function(){   
+        if(this.checked){   
+            $("input[name='recover[]']").each(function(){this.checked=true;});
+             
+        }else{   
+            $("input[name='recover[]']").each(function(){this.checked=false;});   
+           
+        }   
+    }); 
+
+
+});
+</script>
+<Script Language="JavaScript"> 
+    function recover() 
+    { 
+    document.myForm.action="__URL__/recover_user1";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+     
+    function del() 
+    { 
+    document.myForm.action="__URL__/delete_user1"; 
+    document.myForm.method="post";
+    document.myForm.submit(); 
+    } 
+</Script>
+</head>
+
+<body>
+    <h2 style="color:#219E69;margin:0 auto;margin-top:2px;font-weight:bold;">停用用户回收站</h2>
+    <!--搜索框-->
+    <table>
+    <form name="search" method="post" action="__URL__/search_user1">
+        <tr>
+        <td>
+        <select class="user_search">
+            <option value="choose">----请选择----</option>
+            <option value="username">用户名</option>
+            <option value="truename">用户姓名</option>
+            <option value="principal">课题组负责人</option>
+            <option value="time">注册时间(请按Y-M-D格式)</option>
+        </select>
+        </td>
+        <td><input type="text" name="search_input" /></td>
+        <td><input type="submit" value="搜索" class="search_button" /></td>
+        </tr> 
+    </form>
+    </table>
+    <!--详细表格-->
+    <form name="myForm" method="post" action="">
+    <table class="stastic_check" title="点击查看详情">
+        <tr>
+            <th></th>
+            <th>用户名</th>
+            <th>用户姓名</th>
+            <th>性别</th>
+            <th>课题组负责人</th>
+            <th>联系电话</th>
+            <th>邮箱</th>
+            <th>注册时间</th>
+	    <th>权限</th>
+	    <th>停用账户原因</th>
+	    <th>停用账户时间</th>
+        </tr>
+<volist name='data' id='vo'>
+        <tr>
+            <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
+             <td><a href="__APP__/User/check/id/<{$vo.id}>"><{$vo.username}></td>
+  	    <td><a href="__APP__/User/check/id/<{$vo.id}>"><{$vo.truename}></td>
+   	    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
+            <td><{$vo.principal}></td>
+            <td><{$vo.tel}></td>
+            <td><{$vo.mail}></td>
+            <td><{$vo.time}></td>	    
+            <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
+	    <td><{$vo.delinfo}></td>
+	    <td><{$vo.deltime}></td>
+        </tr>
+</volist>
+    </table>
+    <!--详细表格完-->
+      <!--执行选项-->
+    <table style="margin-top:30px;">
+    <tr>
+      <td style="color:#219E69;"><input type="checkbox" id="all" style="margin-right:5px"/>全选</td>
+      <td><input type="submit" value="恢复" class="search_button" id="rec"  onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
+      <td><input type="submit" value="删除" class="search_button" id="delete" onClick="del()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-left:10px;"/></td>
+      <td><a style="margin-left:10px; color:#219E69;"  href="__APP__/Recycle/index">返回</a></td>
+     </tr>
+    </table>
+<!--执行选项完-->
+    </form>
+
+</body>
+</html>

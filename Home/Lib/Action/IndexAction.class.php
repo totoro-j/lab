@@ -81,12 +81,29 @@ class IndexAction extends CommonAction{
 		$this->assign('time',$time);
 		$this->assign('editor',$editor);
 		//个人信息
-		$t=M('User');
-		$where['username']=$_SESSION['username'];
-		$ar=$t->where($where)->select();
-		$this->assign('dat',$ar);
+		$t=D('ZipView');
+		$ar=$t->select();
+		$this->assign('zip',$ar);
 		$this->display();
 	 	
+	}
+
+	public function download(){
+		$uploadpath='./Public/UploadZip/';
+		$id=$_GET['id'];
+		if($id=='')
+		{$this->redirect('index');
+		}
+		$file=M('Zip');
+		$result= $file->find($id);
+		if($result==false)
+		{$this->redirect('index');
+		}
+		$savename=$result['fileurl'];
+		$showname=$result['filename'];
+		$filename=$uploadpath.$savename;
+		import('ORG.Net.Http');
+		Http::download($filename,$showname);
 	}
 
 	public function show(){
@@ -97,27 +114,6 @@ class IndexAction extends CommonAction{
 		$this->display('show');
 	}
 
-	public function modify(){
-		$id=$_GET['id'];
-		$m=M('User');
-		$arr=$m->find($id);
-		$this->assign('data',$arr);
-		$this->display();
-	}	
-
-	public function update(){
-		$m=M('User');
-		$data['id']=$_POST['id'];
-		$data['tel']=$_POST['tel'];
-		$data['mail']=$_POST['mail'];
-		$data['password']=MD5($_POST['password']);
-		$count=$m->save($data);
-		if($count>0){
-			$this->success('修改成功','index');
-		}else{
-			$this->error('修改失败');
-		}
-	}
 
 	public function submit(){
 		$m=M('user');
@@ -184,39 +180,7 @@ class IndexAction extends CommonAction{
  
 	 
 	}
-	public function notice(){
-		$notice=D('Notice');
-		$list=$notice->order('id desc')->select();
-		$content=$list[0]['content'];
-		$time=$list[0]['time'];
-		$editor=$list[0]['uid'];
-		$this->assign('content',$content);
-		$this->assign('time',$time);
-		$this->assign('editor',$editor);
-		$user=M('user');
-		$condition['username']=$_SESSION['username'];
-		$information=$user->where($condition)->select();
-		$this->assign('username',$information[0]['username']);
-		$this->assign('truename',$information[0]['truename']);	
-		$this->assign('department',$information[0]['department']);	
-		$this->assign('unit',$information[0]['unit']);
-		if($information[0]['job']==0)
-			$job='其他';
-		else if($information[0]['job']==2)
-			$job='学生';
-		else
-			$job='老师';	
-		$this->assign('job',$job);	
-		$this->assign('principal',$information[0]['principal']);	
-		$this->assign('tel',$information[0]['tel']);	
-		$this->assign('mail',$information[0]['mail']);
-		if($information==1)
-			$this->assign('sex','男');
-		else
-	 		$this->assign('sex','女');
-		$this->display();	
-	 	
-	}
+
 	public function history(){
 		$appointment=M('event');
 		$condition['testname']=$_SESSION['id'];
@@ -232,9 +196,6 @@ class IndexAction extends CommonAction{
 		}
 		$this->assign('list',$history);
 		$this->display();
-		} 
-		
-	public function urefuse(){
-		$this->display();
 	}
 }
+?>

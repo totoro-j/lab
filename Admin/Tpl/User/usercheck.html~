@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -69,141 +69,6 @@
 		
 </script>
 <script type="text/javascript">
-
- 
-	  
-	      $(function(){  
-		$(".pass2").click
-		(
-		function(){
-		if($('#check_button2').text()=='等待通过'){
-				
-		if(confirm('确认通过？')){$('#check_button2').text("已审核").css("color","#219E69");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script>
-
-<script type="text/javascript">
-           $(function(){  
-		$(".refuse2").click
-		(
-		function(){
-		if($('#check_button2').text()=='等待通过'){
-				
-		if(confirm('确认拒绝？')){$('#check_button2').text("未通过").css("color","#F33");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-			
-</script>
-<script type="text/javascript">
-
- 
-	  
-	      $(function(){  
-		$(".pass3").click
-		(
-		function(){
-		if($('#check_button3').text()=='等待通过'){
-				
-		if(confirm('确认通过？')){$('#check_button3').text("已审核").css("color","#219E69");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script>
-
-<script type="text/javascript">
-           $(function(){  
-		$(".refuse3").click
-		(
-		function(){
-		if($('#check_button3').text()=='等待通过'){
-				
-		if(confirm('确认拒绝？')){$('#check_button3').text("未通过").css("color","#F33");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script><script type="text/javascript">
-
- 
-	  
-	      $(function(){  
-		$(".pass4").click
-		(
-		function(){
-		if($('#check_button4').text()=='等待通过'){
-				
-		if(confirm('确认通过？')){$('#check_button4').text("已审核").css("color","#219E69");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script>
-
-<script type="text/javascript">
-           $(function(){  
-		$(".refuse4").click
-		(
-		function(){
-		if($('#check_button4').text()=='等待通过'){
-				
-		if(confirm('确认拒绝？')){$('#check_button4').text("未通过").css("color","#F33");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script><script type="text/javascript">
-
- 
-	  
-	      $(function(){  
-		$(".pass5").click
-		(
-		function(){
-		if($('#check_button5').text()=='等待通过'){
-				
-		if(confirm('确认通过？')){$('#check_button5').text("已审核").css("color","#219E69");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script>
-
-<script type="text/javascript">
-           $(function(){  
-		$(".refuse5").click
-		(
-		function(){
-		if($('#check_button5').text()=='等待通过'){
-				
-		if(confirm('确认拒绝？')){$('#check_button5').text("未通过").css("color","#F33");return true;}
-		return false;
-		}}
-		
-		);
-			
-			})
-</script>
-<script type="text/javascript">
     function validateTel(){
 		var foundResult=document.getElementById("appointment_check");
 		var notfoundResult=document.getElementById("notfound");
@@ -213,7 +78,14 @@
 		}
 	}
 </script>
-
+<Script Language="JavaScript"> 
+    function cancel() 
+    { 
+    document.myForm.action="__URL__/refuse";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+</Script>
 </head>
 
 <body onLoad="validateTel()">
@@ -224,30 +96,42 @@
    <th>用户名</th><th>用户姓名</th><th>课题组负责人</th><th>注册时间</th><th>审核情况</th><th colspan="2">审核操作</th>
    </tr>
  <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
-   		<volist name='list' id='vo'>
+<volist name='list' id='vo'>
 <tr>
-  <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.username}></a></td>
+  <td><a id="<{$vo.username}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>" ><{$vo.username}></a></td>
   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.truename}></a></td>
   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.principal}></a></td>
   <td><{$vo.time}></td>
-  <td><div id="check_button1" class="check_button"><a >等待通过</a></div></td>
+  <td><div id="check_button1" class="check_button"><a>等待通过</a></div></td>
  <td><a href="__URL__/pass/id/<{$vo.id}>"><div class="pass1">通过</div></a></td>    
-  <td><a href="#" ><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
+  <td><a onclick="showId(<{$vo.testname}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">拒绝</div></a></td>
 </tr>
    </volist>
+
   </table><div class="user_show"><{$show}></div>
-   </table>
+ 
    </div>
    <div id="fullbg"></div> 
    <div id="dialog"> 
    <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
-   <form><div class="refuse_dia">
+
+   <form name="myForm" method="post" action="">
+   <div class="refuse_dia">
+	   <input type="hidden" name="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入拒绝的理由：</p>
-   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
-   <a href="__URL__/refuse/id/<{$vo.id}>" ><div class="btn">确认拒绝</div></a>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在二十字以内..."></textarea>
+   
+   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
    </div></form> 
    </div>
 </body>
-</html>
+<script type="text/javascript">
+	function showId(num){
+		var numberType=num.getAttribute("data-number");
+		$('.refuse_ipt').attr("value",numberType);
+	}
+</script>
 
+
+</html>
 

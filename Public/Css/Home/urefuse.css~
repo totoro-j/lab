@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0 auto;    /*外侧边框*/
+	padding:0px;   /*内侧边框*/
+	font-family:"微软雅黑";
+}
+a{
+	text-decoration:none;
+	color:inherit;
+}
+h2{
+	color:#23a96f;
+	}
+.dialog{
+	width:600px;
+	
+	margin:0 auto;
+    margin-top:40px;
+	border:1px solid #ccc;
+	border-top:20px solid #23a96f;
+	
+padding:10px 10px 30px 30px;
+	}	
+	
+.dialog p{
+	margin-top:20px;
+	margin-left:20px;
+	margin-bottom:20px;
+	}	
+.dialog span{
+	margin-top:40px;
+	margin-left:20px;
+	width:300px;
+	color:#f33;}	
+.buttons{
+
+	margin:0 auto;
+	margin-top:30px;
+	margin-left:23%;
+	}	
+.btn{
+	 
+	 float:left;
+	color:#fff;
+	background:#23a96f;
+	width:120px;
+	padding:3px 10px;
+	text-align:center;
+	margin-left:30px;
+   	
+	}
+.checker{
+	float:right; 
+	}	
+.checker p{
+	margin-top:0px;
+	
+	float:left;
+	color:#222;
+	}
+.checker span{
+    
+	color:#23a96f;}			
+	
+	
+	
+	

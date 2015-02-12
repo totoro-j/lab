@@ -8,11 +8,11 @@ class UserAction extends AdminCommonAction {
 	public function userview(){
 		$m=M('User');
 		import('ORG.Util.Page');
-		$count=$m->where('role=1 OR role=2')->order('id desc')->count();
+		$count=$m->where('role=1 OR role=2 OR role=3')->order('id desc')->count();
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('role=1 OR role=2')->order('id desc')->select();
+		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('role=1 OR role=2 OR role=3')->order('id desc')->select();
 		$this->assign('list',$arr);
 		$this->assign('show',$show);
 		$this->display();
@@ -39,89 +39,106 @@ class UserAction extends AdminCommonAction {
 		{
 		case "name":
 			if(isset($content) && $content!=null){
-				$where['truename']=array('like',"%{$content}%");}
+				$where['truename']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "sex":
 			switch($content)
 			{
 			case "男":
 				$where['sex']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "女":
 				$where['sex']=array('eq',"0");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['sex']=array('elt',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		case "unit":
 			if(isset($content) && $content!=null){
-				$where['unit']=array('like',"%{$content}%");}
+				$where['unit']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "department":
 			if(isset($content) && $content!=null){
-				$where['department']=array('like',"%{$content}%");}
+				$where['department']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "job":
 			switch($content)
 			{
 			case "教师":
 				$where['job']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "学生":
 				$where['job']=array('eq',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "其它":
 				$where['job']=array('eq',"0");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['job']=array('elt',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		case "principal":
 			if(isset($content) && $content!=null){
-				$where['principal']=array('like',"%{$content}%");}
+				$where['principal']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "tel":
 			if(isset($content) && $content!=null){
-				$where['tel']=array('like',"%{$content}%");}
+				$where['tel']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "email":
 			if(isset($content) && $content!=null){
-				$where['email']=array('like',"%{$content}%");}
+				$where['email']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		case "role":
 			switch($content)
 			{
 			case "正式用户":
 				$where['role']=array('eq',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			case "管理员":
 				$where['role']=array('eq',"2");
+				$where['role']=array('in','1,2,3');
 				break;
 			default:
 				$where['role']=array('egt',"1");
+				$where['role']=array('in','1,2,3');
 				break;
 			}
 			break;
 		default:
 			if(isset($content) && $content!=null){
-				$where['name']=array('like',"%{$content}%");}
+				$where['name']=array('like',"%{$content}%");
+				$where['role']=array('in','1,2,3');}else{
+					$where['role']=array('in','1,2,3');}
 				break;
 		}
 		$arr=$m->where($where)->order('id desc')->select();
 		$this->assign('list',$arr);
 		$this->display('userview');
 	
-	}
-
-	public function del(){
-		$m=M('User');
-		$id=$_GET['id'];
-		$m->delete($id);
-		$this->redirect('userview');
 	}
 
 	public function pass(){
@@ -142,22 +159,32 @@ class UserAction extends AdminCommonAction {
 	public function refuse(){
 		$m=M('User');
 		$n=M('User_del');
-		$id=$_GET['id'];
+		$id=$_POST['refuse_ipt'];
 		$arr=$m->find($id);
 		$array=$arr;
-		$arr['role']='9';
+		$arr['role']='4';
 		$delinfo=$_POST['delinfo'];
 		$array['delinfo']=$delinfo;
 		$array['delstate']='1';
-		$cou=$n->add($array);			
-		$count=$m->save($arr);
-		if($count>0 && $cou>0){
-		$this->redirect(usercheck);
-		}else{
-			$this->error('删除失败');
-		}   
-		
+		$n->add($array);			
+		$m->save($arr);
+		$this->redirect('usercheck');		
 	}
+
+	public function cancel(){
+		$m=M('User');
+		$n=M('User_del');
+		$id=$_POST['refuse_ipt'];
+		$delinfo=$_POST['delinfo'];
+		$field=$m->find($id);
+		$tem=$field;
+		$field['role']='5';
+		$m->save($field);
+		$tem['delstate']='2';
+		$tem['delinfo']=$delinfo;
+		$n->add($tem);
+		$this->redirect('userview');
+	}	
 
 	public function check(){
 		$id=$_GET['id'];

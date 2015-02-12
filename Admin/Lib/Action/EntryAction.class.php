@@ -6,14 +6,14 @@ class EntryAction extends AdminCommonAction {
 	}
 
 	public function entryview(){
-		$e=D('OrdersView');
+		$e=D('EventView');
 		import('ORG.Util.Page');
 		$count=$e->where('state=1')->count();
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->select();
-		$this->assign('entry_list',$arr);	
+		$this->assign('entry_list',$arr);
 		$this->assign('show',$show);
 		$this->display();
 	}
@@ -32,45 +32,37 @@ class EntryAction extends AdminCommonAction {
 		}
 
 	public function search(){
-		$e=D('OrdersView');
+		$e=D('EventView');
 		$field=$_POST['searchform'];
 		$content=$_POST['search'];
-		$date[0]=$_POST['date1'];
-                $date[1]=$_POST['date2'];
 		switch ($field)
 		{
-		case "choose":
-				$where=array();
-				break;
 		case "testname":
 			if(isset($content) && $content!=null){
-				$where['testname']=array('like',"%{$content}%");}
+				$where['testname']=array('like',"%{$content}%");	
+				$where['state']="1";}else{
+					$where['state']="1";}
 				break;
 		case "uid":
 			if(isset($content) && $content!=null){
-				$where['truename']=array('like',"%{$content}%");}
+				$where['truename']=array('like',"%{$content}%");
+				$where['state']="1";}else{
+					$where['state']="1";}
 				break;
 		case "principal":
 			if(isset($content) && $content!=null){
-				$where['principal']=array('like',"%{$content}%");}
-			break;
-		case "time":
-			if(isset($date) && $date!=null){
-			        $where['starttime']=array('like',"%{$date[0]}%");
-			        $where['finaltime']=array('like',"%{$date[1]}%");      
-			}
+				$where['principal']=array('like',"%{$content}%");
+				$where['state']="1";}else{
+					$where['state']="1";}
 				break;
-
-
-		break;
-
 		default:
 			if(isset($content) && $content!=null){
-				$where['testname']=array('like',"%{$content}%");}
+				$where['testname']=array('like',"%{$content}%");
+				$where['state']="1";}else{
+					$where['state']="1";}
 				break;
 		}
-	
-		$arr=$e->where($where)->select(); 
+		$arr=$e->where($where)->select();	
 		$this->assign('entry_list',$arr);
 		$this->display('entryview');
 	}
@@ -93,15 +85,15 @@ class EntryAction extends AdminCommonAction {
 		public function refuse(){
 			$m=M('Event');
 			$n=M('Event_del');
-			$id=$_GET['id'];
-			$delinfo=$_GET['delinfo'];
+			$id=$_POST['refuse_ipt'];
 			$field=$m->find($id);
 			$tem=$field;
-                        $field['state']='2';		
-			$m->save($field);
+			$field['state']='2';
+			$delinfo=$_POST['delinfo'];			
 			$tem['delinfo']=$delinfo;
 			$tem['delstate']='1';
 			$n->add($tem);
+			$m->save($field);
                    	$this->redirect('entrycheck');		
 		}
 
@@ -130,7 +122,7 @@ class EntryAction extends AdminCommonAction {
 		public function cancel(){
 			$m=M('Event');
 			$n=M('Event_del');
-			$id=$_GET['id'];
+			$id=$_POST['refuse_ipi'];
 			$field=$m->find($id);
 			$tem=$field;
 			$field['state']='3';

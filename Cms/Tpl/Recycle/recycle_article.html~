@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 });
 </script>
-<!--<Script Language="JavaScript"> 
+<Script Language="JavaScript"> 
     function recover() 
     { 
     document.myForm.action="__URL__/recover_article";
@@ -31,13 +31,13 @@ $(document).ready(function(){
     document.myForm.submit(); 
     } 
      
-    function delete() 
+    function del() 
     { 
     document.myForm.action="__URL__/delete_article"; 
     document.myForm.method="post";
     document.myForm.submit(); 
     } 
-</Script>--!>
+</Script>
 </head>
 
 <body>

@@ -13,6 +13,8 @@
 				$this->error('没有该系统权限!','__ROOT__/index.php/Index/index');
 			}else if($myrole=="0"){
 				$this->error('您的账号正在审核中!','__ROOT__/index.php/Index/index');
+			}else if($myrole=="4" OR $myrole=="5"){
+				$this->error('您的账号异常！','__ROOT__/default.php/Urefuse/detail');
 			}
 
 		}
