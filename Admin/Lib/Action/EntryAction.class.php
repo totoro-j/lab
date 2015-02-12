@@ -4,12 +4,10 @@ class EntryAction extends AdminCommonAction {
 	public function entrydetail(){
 		$this->display();
 	}
-	public function entrytime(){
-		$this->display();
-	}
+
 
 	public function entryview(){
-		$e=D('EventView');
+		$e=D('OrdersView');
 		import('ORG.Util.Page');
 		$count=$e->where('state=1')->count();
 		$page  = new Page($count,5);
@@ -34,39 +32,64 @@ class EntryAction extends AdminCommonAction {
 		$this->display();
 		}
 
+	public function entrytime(){
+		$e=D('OrdersView');
+		$date[0]=$_POST['date1'];
+		$date[1]=$_POST['date2'];
+			if(isset($date) && $date!=null){
+			        $where['starttime']=array('like',"%{$date[0]}%");
+			        $where['finaltime']=array('like',"%{$date[1]}%");      
+			}
+			$arr=$e->where($where)->select(); 
+		$this->assign('entry_list',$arr);     
+		var_dump($date);
+		$this->display();
+	}
+
+
+
 	public function search(){
-		$e=D('EventView');
+		$e=D('OrdersView');
 		$field=$_POST['searchform'];
 		$content=$_POST['search'];
+		$date[0]=$_POST['date1'];
+                $date[1]=$_POST['date2'];
 		switch ($field)
 		{
+		case "choose":
+				$where=array();
+				break;
 		case "testname":
 			if(isset($content) && $content!=null){
-				$where['testname']=array('like',"%{$content}%");	
-				$where['state']="1";}else{
-					$where['state']="1";}
+				$where['testname']=array('like',"%{$content}%");}
 				break;
 		case "uid":
 			if(isset($content) && $content!=null){
-				$where['truename']=array('like',"%{$content}%");
-				$where['state']="1";}else{
-					$where['state']="1";}
+				$where['truename']=array('like',"%{$content}%");}
 				break;
 		case "principal":
 			if(isset($content) && $content!=null){
-				$where['principal']=array('like',"%{$content}%");
-				$where['state']="1";}else{
-					$where['state']="1";}
+				$where['principal']=array('like',"%{$content}%");}
+			break;
+		case "time":
+			if(isset($date) && $date!=null){
+			        $where['starttime']=array('like',"%{$date[0]}%");
+			        $where['finaltime']=array('like',"%{$date[1]}%");      
+			}
 				break;
+
+
+		break;
+
 		default:
 			if(isset($content) && $content!=null){
-				$where['testname']=array('like',"%{$content}%");
-				$where['state']="1";}else{
-					$where['state']="1";}
+				$where['testname']=array('like',"%{$content}%");}
 				break;
 		}
-		$arr=$e->where($where)->select();	
+	
+		$arr=$e->where($where)->select(); 
 		$this->assign('entry_list',$arr);
+		var_dump($arr);
 		$this->display('entryview');
 	}
 
