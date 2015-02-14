@@ -8,7 +8,7 @@
 }
         /*日历 begin*/
 .data_box           {width:260px; }
-.showDate           {width:230px;height:25px;line-height:30px;padding:0 5px;border:1px solid #23a96f;color:#999;display:block;cursor:pointer}
+.showDate           {width:230px;height:25px;line-height:30px;padding:0 5px;border:1px solid #23a96f;color:#999;display:block;cursor:pointer;}
 .show_mn            {text-align:center;padding:0 20px;}
 .sel_date           {width:230px;border:1px solid #999;padding:3px;position:absolute;background-color:#fff;z-index:5;}
 .data_table         {width:100%;margin-top:10px;}

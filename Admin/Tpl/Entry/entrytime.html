@@ -23,12 +23,12 @@ $(document).ready(function(){
 <h2 style="color:#219E69;margin:0 auto;font-size:25px;"> 预约历史时间查询</h2>
 
 
-  <form name="stastic_search"  method="post" action="__URL__/entrytime">
+  <form name="stastic_search"  method="post" action="__URL__/entrytime" >
   <!--包含起始时间和终止时间的日历--> 
     <!--起始时间的日历-->
-    <div class="data_box" id="data_box" style="margin-bottom:-28px;margin-left:100px;margin-top:40px;">  
-     <input type="text"  class="showDate" name="date1"  placeholder="点击选择起始时间"/>
-       <div class="sel_date dn">
+    <div class="data_box" id="data_box" style="margin-bottom:-27px;margin-left:170px;margin-top:40px;" >  
+     <input type="text"  class="showDate" name="date1"  placeholder="点击选择起始时间" />
+       <div class="sel_date dn" >
                 <div class="clearfix">
                     <span class="prev_y fl">&lt;&lt;</span><span class="prev_m fl">&lt;</span>
                     <span class="next_y fr">&gt;&gt;</span><span class="next_m fr">&gt;</span>
@@ -73,7 +73,7 @@ $(document).ready(function(){
     <!--结束时间日历开始-->
   
     <div class="data_box" id="data_box_2">
-   <input type="text"  class="showDate" name="date2"  placeholder="点击选择结束时间" />
+   <input type="text"  class="showDate" name="date2"  placeholder="点击选择结束时间"  />
        <div class="sel_date dn">
                 <div class="clearfix">
                     <span class="prev_y fl">&lt;&lt;</span><span class="prev_m fl">&lt;</span>
@@ -117,10 +117,10 @@ $(document).ready(function(){
     <!--结束时间日历结束-->
 
     <!--专属时间的button-->
-  <input type="submit" id="search_button_1" class="search_button" value="搜索" style="padding-left:20px;position:relative;left:800px;top:-30px" />
+  <input type="submit" id="search_button_1" class="search_button" value="搜索"  style="position:relative;top:-26px;left:780px;"/>
 
 </form>
-
+ <volist name='entry_list' id='vo'>
 <table  id="time_table">
   
 <!--A实验-->
@@ -130,15 +130,18 @@ $(document).ready(function(){
     <tr>
     <th style="width:1200px;">实验名称</th>
     </tr>
+   <td style="width:1200px;height:30px"><a href="__URL__/checkentry/id/<{$vo.eid}>"><{$vo.testname}>
     <tr>
-    <td style="width:1200px;height:30px"><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
+	   
+		  
     </tr>
+     
     </table>
   </td class="foldButton">
 </tr>
 <!--A实验详细-->
 <tr class="foldInfo" >
-  <td >
+      	<td >
    <table class="stastic_check" style="margin:0px;">
     <!--表头-->
     <tr>
@@ -150,6 +153,8 @@ $(document).ready(function(){
      <th>停止实验</th>
     </tr>
     <!--表身-->
+    
+    <volist name='entry_list' id='vo'><td style="width:1200px;height:30px">
     <tr>
      <td ><a href="__URL__/checkentry/id/<{$vo.id}>"></td>
      <td><a href="__APP__/User/check/id/<{$vo.uid}>"></td>
@@ -166,6 +171,7 @@ $(document).ready(function(){
      <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.eid}>">详情</a></td>
      <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.eid}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
     </tr>
+   
    </table>
  </td>
 </tr>
@@ -177,7 +183,7 @@ $(document).ready(function(){
 
 
 </table>
-
+ </volist>
 <!--时间统计表格结束-->
 <div class="user_show"><{$show}></div>
 <a href="__APP__/Entry/entryview" style="display:block;color:#219E69;float:right;margin:20px;">返回</a>
