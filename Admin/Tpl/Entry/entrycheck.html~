@@ -99,7 +99,7 @@
   <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a></td>
     <td><{$vo.principal}></td>
     <td><{$vo.time}></td>
-  <td><div id="check_button1" class="check_button"><a >等待通过</a></div></td>
+  <td><div id="check_button1" class="check_button"><a>等待通过</a></div></td>
  <td><a href="__URL__/pass/id/<{$vo.id}>"><div class="pass1">通过</div></a></td>    
   <td><a onclick="showId(<{$vo.testname}>)"><div class="refuse1" onClick="showBg()">拒绝</div></a></td>
 </tr>
@@ -115,7 +115,7 @@
    <div class="refuse_dia">
 	   <input type="hidden" name="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入拒绝的理由：</p>
-   <textarea name="delinfo" maxlength="100" placeholder="字数在二十字以内..."></textarea>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在一百十字以内..."></textarea>
    
    <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
    </div></form> 

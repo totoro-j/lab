@@ -34,6 +34,7 @@
 			
 			$user=M('User');
 			$m=m('Temp');
+			if(isset($password) && $password != ''){
 			$data['username']=$username;
 			$data['truename']=$truename;
 			$data['password']=$password;
@@ -51,11 +52,16 @@
 			$lastId=$user->add($data);
 			$map['new_user']='1';
 			$add=$m->add($map);
-			if($lastId && $add>0){
-				$this->success('注册成功','__APP__/Index/index');
+				if($lastId && $add>0){
+					$this->success('注册成功，请等待审核！','__APP__/Index/index');
+				
+				}else{
+					$this->error('注册失败');
+				};
+
 			}else{
-				$this->error('注册失败');
-			}
+				$this->error('不能重复提交！');
+			};
 
 		}
 	}
