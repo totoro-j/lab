@@ -23,6 +23,14 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+  window.onload = function(){
+	     var trnum=document.getElementById('stastic_check').rows.length
+			 if(trnum!=2){
+				      document.getElementById('nodata').style.display="none"; 
+				 }
+				}
+</script>
 <script type="text/javascript">
     function validateTel(){
 		var foundResult=document.getElementById("appointment_check");
@@ -105,6 +113,7 @@ $(document).ready(function(){
             <td><a href="__APP__/Entry/checkentry/id/<{$vo.id}>">详情</a></td>
         </tr>
 </volist>
+    <tr><td id="nodata"  colspan="8">没有相关数据</td></tr>
     </table>
     <!--详细表格完-->
       <!--执行选项-->
