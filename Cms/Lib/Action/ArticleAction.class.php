@@ -12,7 +12,7 @@ class ArticleAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','篇文章');
 		$show=$page->show();
-		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->->order('id desc')select();
+		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->order('id desc')->select();
 		$this->assign('data',$arr);
 		$this->assign('show',$show);
 		$this->display();

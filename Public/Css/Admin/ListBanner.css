@@ -32,9 +32,10 @@ h3{
 	border-radius:5px;}
 .edit_section_pic_describ{
 	margin:0 auto;
-	background:#ADFFE0;
+	background:#54DBA1;
 	height:200px;
 	width:960px;
+	margin-top:40px;
 	
 
 	}	
@@ -45,6 +46,7 @@ h3{
 .edit_section_pic_describ h2{
 	font-size:30px;
 	font-weight:bold;
+	
 }
 .edit_section_pic_describ p{
 	font-size:14px;

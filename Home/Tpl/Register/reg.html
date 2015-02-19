@@ -97,11 +97,32 @@
 				
 			})
 			
+					//邮箱是否正确（1开头11位）
+			var error5=new Array();
+			$(function(){
+				
+				$('input[name="mail"]').blur(function(){
+					var mailNum=$(this).val();
+					var reg = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+					if(reg.test(mailNum)){
+						error5=0;
+						$('#mmessage').css("color","#23a946").text("格式正确！");
+					}else{
+						error5=1;
+						$('#mmessage').css("color","red").text("请输入有效邮箱！");
+					}
+					if(mailNum.length==0){
+						$('#mmessage').css("color","red").text("邮箱不能为空！");
+					}
+				})
+				
+			})
+			
 			
 			
 			//提交表单
 			$('div.register').click(function(){
-				if(error1['username']==1 || error2['password1']==1 || error3['password2']==1 ||error4==1){
+				if(error1['username']==1 || error2['password1']==1 || error3['password2']==1 ||error4==1||error5==1){
 					return false;
 				}else{
 					$('form[name="myForm"]').submit();
@@ -145,7 +166,7 @@
 	</script>
     
 	</head>
-	<body onload="document.myForm.reset()">
+	<body onLoad="document.myForm.reset()">
 		<form action='__URL__/doReg' method='post' name='myForm'>
 			<h3>注册页面</h3>
 		   <span class="title">登录用户名：</span><input type='text'  class="username" name='username' onKeyUp="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限数字、下划线和英文大小写，不能以数字开头</span><br/>
@@ -169,7 +190,7 @@
                     
                      <span class="title">课题负责人：</span><input type='text' name='principal'/><br/> 
 		      <span class="title">联系电话：</span><input type='text' name='tel' onKeyUp="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
-		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><br/> 
+		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><span id="mmessage">请输入有效邮箱地址</span><br/>
 			<span class="title">验 证 码：</span><input type='text' name='code'/><br/>
 					 <div style="position:relative;width:100px;top:-40px;right:-305px;background:#fff;"> <Message:code width='60' height='30' />	 </div> 
 				      <br/>

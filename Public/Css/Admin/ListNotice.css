@@ -49,6 +49,8 @@ h3{
 	border-radius:5px;}	
 	
 .edit_section_describ{
+	margin-top:30px;
+	
 	float:left;
 
 	}	
@@ -99,8 +101,7 @@ input[type="file"]{
 input[type="submit"]{
 	float:right;
 	margin-right:50px;
-	margin-top:-10px;
-	margin-bottom:50px;
+
 	}
 input[type="submit"]:hover{
 	background-color:#27C080;
@@ -109,3 +110,4 @@ input[type="submit"]:hover{
 	padding-bottom:30px;
 	padding-top:50px;
 	}	
+table{ margin-left:330px;}	
