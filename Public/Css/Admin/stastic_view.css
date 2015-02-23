@@ -115,3 +115,7 @@ table.stastic_check tr:hover td {background:#ddf9ed;
  color:#23a96f;
  font-size:14px;
  margin-top:10px;	}	
+ #notfound{
+	color:#999;
+	display:none;
+}

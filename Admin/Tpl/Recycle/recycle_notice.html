@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+
 <head>
 <meta charset="utf-8">
 <title>项目回收站</title>
@@ -33,13 +33,13 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
     function validateTel(){
-		var foundResult=document.getElementById("appointment_check");
-		var notfoundResult=document.getElementById("notfound");
-		if(foundResult.rows.length==2){
-			notfoundResult.style.display='table-cell';
-			foundResult.width=1050;
-		}
-	}
+        var foundResult=document.getElementById("appointment_check");
+        var notfoundResult=document.getElementById("nodata");
+        if(foundResult.rows.length==2){
+            notfoundResult.style.display='table-cell';
+            foundResult.width=1050;
+        }
+    }
 </script>
 <Script Language="JavaScript"> 
     function recover() 
@@ -55,7 +55,7 @@ $(document).ready(function(){
     document.myForm.method="post";
     document.myForm.submit(); 
     } 
-</Script>
+</script>
 </head>
 
 <body onLoad="validateTel()">
@@ -78,14 +78,17 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table  class="stastic_check" title="点击查看详情" id="appointment_check">
         <tr>
             <th></th>
             <th>公告</th>
             <th>发布者</th>
             <th>发布时间</th>
 	    <th>删除时间</th>
+
         </tr>
+        <tr><td id="nodata"  colspan="7" style="color:#999;
+    display:none;">没有相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
@@ -95,7 +98,7 @@ $(document).ready(function(){
             <td><{$vo.deltime}></td>
         </tr>
 </volist>
-    <tr><td id="nodata"  colspan="6">没有相关数据</td></tr>
+    
     </table>
     <div class="focus_show" style="margin-left:40px;"><{$show}></div>
     <!--详细表格完-->
