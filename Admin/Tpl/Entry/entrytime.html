@@ -119,7 +119,7 @@ $(document).ready(function(){
   <input type="submit" id="search_button_1" class="search_button" value="搜索" style="position:relative;left:800px;top:-26px" />
 
 </form>
-<volist name='entry_list' id='vo'>
+<volist name='list' id='vo'>
 <table  id="time_table">
   
 <!--A实验-->
@@ -129,7 +129,7 @@ $(document).ready(function(){
     <tr>
     <th style="width:1200px;">实验名称</th>
     </tr>
-    <td style="width:1200px;height:30px"><a href="__URL__/checkentry/id/<{$vo.eid}>"><{$vo.testname}>
+    <td style="width:1200px;height:30px"><{$vo.0}>
     <tr>
 	   
 		  
@@ -144,32 +144,39 @@ $(document).ready(function(){
    <table class="stastic_check" style="margin:0px;">
     <!--表头-->
     <tr>
-     <th>在该段时间内预约</th>
      <th>申请人姓名</th>
      <th>课题负责人姓名</th>
-     <th>预约机时统计</th>
-     <th>历史预约详情</th>
-     <th>停止实验</th>
+     <th>预约起始时间</th>
+     <th>预约结束时间</th>
+     <th>该段预约时长</th>
+     <th>预约时间</th>
+     <th>备注</th>
     </tr>
     <!--表身-->
     
-	<volist name='entry_list' id='vo'>
+	<volist name='item' id='tt'>
+	<volist name="tt['m']" id='f'>
+	<eq name="f['testname']" value="$vo.0">
     <tr >
-     <td ><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
-     <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
-     <td></td>
-     <td></td>
-     <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.eid}>">详情</a></td>
-     <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.eid}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
+     <td><a href="__APP__/User/check/id/<{$f['uid']}>"><{$f['truename']}></td>
+     <td><{$f['principal']}></td>
+     <td><{$f['starttime']}></td>
+     <td><{$f['finaltime']}></td>
+     <td><{$f['hours']}></td>
+     <td><{$f['ordertime']}></td>
+     <td><if condition='$vo.edit eq 1'>管理员修改操作！<else />无</if></td>
     </tr>
+</eq>
     </volist>
+     </volist>
    </table>
  </td>
 </tr>
 <!--A实验结束-->
 
 </table>
- </volist>
+</volist>
+
 
 <!--时间统计表格结束-->
 <div class="user_show"><{$show}></div>

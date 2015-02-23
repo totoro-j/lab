@@ -25,7 +25,7 @@ class UserAction extends AdminCommonAction {
 		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
-		$arr=$m->where('role=0')->order('id desc')->select();
+		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('role=0')->order('id desc')->select();
 		$this->assign('list',$arr);
 		$this->assign('show',$show);
 		$this->display();
