@@ -19,10 +19,10 @@
     <form name="search" method="post" action="__URL__/search_focus">
         <tr>
         <td>
-        <select class="user_search">
+        <select class="user_search" id="user_search" name="user_search">
             <option value="choose">----请选择----</option>
             <option value="title">标题</option>
-            <option value="author">作者</option>          
+            <option value="editor">作者</option>          
         </select>
         </td>
         <td><input type="text" name="search_input" /></td>
@@ -33,12 +33,13 @@
            <table class="article_list">
            
            <caption class="add_article"><a href="__URL__/ListFocusEdit/">上传文章</a></caption>
+	   <tr class="article_table"><th><a><center style="color:#1a1a1a;font-size:18px;">文章标题</center></a></th><td>作者</td><td>发布日期</td><td colspan="2"><a>操作</a></td></tr>
 	  
 	   <volist name='data' id='vo'>
 	   <if condition='$vo.isshow eq 1'>
-	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<{$vo.id}>" style="color:#1a1a1a;font-size:15px;"><{$vo.title}></a></th><td><a href="__URL__/ListFocusIsshowCancel/id/<{$vo.id}>" class="opendiv3" id="setnews3">取消显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<{$vo.id}>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>                              	  
+	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<{$vo.id}>" style="color:#1a1a1a;font-size:15px;"><{$vo.title}></a></th><td><{$vo.editor}></td><td><{$vo.date}></td><td><a href="__URL__/ListFocusIsshowCancel/id/<{$vo.id}>" class="opendiv3" id="setnews3">取消显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<{$vo.id}>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>                              	  
 	   <else />	  
-	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<{$vo.id}>" style="color:#1a1a1a;font-size:15px;"><{$vo.title}></a></th><td><a href="__URL__/ListFocusIsshow/id/<{$vo.id}>" class="opendiv3" id="setnews3">显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<{$vo.id}>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>
+	   <tr class="article_table"><th><a href="__URL__/ListFocusView/id/<{$vo.id}>" style="color:#1a1a1a;font-size:15px;"><{$vo.title}></a></th><td><{$vo.editor}></td><td><{$vo.date}></td><td><a href="__URL__/ListFocusIsshow/id/<{$vo.id}>" class="opendiv3" id="setnews3">显示到首页</a></td><td><a href="__URL__/ListFocusDel/id/<{$vo.id}>)" class="delete"  onClick="return confirm('确认删除？')">删除</a></td></tr>
               
            
               	 </if>   </volist> 

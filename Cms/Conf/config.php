@@ -5,7 +5,7 @@ return array(
 	'DB_DSN'=>'mysql://root:@localhost:3306/lab',
 	'TMPL_L_DELIM'=>'<{',
 	'TMPL_R_DELIM'=>'}>',
-	'URL_CASE_INSENSITIVE'=>'true',
 	'SHOW_PAGE_TRACE'=>'true',//开启页面Trace
+	'VAR_FILTERS'=>'htmlspecialchars',
 );
 ?>
