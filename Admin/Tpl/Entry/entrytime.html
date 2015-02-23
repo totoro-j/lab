@@ -127,7 +127,7 @@ $(document).ready(function(){
   <td class="foldButton">
     <table class="stastic_check">
     <tr>
-    <th style="width:1200px;">实验名称</th>
+    <th style="width:600px;">实验名称</th>
     </tr>
     <td style="width:1200px;height:30px"><{$vo.0}>
     <tr>
@@ -151,6 +151,7 @@ $(document).ready(function(){
      <th>该段预约时长</th>
      <th>预约时间</th>
      <th>备注</th>
+     <th>查看实验详情</th>
     </tr>
     <!--表身-->
     
@@ -164,7 +165,8 @@ $(document).ready(function(){
      <td><{$f['finaltime']}></td>
      <td><{$f['hours']}></td>
      <td><{$f['ordertime']}></td>
-     <td><if condition='$vo.edit eq 1'>管理员修改操作！<else />无</if></td>
+     <td><if condition="$f['edit'] eq 1">管理员修改操作！<else />无</if></td>
+     <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$f['eid']}>">详情</a></td>
     </tr>
 </eq>
     </volist>
