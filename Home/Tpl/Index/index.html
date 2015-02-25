@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head><meta charset="UTF-8">
 <title>机时预约界面</title>
@@ -112,6 +112,7 @@ function setSelectedBgColor()//设置选定行的背景色
    			<!--公告栏-->
    			<div class="can">
 		<div class="can_1">公告栏</div>
+        <div style="overflow-y:scroll;overflow-x:hidden;margin-right:10px;">
 		<div class="canin" style="margin-top:30px;padding-top:10px;height:230px;">
 			
              <p><{$content}></p>
@@ -119,6 +120,7 @@ function setSelectedBgColor()//设置选定行的背景色
            
     </div>
 	</div>
+    </div>
    		</div>
 
         
@@ -126,14 +128,14 @@ function setSelectedBgColor()//设置选定行的背景色
 	<load href="__PUBLIC__/Css/Home/show.css" />
     <div class="cant">
         <div class="can_1" style="float:left;width:500px;margin-top:15px;margin-left:50px;">资料下载</div>
-        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll">
+        <div id="infor" style="height:290px;margin-left:30px;overflow-y:scroll">
         
         	<table border='1' align='center' class="show_check" style="width:500px;">
 			<volist name='zip' id='vo'>
             <tr>
 			  <td style="width:600px;"><{$vo.filename}></td>
 			  <td style="width:80px;"><{$vo.size}>KB</td>
-              <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'>下载</a></td>
+              <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'><div style="padding:10px 4px;background:#23a96f;color:#fff;text-align:center;">下载</div></a></td>
 	      <td>发布人：<{$vo.truename}></td>
       	     <td><{$vo.date}></td>
             </tr>  
