@@ -181,21 +181,23 @@ class IndexAction extends CommonAction{
 	 
 	}
 
-	public function history(){
-		$appointment=M('event');
-		$condition['testname']=$_SESSION['id'];
-		$history=$appointment->where($condition)->order('id desc')->select();
-		$n=count($history);
-		for($i=0;$i<$n;$i++){
-			if($history[$i]['state']==0)
-				$history[$i]['state']='未通过审核';
-			else if($history[$i]['state']==2)
-				$history[$i]['state']='待审核';
-			else
-				$history[$i]['state']='通过审核';
+	public function exsub(){
+		$m=M('Event');
+		$testname=$_POST['expt_name'];
+		$testcontent=$_POST['expt_detail'];
+		$total=$_POST['expt_times'];
+		$uid=$_SESSION['id'];
+		$condition['testname']=$testname;
+		$condition['testcontent']=$testcontent;
+		$condition['total']=$total;
+		$condition['state']='0';
+		$condition['uid']=$uid;
+		$exp=$m->add($condition);
+		if($exp){
+			$this->success('实验申请成功，请耐心等待审核！','__URL__/index');
+		}else{
+			$this->error('实验申请失败，请重试！');
 		}
-		$this->assign('list',$history);
-		$this->display();
 	}
 }
 ?>

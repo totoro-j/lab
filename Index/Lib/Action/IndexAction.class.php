@@ -46,8 +46,8 @@ class IndexAction extends Action {
 		$conew=$m->where($con)->order('id desc')->select();
 		for($i=0;$i<6;$i++){
 			if($conew[$i]==NULL){
-				$cnew[$i]['title']=暂无新闻;
-				$cnew[$i]['content']=新闻内容也是空;
+				$cnew[$i]['title']='暂无新闻';
+				$cnew[$i]['content']='新闻内容也是空';
 				$cnew[$i]['metaimg']='444.jpg';
 				$cnew[$i]['id']=0;
 			
