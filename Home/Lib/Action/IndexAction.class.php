@@ -233,8 +233,10 @@ class IndexAction extends CommonAction{
 		echo "   ";	
 		var_dump($time_judge);
 		 */
-		$this->display();
-	 	
+		$t=D('ZipView');
+		$ar=$t->select();
+		$this->assign('zip',$ar);
+		$this->display();	 	
 	}
 
 	public function download(){
@@ -337,23 +339,6 @@ class IndexAction extends CommonAction{
  
 	 
 	}
-<<<<<<< HEAD
-	
-	public function application(){
-		$event=M('event');
-		$data['testname']=$_GET['expt_name'];
-		$data['testcontent']=$_GET['expt_detail'];
-		$data['total']=$_GET['expt_times'];
-		$data['state']=0;
-		$data['uid']=$_SESSION['id'];
-		$lastId=$event->add($data);
-		if($lastId){
-			$this->success('提交成功，等待审核');
-		}else{
-			$this->error('信息未完善或者类型不对');
-		}
-		
-=======
 
 	public function exsub(){
 		$m=M('Event');
@@ -372,7 +357,6 @@ class IndexAction extends CommonAction{
 		}else{
 			$this->error('实验申请失败，请重试！');
 		}
->>>>>>> 7358f49a60eccdeb0190857206d48982517c94a6
 	}
 }
 ?>

@@ -50,18 +50,20 @@ table {
 }
 
 #user{
-	width:320px;
+	width:500px;
 	height:30px;
 	float:right;
 	margin-top:43px;
 
 }
-#user ul li a{
+#user ul,#user li,#user a{
 	float: left;
 	font-size:12px;
-	margin-left:20px;
+	margin-left:16px;
 	text-decoration:none;
 	font-family:"微软雅黑";
+}
+#user a{
 	color:#23a96f;
 }
 #menu {
