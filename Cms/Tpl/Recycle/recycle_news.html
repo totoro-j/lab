@@ -23,6 +23,14 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+  window.onload = function(){
+	     var trnum=document.getElementById('stastic_check').rows.length
+			 if(trnum!=2){
+				      document.getElementById('nodata').style.display="none"; 
+				 }
+				}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -60,7 +68,7 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table class="stastic_check"  id="stastic_check" title="点击查看详情">
         <tr>
             <th></th>
             <th>标题</th>
@@ -81,6 +89,7 @@ $(document).ready(function(){
             <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
         </tr>
 	</volist>
+    <tr><td id="nodata"  colspan="7">没有相关数据</td></tr>
     </table>
     <div class="news_show" style="margin-left:40px;"><{$show}></div>
     <!--详细表格完-->

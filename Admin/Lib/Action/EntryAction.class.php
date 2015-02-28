@@ -33,14 +33,49 @@ class EntryAction extends AdminCommonAction {
 
 	public function entrytime(){
 		$e=D('OrdersView');
-		$date[0]=$_POST['date1'];
-		$date[1]=$_POST['date2'];
-			if(isset($date) && $date!=null){
-			        $where['starttime']=array('like',"%{$date[0]}%");
-			        $where['finaltime']=array('like',"%{$date[1]}%");      
-			}
-			$arr=$e->where($where)->select(); 
-		$this->assign('entry_list',$arr);     
+		$stime=$_POST['date1'].' 00:00:00';
+		$ftime=$_POST['date2'].' 24:00:00';
+		$array = explode("-",$stime);
+		$year1 = $array[0];
+		$month1 = $array[1];
+		$array = explode(":",$array[2]);
+		$minute1 = $array[1];
+		$second1 = $array[2];
+		$array = explode(" ",$array[0]);
+		$day1 = $array[0];
+		$hour1 = $array[1];
+		$start = mktime($hour1,$minute1,$second1,$month1,$day1,$year1);
+
+		$arr = explode("-",$ftime);
+		$year2 = $arr[0];
+		$month2 = $arr[1];
+		$arr = explode(":",$arr[2]);
+		$minute2 = $arr[1];
+		$second2 = $arr[2];
+		$arr = explode(" ",$arr[0]);
+		$day2 = $arr[0];
+		$hour2 = $arr[1];
+		$final = mktime($hour2,$minute2,$second2,$month2,$day2,$year2);
+		
+		if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) )");
+			foreach($test as $test0){
+			$test0=join(',',$test0);
+			$temp[]=$test0;
+		}
+		$temp=array_unique($temp);
+		foreach($temp as $k => $test0){
+			$temp[$k]=explode(',',$test0);
+		}
+		$temp=array_values($temp);
+		for($i = 0; $i < count($temp); $i++){
+			$s=$temp[$i];
+			$ss=implode($s);
+			$item[$i]['m']=$e->query("SELECT Orders.id AS id,Orders.starttime AS starttime,Orders.finaltime AS finaltime,Orders.hours AS hours,Orders.ordertime AS ordertime,Orders.edit AS edit,Orders.info AS info,event.testname AS testname,event.state AS state,event.id AS eid,user.truename AS truename,user.principal AS principal,user.id AS uid FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( (`testname` = '$ss') )");
+		}
+		$this->assign('list',$temp);
+		$this->assign('item',$item);
+		}
 		$this->display();
 	}
 

@@ -21,7 +21,7 @@
     <form name="search" method="post" action="__URL__/search_notice">
         <tr>
         <td>
-        <select class="user_search">
+        <select class="user_search" id="user_search" name="user_search">
             <option value="title">标题</option>         
         </select>
         </td>
@@ -29,7 +29,7 @@
         <td><input type="submit" value="搜索" class="search_button" /></td>
         </tr> 
     </form>
-</table>
+</table> 
   <div id="edit_focus2"class="edit_section_pic_describ">
        <div class="edit_section_describ" style="background-color: #E9FAF1;padding-top:30px;padding-left:30px;padding-right:30px;">
  <volist name='data' id='vo'>
@@ -41,7 +41,7 @@
 	  
 	    </volist> 
     </div>
-   <div class="notice_show" style="float:left;color:#666;"><{$show}></div>  
+   <div class="show" style="float:left;color:#666;margin-top:10px;"><{$show}></div>  
   
 
     
@@ -49,7 +49,7 @@
    <div id="edit_focus"class="edit_section_pic_describ" >
      <form method="post" action="__URL__/ListNoticeadd/">
      <div class="edit_section_describ">
-	     <p style="color:#23a96f;">添加公告: </p></br>
+	     <p style="color:#23a96f;font-size:16px;">添加公告: </p></br>
 	 <input type="text" class="describ2" placeholder="标题" style="margin-left:-50px;margin-top:20px;height:15px;width:800px;padding:8px 8px;"name="title"/>
       <textarea type="text" class="describ2" placeholder="公告内容..." name="myEditor"></textarea>        
      </div>

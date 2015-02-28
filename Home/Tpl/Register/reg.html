@@ -1,4 +1,4 @@
-<taglib name='Message' />
+﻿<taglib name='Message' />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
@@ -11,6 +11,7 @@
 		$(function(){
 		
 			var error1=new Array();
+			 var patten = /^[a-zA-Z]\w{1,16}$/ig;
 			$('input[name="username"]').blur(function(){
 				var username=$(this).val();
 				if(username.length!=0)
@@ -19,13 +20,26 @@
 					if(data=='用户名已被注册'){
 						error1['username']=1;
 						$('#umessage').css("color","red").text('该用户名已经注册');
-					}else{
+					}else if(!patten.test(username))
+             {          
+			        error1['username']=1;
+                   $('#umessage').css("color","red").text('请勿以数字开头');
+
+                   return false;
+            }
+                else
+				 {
 						error1['username']=0;
 						$('#umessage').css("color","#23a946").text('用户名可用');
 					}
 				});
 				}
 				else{$('#umessage').css("color","red").text('仅限阿拉伯数字、下划线和英文大小写');}
+	
+			   
+
+			
+			
 			});
 			
 			
@@ -83,11 +97,32 @@
 				
 			})
 			
+					//邮箱是否正确（1开头11位）
+			var error5=new Array();
+			$(function(){
+				
+				$('input[name="mail"]').blur(function(){
+					var mailNum=$(this).val();
+					var reg = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+					if(reg.test(mailNum)){
+						error5=0;
+						$('#mmessage').css("color","#23a946").text("格式正确！");
+					}else{
+						error5=1;
+						$('#mmessage').css("color","red").text("请输入有效邮箱！");
+					}
+					if(mailNum.length==0){
+						$('#mmessage').css("color","red").text("邮箱不能为空！");
+					}
+				})
+				
+			})
+			
 			
 			
 			//提交表单
 			$('div.register').click(function(){
-				if(error1['username']==1 || error2['password1']==1 || error3['password2']==1 ||error4==1){
+				if(error1['username']==1 || error2['password1']==1 || error3['password2']==1 ||error4==1||error5==1){
 					return false;
 				}else{
 					$('form[name="myForm"]').submit();
@@ -131,10 +166,10 @@
 	</script>
     
 	</head>
-	<body onload="document.myForm.reset()">
+	<body onLoad="document.myForm.reset()">
 		<form action='__URL__/doReg' method='post' name='myForm'>
 			<h3>注册页面</h3>
-		   <span class="title">登录用户名：</span><input type='text' name='username' onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限阿拉伯数字、下划线和英文大小写</span><br/>
+		   <span class="title">登录用户名：</span><input type='text'  class="username" name='username' onKeyUp="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限数字、下划线和英文大小写，不能以数字开头</span><br/>
 			<span class="title">真实姓名：</span><input type='text' name='truename'/><br/>
 			 <span class="title"> 密码：</span><input type='password' name='password' /> <span id="pmessage1">不少于六位数</span><br/>
 		<span class="title">确认密码：</span><input type='password' name='repassword' /><span id="pmessage2"></span><br/>
@@ -142,9 +177,9 @@
 			      <input type='radio' name='sex' value='0' class='radio' />女</div><br/>
 			    <span class="title">单位：</span><input type='text' name='unit'/><br/>
 		   <span class="title">学院（部门)：</span><input type='text' name='department'/><br/>
-		 <span class="title">注册身份：：</span><input type='radio' name='job' value='1' class='radio' checked="checked" onclick="ShowAdmin()"/>老师
-			      <input type='radio' name='job' value='2' class='radio' onclick="ShowAdmin()" id="student"/>学生
-			      <input type='radio' name='job' value='0' class='radio' onclick="ShowAdmin()"/>其它</div><br/>
+		 <span class="title">注册身份：：</span><input type='radio' name='job' value='1' class='radio' checked="checked" onClick="ShowAdmin()"/>老师
+			      <input type='radio' name='job' value='2' class='radio' onClick="ShowAdmin()" id="student"/>学生
+			      <input type='radio' name='job' value='0' class='radio' onClick="ShowAdmin()"/>其它</div><br/>
                   
 		          <div id="job_detail" style="display:none"> 
                  	 <span class="title">学历：</span><input type='radio' name='degree' value='2' class='radio' id="DC"/>博士
@@ -154,8 +189,8 @@
 		     	  </div>
                     
                      <span class="title">课题负责人：</span><input type='text' name='principal'/><br/> 
-		      <span class="title">联系电话：</span><input type='text' name='tel' onkeyup="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
-		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><br/> 
+		      <span class="title">联系电话：</span><input type='text' name='tel' onKeyUp="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
+		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><span id="mmessage">请输入有效邮箱地址</span><br/>
 			<span class="title">验 证 码：</span><input type='text' name='code'/><br/>
 					 <div style="position:relative;width:100px;top:-40px;right:-305px;background:#fff;"> <Message:code width='60' height='30' />	 </div> 
 				      <br/>

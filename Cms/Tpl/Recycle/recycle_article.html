@@ -23,6 +23,14 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+  window.onload = function(){
+	     var trnum=document.getElementById('stastic_check').rows.length
+			 if(trnum!=2){
+				      document.getElementById('nodata').style.display="none"; 
+				 }
+				}
+</script>
 <Script Language="JavaScript"> 
     function recover() 
     { 
@@ -60,7 +68,7 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table class="stastic_check" id="stastic_check" title="点击查看详情">
         <tr>
             <th></th>
             <th>标题</th>
@@ -82,6 +90,7 @@ $(document).ready(function(){
             <td style="width:300px;"><a href="__URL__/recycle_detail/id/<{$vo.id}>">详情</a></td>
         </tr>
 	</volist>
+    <tr><td id="nodata"  colspan="7">没有相关数据</td></tr>
     </table>
     <div class="article_show" style="margin-left:40px;"><{$show}></div>
     <!--详细表格完-->
@@ -90,7 +99,7 @@ $(document).ready(function(){
     <tr>
       <td style="color:#219E69;"><input type="checkbox" id="all" style="margin-right:5px"/>全选</td>
       <td><input type="submit" value="恢复" class="search_button" id="rec" onClick="recover()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-right:10px;"/></td>
-      <td><input value="删除" class="search_button" id="delete" onClick="del()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-left:10px;"/></td>
+      <td><input type="submit" value="删除" class="search_button" id="delete" onClick="del()" style="width:200px;height:20px;-moz-box-shadow:2px 2px 3px #909090;-webkit-box-shadow:2px 2px 3px #909090;box-shadow:2px 2px 3px #909090;margin-left:10px;"/></td>
       <td><a style="margin-left:10px; color:#219E69;"  href="__APP__/Recycle/index">返回</a></td>
      </tr>
     </table>

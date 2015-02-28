@@ -25,8 +25,8 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
     function validateTel(){
-		var foundResult=document.getElementById("appointment_check");
-		var notfoundResult=document.getElementById("notfound");
+		var foundResult=document.getElementById("stastic_check");
+		var notfoundResult=document.getElementById("nodata");
 		if(foundResult.rows.length==2){
 			notfoundResult.style.display='table-cell';
 			foundResult.width=1050;
@@ -71,7 +71,7 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table class="stastic_check" title="点击查看详情" id="stastic_check">
         <tr>
             <th></th>
             <th>资料名称</th>
@@ -90,6 +90,7 @@ $(document).ready(function(){
             <td><{$vo.deltime}></td>
         </tr>
 </volist>
+<tr><td id="nodata"  colspan="6">没有相关数据</td></tr>
     </table>
     <!--详细表格完-->
     <!--执行选项-->

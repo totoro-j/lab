@@ -108,4 +108,14 @@ table.stastic_check tr:hover td {background:#ddf9ed;
 	padding-bottom:5px;
 	padding-left:15px;
 }
+#nodata{
+	color:#999;}
 	
+.article_show{
+ color:#23a96f;
+ font-size:14px;
+ margin-top:10px;	}	
+ #notfound{
+	color:#999;
+	display:none;
+}

@@ -1,5 +1,4 @@
 <!doctype html>
-<html>
 <head>
 <meta charset="utf-8">
 <title>项目回收站</title>
@@ -23,10 +22,18 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+  window.onload = function(){
+	     var trnum=document.getElementById('stastic_check').rows.length
+			 if(trnum!=2){
+				      document.getElementById('nodata').style.display="none"; 
+				 }
+				}
+</script>
 <script type="text/javascript">
     function validateTel(){
 		var foundResult=document.getElementById("stastic_check");
-		var notfoundResult=document.getElementById("notfound");
+		var notfoundResult=document.getElementById("nodata");
 		if(foundResult.rows.length==2){
 			notfoundResult.style.display='table-cell';
 			foundResult.width=1050;
@@ -72,7 +79,7 @@ $(document).ready(function(){
     </table>
     <!--详细表格-->
     <form name="myForm" method="post" action="">
-    <table class="stastic_check" title="点击查看详情">
+    <table class="stastic_check" title="点击查看详情" id="stastic_check">
         <tr>
             <th></th>
             <th>实验名称</th>
@@ -82,6 +89,7 @@ $(document).ready(function(){
 	    <th>终止实验时间</th>
             <th>实验详情</th>
         </tr>
+        <tr><td id="nodata" style="display:none;color:#999;" colspan="11">没有相关数据</td></tr>
 <volist name='data' id='vo'>
         <tr>
             <td><input type="checkbox" name="recover[]" value="<{$vo.id}>"></td>
@@ -92,6 +100,7 @@ $(document).ready(function(){
             <td><{$vo.deltime}></td>
             <td><a href="__APP__/Entry/checkentry/id/<{$vo.id}>">详情</a></td>
         </tr>
+        
 </volist>
     </table>
     <!--详细表格完-->

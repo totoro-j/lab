@@ -30,9 +30,10 @@ table.article_list td{
 	color:#23a96f;
 	text-align:center;
 	vertical-align:central;
-	
+
    
 }
+table{ margin-left:330px;}	
 table.article_list th{
 	width:400px;
 	height:45px;
@@ -49,6 +50,17 @@ table.article_list{
 	font-family: verdana,arial,sans-serif;
 	color:#333333;
 }
+.search_button{
+	background:#23a96f;
+	border-radius:3px;
+	padding:3px 10px;
+	color:#fff;
+	border:none;
+	cursor:pointer;
+	}
+.search_button:hover{
+	background-color:#27C080;
+}	
 .article_list th,.article_list td{
 	border-bottom:#fff solid 1px;
 }
@@ -64,3 +76,7 @@ table.article_list{
 }
 .add_article:hover{
 }
+.show{
+	color:#666;
+	font-size:14px;
+	margin-top:10px;}
