@@ -7,40 +7,75 @@
 <title>机时统计界面</title>
 <load href="__PUBLIC__/Js/jquery.js" />
 <load href="/Public/Js/Base.js" />
-<load href="/Public/Js/prototype.js" />
-<load href="/Public/Js/mootools.js" />
+8
 <load href="/Public/Js/Ajax/ThinkAjax.js" />
-<script type="text/javascript">
+
+<style>#fullbg { 
+background-color:#23a96f; 
+left:0; 
+opacity:0.5; 
+position:absolute; 
+top:0; 
+z-index:3; 
+filter:alpha(opacity=50); 
+-moz-opacity:0.5; 
+-khtml-opacity:0.5; 
+} 
+#dialog { 
+background-color:#fff; 
+border:5px solid #23a96f; 
+height:400px; 
+left:50%; 
+margin:-200px 0 0 -200px; 
+padding:1px; 
+position:fixed !important; /* 浮动对话框 */ 
+position:absolute; 
+top:50%; 
+width:400px; 
+z-index:5; 
+border-radius:5px; 
+display:none; 
+} 
+#dialog p { 
+margin:0 0 12px; 
+height:24px; 
+margin-left:23px;
+line-height:24px; 
+color:#23a96f;
+} 
+#dialog p.close { 
+text-align:right; 
+padding-right:10px; 
+backgroud:#23a96f;
+} 
+#dialog p.close a { 
+color:#666; 
+text-decoration:none; 
+} 
+.refuse_dia textarea{
+	resize:none;
+	width:330px;
+	height:100px;
+	margin-left:30px;
+	}
+.btn{
+	 
+	 float:left;
+	color:#fff;
+	background:#23a96f;
+	width:80px;
+	padding:3px 10px;
+	text-align:center;
+	margin-left:34%;
+	margin-top:20px;
+   	
+	}</style><script type="text/javascript">
 $(document).ready(function(){
 	
 	$(".count_button").click(function(){
 		$(".stastic_words").show();
 	});
 });
-</script>
-<script type="text/javascript">
-$("document").ready(function(){
-$(".count_button").click(function(){
-var info = "";
-var items = $('[name = "conditions"]:checkbox:checked');
-
-for (var i = 0; i < items.length; i++) {
-     // 如果i+1等于选项长度则取值后添加空字符串，否则为逗号
-     info = info + items.get(i).value + (((i + 1)== items.length) ? '':'^');
-}
-
-
-$.ajax({
-   type : 'post',
-   url: "__URL__/entrystatic",
-   dataType:'json',
-   data : {
-           interface :info
-   },
-   success: function(data){
-           alert('从 '+data[0]+' 到 '+data[1]+', 所选实验用时共计：'+data[2]+'小时。');
-   }
-});});})
 </script>
 <!--文本框改变的js-->
 <script type="text/javascript">
@@ -61,9 +96,68 @@ $("document").ready(function(){
 				 }
 				}
 </script>
+
+<Script Language="JavaScript"> 
+    function cancel() 
+    { 
+    document.myForm.action="__URL__/cancel";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+</Script>
+<script type="text/javascript">
+
+
+           $(function(){  
+		$(".btn").click
+		(
+		function(){
+		if($('#check_button1').text()=='等待通过'){
+				
+		if(confirm('确认拒绝？')){$('#check_button1').text("未通过").css("color","#F33");return true;}
+		closeBg();
+		return false;
+		}}
+	
+		);
+		
+			
+			})
+			
+		function showBg() { 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+   $("#dialog").show(); 
+   } 
+//关闭灰色 jQuery 遮罩 
+    function closeBg() { 
+    $("#fullbg,#dialog").hide(); 
+   }  		
+	$(function(){
+		if(del==1){
+			showBg();}
+			
+		})
+				
+		
+</script>
+<Script Language="JavaScript"> 
+    function cancel() 
+    { 
+    document.myForm.action="__URL__/cancel";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+</Script>
+
 </head>
 
-<body>
+<body onLoad="validateTel()">
 <h2 style="color:#219E69;margin:0 auto;font-size:25px;"> 实验记录查询</h2>
 <div class="check_stastic"  style="margin:0 auto;margin-top:40px;">
 <!--搜索框表格-->
@@ -99,12 +193,12 @@ $("document").ready(function(){
 </tr>
 <volist class="entry_list" name='entry_list' id='vo'>
 <tr>
-   <td><a href="__URL__/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
+   <td><a id="<{$vo.testname}>" href="__URL__/checkentry/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.testname}></td>
    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
    <td><{$vo.principal}></td>
    <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
    <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
-   <td class="info_correct"><a href="__URL__/cancel/id/<{$vo.id}>" class="cancel" onclick="return confirm('确认后将停止该实验！')">停止实验</a></td>
+	   <td class="info_correct"><a onclick="showId(<{$vo.testname}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">停止实验</div></a></td>
 </tr>
 </volist>
 <tr><td id="nodata"  colspan="6">没有相关数据</td></tr>
@@ -112,10 +206,28 @@ $("document").ready(function(){
 <!--普通实验表格结束-->
 
 
-<div class="user_show"><{$show}></div>
+<div class="user_show"><{$show}></div></div>
+<div id="fullbg"></div> 
+   <div id="dialog"> 
+   <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
 
+   <form name="myForm" method="post" action="">
+   <div class="refuse_dia">
+	   <input type="hidden" name="refuse_ipt" class="refuse_ipt" value="">
+   <p>请输入拒绝的理由：</p>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在二十字以内..."></textarea>
+   
+   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
+   </div></form> 
 </div>
 </div>
+<script type="text/javascript">
+	function showId(num){
+		var numberType=num.getAttribute("data-number");
+		$('.refuse_ipt').attr("value",numberType);
+	}
+</script>
+
 </body>
 
 </html>
