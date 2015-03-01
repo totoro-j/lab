@@ -157,6 +157,18 @@ class EntryAction extends AdminCommonAction {
 			$this->display();
 		}
 
+		public function tcheckentry(){
+			$id=$_GET['id'];
+			$m=D('EventView');
+			$n=D('OrdersView');
+			$arr=$m->find($id);
+			$this->assign('data',$arr);
+			$where['eid']=$id;
+			$field=$n->where($where)->select();
+			$this->assign('order_list',$field);
+			$this->display();
+		}
+
 /**		public function entrystatic(){
 			$m=D('Event');
 			$arr=$_POST['interface'];

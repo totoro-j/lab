@@ -200,6 +200,14 @@ class UserAction extends AdminCommonAction {
 		$this->assign('data',$arr);
 		$this->display();
 	}
+
+	public function tcheck(){
+		$id=$_GET['id'];
+		$m=M('User');
+		$arr=$m->find($id);
+		$this->assign('data',$arr);
+		$this->display();
+	}
 	
 	public function repwd(){
 		$m=M('User');

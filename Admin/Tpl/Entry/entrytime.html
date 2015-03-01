@@ -129,7 +129,7 @@ $(document).ready(function(){
     <tr>
     <th style="width:600px;">实验名称</th>
     </tr>
-    <td style="width:1200px;height:30px"><{$vo.0}>
+    <td style="width:1200px;height:30px;corsour:hand;"><{$vo.0}>
     <tr>
 	   
 		  
@@ -159,14 +159,14 @@ $(document).ready(function(){
 	<volist name="tt['m']" id='f'>
 	<eq name="f['testname']" value="$vo.0">
     <tr >
-     <td><a href="__APP__/User/check/id/<{$f['uid']}>"><{$f['truename']}></td>
+     <td><a href="__APP__/User/tcheck/id/<{$f['uid']}>" onclick=popup('url','name') ><{$f['truename']}></td>
      <td><{$f['principal']}></td>
      <td><{$f['starttime']}></td>
      <td><{$f['finaltime']}></td>
      <td><{$f['hours']}></td>
      <td><{$f['ordertime']}></td>
      <td><if condition="$f['edit'] eq 1">管理员修改操作！<else />无</if></td>
-     <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$f['eid']}>">详情</a></td>
+     <td><!--机时统计入口--><a href="__URL__/tcheckentry/id/<{$f['eid']}>">详情</a></td>
     </tr>
 </eq>
     </volist>
@@ -178,6 +178,15 @@ $(document).ready(function(){
 
 </table>
 </volist>
+
+
+<script language="JavaScript">
+   function popup(fname,wname)
+   {
+    window.open(fname,wname,"toolbar=no,menubar=no,directories=no,status=no,width=600,height=450,scrollbars=yes,resizable=no");
+   }
+
+</script>
 
 
 <!--时间统计表格结束-->
