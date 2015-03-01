@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head><meta charset="UTF-8">
 <title>机时预约界面</title>
@@ -92,7 +92,10 @@ function setSelectedBgColor()//设置选定行的背景色
 <!--时间表隐藏-->
 
 <!--页首时间段隐藏显示-->
- <script>setInterval("time.innerHTML=new Date().toLocaleString()+\'   星期\'+\'日一二三四五六\'.charAt(new Date().getDay());",1000);</script>
+ <script>setInterval("time.innerHTML=new Date().toLocaleString()+\'   星期\'+\'日一二三四五六\'.charAt(new Date().getDay());",1000);
+ 
+ 	
+ </script>
 </head>
 
  <div id="header">
@@ -112,7 +115,6 @@ function setSelectedBgColor()//设置选定行的背景色
    			<!--公告栏-->
    			<div class="can">
 		<div class="can_1">公告栏</div>
-        <div style="overflow-y:scroll;overflow-x:hidden;margin-right:10px;">
 		<div class="canin" style="margin-top:30px;padding-top:10px;height:230px;">
 			
              <p><{$content}></p>
@@ -120,7 +122,6 @@ function setSelectedBgColor()//设置选定行的背景色
            
     </div>
 	</div>
-    </div>
    		</div>
 
         
@@ -128,7 +129,7 @@ function setSelectedBgColor()//设置选定行的背景色
 	<load href="__PUBLIC__/Css/Home/show.css" />
     <div class="cant">
         <div class="can_1" style="float:left;width:500px;margin-top:15px;margin-left:50px;">资料下载</div>
-        <div id="infor" style="height:290px;margin-left:30px;overflow-y:scroll">
+        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll">
         
         	<table border='1' align='center' class="show_check" style="width:500px;">
 			<volist name='zip' id='vo'>
@@ -156,17 +157,20 @@ function setSelectedBgColor()//设置选定行的背景色
 	<div class="data_box" id="data_box">
     
     <!--！！！！！！！！这里是要向后台获取的一些数据       -->
+    <input style="display:none" value="<{$time_judge}>" id="to_get_time_judge" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_disable_1}>" id="to_get_time_disable_1" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_disable_2}>" id="to_get_time_disable_2" />  <!--这个不可选时间是已经被预约的时间 -->
     <input style="display:none" value="<{$time_disable_3}>" id="to_get_time_disable_3" />  <!--这个不可选时间是自己已经预约了的时间 -->
     <input style="display:none" value="<{$time_users}>" id="to_get_time_users" />        <!--对应时间的用户和联系方式 -->
-    <input style="display:none" value="<{$time_diabledReason}>" id="to_get_time_diabledReason" />    <!--老师设定的不可选时间对应的理由-->
-    <input style="display:none" value="<{$ExperimentName}>" id="to_get_ExperimentName" />    <!--可以选择的实验-->
+    <input style="display:none" value="<{$time_disabledReason}>" id="to_get_time_disabledReason" />    <!--老师设定的不可选时间对应的理由-->
+    <input style="display:none" value="<{$time_ExperimentName}>" id="to_get_time_ExperimentName" />    <!--可以选择的实验-->
     
         <div class="can_1">机时预约</div>
   
-       
+      		
     		<form name="reserveDate" action="__URL__/index" method="get" id="reserveDateForm" >
+            <p style="display:block;width:120px;line-height:12px">输入查看时间段：</p>
+            <input type="submit" value="查看预约情况" style="float:right;margin-right:-490px;margin-top:-20px;height:30px" class="submitBtn" />
 			<input type="text"  class="showDate" name="date" value="<{$time_date}>" />
 	    	
             
@@ -174,15 +178,20 @@ function setSelectedBgColor()//设置选定行的背景色
             
             <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试   	<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
             <div id="toSubmitSelectedDate" value="">查看所选日期可预约时间</div>   -->
-    </form>
-   	   <div style="width:300px;float:left;margin-left:50px;margin-top:4px">
+ 		   </form>
+   	   <div style="width:300px;float:left;margin-left:530px;margin-top:-25px">
         <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
         <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
        </div>
-        <form id="myForm">
+        <form id="myForm" action="__URL__/submit">
         <input type="text"   name="toSubmitDate"  style="display:none" />
- 			<p style="margin-left:-150px;">实验名称：</p><select name="expt_name" id="expt_name"></select>
+ 			<p style="margin-left:-150px;">实验名称：</p>
+			<select name="expt_name" id="expt_name">
+				<volist name="list" id="vo">
+				<option><{$vo.testname}></option>
+				</volist>
+			</select>
             <p id="startTime">起始时间：</p>
             <select id="mySelectStartTime" name="startTime" style="size="5"">
 			    <option value ="00:00:00">00:00</option>
@@ -313,7 +322,7 @@ function setSelectedBgColor()//设置选定行的背景色
 				$('input[name="toSubmitDate"]').val=$reserveDate;
 				var selectStartTime=$('select[name="startTime"]').val();
 				var selectEndTime=$('select[name="endTime"]').val();
-				var result=confirm('请确认您的预约信息！'+String.fromCharCode(10)+String.fromCharCode(10)+'实验名称：'+selectText+String.fromCharCode(10)+'实验日期：'+$reserveDate+selectText+String.fromCharCode(10)+'实验起始时间：'+selectStartTime1+'：'+selectStartTime2+String.fromCharCode(10)+'实验结束时间：'+selectEndTime1+'：'+selectEndTime2+String.fromCharCode(10)+'实验时间总计：'+lastingTime);
+				var result=confirm('请确认您的预约信息！'+String.fromCharCode(10)+String.fromCharCode(10)+'实验名称：'+selectText+String.fromCharCode(10)+'实验日期：'+$reserveDate+String.fromCharCode(10)+'实验起始时间：'+selectStartTime1+'：'+selectStartTime2+String.fromCharCode(10)+'实验结束时间：'+selectEndTime1+'：'+selectEndTime2+String.fromCharCode(10)+'实验时间总计：'+lastingTime);
 				
 				if(result==true){
 					var obj=document.getElementById("myForm");
@@ -328,7 +337,7 @@ function setSelectedBgColor()//设置选定行的背景色
             </script>
             
             
-            <div id="toSubmitSelectedDate" onClick="toConfirmTime(this)">确认</div>
+            <div id="toSubmitSelectedDate" onClick="toConfirmTime(this)">提交预约</div>
            
                
             
@@ -495,7 +504,7 @@ function setSelectedBgColor()//设置选定行的背景色
  <!-- demo end -->
 		<!-- 注意：请将要放入弹框的内容放在比如id="HBox"的容器中，然后将box的值换成该ID即可，比如：$(element).hDialog({'box':'#HBox'}); -->
 		<div id="HBox" style="margin-top:-20px;">
-		   <form action="__URL__/exsub" method="post" id="reserveForm">
+		   <form action="__URL__/application" method="post" id="reserveForm">
 				<h3>实验项目申请</h3>
                 <ul class="list">
 					<li>
@@ -508,16 +517,14 @@ function setSelectedBgColor()//设置选定行的背景色
 					</li>
                     <li>
 						<strong><font color="#ff0000">*</font>预计被试数</strong>
-						<div class="fl"><input  type="text" name="expt_times" value="" class="ipt expt_times" /></div>
+						<div class="fl"><input  type="text" name="expt_times" value="" class="ipt expt_times"  onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" /></div>
 					</li>
 			
 				</ul> 
             
                  
                     <div class="buttons">
-                    <div style="padding-left:100px;"><input type="submit" value="确认提交" class="submitBtn" /></div>
-                    <div style="padding-left:100px;"><input type="submit" value="返回修改时间" class="resetBtn" /></div>
-			
+                    <div style="padding-left:100px;"><input type="submit" value="确认提交" class="submitBtn" /></div>			
                     </div>
             </form>
 		</div><!-- HBox end -->	
@@ -595,13 +602,14 @@ function setSelectedBgColor()//设置选定行的背景色
 	}
 	
 	//开始对 对应方框进行填色
+	var time_judge=document.getElementById("to_get_time_judge").value;
 	var time_disable_1=document.getElementById("to_get_time_disable_1").value;
 	var time_disable_2=document.getElementById("to_get_time_disable_2").value;
 	var time_disable_3=document.getElementById("to_get_time_disable_3").value;
 	var time_users=document.getElementById("to_get_time_users").value;
 	var time_disabledReason=document.getElementById("to_get_time_disabledReason").value;
 	var time_ExperimentName=document.getElementById("to_get_time_ExperimentName").value;
-	if(time_disable_1==0)
+	if(time_judge==0)
 	{
 		
 		//若日期过期（即今天以前）
@@ -611,7 +619,7 @@ function setSelectedBgColor()//设置选定行的背景色
 		obj[i].style.backgroundColor='#e4dfde';
 		obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
 		obj2[j+48].disabled="disabled";		
-	}else if(time_disable_1!=1){
+	}else if(time_judge==2){
 		
 		//这里是对老师设置的不可选时间进行标注
 		time_disable_1=time_disable_1.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
@@ -622,17 +630,18 @@ function setSelectedBgColor()//设置选定行的背景色
 			var start1=time_disable_1[6*i]/1*2;   
 			var start2=time_disable_1[6*i+1]/30;   
 			var end1=time_disable_1[6*i+3]/1*2;     
-			var end2=time_disable_1[6*i+4]/30;   
+			var end2=time_disable_1[6*i+4]/30;  
 			var obj1=document.getElementsByClassName("time_period");
 			var obj2=document.getElementsByTagName("option");   
 			for(j=(start1+start2);j<(end1+end2);j++){    //从"起始时间"开始把框弄灰，直到"结束时间"
 				obj1[j].setAttribute('title',"不可选原因"+time_disabledReason[i]); 	  //鼠标放上去会显示理由
-				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因：'+time_disabledReason[i]);"); 	  //点击也会显示理由（通过"alert()"）
-				obj1[j].style.cursor="hand";			
+				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因："+time_disabledReason[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
+				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#e4dfde';
 				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
 				obj2[j+48].disabled="disabled";					
 			}
+			
 		 }   	
 		 
 		 //这里是其他人已预约时间
@@ -649,8 +658,8 @@ function setSelectedBgColor()//设置选定行的背景色
 			var obj2=document.getElementsByTagName("option");   
 			for(j=(start1+start2);j<(end1+end2);j++){   
 				obj1[j].setAttribute('title',"姓名:"+time_users[2*i]+"  电话:"+time_users[2*i+1]); 	  //鼠标放上去会显示理由
-				obj1[j].setAttribute('onclick',"javascript:alert('姓名：'+time_users[2*i]+'\\n电话：'+time_users[2*i+1]);"); 	  //点击也会显示理由（通过"alert()"）
-				obj1[j].style.cursor="hand";	
+				obj1[j].setAttribute('onclick',"javascript:alert('已预约用户姓名："+time_users[2*i]+'\\n电话：'+time_users[2*i+1]+"');"); 	  //点击也会显示理由（通过"alert()"）
+				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#ffd3c3';
 				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
 				obj2[j+48].disabled="disabled";					
@@ -672,6 +681,7 @@ function setSelectedBgColor()//设置选定行的背景色
 				obj1[j].setAttribute('title',"您已预约此时间段");
 				obj1[j].setAttribute('onclick',"javascript:alert('您已预约此时间段');");
 				obj1[j].style.backgroundColor='#52cc94';     //浅绿色
+				obj1[j].style.cursor="pointer";	
 				obj2[j].disabled="disabled";       //无效时间对应的option时间段不可选
 				obj2[j+48].disabled="disabled";					
 			}
@@ -682,10 +692,17 @@ function setSelectedBgColor()//设置选定行的背景色
 
 	
 }
+
+	
+	//页面加载时对时间框进行涂色
+	SetupDateTable();
+	
 </script>
 
 <script>
 $(function(){
+
+	
 	var $el = $('.dialog');
 	$el.hDialog();
 
@@ -729,6 +746,7 @@ $(function(){
 
 	
 	//提交并验证表单
+	
 	$('.submitBtn').click(function() {
 		
 		
@@ -761,7 +779,7 @@ $(function(){
 
 			
 			
-			$("#reserveForm").submit();
+			//$("#reserveForm").submit();
 					
 			
 			$.tooltip('提交成功，2秒后自动关闭',2000,true);

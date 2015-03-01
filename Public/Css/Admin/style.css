@@ -57,7 +57,10 @@ ul{
 /*日历*/
 
 #reserveDateForm{margin-left:320px;width:300px;margin-top:40px;}
-#toSubmitSelectedDate{margin-left:270px;width:160px;height:32px;line-height:24px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;}
+#toSubmitSelectedDate{border-radius:5px;margin-left:270px;padding:4px 4px;text-align:center;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;}
+.subBtn{
+border-radius:5px;argin-left:270px;padding:4px 4px;text-align:center;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;	}
+
 
 
 #myForm{width:800px;height:45px;margin-top:45px;margin-left:250px;}

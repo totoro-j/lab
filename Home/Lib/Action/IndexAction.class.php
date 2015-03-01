@@ -159,8 +159,6 @@ class IndexAction extends CommonAction{
 				$time_users.=':';
 				//用户：电话
 
-			}else{
-				$this->error("对不起，您的权限还不够哦");
 			}
 		
 			
@@ -184,10 +182,16 @@ class IndexAction extends CommonAction{
 		//用户可预约的事件;role 0表示待审核；1表示通过审核；2表示未通过审核
 		
 		$event=M('event');
-		$event_condition['uid']=$_SESSION['id'];
-		$event_condition['role']=1;
-		$user_event=$event->field('testname')->where($event_condition)->select();
-		
+		$user=M('user');
+		$user_condtion['id']=$_SESSION['id'];
+		$uer_role=$user->where($user_condtion)->select();
+		if($uer_role[0]['role']==2||$uer_role[0]['role']==9){
+			$user_event[0]['testname']="管理员登陆无预约实验";
+		}else{	
+			$event_condition['uid']=$_SESSION['id'];
+			$event_condition['state']=1;
+			$user_event=$event->field('testname')->where($event_condition)->select();
+		}
 		if($user_event==''){
 			$user_event[0]['testname']="暂无预约实验";
 		}
@@ -210,29 +214,11 @@ class IndexAction extends CommonAction{
 		$notice_time=$notice[0]['time'];
 		$user_condition['id']=$notice[0]['uid'];
 		$user_list=M('user');
-		$user=$user_list->where($user_condition['id'])->find();
+		$user=$user_list->where($user_condition)->select();
 		$notice_user=$user[0]['username'];
 		$this->assign('content',$notice_content);
 		$this->assign('editor',$notice_user);
 		$this->assign('time',$notice_time);
-
-		/*
-		var_dump($date2);
-		echo "   ";
-		var_dump($date);
-		echo "   ";
-		var_dump($time_disable_1);
-		echo "   ";
-		var_dump($disable_reason);
-		echo "   ";
-		var_dump($time_disable_2);
-		echo "   ";
-		var_dump($time_disable_3);
-		echo "   ";
-		var_dump($time_users);
-		echo "   ";	
-		var_dump($time_judge);
-		 */
 		$t=D('ZipView');
 		$ar=$t->select();
 		$this->assign('zip',$ar);
@@ -303,13 +289,13 @@ class IndexAction extends CommonAction{
 			list($fh,$ff,$fs)=explode(':',$e);
 			$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
 			if($startstamp>=$startjudge&&$startstamp<=$finaljudge){
-				$this->error('输入时间冲突1');
+				$this->error('输入时间冲突');
 			}elseif($finalstamp>=$startjudge&&$finalstamp<=$finaljudge){
-				$this->error('输入时间冲突2');
+				$this->error('输入时间冲突');
 			}elseif($startstamp<=$startjudge&&$finalstamp>=$finaljudge){
-				$this->error('输入时间冲突3');
+				$this->error('输入时间冲突');
 			}elseif($startstamp>=$finalstamp){
-				$this->error('输入时间冲突4');
+				$this->error('输入时间冲突');
 			}
 			//判断时间冲突
 		}
@@ -331,32 +317,36 @@ class IndexAction extends CommonAction{
 		$data['hour']=($finalstamp-$startstamp)/3600;
 		
 		$m=M('orders');
+		$t=M('Temp');
+		$temp_conditon['new_order']='1';
+		$add=$t->add($temp_conditon);
 		$lastId=$m->add($data);
-		if($lastId)
+		if($lastId && $add>0){
 			$this->success('提交成功','index');
-		else
+		}else{
 			$this->error('提交失败');
+		}
  
 	 
 	}
-
-	public function exsub(){
-		$m=M('Event');
-		$testname=$_POST['expt_name'];
-		$testcontent=$_POST['expt_detail'];
-		$total=$_POST['expt_times'];
-		$uid=$_SESSION['id'];
-		$condition['testname']=$testname;
-		$condition['testcontent']=$testcontent;
-		$condition['total']=$total;
-		$condition['state']='0';
-		$condition['uid']=$uid;
-		$exp=$m->add($condition);
-		if($exp){
+	
+	public function application(){
+		$event=M('Event');
+		$t=M('Temp');
+		$data['testname']=$_POST['expt_name'];
+		$data['testcontent']=$_POST['expt_detail'];
+		$data['total']=$_POST['expt_times'];
+		$data['state']='0';
+		$data['uid']=$_SESSION['id'];
+		$lastId=$event->add($data);
+		$map['new_event']='1';
+		$add=$t->add($map);
+		if($lastId && $add>0){
 			$this->success('实验申请成功，请耐心等待审核！','__URL__/index');
 		}else{
 			$this->error('实验申请失败，请重试！');
 		}
+		
 	}
 }
 ?>
