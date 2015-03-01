@@ -180,8 +180,8 @@ class UserAction extends AdminCommonAction {
 		$where['id']=$yid;
 		$field=$m->find($id);
 		$yrole=$m->where($where)->find();
-		$tem=$field;
-		if($yrole['role'] != "9" && $field['role']=array('in','2,3,9')){
+		$tem=$field;		
+		if($yrole['role'] != "9" && ($tem['role']=='2' || $tem['role']=='3' || $tem['role']=='9')){
 			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
 		}else{
 			$field['role']='5';
@@ -190,6 +190,7 @@ class UserAction extends AdminCommonAction {
 			$tem['delinfo']=$delinfo;
 			$n->add($tem);
 			$this->redirect('userview');
+			
 		};
 	}	
 
@@ -217,11 +218,11 @@ class UserAction extends AdminCommonAction {
 		$yrole=$m->where($where)->find();
 		$t['id']=array('eq',"$id");
 		$myrole=$m->where($t)->order('id desc')->getField('role');
-		if($yrole['role'] != "9" && $myrole=array('in','2,3,9')){
+		if($yrole['role'] != "9" && ($tem['role']=='2' || $tem['role']=='3' || $tem['role']=='9')){
 			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
 		}else{
 			$count=$m->where($t)->setField('password',MD5('MRIcenter'));
-			$this->display('userview');		
+			$this->redirect('userview');		
 		};
 	}
 
