@@ -1,94 +1,6 @@
 <?php
 class IndexAction extends CommonAction{
-	public function index(){
-		/*
-		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
-		$date=isset($_GET['date'])?$_GET['date']:'点击选择';
-		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
-		$m=M('event');
-		//如果为单数时，改变日期格式
-		list($n,$y,$r)=explode('-',$time);
-		if(strlen($y)==1){
-			$a=0;
-			$a.=$y;
-			$y=$a;
-		}
-		if(strlen($r)==1){
-			$b=0;
-			$b.=$r;
-			$r=$b;
-		}
-		$time=$n;
-		$time.='-';
-		$time.=$y;
-		$time.='-';
-		$time.=$r;
-		$map['starttime']=array('like',''.$time.'%');
-		$result=$m->field('starttime,finaltime')->where($map)->select();//检索今天的预约情况
-		$n=count($result);
-		//为输出的时间段赋予输出格式
-		for($i=0;$i<$n;$i++){
-			if($i==$n-1){
-				list($a,$b)=explode(" ",$result[$i]['starttime']);
-				$judge.=$b;
-				$judge.=':';
-				list($a,$b)=explode(" ",$result[$i]['finaltime']);
-				$judge.=$b;
-			}else{
-				list($a,$b)=explode(' ',$result[$i]['starttime']);
-				$judge.=$b;
-				$judge.=':';
-				list($a,$b)=explode(' ',$result[$i]['finaltime']);
-				$judge.=$b;
-				$judge.=':';
-				}	
-		}
-		if($judge==''){
-			$judge=1;
-		}
-		//判断是否过期
-		list($y,$m,$d)=explode('-',$time);
-		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
-		$a=mktime(0,0,0,$m,$d,$y);//输入日期
-		$b=mktime(0,0,0,$w,$e,$q);//今天的日期
-		if($a<$b){
-			$judge=0;
-		}
-		//判断是否可选
-		$this->assign('time_date2',$date2);
-		$this->assign('time_date',$date);
-		$this->assign('time_disable',$judge);//判断今日不可选区
-		//历史记录
-		$appointment=M('event');
-		$condition['uid']=$_SESSION['id'];
-		$history=$appointment->where($condition)->order('id desc')->select();
-		$n=count($history);
-		for($i=0;$i<$n;$i++){
-			if($history[$i]['state']==0)
-				$history[$i]['state']='未通过审核';
-			else if($history[$i]['state']==2)
-				$history[$i]['state']='待审核';
-			else
-				$history[$i]['state']='通过审核';
-		}
-		$this->assign('list',$history);	
-		//消息记录
-		$notice=D('Notice');
-		$list=$notice->relation(true)->order('id desc')->select();
-		$content=$list[0]['content'];
-		$time=$list[0]['time'];
-		$editor=$list[0]['uid'];
-		$this->assign('content',$content);
-		$this->assign('time',$time);
-		$this->assign('editor',$editor);
-		//个人信息
-		$t=D('ZipView');
-		$ar=$t->select();
-		$this->assign('zip',$ar);
-		var_dump($time);
-		var_dump($judge);
-		//	$this->display();
-		*/
+	public function index(){	
 		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
@@ -118,7 +30,7 @@ class IndexAction extends CommonAction{
 		for($i=0;$i<$n;$i++){
 			$user=M('user');//建立user
 			$condition['id']=$result[$i]['uid'];
-			$user_content=$user->field('role,tel,truename,id')->where($condition)->select();
+			$user_content=$user->where($condition)->select();
 			//管理员的设置
 			if($user_content[0]['role']==2||$user_content[0]['role']==9){
 				//管理员设置的不可预约时间段
@@ -153,11 +65,32 @@ class IndexAction extends CommonAction{
 				$time_disable_2.=$b;
 				$time_disable_2.=':';
 				//时间格式
-				$time_users.=$user_content[0]['truename'];
-				$time_users.=':';
-				$time_users.=$user_content[0]['tel'];
-				$time_users.=':';
-				//用户：电话
+				$time_users_name.=$user_content[0]['truename'];
+				$time_users_name.=':';
+				//用户名
+				$time_users_tel.=$user_content[0]['tel'];
+				$time_users_tel.=':';
+				//用户电话
+				
+				if($user_content[0]['job']==1){
+					$time_users_job.="学生";
+				}else if($user_content[0]['job']==2){
+					$time_users_job.="老师";	
+				}else if($user_content[0]['job']==3){
+					$time_users_job.="其他";
+				}
+				 
+				$time_users_job.=':';
+				//用户身份
+				$time_users_unit.=$user_content[0]['unit'];
+				$time_users_unit.=':';
+				//用户单位
+				$time_users_department.=$user_content[0]['department'];
+				$time_users_department.=':';
+				//用户学院
+				$time_users_principal.=$user_content[0]['principal'];
+				$time_users_principal.=':';
+				//课题负责人
 
 			}
 		
@@ -205,7 +138,13 @@ class IndexAction extends CommonAction{
 		$this->assign('time_disabledReason',$disable_reason);//管理员设置不可预约理由
 		$this->assign('time_disable_2',$time_disable_2);//其余设置的不可预约时间段
 		$this->assign('time_disable_3',$time_disable_3);//用户自己设置的不可预约时间段
-		$this->assign('time_users',$time_users);//用户信息
+		//用户信息批量赋值
+		$this->assign('time_users_name',$time_users_name);//用户名
+		$this->assign('time_users_tel',$time_users_tel);//用户电话
+		$this->assign('time_users_job',$time_users_job);//用户身份
+		$this->assign('time_users_unit',$time_users_unit);//用户单位
+		$this->assign('time_users_department',$time_users_department);//用户学院
+		$this->assign('time_users_principal',$time_users_principal);//课题负责人
 		$this->assign('time_ExperimentName',$ExperimentName);//实验名称
 		//公告栏
 		$notice_list=M('notice');
@@ -258,6 +197,8 @@ class IndexAction extends CommonAction{
 		$a=$m->where($condition)->field('role')->find();
 		if($a['role']==0){
 			$this->error('用户尚未通过审核');
+		}else if($a['role']==2||$a['role']==9){
+			$this->error('管理员不能申请实验');
 		}
 		if($_GET['expt_name']=="暂无预约实验"){
 			$this->error('暂无实验可预约，请先申请实验');
@@ -299,6 +240,10 @@ class IndexAction extends CommonAction{
 			}
 			//判断时间冲突
 		}
+		$hour=($finalstamp-$startstamp)/3600;
+		if($hour<2){
+			$this->error('预约时间不得小于2小时');
+		}
 		$finaltime=$date;
 		$finaltime.=' ';
 		$finaltime.=$_GET['endTime'];
@@ -314,8 +259,7 @@ class IndexAction extends CommonAction{
 		$event_id=$event->field('id')->where($event_condition)->select();
 		$data['eid']=$event_id[0]['id'];
 		$data['uid']=$_SESSION['id'];
-		$data['hour']=($finalstamp-$startstamp)/3600;
-		
+		$data['hour']=$hour;
 		$m=M('orders');
 		$t=M('Temp');
 		$temp_conditon['new_order']='1';
@@ -336,6 +280,7 @@ class IndexAction extends CommonAction{
 		$data['testname']=$_POST['expt_name'];
 		$data['testcontent']=$_POST['expt_detail'];
 		$data['total']=$_POST['expt_times'];
+		$data['ed']=$_POST['expt_ed'];
 		$data['state']='0';
 		$data['uid']=$_SESSION['id'];
 		$lastId=$event->add($data);
