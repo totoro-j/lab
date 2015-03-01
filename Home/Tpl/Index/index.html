@@ -503,13 +503,17 @@ function setSelectedBgColor()//设置选定行的背景色
  
  <!-- demo end -->
 		<!-- 注意：请将要放入弹框的内容放在比如id="HBox"的容器中，然后将box的值换成该ID即可，比如：$(element).hDialog({'box':'#HBox'}); -->
-		<div id="HBox" style="margin-top:-20px;">
+		<div id="HBox" style="margin-top:-20px;height:1000px;">
 		   <form action="__URL__/application" method="post" id="reserveForm">
 				<h3>实验项目申请</h3>
                 <ul class="list">
 					<li>
 						<strong><font color="#ff0000">*</font>实验名称: </strong>
 						<div class="fl"><textarea type="text" name="expt_name" value="" class="ipt expt_name" ></textarea></div>
+					</li>
+                    <li>
+						<strong><font color="#ff0000">*</font>Example Description: </strong>
+						<div class="fl"><textarea type="text" name="expt_ed" value="" class="ipt expt_name" ></textarea></div>
 					</li>
 					<li>
 						<strong><font color="#ff0000">*</font>实验内容</strong>
@@ -524,12 +528,39 @@ function setSelectedBgColor()//设置选定行的背景色
             
                  
                     <div class="buttons">
-                    <div style="padding-left:100px;"><input type="submit" value="确认提交" class="submitBtn" /></div>			
+                    <div style="padding-left:100px;"><div style="margin-left:100px;" on class="submitBtn" onClick="toConfirmSub()"/>确认提交</div></div>			
                     </div>
             </form>
 		</div><!-- HBox end -->	
 
+ <script type="text/javascript">
 
+            function toConfirmSub(){
+			
+				
+				var  submitname=$('textarea[name="expt_name"]').val();
+				var  submited=$('textarea[name="expt_ed"]').val();
+				var  submitdetail=$('textarea[name="expt_detail"]').val();
+				var  submittimes=$('input[name="expt_times"]').val();
+				
+					if(submitname.length==0||submited.length==0||submitdetail.length==0||submittimes.length==0){
+				   
+				alert('请完善申请资料');
+					}
+					else{
+						
+				var result=confirm('请确认您的申请！'+ String.fromCharCode(10)+ String.fromCharCode(10)+'实验名称：'+submitname+ String.fromCharCode(10)+'example description：'+submited
+				+ String.fromCharCode(10)+'实验内容：'+submitdetail+ String.fromCharCode(10)+'预计被试数：'+submittimes);
+				
+			
+				if(result==true){
+					var obj=document.getElementById("reserveForm");
+					obj.submit();
+				}
+				
+				
+				}}
+			</script>
 
 
 <!--这里开始是弹窗-->
