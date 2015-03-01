@@ -12,9 +12,19 @@ $(document).ready(function(){
         })
 })
 </script>
+<script type="text/javascript">
+    function validateTel(){
+    var foundResult=document.getElementById("appointment_check");
+    var notfoundResult=document.getElementById("notfound");
+    if(foundResult.rows.length==2){
+      notfoundResult.style.display='table-cell';
+      foundResult.width=1050;
+    }
+  }
+</script>
 	</head>
 	<body>
-	<h2 style="color:#219E69;margin:0 auto;"> 实验详细信息</h2>
+	<h2 style="color:#219E69;margin:0 auto;">实验详细信息</h2>
 	<table border='1' width="500" align='center' class="show_check">
 		<input type='hidden' name='id' value="<{$data.id}>"/>
            <tr>
