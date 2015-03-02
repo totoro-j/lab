@@ -98,8 +98,8 @@
  <tr><td colspan="7" id="notfound">未找到相关数据</td></tr>
 <volist name='list' id='vo'>
 <tr>
-  <td><a id="<{$vo.username}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>" ><{$vo.username}></a></td>
-  <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.truename}></a></td>
+  <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.username}></a></td>
+  <td><a id="<{$vo.username}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></a></td>
   <td><a href="__URL__/check/id/<{$vo.id}>"><{$vo.principal}></a></td>
   <td><{$vo.time}></td>
   <td><div id="check_button1" class="check_button"><a>等待通过</a></div></td>
@@ -119,7 +119,7 @@
    <div class="refuse_dia">
 	   <input type="text" name="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入拒绝的理由：</p>
-   <textarea name="delinfo" maxlength="100" placeholder="字数在二十字以内..."></textarea>
+   <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    
    <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
    </div></form> 

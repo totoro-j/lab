@@ -9,7 +9,7 @@ class UserAction extends AdminCommonAction {
 		$m=M('User');
 		import('ORG.Util.Page');
 		$count=$m->where('role=1 OR role=2 OR role=3')->order('id desc')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('role=1 OR role=2 OR role=3')->order('id desc')->select();
@@ -22,7 +22,7 @@ class UserAction extends AdminCommonAction {
 		$m=M('User');
 		import('ORG.Util.Page');
 		$count=$m->where('role=0')->order('id desc')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('role=0')->order('id desc')->select();

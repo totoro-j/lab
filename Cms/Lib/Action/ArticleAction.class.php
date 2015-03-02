@@ -9,7 +9,7 @@ class ArticleAction extends AdminCommonAction {
 		$e=M('Article');
 		import('ORG.Util.Page');
 		$count=$e->where('parentid=4')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','篇文章');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->order('id desc')->select();
@@ -75,7 +75,7 @@ class ArticleAction extends AdminCommonAction {
 		$e=M('Banner');
 		import('ORG.Util.Page');
 		$count=$e->count();
-		$page  = new Page($count,3);
+		$page  = new Page($count,5);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
@@ -135,7 +135,7 @@ class ArticleAction extends AdminCommonAction {
 		$e=M('Article');
 		import('ORG.Util.Page');
 	    	$count=$e->where('parentid=1')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','篇文章');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->order('id desc')->select();
@@ -265,7 +265,7 @@ class ArticleAction extends AdminCommonAction {
 		$e=M('Article');
     		import('ORG.Util.Page');
 		$count=$e->where('parentid=2')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->order('id desc')->select();
@@ -394,7 +394,7 @@ class ArticleAction extends AdminCommonAction {
 		$e=M('Article');
 		import('ORG.Util.Page');
 		$count=$e->where('parentid=3')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->order('id desc')->select();

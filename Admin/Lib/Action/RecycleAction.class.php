@@ -8,7 +8,7 @@
 			$e=D('Notice_del');
 			import('ORG.Util.Page');
 			$count=$e->count();
-			$page  = new Page($count,3);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->relation(true)->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
@@ -21,7 +21,7 @@
 			$e=D('Event_delView');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=1')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=1')->order('id desc')->select();
@@ -34,7 +34,7 @@
 			$e=D('Event_delView');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=2')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=2')->order('id desc')->select();
@@ -48,7 +48,7 @@
 			import('ORG.Util.Page');
 			$where['delstate']=array('in','1,3');
 			$count=$e->where($where)->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
@@ -61,7 +61,7 @@
 			$e=M('User_del');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=2')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=2')->order('id desc')->select();
@@ -74,7 +74,7 @@
 			$e=D('Zip_delView');
     			import('ORG.Util.Page');
 			$count=$e->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();

@@ -74,7 +74,7 @@
 			import('ORG.Util.Page');
 			$where['uid']=$_SESSION['id'];
 			$count=$m->where($where)->order('id desc')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
@@ -103,7 +103,7 @@
 			import('ORG.Util.Page');
 			$map['uid']=$_SESSION['id'];
 			$count=$e->where($map)->order('id desc')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($map)->order('id desc')->select();
@@ -124,7 +124,7 @@
 			$where['uid']=$_SESSION['id'];
 			$where['testname']=$content;
 			$count=$m->where($where)->order('id desc')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();

@@ -172,7 +172,7 @@ function rep(){
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
-   <td><a   id="<{$vo.truename}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
+   <td><a   id="<{$vo.username}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
@@ -182,9 +182,9 @@ function rep(){
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
    <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
-   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
-   <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
+   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.username}>)"><div onClick="showBg()">停用用户</div></a></td>
    <td>用户权限</td>
+   <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){
@@ -211,7 +211,7 @@ function rep(){
 
    <form name="myForm" method="post" action="">
    <div class="refuse_dia">
-	   <input type="hidden" name="refuse_ipt" id="refuse_ipt" class="refuse_ipt" value="">
+	   <input  name="refuse_ipt" id="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入停用的理由：</p>
    <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    

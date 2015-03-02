@@ -9,7 +9,7 @@ class EntryAction extends AdminCommonAction {
 		$e=D('EventView');
 		import('ORG.Util.Page');
 		$count=$e->where('state=1')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->order('id desc')->select();
@@ -22,7 +22,7 @@ class EntryAction extends AdminCommonAction {
 		$m=D('EventView');
 		import('ORG.Util.Page');
 		$count=$m->where('state=0')->count();
-		$page  = new Page($count,5);
+		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$m->limit($page->firstRow.','.$page->listRows)->where('state=0')->order('id desc')->select();
