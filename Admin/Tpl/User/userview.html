@@ -18,10 +18,36 @@
 		-moz-opacity:0.5; 
 		-khtml-opacity:0.5; 
 		} 
+		#fullbg_1 { 
+		background-color:#23a96f; 
+		left:0; 
+		opacity:0.5; 
+		position:absolute; 
+		top:0; 
+		z-index:3; 
+		filter:alpha(opacity=50); 	
+		-moz-opacity:0.5; 
+		-khtml-opacity:0.5; 
+		} 
 	#dialog { 
 		background-color:#fff; 
 		border:5px solid #23a96f; 
 		height:400px; 
+		left:50%; 
+		margin:-200px 0 0 -200px; 
+		padding:1px; 
+		position:fixed !important; /* 浮动对话框 */ 
+		position:absolute; 
+		top:50%; 	
+		width:400px; 
+		z-index:5; 
+		border-radius:5px; 
+		display:none; 
+		} 
+		#dialog_1 { 
+		background-color:#fff; 
+		border:5px solid #23a96f; 
+		height:200px; 
 		left:50%; 
 		margin:-200px 0 0 -200px; 
 		padding:1px; 
@@ -64,7 +90,32 @@
 		text-align:center;
 		margin-left:34%;
 		margin-top:20px;
-		}		
+		}
+		#btn{
+		float:left;
+		color:#fff;
+		background:#23a96f;
+		width:80px;
+		padding:3px 10px;
+		text-align:center;
+		margin-left:34%;
+		margin-top:20px;
+		}
+		.usertype{
+			margin-top: 30px;
+			padding-left:39px;
+			float:left;
+		}
+		.userbut
+		{
+			width:80px;
+			height:30px;
+			background-color: #23a96f;
+			border: none;
+			margin-top: 20px;
+			margin-left: 165px;
+			color: #fff;
+		}	
 	
 </style>
 <!--输入完成后校验效果-->
@@ -133,14 +184,36 @@ function rep(){
          else{ return false;}
 	}
 </script>
-<Script Language="JavaScript"> 
+<script Language="JavaScript"> 
     function cancel() 
     { 
     document.myForm.action="__URL__/cancel";
     document.myForm.method="post"; 
     document.myForm.submit(); 
     } 
-</Script>
+</script>
+<!--用户权限的js-->
+<script type="text/javascript">
+function showBg_1() { 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg_1").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+   $("#dialog_1").show(); 
+   } 
+    function closeBg_1() { 
+    $("#fullbg_1,#dialog_1").hide(); 
+   }  		
+	$(function(){
+		if(del==1){
+			showBg_1();}
+			
+		})
+
+</script>
 </head>
 
 <body>
@@ -182,9 +255,9 @@ function rep(){
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
    <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
-   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.username}>)"><div onClick="showBg()">停用用户</div></a></td>
-   <td>用户权限</td>
+   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
+   <td><div onClick="showBg_1()"><a href="#" class="delete" onclick="showId_1(<{$vo.truename}>)">用户权限</a></div></td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){
@@ -218,14 +291,36 @@ function rep(){
    <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认停用</div></a>
    </div></form> 
    </div>
+<!--用户权限弹出框-->
+   <div id="fullbg_1"></div> 
+   <div id="dialog_1"> 
+   <p class="close" style="float:right;padding-right:10px;padding-top:5px;"><a href="#" onclick="closeBg_1()">关闭</a></p> 
+   <form name="myForm_1" method="post" action="">
+   <div class="authority">
+   <p style="margin-top:40px;margin-left:40px;color:#23a96f;">请选择权限：</p>
+   <input type="hidden" name="user" class="user" value="">  
+   <span class="usertype"><input type="radio" value="1" name="usertype" >正式用户</span>
+   <span class="usertype"><input type="radio" value="2" name="usertype" >首页管理员</span>
+   <span class="usertype"><input type="radio" value="3" name="usertype" >预约管理员</span>
+   <input type="submit"  value="确认" class="userbut">
+   </div>
+   </form>
+
+   </div>
 
 </body>
 
    
    <script type="text/javascript">
-	function showId(num){		
+	function showId(num){	
 		var numberType=num.getAttribute("data-number");
 		$('.refuse_ipt').attr("value",numberType);
 	}
-</script>
+ </script>
+ <script type="text/javascript">
+	function showId_1(num){	
+		var numberType=num.getAttribute("data-number");
+		$('.user').attr("value",numberType);
+	}
+ </script>
 </html>
