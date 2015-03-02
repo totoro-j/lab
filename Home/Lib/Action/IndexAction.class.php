@@ -198,7 +198,7 @@ class IndexAction extends CommonAction{
 		if($a['role']==0){
 			$this->error('用户尚未通过审核');
 		}else if($a['role']==2||$a['role']==9){
-			$this->error('管理员不能申请实验');
+			$this->error('管理员请在后台修改不可用时间');
 		}
 		if($_GET['expt_name']=="暂无预约实验"){
 			$this->error('暂无实验可预约，请先申请实验');
@@ -259,7 +259,7 @@ class IndexAction extends CommonAction{
 		$event_id=$event->field('id')->where($event_condition)->select();
 		$data['eid']=$event_id[0]['id'];
 		$data['uid']=$_SESSION['id'];
-		$data['hour']=$hour;
+		$data['hours']=$hour;
 		$m=M('orders');
 		$t=M('Temp');
 		$temp_conditon['new_order']='1';
@@ -275,6 +275,14 @@ class IndexAction extends CommonAction{
 	}
 	
 	public function application(){
+		$m=M('user');
+		$condition['id']=$_SESSION['id'];
+		$a=$m->where($condition)->field('role')->find();
+		if($a['role']==0){
+			$this->error('用户尚未通过审核');
+		}else if($a['role']==2||$a['role']==9){
+			$this->error('管理员不可提交实验');
+		}
 		$event=M('Event');
 		$t=M('Temp');
 		$data['testname']=$_POST['expt_name'];
