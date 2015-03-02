@@ -234,4 +234,24 @@ class UserAction extends AdminCommonAction {
 			echo 'n';	
 		}
 	}
+
+	public function role(){
+		$m=M('User');
+		$id=$_POST['role_ed'];
+		$role=$_POST['usertype'];
+		$yid=$_SESSION['id'];
+		$where['id']=$yid;
+		$field=$m->find($id);
+		$yrole=$m->where($where)->find();
+		$sys=$field;
+		if($yrole['role'] != "9"){
+			echo"<script type='text/javascript'>alert('权限不足，操作被拒绝！');history.back(-1);</script>";
+		}else if(!isset($role) || $role == ""){
+			echo"<script type='text/javascript'>alert('你未选择用户权限！');history.back(-1);</script>";
+		}else{
+			$sys['role']=$role;
+			$m->save($sys);
+			$this->redirect('userview');
+		};
+	}
 }
