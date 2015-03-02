@@ -5,16 +5,10 @@ class BakAction extends AdminCommonAction
  public function index()
  {
 	$dbName=C('DB_NAME');
-	$re[0]='lab_event';
-	$re[1]='lab_event_del';
-	$re[2]='lab_notice';
-	$re[3]='lab_notice_del';
-	$re[4]='lab_orders';
-	$re[5]='lab_temp';
-	$re[6]='lab_user';
-	$re[7]='lab_user_del';
-	$re[8]='lab_zip';
-	$re[9]='lab_zip_del';
+	$re[0]='lab_article';
+	$re[1]='lab_article_del';
+	$re[2]='lab_banner';
+	$re[3]='lab_banner_del';
 	$this->assign("re",$re);
 	$this->display();
   
@@ -32,7 +26,7 @@ class BakAction extends AdminCommonAction
 	  $struct=$this->bakStruct($table);
 	  $record=$this->bakRecord($table);
 	  $sqls=$struct.$record;
-	  $namsql="MRI-".date("y-m-d").'-'.time().".sql";
+	  $namsql="CMS-".date("y-m-d").'-'.time().".sql";
 	  $dir="./Backup/".$namsql;
 	  file_put_contents($dir,$sqls);
 	  if(file_exists($dir))

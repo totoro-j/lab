@@ -21,7 +21,7 @@
 		        $e=M('Article_del');
     			import('ORG.Util.Page');
 			$count=$e->where('parentid=1')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=1')->order('id desc')->select();
@@ -34,7 +34,7 @@
 			$e=M('Article_del');
     			import('ORG.Util.Page');
 			$count=$e->where('parentid=2')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=2')->order('id desc')->select();
@@ -47,7 +47,7 @@
 			$e=M('Article_del');
     			import('ORG.Util.Page');
 			$count=$e->where('parentid=3')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=3')->order('id desc')->select();
@@ -60,7 +60,7 @@
 			$e=M('Article_del');
     			import('ORG.Util.Page');
 			$count=$e->where('parentid=4')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','篇文章');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('parentid=4')->order('id desc')->select();

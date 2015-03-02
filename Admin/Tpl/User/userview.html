@@ -192,6 +192,14 @@ function rep(){
     document.myForm.submit(); 
     } 
 </script>
+<script Language="JavaScript"> 
+    function role() 
+    { 
+    document.myForm_1.action="__URL__/role";
+    document.myForm_1.method="post"; 
+    document.myForm_1.submit(); 
+    } 
+</script>
 <!--用户权限的js-->
 <script type="text/javascript">
 function showBg_1() { 
@@ -245,7 +253,7 @@ function showBg_1() {
       </tr>
 <volist name='list' id='vo'>
 <tr class="tt">
-   <td><a   id="<{$vo.truename}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>" ><{$vo.truename}></td>
+   <td><a   id="<{$vo.username}>" href="__URL__/check/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.truename}></td>
    <td><if condition='$vo.sex eq 1'>男<else />女</if></td>
    <td><{$vo.unit}></td>
    <td><{$vo.department}></td>
@@ -255,9 +263,9 @@ function showBg_1() {
    <td><{$vo.mail}></td>
    <td><{$vo.time}></td>
    <td><switch name='vo.role'><case value="1">正式用户</case><case value="2">预约管理员</case><case value="3">首页管理员</case><default />未知</switch></td>
-   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.truename}>)"><div onClick="showBg()">停用用户</div></a></td>
+   <td class="info_correct"><a href="#" class="delete" onclick="showId(<{$vo.username}>)"><div onClick="showBg()">停用用户</div></a></td>
+   <td><div onClick="showBg_1()"><a href="#" class="delete" onclick="showId_1(<{$vo.username}>)">用户权限</a></div></td>
    <td class="pwd_reset" id="but"><a href="__URL__/repwd/id/<{$vo.id}>" class="button"  onclick="return rep(this)">重置密码</a></td>
-   <td><div onClick="showBg_1()"><a href="#" class="delete" onclick="showId_1(<{$vo.truename}>)">用户权限</a></div></td>
   </tr>
   <script>
 	if('<{$vo.password}>'=='20575ebc2b40c6eb6f3f51fd9f0ae5fa'){
@@ -284,7 +292,7 @@ function showBg_1() {
 
    <form name="myForm" method="post" action="">
    <div class="refuse_dia">
-	   <input type="hidden" name="refuse_ipt" id="refuse_ipt" class="refuse_ipt" value="">
+	   <input  name="refuse_ipt" id="refuse_ipt" class="refuse_ipt" value="">
    <p>请输入停用的理由：</p>
    <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    
@@ -298,11 +306,11 @@ function showBg_1() {
    <form name="myForm_1" method="post" action="">
    <div class="authority">
    <p style="margin-top:40px;margin-left:40px;color:#23a96f;">请选择权限：</p>
-   <input type="hidden" name="user" class="user" value="">  
-   <span class="usertype"><input type="radio" value="1" name="usertype" >正式用户</span>
-   <span class="usertype"><input type="radio" value="2" name="usertype" >首页管理员</span>
-   <span class="usertype"><input type="radio" value="3" name="usertype" >预约管理员</span>
-   <input type="submit"  value="确认" class="userbut">
+   <input  name="role_ed" id="role_ed" class="role_ed" value="">  
+   <span class="usertype"><input type="radio" checked="checked" value="1" name="usertype" >正式用户</span>
+   <span class="usertype"><input type="radio" value="2" name="usertype" >预约管理员</span>
+   <span class="usertype"><input type="radio" value="3" name="usertype" >首页管理员</span>
+   <input type="submit"  value="确认" onClick="role()" class="userbut">
    </div>
    </form>
 
@@ -320,7 +328,7 @@ function showBg_1() {
  <script type="text/javascript">
 	function showId_1(num){	
 		var numberType=num.getAttribute("data-number");
-		$('.user').attr("value",numberType);
+		$('.role_ed').attr("value",numberType);
 	}
  </script>
 </html>
