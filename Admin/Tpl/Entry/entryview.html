@@ -7,7 +7,6 @@
 <title>机时统计界面</title>
 <load href="__PUBLIC__/Js/jquery.js" />
 <load href="/Public/Js/Base.js" />
-8
 <load href="/Public/Js/Ajax/ThinkAjax.js" />
 
 <style>#fullbg { 
@@ -88,13 +87,15 @@ $("document").ready(function(){
       })
 })    
 </script>
-<script>
-  window.onload = function(){
-	     var trnum=document.getElementById('stastic_check').rows.length
-			 if(trnum!=2){
-				      document.getElementById('nodata').style.display="none"; 
-				 }
-				}
+<script type="text/javascript">
+    function validateTel(){
+		var foundResult=document.getElementById("stastic_check");
+		var notfoundResult=document.getElementById("notfound");
+		if(foundResult.rows.length==2){
+			notfoundResult.style.display='table-cell';
+			foundResult.width=1050;
+		}
+	}
 </script>
 
 <Script Language="JavaScript"> 
@@ -147,7 +148,7 @@ $("document").ready(function(){
 		
 </script>
 <Script Language="JavaScript"> 
-    function cancel() 
+     
     { 
     document.myForm.action="__URL__/cancel";
     document.myForm.method="post"; 
@@ -201,7 +202,7 @@ $("document").ready(function(){
 	   <td class="info_correct"><a onclick="showId(<{$vo.testname}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">停止实验</div></a></td>
 </tr>
 </volist>
-<tr><td id="nodata"  colspan="6">没有相关数据</td></tr>
+<tr><td id="notfound"  colspan="6">没有相关数据</td></tr>
 </table>
 <!--普通实验表格结束-->
 

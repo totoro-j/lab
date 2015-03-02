@@ -22,7 +22,7 @@ $(document).ready(function(){
 <body >
 <h2 style="color:#219E69;margin:0 auto;font-size:25px;"> 预约历史时间查询</h2>
 
-  <form name="stastic_search"  method="post" action="__URL__/entrytime">
+  <form name="stastic_search"  method="post" action="__URL__/entrytime" id="searchForm">
   <!--包含起始时间和终止时间的日历--> 
     <!--起始时间的日历-->
     <div class="data_box" id="data_box" style="margin-bottom:-28px;margin-left:100px;margin-top:40px;">  
@@ -120,9 +120,14 @@ $(document).ready(function(){
 
 </form>
 
+
+<table id="welcome" class="stastic_check" style="width:1080px;height:50px;">
+  <th>欢迎来到时间搜索页面,点击搜索框搜索相关内容</th>
+</table>
+
+
 <volist name='list' id='vo'>
-<table  id="time_table">
-  
+<table  id="time_table" > 
 <!--A实验-->
 <tr title="点击显示详细内容">
   <td class="foldButton">
@@ -179,6 +184,8 @@ $(document).ready(function(){
 
 </table>
 </volist>
+
+</div>
 
 
 <script language="JavaScript">
