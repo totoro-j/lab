@@ -9,9 +9,10 @@
 		<load href="__PUBLIC__/Js/jquery.js"/>
 	<script>
 		$(function(){
-		
+	//	
 			var error1=new Array();
-			 var patten = /^[a-zA-Z]\w{1,16}$/ig;
+			 //var patten = /^[a-zA-Z]\w{1,16}$/ig;
+			// var patten2=/^[A-Za-z]+$/ig; 
 			$('input[name="username"]').blur(function(){
 				var username=$(this).val();
 				if(username.length!=0)
@@ -23,7 +24,8 @@
 					}else if(!patten.test(username))
              {          
 			        error1['username']=1;
-                   $('#umessage').css("color","red").text('请勿以数字开头');
+                   $('#umessage').css("color","red").text('请勿以纯数字或纯英文注册');
+                      
 
                    return false;
             }
@@ -169,35 +171,32 @@
 	<body onLoad="document.myForm.reset()">
 		<form action='__URL__/doReg' method='post' name='myForm'>
 			<h3>注册页面</h3>
-		   <span class="title"><font color="#ff0000" style="background:#fff;">*</font>登录用户名：</span><input type='text'  class="username" name='username' onKeyUp="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限数字、下划线和英文大小写，不能以数字开头</span><br/>
-			<span class="title"><font color="#ff0000" style="background:#fff;">*</font>真实姓名：</span><input type='text' name='truename'/><br/>
-			 <span class="title"> <font color="#ff0000" style="background:#fff;">*</font>密码：</span><input type='password' name='password' /> <span id="pmessage1">不少于六位数</span><br/>
-		<span class="title"><font color="#ff0000" style="background:#fff;">*</font>确认密码：</span><input type='password' name='repassword' /><span id="pmessage2"></span><br/>
-			   <span class="title"><font color="#ff0000" style="background:#fff;">*</font>性别：</span><input type='radio' name='sex' value='1' class='radio'/>男
+		   <span class="title">登录用户名：</span><input type='text'  class="username" name='username' onKeyUp="value=value.replace(/[^\w\.\/]/ig,'')"/> <span id="umessage">仅限数字、下划线和英文大小写，不能以数字开头</span><br/>
+			<span class="title">真实姓名：</span><input type='text' name='truename'/><br/>
+			 <span class="title"> 密码：</span><input type='password' name='password' /> <span id="pmessage1">不少于六位数</span><br/>
+		<span class="title">确认密码：</span><input type='password' name='repassword' /><span id="pmessage2"></span><br/>
+			   <span class="title">性别：</span><input type='radio' name='sex' value='1' class='radio'/>男
 			      <input type='radio' name='sex' value='0' class='radio' />女</div><br/>
-			    <span class="title"><font color="#ff0000" style="background:#fff;">*</font>单位：</span><input type='text' name='unit'/><br/>
-		   <span class="title"><font color="#ff0000" style="background:#fff;">*</font>学院（部门)：</span><input type='text' name='department'/><br/>
+			    <span class="title">单位：</span><input type='text' name='unit'/><br/>
+		   <span class="title">学院（部门)：</span><input type='text' name='department'/><br/>
 		 <span class="title">注册身份：：</span><input type='radio' name='job' value='1' class='radio' checked="checked" onClick="ShowAdmin()"/>老师
 			      <input type='radio' name='job' value='2' class='radio' onClick="ShowAdmin()" id="student"/>学生
 			      <input type='radio' name='job' value='0' class='radio' onClick="ShowAdmin()"/>其它</div><br/>
                   
-		          <div id="job_detail" style="display:none;background:#fff"> 
-                 	 <span class="title"><font color="#ff0000" style="background:#fff;">*</font>学历：</span><input type='radio' name='degree' value='2' class='radio' id="DC"/>博士
+		          <div id="job_detail" style="display:none"> 
+                 	 <span class="title">学历：</span><input type='radio' name='degree' value='2' class='radio' id="DC"/>博士
 			      								  <input type='radio' name='degree' value='1' class='radio' id="PG"/>硕士<br/>
-					 <span class="title"><font color="#ff0000" style="background:#fff;">*</font>导师：</span><input type='text' name='tutor'/><br/>
-					 <span class="title"><font color="#ff0000" style="background:#fff;">*</font>年级：</span><input type='text' name='grade'/><br/> 
+					 <span class="title">导师：</span><input type='text' name='tutor'/><br/>
+					 <span class="title">年级：</span><input type='text' name='grade'/><br/> 
 		     	  </div>
                     
-                     <span class="title"><font color="#ff0000" style="background:#fff;">*</font>课题负责人：</span><input type='text' name='principal'/><br/> 
-		      <span class="title"><font color="#ff0000" style="background:#fff;">*</font>联系电话：</span><input type='text' name='tel' onKeyUp="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
-		        <span class="title"> <font color="#ff0000" style="background:#fff;">*</font>邮箱：</span><input type='text' name='mail'/><span id="mmessage">请输入有效邮箱地址</span><br/>
-			<span class="title"><font color="#ff0000" style="background:#fff;">*</font>验 证 码：</span><input type='text' name='code'/><br/>
+                     <span class="title">课题负责人：</span><input type='text' name='principal'/><br/> 
+		      <span class="title">联系电话：</span><input type='text' name='tel' onKeyUp="value=this.value.replace(/\D+/g,'')"/> <span id="nmessage">请留下11位有效号码</span><br/>
+		        <span class="title"> 邮箱：</span><input type='text' name='mail'/><span id="mmessage">请输入有效邮箱地址</span><br/>
+			<span class="title">验 证 码：</span><input type='text' name='code'/><br/>
 					 <div style="position:relative;width:100px;top:-40px;right:-305px;background:#fff;"> <Message:code width='60' height='30' />	 </div> 
 				      <br/>
-            <p style="width:100px;margin:0 auto;color:#999;margin-bottom:10px;background:#fff;">请认真填写每一项</p>          
 		</form>
-        
-      
         
         <div class="button">
 			<div class='register'>注册</div>
