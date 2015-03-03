@@ -122,16 +122,22 @@
 		 	{obj3[1].checked="true"}
 			
 		var obj5=document.getElementsByName('data_degree');
-		 var obj6=document.getElementById('degree');
+		var obj6=document.getElementById('degree');
 		 if (obj6.innerText=='学历：博士')
 		 	{obj5[0].checked="true"}
-		 else if (obj4.innerText=='学历：硕士')
+		 else if (obj6.innerText=='学历：硕士')
 		 	{obj5[1].checked="true"}
 	
-
+	
+     
 </script>
         
          <script type="text/javascript">
+		 var s=document.getElementsByName("data_job");
+		 if  (s[1].checked){		
+				$('#job_detail').slideDown(300);
+			
+			}
 		function ShowAdmin(){
 	 		var s=document.getElementsByName("data_job");
 	  	 	if  (s[1].checked){		
