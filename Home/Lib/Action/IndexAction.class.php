@@ -1,9 +1,17 @@
 <?php
-class IndexAction extends CommonAction{
+class IndexAction extends Action{
 	public function index(){	
 		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
+		$this->assign('date',$time);
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
+		//判断是不是游客，如果是0，则是游客。如果是1，则不是游客
+		if($_SESSION['id']==''){
+			$user_role=0;	
+		}else{
+			$user_role=1;
+		}
+		$this->assign('user_role',$user_role);
 		//如果为单数时，改变日期格式
 		list($n,$y,$r)=explode('-',$time);
 		if(strlen($y)==1){
@@ -21,7 +29,17 @@ class IndexAction extends CommonAction{
 		$time.=$y;
 		$time.='-';
 		$time.=$r;
+		
 		//结束
+		//前一天与后一天的时间
+		$todayStamp=mktime(0,0,0,$y,$r,$n);
+		$tomorrowStamp=$todayStamp+86400;
+		$yesterdayStamp=$todayStamp - 86400;
+		$past_day=date('Y-m-d',$yesterdayStamp);
+		$next_day=date('Y-m-d',$tomorrowStamp);
+		$this->assign('past_day',$past_day);
+		$this->assign('next_day',$next_day);
+		//后台传值预约信息的判断
 		$m=M('orders');
 		$map['starttime']=array('like',''.$time.'%');
 		$result=$m->field('starttime,finaltime,eid,uid,info')->where($map)->select();//检索选择日期的预约情况
@@ -65,6 +83,8 @@ class IndexAction extends CommonAction{
 				$time_disable_2.=$b;
 				$time_disable_2.=':';
 				//时间格式
+				//判断是否为游客
+				if($user_role==1){
 				$time_users_name.=$user_content[0]['truename'];
 				$time_users_name.=':';
 				//用户名
@@ -91,6 +111,7 @@ class IndexAction extends CommonAction{
 				$time_users_principal.=$user_content[0]['principal'];
 				$time_users_principal.=':';
 				//课题负责人
+				}
 
 			}
 		
@@ -151,13 +172,14 @@ class IndexAction extends CommonAction{
 		$notice=$notice_list->order('id desc')->select();
 		$notice_content=$notice[0]['content'];
 		$notice_time=$notice[0]['time'];
+		list($notice_time,$a)=explode(" ",$notice_time);
 		$user_condition['id']=$notice[0]['uid'];
 		$user_list=M('user');
 		$user=$user_list->where($user_condition)->select();
 		$notice_user=$user[0]['username'];
 		$this->assign('content',$notice_content);
-		$this->assign('editor',$notice_user);
 		$this->assign('time',$notice_time);
+		//下载
 		$t=D('ZipView');
 		$ar=$t->select();
 		$this->assign('zip',$ar);
@@ -204,9 +226,11 @@ class IndexAction extends CommonAction{
 			$this->error('暂无实验可预约，请先申请实验');
 		}
 
-		$date=isset($_GET['reserveDate'])?$_GET['reserveDate']:date('Y-m-d',time());//判断日期
+		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//判断日期
+		$Ndate=$date;//后台传到前端的值
 		$starttime=$_GET['startTime'];
 		$finaltime=$_GET['endTime'];
+		var_dump($_GET['date']);
 		list($y,$m,$d)=explode('-',$date);
 		list($sh,$sf,$ss)=explode(':',$starttime);
 		list($fh,$ff,$fs)=explode(':',$finaltime);
@@ -216,6 +240,12 @@ class IndexAction extends CommonAction{
 		}
 		$startstamp=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间转换为时间戳
 		$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
+		//判断是否距离现在时间没有超过2小时，未超过报错
+		$nowstamp=time();
+		if(($startstamp-$nowstamp)/3600<2){
+			var_dump(($startstamp-$nowstamp)/3600);
+			$this->error('不能预约据现在不到两小时的时间');
+		}
 		$appointment=M('orders');
 		$map['starttime']=array('like',''.$date.'%');//检索条件
 		$result=$appointment->field('starttime,finaltime')->where($map)->select();//检索今天的预约情况
@@ -241,9 +271,6 @@ class IndexAction extends CommonAction{
 			//判断时间冲突
 		}
 		$hour=($finalstamp-$startstamp)/3600;
-		if($hour<2){
-			$this->error('预约时间不得小于2小时');
-		}
 		$finaltime=$date;
 		$finaltime.=' ';
 		$finaltime.=$_GET['endTime'];
@@ -252,7 +279,6 @@ class IndexAction extends CommonAction{
 		$starttime.=$_GET['startTime'];
 		$data['finaltime']=$finaltime;//结束时间
 		$data['starttime']=$starttime;//起始时间
-		
 		$event_condition['testname']=$_GET['expt_name'];
 		$event_condition['uid']=$_SESSION['id'];
 		$event=M('event');
@@ -266,7 +292,7 @@ class IndexAction extends CommonAction{
 		$add=$t->add($temp_conditon);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
-			$this->success('提交成功','index');
+			$this->success('提交成功','index/date/'.$Ndate.'');
 		}else{
 			$this->error('提交失败');
 		}
