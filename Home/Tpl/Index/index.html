@@ -98,8 +98,9 @@ function setSelectedBgColor()//设置选定行的背景色
  </script>
 </head>
 
+<body onLoad="document.reserveForm.reset()">
  <div id="header">
-   		<div id="logo"><a href="__URL__/Index">核磁共振实验室预约系统</a><div id="time"></div></div>
+   		<div id="logo"><a href="__URL__/index">核磁共振实验室预约系统</a><div id="time"></div></div>
         <div id="user">
    			<ul>
    				<li><em style='padding-left:15px;' class="t_user_ico1"></em>欢迎你，用户 <{$Think.session.username}></li>
@@ -136,7 +137,7 @@ function setSelectedBgColor()//设置选定行的背景色
             <tr>
 			  <td style="width:600px;"><{$vo.filename}></td>
 			  <td style="width:80px;"><{$vo.size}>KB</td>
-              <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'>下载</a></td>
+              <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'><div style="padding:10px 4px;background:#23a96f;color:#fff;text-align:center;">下载</div></a></td>
 	      <td>发布人：<{$vo.truename}></td>
       	     <td><{$vo.date}></td>
             </tr>  
@@ -161,16 +162,17 @@ function setSelectedBgColor()//设置选定行的背景色
     <input style="display:none" value="<{$time_disable_1}>" id="to_get_time_disable_1" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_disable_2}>" id="to_get_time_disable_2" />  <!--这个不可选时间是已经被预约的时间 -->
     <input style="display:none" value="<{$time_disable_3}>" id="to_get_time_disable_3" />  <!--这个不可选时间是自己已经预约了的时间 -->
-    <input style="display:none" value="<{$time_users}>" id="to_get_time_users" />        <!--对应时间的用户和联系方式 -->
+    <input style="display:none" value="<{$time_users_name}>" id="to_get_time_users_name" />        <!--对应时间的用户和联系方式 -->
     <input style="display:none" value="<{$time_disabledReason}>" id="to_get_time_disabledReason" />    <!--老师设定的不可选时间对应的理由-->
-    <input style="display:none" value="<{$time_ExperimentName}>" id="to_get_time_ExperimentName" />    <!--可以选择的实验-->
+    <input style="display:none" value="<{$time_users_tel}>" id="to_get_time_users_tel" />    <!--可以选择的实验-->
+    <input style="display:none" value="<{$time_users_job}>" id="to_get_time_users_job" />
+    <input style="display:none" value="<{$time_ExperimentName}>" id="to_get_time_ExperimentName" />
+    <input style="display:none" value="<{$time_users_unit}>" id="to_get_time_users_unit" />
+    <input style="display:none" value="<{$time_users_department}>" id="to_get_time_users_department" />
+    <input style="display:none" value="<{$time_users_principal}>" id="to_get_time_users_principal" />
     
         <div class="can_1">机时预约</div>
-  
-  
-  
-  
-  <!--这里是三个日历-->
+          <!--这里是三个日历-->
   <script type="text/javascript"> 
 var calendar = { 
 dayTable:null, 
@@ -194,7 +196,7 @@ calendar.clearCalendar(form);
 var monthLen = calendar.getMonthLen(calendar.year,calendar.month);
 var firstDay = calendar.getFirstDay(calendar.year,calendar.month); 
 for(var i = 1;i <= monthLen;i++){
-	var urladd = "<a href='__URL__/index/date/"+calendar.year+"-"+(calendar.month+1)+"-"+i+"'>"+ i +"</a>";
+    var urladd = "<a href='__URL__/index/date/"+calendar.year+"-"+(calendar.month+1)+"-"+i+"'>"+ i +"</a>";
 calendar.dayTable[i+firstDay-1].innerHTML =urladd;
 if((i+firstDay-2) == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){
 calendar.dayTable[i+firstDay-1].id = 'today'; 
@@ -222,7 +224,7 @@ calendar.init(calendars2,2);
 calendar.init(calendars3,3); 
 } 
 </script> 
-<div style="width:960px;height:245px;margin:0 auto;" id="tricalendar">
+<div style="width:960px;height:245px;margin:0 auto;padding-top:50px;" id="tricalendar">
 <table id="calendar" cellspacing="0"> 
 <tr>  
 <th> </th> 
@@ -444,11 +446,11 @@ calendar.init(calendars3,3);
   
   
   
-      		
-    <!--   		<form name="reserveDate" action="__URL__/index" method="get" id="reserveDateForm" >
+            
+    <!--        <form name="reserveDate" action="__URL__/index" method="get" id="reserveDateForm" >
             <p style="display:block;width:120px;line-height:12px">输入查看时间段：</p>
          <input type="submit" value="查看预约情况" style="float:right;margin-right:-490px;margin-top:-20px;height:30px" class="submitBtn" />
-			<input type="text"  class="showDate" name="date" value="<{$time_date}>" />
+            <input type="text"  class="showDate" name="date" value="<{$time_date}>" />
             -->
 	    	
             
@@ -456,7 +458,8 @@ calendar.init(calendars3,3);
             
             <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试   	<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
             <div id="toSubmitSelectedDate" value="">查看所选日期可预约时间</div>   -->
-   	   <div style="width:300px;margin:0 auto;margin-top:-25px">
+ 		   </form>
+   	   <div style="width:300px;margin:0 auto;margin-top:-30px">
         <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
         <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
@@ -599,7 +602,7 @@ calendar.init(calendars3,3);
 				$('input[name="toSubmitDate"]').val=$reserveDate;
 				var selectStartTime=$('select[name="startTime"]').val();
 				var selectEndTime=$('select[name="endTime"]').val();
-				var result=confirm('请确认您的预约信息！'+String.fromCharCode(10)+String.fromCharCode(10)+'实验名称：'+selectText+String.fromCharCode(10)+'实验日期：'+$reserveDate+selectText+String.fromCharCode(10)+'实验起始时间：'+selectStartTime1+'：'+selectStartTime2+String.fromCharCode(10)+'实验结束时间：'+selectEndTime1+'：'+selectEndTime2+String.fromCharCode(10)+'实验时间总计：'+lastingTime);
+				var result=confirm('请确认您的预约信息！'+String.fromCharCode(10)+String.fromCharCode(10)+'实验名称：'+selectText+String.fromCharCode(10)+'实验日期：'+$reserveDate+String.fromCharCode(10)+'实验起始时间：'+selectStartTime1+'：'+selectStartTime2+String.fromCharCode(10)+'实验结束时间：'+selectEndTime1+'：'+selectEndTime2+String.fromCharCode(10)+'实验时间总计：'+lastingTime);
 				
 				if(result==true){
 					var obj=document.getElementById("myForm");
@@ -680,7 +683,7 @@ calendar.init(calendars3,3);
 			<div class="table" id="tab1_1">
             <div class="table_title" style="margin-left:55px;"><a><00:00~07:00></a></div>
              <table>
-                <tr class="odd_row"><td id="00:30" class="time_period">00:00~00:30</td></tr>
+                <tr class="odd_row"><td id="00:00" class="time_period">00:00~00:30</td></tr>
                 <tr class="even_row"><td id="00:30" class="time_period">00:30~01:00</td></tr>
                 <tr class="odd_row"><td id="01:00" class="time_period">01:00~01:30</td></tr>
                 <tr class="even_row"><td id="01:30" class="time_period">01:30~02:00</td></tr>
@@ -703,7 +706,7 @@ calendar.init(calendars3,3);
             <div class="table" id="tab1_2">
              <div class="table_title" style="margin-left:10px;"><a style="margin-top:-24px;margin-left:340px;"><07:00~22:00></a></div>
             <table>
-   				 <tr class="odd_row"><td id="08:00" class="time_period">08:00~08:30</td></tr>
+   		<tr class="odd_row"><td id="08:00" class="time_period">08:00~08:30</td></tr>
                 <tr class="even_row"><td id="08:30" class="time_period">08:30~09:00</td></tr>
                 <tr class="odd_row"><td id="09:00" class="time_period">09:00~09:30</td></tr>
                 <tr class="even_row"><td id="09:30" class="time_period">09:30~10:00</td></tr>
@@ -780,13 +783,17 @@ calendar.init(calendars3,3);
  
  <!-- demo end -->
 		<!-- 注意：请将要放入弹框的内容放在比如id="HBox"的容器中，然后将box的值换成该ID即可，比如：$(element).hDialog({'box':'#HBox'}); -->
-		<div id="HBox" style="margin-top:-20px;">
-		   <form action="__URL__/application" method="get" id="reserveForm">
+		<div id="HBox" style="margin-top:-20px;height:1000px;">
+		   <form action="__URL__/application" method="post" id="reserveForm">
 				<h3>实验项目申请</h3>
                 <ul class="list">
 					<li>
 						<strong><font color="#ff0000">*</font>实验名称: </strong>
 						<div class="fl"><textarea type="text" name="expt_name" value="" class="ipt expt_name" ></textarea></div>
+					</li>
+                    <li>
+						<strong><font color="#ff0000">*</font>Example Description: </strong>
+						<div class="fl"><textarea type="text" name="expt_ed" value="" class="ipt expt_name" ></textarea></div>
 					</li>
 					<li>
 						<strong><font color="#ff0000">*</font>实验内容</strong>
@@ -801,14 +808,39 @@ calendar.init(calendars3,3);
             
                  
                     <div class="buttons">
-                    <div style="padding-left:100px;"><input type="submit" value="确认提交" class="submitBtn" /></div>
-                    <div style="padding-left:100px;"><input type="submit" value="返回修改时间" class="resetBtn" /></div>
-			
+                    <div style="padding-left:100px;"><div style="margin-left:100px;" on class="submitBtn" onClick="toConfirmSub()"/>确认提交</div></div>			
                     </div>
             </form>
 		</div><!-- HBox end -->	
 
+ <script type="text/javascript">
 
+            function toConfirmSub(){
+			
+				
+				var  submitname=$('textarea[name="expt_name"]').val();
+				var  submited=$('textarea[name="expt_ed"]').val();
+				var  submitdetail=$('textarea[name="expt_detail"]').val();
+				var  submittimes=$('input[name="expt_times"]').val();
+				
+					if(submitname.length==0||submited.length==0||submitdetail.length==0||submittimes.length==0){
+				   
+				alert('请完善申请资料');
+					}
+					else{
+						
+				var result=confirm('请确认您的申请！'+ String.fromCharCode(10)+ String.fromCharCode(10)+'实验名称：'+submitname+ String.fromCharCode(10)+'example description：'+submited
+				+ String.fromCharCode(10)+'实验内容：'+submitdetail+ String.fromCharCode(10)+'预计被试数：'+submittimes);
+				
+			
+				if(result==true){
+					var obj=document.getElementById("reserveForm");
+					obj.submit();
+				}
+				
+				
+				}}
+			</script>
 
 
 <!--这里开始是弹窗-->
@@ -876,7 +908,7 @@ calendar.init(calendars3,3);
 		obj1[j].setAttribute('onclick',"javascript:function(){};"); 	
 		obj1[j].style.cursor="default";			
 		obj1[j].style.backgroundColor='#ffffff';
-		obj2[j].removeAttribute('disabled');      
+		obj2[j+1].removeAttribute('disabled');      
 		obj2[j+48].removeAttribute('disabled');  	
 	}
 	
@@ -885,9 +917,16 @@ calendar.init(calendars3,3);
 	var time_disable_1=document.getElementById("to_get_time_disable_1").value;
 	var time_disable_2=document.getElementById("to_get_time_disable_2").value;
 	var time_disable_3=document.getElementById("to_get_time_disable_3").value;
-	var time_users=document.getElementById("to_get_time_users").value;
+	var time_users_name=document.getElementById("to_get_time_users_name").value;
 	var time_disabledReason=document.getElementById("to_get_time_disabledReason").value;
 	var time_ExperimentName=document.getElementById("to_get_time_ExperimentName").value;
+
+	var time_users_department=document.getElementById("to_get_time_users_department").value;
+	var time_users_principal=document.getElementById("to_get_time_users_principal").value;	
+	var time_users_unit=document.getElementById("to_get_time_users_unit").value;
+	var time_users_job=document.getElementById("to_get_time_users_job").value;
+	var time_users_tel=document.getElementById("to_get_time_users_tel").value;  
+	
 	if(time_judge==0)
 	{
 		
@@ -896,8 +935,8 @@ calendar.init(calendars3,3);
 		var obj2=document.getElementsByTagName("option");   
 		for(i=0;i<obj.length;i++)
 		obj[i].style.backgroundColor='#e4dfde';
-		obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-		obj2[j+48].disabled="disabled";		
+		obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+		obj2[j+50].disabled="disabled";		
 	}else if(time_judge==2){
 		
 		//这里是对老师设置的不可选时间进行标注
@@ -915,17 +954,25 @@ calendar.init(calendars3,3);
 			for(j=(start1+start2);j<(end1+end2);j++){    //从"起始时间"开始把框弄灰，直到"结束时间"
 				obj1[j].setAttribute('title',"不可选原因"+time_disabledReason[i]); 	  //鼠标放上去会显示理由
 				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因："+time_disabledReason[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
-				obj1[j].style.cursor="hand";		
+				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#e4dfde';
-				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 			
 		 }   	
 		 
 		 //这里是其他人已预约时间
 		time_disable_2=time_disable_2.split(":");  //获取用户选择日期对应的不可选时间段，并进行切割
-		time_users=time_users.split(":");
+		time_users_name=time_users_name.split(":");
+		time_users_tel=time_users_tel.split(":");
+		time_users_job=time_users_job.split(":");
+		time_users_unit=time_users_unit.split(":");
+		time_users_department=time_users_department.split(":");
+		time_users_principal=time_users_principal.split(":");
+		time_ExperimentName=time_ExperimentName.split(":");
+
+		
 		var N=time_disable_2.length/6;
 					
 		for(i=0;i<N;i++){
@@ -936,12 +983,12 @@ calendar.init(calendars3,3);
 			var obj1=document.getElementsByClassName("time_period");
 			var obj2=document.getElementsByTagName("option");   
 			for(j=(start1+start2);j<(end1+end2);j++){   
-				obj1[j].setAttribute('title',"姓名:"+time_users[2*i]+"  电话:"+time_users[2*i+1]); 	  //鼠标放上去会显示理由
-				obj1[j].setAttribute('onclick',"javascript:alert('已预约用户姓名："+time_users[2*i]+'\\n电话：'+time_users[2*i+1]+"');"); 	  //点击也会显示理由（通过"alert()"）
-				obj1[j].style.cursor="hand";	
+				obj1[j].setAttribute('title',"用户名:"+time_users_name[i]+"  用户电话:"+time_users_tel[i]+"  用户身份:"+time_users_job[i]+"  用户单位:"+time_users_unit[i]+"  用户学院:"+time_users_department[i]+"  课题负责人:"+time_users_principal[i]); 	  //鼠标放上去会显示理由
+				obj1[j].setAttribute('onclick',"javascript:alert('用户名："+time_users_name[i]+'\\n用户电话：'+time_users_tel[i]+'\\n用户身份：'+time_users_job[i]+'\\n用户单位：'+time_users_unit[i]+'\\n用户学院：'+time_users_department[i]+'\\n课题负责人：'+time_users_principal[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
+				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#ffd3c3';
-				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 		 }   	
 		 
@@ -960,9 +1007,9 @@ calendar.init(calendars3,3);
 				obj1[j].setAttribute('title',"您已预约此时间段");
 				obj1[j].setAttribute('onclick',"javascript:alert('您已预约此时间段');");
 				obj1[j].style.backgroundColor='#52cc94';     //浅绿色
-				obj1[j].style.cursor="hand";
-				obj2[j].disabled="disabled";       //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj1[j].style.cursor="pointer";	
+				obj2[j+1].disabled="disabled";       //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 		 }   	
 		 
@@ -1025,6 +1072,7 @@ $(function(){
 
 	
 	//提交并验证表单
+	
 	$('.submitBtn').click(function() {
 		
 		
@@ -1057,7 +1105,7 @@ $(function(){
 
 			
 			
-			$("#reserveForm").submit();
+			//$("#reserveForm").submit();
 					
 			
 			$.tooltip('提交成功，2秒后自动关闭',2000,true);
@@ -1082,4 +1130,5 @@ $(function(){
  	
 
    <div id="footer"><p><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
+  </body>
 </html>
