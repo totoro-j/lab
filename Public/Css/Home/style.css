@@ -82,7 +82,7 @@ ul{
 	border-bottom:#d3d3d3 2px solid;
 }
 #clender{
-	height:750px;
+	height:950px;
 	width:1080px;
 	margin:0 auto;
 	margin-top:20px;
@@ -153,7 +153,7 @@ ul{
 		width:130px;
 		height:30px;
 	}
-.canin_2{width:230px;
+.canin_2{width:130px;
 		height:30px;
 		float:right;
 		color:#555;
@@ -304,13 +304,16 @@ table{
 	text-align:center;
 	
 }
+#tricalendar a:hover{
+	color:#22A46C;
+}
 
 
 /*历史预约*/
 #history{
 	width:1080px;
 	margin:0 auto;
-	margin-top:40px;
+	margin-top:120px;
 	padding-bottom:20px;
 
 	z-index:0;
