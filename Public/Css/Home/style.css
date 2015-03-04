@@ -75,7 +75,7 @@ ul{
 
 
 #nc{
-	height: 360px;
+	height: 320px;
 	width:1080px;
 	margin:0 auto;
 	margin-top: 20px;
@@ -184,7 +184,7 @@ ul{
 }
 #infor>table{
 	width:320px;
-	margin-top:14px;
+	margin-top:4px;
 	font-size:14px;
 }
 #infor th,#infor td{
