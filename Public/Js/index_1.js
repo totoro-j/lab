@@ -240,7 +240,14 @@ LiChang = {
             var dayLen = 31;
             //判断每个月有多少天
             if (str31.search(regExp) == -1) {
+                if(month!=1){
                 dayLen = 30;
+            }
+            else if((year%4==0&&year%100!=0)||(year%400==0)){
+                dayLen=29;
+            }
+            else
+                dayLen=28;
             }
             //清空日期
             for (var i = 0; i < _self.td.length; i++) {

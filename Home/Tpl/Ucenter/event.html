@@ -4,17 +4,28 @@
 		<load href="__PUBLIC__/Css/Home/ucenter_info.css" />
         	<load href="__PUBLIC__/Css/Home/ucenter_detail.css" />
 		<title>详细信息</title>
+     <script type="text/javascript">
+    function validateTel(){
+    var foundResult=document.getElementById("stastic_check");
+    var notfoundResult=document.getElementById("notfound");
+    if(foundResult.rows.length==2){
+      notfoundResult.style.display='table-cell';
+      foundResult.width=1050;
+    }
+  }
+   </script>
 	</head>
-<body>
+<body onLoad="validateTel()">
     <div id="infor">
     <div class="can_1">实验记录</div>
-<table class="stastic_check">
+<table class="stastic_check" id="stastic_check" style="margin-top:40px;">
 <tr>
   <th style="width:500px;">实验名称</th>
   <th>课题负责人姓名</th>
   <th>申请时间</th>
   <th>实验状态</th>
 </tr>
+<tr><td id="notfound"  colspan="4" style="color:#999;">没有相关数据</td></tr>
 <volist name='event_list' id='vo'>
 <tr>
    <td><a href="__URL__/event_detail/id/<{$vo.id}>"><{$vo.testname}></a></td>
@@ -22,6 +33,7 @@
    <td><{$vo.time}></td>
    <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
 </tr>
+
 </volist>
 </table>
   <div class="event_show"><{$show}></div>
