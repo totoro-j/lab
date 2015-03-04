@@ -229,14 +229,14 @@ class IndexAction extends CommonAction{
 			list($f,$e)=explode(" ",$result[$i]['finaltime']);
 			list($fh,$ff,$fs)=explode(':',$e);
 			$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
-			if($startstamp>=$startjudge&&$startstamp<=$finaljudge){
-				$this->error('输入时间冲突');
-			}elseif($finalstamp>=$startjudge&&$finalstamp<=$finaljudge){
-				$this->error('输入时间冲突');
-			}elseif($startstamp<=$startjudge&&$finalstamp>=$finaljudge){
-				$this->error('输入时间冲突');
+			if($startstamp>$startjudge&&$startstamp<$finaljudge){
+				$this->error('输入时间冲突1');
+			}elseif($finalstamp>$startjudge&&$finalstamp<$finaljudge){
+				$this->error('输入时间冲突2');
+			}elseif($startstamp<$startjudge&&$finalstamp>$finaljudge){
+				$this->error('输入时间冲突3');
 			}elseif($startstamp>=$finalstamp){
-				$this->error('输入时间冲突');
+				$this->error('输入时间冲突4');
 			}
 			//判断时间冲突
 		}

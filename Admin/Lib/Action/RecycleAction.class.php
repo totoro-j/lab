@@ -305,7 +305,7 @@
 		}
 
 		public function search_event1(){
-			$e=D('Event_del');
+			$e=D('Event_delView');
 			$field=$_POST['user_search'];
 			$content=$_POST['search_input'];
 			switch ($field)
@@ -330,7 +330,14 @@
 					$where['delstate']="2";}else{
 					$where['delstate']="2";
 					}
-					break;	
+					break;
+			case "desc":
+				if(isset($content) && $content!=null){
+					$where['description']=array('like',"%{$content}%");
+					$where['delstate']="2";}else{
+					$where['delstate']="2";
+					}
+					break;		
 			case "time":
 				if(isset($content) && $content!=null){
 					$where['time']=array('like',"%{$content}%");
@@ -352,7 +359,7 @@
 		}
 
 		public function search_event0(){
-			$e=D('Event_del');
+			$e=D('Event_delView');
 			$field=$_POST['user_search'];
 			$content=$_POST['search_input'];
 			switch ($field)
@@ -378,6 +385,13 @@
 					$where['delstate']="1";
 					}
 					break;	
+			case "desc":
+				if(isset($content) && $content!=null){
+					$where['description']=array('like',"%{$content}%");
+					$where['delstate']="1";}else{
+					$where['delstate']="1";
+					}
+					break;		
 			case "time":
 				if(isset($content) && $content!=null){
 					$where['time']=array('like',"%{$content}%");

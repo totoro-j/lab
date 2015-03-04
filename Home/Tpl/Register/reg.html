@@ -11,7 +11,7 @@
 		$(function(){
 	//	
 			var error1=new Array();
-			 //var patten = /^[a-zA-Z]\w{1,16}$/ig;
+			 var patten = /^[a-zA-Z]\w{1,16}$/ig;
 			// var patten2=/^[A-Za-z]+$/ig; 
 			$('input[name="username"]').blur(function(){
 				var username=$(this).val();
@@ -24,7 +24,7 @@
 					}else if(!patten.test(username))
              {          
 			        error1['username']=1;
-                   $('#umessage').css("color","red").text('请勿以纯数字或纯英文注册');
+                   $('#umessage').css("color","red").text('请勿以纯数字注册');
                       
 
                    return false;

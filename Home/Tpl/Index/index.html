@@ -409,7 +409,7 @@ function setSelectedBgColor()//设置选定行的背景色
 			<div class="table" id="tab1_1">
             <div class="table_title" style="margin-left:55px;"><a><00:00~07:00></a></div>
              <table>
-                <tr class="odd_row"><td id="00:30" class="time_period">00:00~00:30</td></tr>
+                <tr class="odd_row"><td id="00:00" class="time_period">00:00~00:30</td></tr>
                 <tr class="even_row"><td id="00:30" class="time_period">00:30~01:00</td></tr>
                 <tr class="odd_row"><td id="01:00" class="time_period">01:00~01:30</td></tr>
                 <tr class="even_row"><td id="01:30" class="time_period">01:30~02:00</td></tr>
@@ -432,7 +432,7 @@ function setSelectedBgColor()//设置选定行的背景色
             <div class="table" id="tab1_2">
              <div class="table_title" style="margin-left:10px;"><a style="margin-top:-24px;margin-left:340px;"><07:00~22:00></a></div>
             <table>
-   				 <tr class="odd_row"><td id="08:00" class="time_period">08:00~08:30</td></tr>
+   		<tr class="odd_row"><td id="08:00" class="time_period">08:00~08:30</td></tr>
                 <tr class="even_row"><td id="08:30" class="time_period">08:30~09:00</td></tr>
                 <tr class="odd_row"><td id="09:00" class="time_period">09:00~09:30</td></tr>
                 <tr class="even_row"><td id="09:30" class="time_period">09:30~10:00</td></tr>
@@ -634,7 +634,7 @@ function setSelectedBgColor()//设置选定行的背景色
 		obj1[j].setAttribute('onclick',"javascript:function(){};"); 	
 		obj1[j].style.cursor="default";			
 		obj1[j].style.backgroundColor='#ffffff';
-		obj2[j].removeAttribute('disabled');      
+		obj2[j+1].removeAttribute('disabled');      
 		obj2[j+48].removeAttribute('disabled');  	
 	}
 	
@@ -661,8 +661,8 @@ function setSelectedBgColor()//设置选定行的背景色
 		var obj2=document.getElementsByTagName("option");   
 		for(i=0;i<obj.length;i++)
 		obj[i].style.backgroundColor='#e4dfde';
-		obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-		obj2[j+48].disabled="disabled";		
+		obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+		obj2[j+50].disabled="disabled";		
 	}else if(time_judge==2){
 		
 		//这里是对老师设置的不可选时间进行标注
@@ -682,8 +682,8 @@ function setSelectedBgColor()//设置选定行的背景色
 				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因："+time_disabledReason[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
 				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#e4dfde';
-				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 			
 		 }   	
@@ -713,8 +713,8 @@ function setSelectedBgColor()//设置选定行的背景色
 				obj1[j].setAttribute('onclick',"javascript:alert('用户名："+time_users_name[i]+'\\n用户电话：'+time_users_tel[i]+'\\n用户身份：'+time_users_job[i]+'\\n用户单位：'+time_users_unit[i]+'\\n用户学院：'+time_users_department[i]+'\\n课题负责人：'+time_users_principal[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
 				obj1[j].style.cursor="pointer";	
 				obj1[j].style.backgroundColor='#ffd3c3';
-				obj2[j].disabled="disabled";      //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 		 }   	
 		 
@@ -734,8 +734,8 @@ function setSelectedBgColor()//设置选定行的背景色
 				obj1[j].setAttribute('onclick',"javascript:alert('您已预约此时间段');");
 				obj1[j].style.backgroundColor='#52cc94';     //浅绿色
 				obj1[j].style.cursor="pointer";	
-				obj2[j].disabled="disabled";       //无效时间对应的option时间段不可选
-				obj2[j+48].disabled="disabled";					
+				obj2[j+1].disabled="disabled";       //无效时间对应的option时间段不可选
+				obj2[j+50].disabled="disabled";					
 			}
 		 }   	
 		 

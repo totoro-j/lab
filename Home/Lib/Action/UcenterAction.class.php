@@ -86,9 +86,14 @@
 
 		public function event_detail(){
 			$m=D('EventView');
+			$n=D('Event_delView');
 			$id=$_GET['id'];
 			$where['id']=$id;
 			$arr=$m->where($where)->find();
+			if($arr['state']=='2' || $arr['state']=='3'){
+				$array=$n->where($where)->getField('delinfo');
+				$arr['delinfo']=$array;
+			}
 			$this->assign('dat',$arr);
 			$this->display();
 		}

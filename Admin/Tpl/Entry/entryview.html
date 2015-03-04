@@ -171,6 +171,7 @@ $("document").ready(function(){
   	<option value="testname" >实验名称</option>
   	<option value="uid">申请人姓名</option>
   	<option value="principal">课题负责人姓名</option>
+  	<option value="descript">Exam Description</option>
         <option value="time" id="time">时间</option>
 	</select></td>
 	<td><input type="text"   class="search_detail" placeholder="请输入搜索内容"  id="search" name="search" onFocus="clearContent(this)" onBlur="validateTel()" /></td>
@@ -188,6 +189,7 @@ $("document").ready(function(){
   <th style="width:500px;">实验名称</th>
   <th>申请人姓名</th>
   <th>课题负责人姓名</th>
+  <th>Exam Desciption</th>
   <th>实验状态</th>
   <th>实验详情</th>
   <th>停止实验</th>
@@ -197,8 +199,10 @@ $("document").ready(function(){
    <td><a id="<{$vo.testname}>" href="__URL__/checkentry/id/<{$vo.id}>" data-number="<{$vo.id}>"><{$vo.testname}></td>
    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
    <td><{$vo.principal}></td>
+   <td><{$vo.description}></td>
    <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
-   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></td>
+   <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></
+	   td>
 	   <td class="info_correct"><a onclick="showId(<{$vo.id}>)"><div class="refuse1"  style="color:#F33" onClick="showBg()">停止实验</div></a></td>
 </tr>
 </volist>
@@ -224,7 +228,7 @@ $("document").ready(function(){
 </div>
 <script type="text/javascript">
 	function showId(num){
-		var numberType=num
+		var numberType=num;
 		$('.refuse_ipt').attr("value",numberType);
 	}
 </script>

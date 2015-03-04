@@ -25,7 +25,16 @@
 			 <td colspan="2"><center>申请时间：<{$dat.time}></td>
             </tr>
 	    <tr>
+		    <td colspan="2">Exam Description：<{$dat.description}></td>
+	    </tr>
+	    <tr>
 		    <td colspan="2">实验描述：<{$dat.testcontent}></td>
+	    </tr>
+	    <tr>
+		    <td colspan="2">实验状态：<switch name='dat.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td></td>
+	    </tr>
+	    <tr>
+		    <td colspan="2">附加信息：<{$dat.delinfo}></td>
 	    </tr>
 	    <tr>
 		    <td colspan="2" style="background-color:#219E69;font-color:white;text-align:center;"><a onClick="history.go(-1);" style="color:#eee;cursor:pointer;">返回</a></td>

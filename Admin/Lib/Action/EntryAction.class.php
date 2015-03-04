@@ -71,7 +71,13 @@ class EntryAction extends AdminCommonAction {
 		for($i = 0; $i < count($temp); $i++){
 			$s=$temp[$i];
 			$ss=implode($s);
-			$item[$i]['m']=$e->query("SELECT Orders.id AS id,Orders.starttime AS starttime,Orders.finaltime AS finaltime,Orders.hours AS hours,Orders.ordertime AS ordertime,Orders.edit AS edit,Orders.info AS info,event.testname AS testname,event.state AS state,event.id AS eid,user.truename AS truename,user.principal AS principal,user.id AS uid FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( (`testname` = '$ss') )");
+			$item[$i]['m']=$e->query("SELECT Orders.id AS id,Orders.starttime AS starttime,Orders.finaltime AS finaltime,Orders.hours AS hours,Orders.ordertime AS ordertime,Orders.edit AS edit,Orders.info AS info,event.testname AS testname,event.state AS state,event.id AS eid,user.truename AS truename,user.principal AS principal,user.id AS uid FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( (`testname` = '$ss') ) order by starttime desc");
+			$p[$i]=count($item[$i]['m']);
+		}
+		for($k = 0; $k < count($temp); $k++){
+			for($h = 0; $h < $p[$k]; $h++){
+				$temp[$k]['testhours']=$item[$k]['m'][$h]["hours"]+$temp[$k]['testhours'];
+			}
 		}
 		$this->assign('list',$temp);
 		$this->assign('item',$item);
@@ -100,6 +106,12 @@ class EntryAction extends AdminCommonAction {
 		case "principal":
 			if(isset($content) && $content!=null){
 				$where['principal']=array('like',"%{$content}%");
+				$where['state']="1";}else{
+					$where['state']="1";}
+				break;
+		case "descript":
+			if(isset($content) && $content!=null){
+				$where['description']=array('like',"%{$content}%");
 				$where['state']="1";}else{
 					$where['state']="1";}
 				break;
@@ -150,6 +162,13 @@ class EntryAction extends AdminCommonAction {
 			$m=D('EventView');
 			$n=D('OrdersView');
 			$arr=$m->find($id);
+			$condition['eid']=$id;
+			$r=$n->where($condition)->order('starttime desc')->select();
+			$t=count($r);
+			$arr['testhours']=0;
+			for($i=0;$i<$t;$i++){
+				$arr['testhours']=$r[$i]["hours"]+$arr['testhours'];
+			}
 			$this->assign('data',$arr);
 			$where['eid']=$id;
 			$field=$n->where($where)->select();

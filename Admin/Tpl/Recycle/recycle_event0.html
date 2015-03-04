@@ -80,6 +80,7 @@ $(document).ready(function(){
             <option value="testname">实验名称</option>
             <option value="truename">申请人姓名</option>
             <option value="principal">课题负责人姓名</option>
+            <option value="desc">Exam Description</option>
             <option value="time">申请时间(请按Y-M-D格式)</option>
         </select>
         </td>
@@ -96,6 +97,7 @@ $(document).ready(function(){
             <th>实验名称</th>
             <th>申请人姓名</th>
             <th>课题负责人姓名</th>
+            <th>Exam Description</th>
             <th>申请时间</th>
             <th>拒绝申请时间</th>
 	    <th>拒绝原因</th>
@@ -107,6 +109,7 @@ $(document).ready(function(){
             <td><a href="__APP__/Entry/checkentry/id/<{$vo.id}>"><{$vo.testname}></td>
    	    <td><a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></td>
             <td><{$vo.principal}></td>
+            <td><{$vo.description}></td>
             <td><{$vo.time}></td>
             <td><{$vo.deltime}></td>
 	    <td><{$vo.delinfo}></td>
