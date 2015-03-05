@@ -135,7 +135,7 @@ function setSelectedBgColor()//设置选定行的背景色
         	<table border='1' align='center' class="show_check" style="width:500px;">
 			<volist name='zip' id='vo'>
             <tr>
-			  <td style="width:600px;"><abbr title=<{$vo.filename}> id="namebox"><{$vo.filename}></abbr></td>
+			  <td style="width:600px;"><abbr title='<{$vo.filename}>' id="namebox"><{$vo.filename}></abbr></td>
               <script type="text/javascript">
               {
                 var namelength=document.getElementById("namebox").innerHTML.length;
@@ -166,7 +166,8 @@ function setSelectedBgColor()//设置选定行的背景色
         <!--日历 begin-->
 	<div class="data_box" id="data_box">
     
-    <!--！！！！！！！！这里是要向后台获取的一些数据       -->
+    <!--！！！！！！！！这里是要向后台获取的一些数据-->      
+    <input style="display:none" value="<{$user_role}>" id="to_get_user_role" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_judge}>" id="to_get_time_judge" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_disable_1}>" id="to_get_time_disable_1" />  <!--这个不可选时间是老师设定的 -->
     <input style="display:none" value="<{$time_disable_2}>" id="to_get_time_disable_2" />  <!--这个不可选时间是已经被预约的时间 -->
@@ -473,6 +474,9 @@ calendar.init(calendars3,3);
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
         <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
        </div>
+       
+       <div style="width:300px;height:30px;position:relative;top:129px;left:370px"><div style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left"></div><a style="display:block;width:70px;height:20px;cursor:pointer;" href="__URL__/index/date/<{$last_day}>">前一天</a></div>
+        
         <form id="myForm" action="__URL__/submit">
         <input type="text"   name="toSubmitDate"  style="display:none" />
  			<p style="margin-left:-150px;">实验名称：</p>
@@ -593,6 +597,8 @@ calendar.init(calendars3,3);
             <script type="text/javascript">
             
             function toConfirmTime(obj){
+				var user_role=document.getElementById("to_get_user_role").value;
+				if(user_role==0){alert('对不起，游客没有权限预约');return(false);}
 				var button=obj;
 				
 				
@@ -627,12 +633,11 @@ calendar.init(calendars3,3);
             
             
             <div id="toSubmitSelectedDate" onClick="toConfirmTime(this)">提交预约</div>
-           
-               
             
+              
             
        </form>
-        
+        <div style="width:85px;height:30px;margin-top:15px;margin-left:583px"><a style="display:block;width:80px;height:1px;cursor:pointer;" href="__URL__/index/date/<{$next_day}>">后一天</a><div style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right"></div></div>
         
             <div class="sel_date dn">
                 <div class="clearfix">
@@ -687,7 +692,7 @@ calendar.init(calendars3,3);
       <!--表格-->
         <div id="tab1">
    			
-		<h2 id="selectedDate"><{$time_date2}></h2>
+		<h2 id="selectedDate" style="margin-left:-19px"><{$time_date2}></h2>
             
 			<div class="table" id="tab1_1">
             <div class="table_title" style="margin-left:55px;"><a><00:00~07:00></a></div>
@@ -831,7 +836,6 @@ calendar.init(calendars3,3);
 				var  submited=$('textarea[name="expt_ed"]').val();
 				var  submitdetail=$('textarea[name="expt_detail"]').val();
 				var  submittimes=$('input[name="expt_times"]').val();
-				
 					if(submitname.length==0||submited.length==0||submitdetail.length==0||submittimes.length==0){
 				   
 				alert('请完善申请资料');
@@ -921,7 +925,10 @@ calendar.init(calendars3,3);
 		obj2[j+48].removeAttribute('disabled');  	
 	}
 	
+	
+	
 	//开始对 对应方框进行填色
+	
 	var time_judge=document.getElementById("to_get_time_judge").value;
 	var time_disable_1=document.getElementById("to_get_time_disable_1").value;
 	var time_disable_2=document.getElementById("to_get_time_disable_2").value;
@@ -935,6 +942,7 @@ calendar.init(calendars3,3);
 	var time_users_unit=document.getElementById("to_get_time_users_unit").value;
 	var time_users_job=document.getElementById("to_get_time_users_job").value;
 	var time_users_tel=document.getElementById("to_get_time_users_tel").value;  
+	
 	
 	if(time_judge==0)
 	{
@@ -1043,7 +1051,10 @@ $(function(){
 
 	
 	//改变宽和高
+	var user_role=document.getElementById("to_get_user_role").value;
+	if(user_role==1){
 	$('.demo3').hDialog({width:550,height: 600});
+	}
 	
 	
 	

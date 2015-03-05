@@ -37,7 +37,7 @@
 <volist name='data' id='vo'>
     <div id="edit3" class="edit_section_pic_describ" style="background:#E9FAF1;margin-top:10px;padding-bottom:10px;height:40px;width:1000px;">  
     <div class="edit_section_pic" style="padding:10px;">
-	<h4 style="font-size:20px;display:inline;padding-left:10px;"><{$vo.filename}></h4>
+	<h4 style="font-size:20px;display:inline;padding-left:10px;" id="namebox" title='<{$vo.filename}>'><{$vo.filename}></h4>
 	<span><{$vo.size}>KB</span>
 	<span>发布人：<{$vo.truename}></span>
   <span><{$vo.date}></span>
@@ -48,7 +48,17 @@
     </div>
        </br>
       
-      
+      <script type="text/javascript">
+              {
+                var namelength=document.getElementById("namebox").innerHTML.length;
+                if(namelength>20){
+                   var nowWord = document.getElementById("namebox").innerHTML.substr(0,7)+'...';
+                    document.getElementById("namebox").innerHTML=nowWord;
+                }
+                var namebox = document.getElementById("namebox");
+                namebox.id = "checkedlength";
+              }
+              </script>
       
        </div>
 </volist>
