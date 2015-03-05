@@ -124,28 +124,19 @@ class AppointmentAction extends AdminCommonAction{
 	}
 	 */
 		public function index(){
-		$m=M('User');
-		$nam=$_SESSION['id'];
-		$t['id']=array('eq',"$nam");
-		$myrole=$m->where($t)->getField('role');
-		if(!isset($_SESSION['username']) || $_SESSION['username']==''){
-			$topshow=0;
-		}else if($myrole=="0"){
-			$topshow=3;
-		}else if($myrole=="3"){
-			$topshow=5;
-		}else if($myrole=="1"){
-			$topshow=1;
-		}else if($myrole=="4" || $myrole=="5"){
-			$topshow=4;
-		}else{
-			$topshow=2;
-		}
 		$this->assign('topshow',$topshow);	
 		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
 		$this->assign('date',$time);
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
+		//仅预约记录传值
+		$Sdate=$_GET['Sdate'];
+		if($Sdate!=''){
+			list($Sdate,$Sdate_time)=explode(" ",$Sdate);
+			$date=$Sdate;
+			$date2=$Sdate;
+			$time=$Sdate;
+		}
 		//如果为单数时，改变日期格式
 		list($n,$y,$r)=explode('-',$time);
 		if(strlen($y)==1){

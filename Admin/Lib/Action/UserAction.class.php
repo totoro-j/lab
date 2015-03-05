@@ -256,6 +256,9 @@ class UserAction extends AdminCommonAction {
 	}
 
 	public function modify(){
+		$m_role=M('User');
+		$conditon_role['id']=$_SESSION['id'];
+		$admin=$m_role->where($conditon_role)->find();
 		$m=M('User');
 		$condition_user['id']=$_POST['id'];
 		$condition['username']=$_POST['username'];
@@ -286,7 +289,12 @@ class UserAction extends AdminCommonAction {
 		}else{
 			$condition['job']=$_POST['job'];
 		}
-	
+		$user=$m->where($condition_user)->find();
+		if(($user['role']==3||$user['role']==2)&&$admin['role']!=9){
+			$this->error('您的权限不够');
+		}else if($user['role']==9){
+			$this->error('您的权限不够啊');
+		}
 		$lastId=$m->where($condition_user)->save($condition);
 		if($lastId){
 			$this->success('修改成功');
