@@ -40,6 +40,14 @@
       
     })
 </script>
+<Script Language="JavaScript"> 
+    function cancel() 
+    { 
+    document.myForm.action="__URL__/refuse";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+</Script>
 
 <title>文件管理</title>
 
@@ -102,7 +110,7 @@
   <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:30px;padding-bottom:50px;">
     <form action="__URL__/ListFileIsshowupload" method="post" name='myForm' enctype="multipart/form-data">
     <input type="file" name="fileurl" style="border:none;margin-top:0px;" id="fileurl"/>
-    <div style="float:right;cursor:pointer" id="button" onClick="showBg()">上传</div> 
+    <div style="float:right;cursor:pointer" id="button" onClick="showBg()"><a onclick="showId(<{$vo.id}>)">上传</a></div> 
     </form>
 
 
@@ -112,11 +120,14 @@
 
   <form name="myForm" method="post" action="">
    <div class="refuse_dia">
+    <input type="hidden" name="file" class="file" value="">
      <br>
      <br>
+
    <p>请选择文件查看权限：</p>
-   <input type="radio" name="qx">游客<br>
-   <input type="radio" name="qx">正式用户<br>
+   
+   <input type="radio" name="per">游客<br>
+   <input type="radio" name="per">正式用户<br>
 
    <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()" style="margin-left:50px;">确认上传</div></a>
    </div>
@@ -126,4 +137,10 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+  function showId(num){
+    var numberType=num
+    $('.file').attr("value",numberType);
+  }
+</script>
 </html>
