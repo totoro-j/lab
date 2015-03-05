@@ -56,13 +56,39 @@ class EntryAction extends AdminCommonAction {
 		$day2 = $arr[0];
 		$hour2 = $arr[1];
 		$final = mktime($hour2,$minute2,$second2,$month2,$day2,$year2);
-		
-		if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
+
+		$field=$_POST['search2'];
+		$content=$_POST['searchtext'];
+		switch ($field)
+		{
+		case "principal":
+			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( User.principal LIKE '%$content%' )");
+			foreach($test as $test0){
+			$test0=join(',',$test0);
+			$temp[]=$test0;
+			}
+			}
+			break;
+		case "truename":
+			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( User.truename LIKE '%$content%' )");
+			foreach($test as $test0){
+			$test0=join(',',$test0);
+			$temp[]=$test0;
+			}
+			}
+			break;
+		default:
+			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
 			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) )");
 			foreach($test as $test0){
 			$test0=join(',',$test0);
 			$temp[]=$test0;
-		}
+			}
+			}
+			break;
+			
 		$temp=array_unique($temp);
 		foreach($temp as $k => $test0){
 			$temp[$k]=explode(',',$test0);
@@ -77,6 +103,18 @@ class EntryAction extends AdminCommonAction {
 		for($k = 0; $k < count($temp); $k++){
 			for($h = 0; $h < $p[$k]; $h++){
 				$temp[$k]['testhours']=$item[$k]['m'][$h]["hours"]+$temp[$k]['testhours'];
+			}
+		}
+
+		for($k = 0; $k < count($temp); $k++){
+			for($h = 0; $h < $p[$k]; $h++){
+				$temp[$k]['principal']=$item[$k]['m'][$h]["principal"];
+			}
+		}
+
+		for($k = 0; $k < count($temp); $k++){
+			for($h = 0; $h < $p[$k]; $h++){
+				$temp[$k]['truename']=$item[$k]['m'][$h]["truename"];
 			}
 		}
 		$this->assign('list',$temp);
@@ -129,12 +167,16 @@ class EntryAction extends AdminCommonAction {
 
 		public function pass(){
 			$m=M('Event');
+			$n=M('Tempuser');
 			$id=$_GET['id'];
 			$arr=$m->find($id);
-                        $arr['state']='1';
-		
-			$count=$m->save($arr);
+                        $arr['state']='1';		
+			$count=$m->save($arr);		
 			if($count>0){
+				$map['uid']=$arr['uid'];
+				$map['eid']=$arr['id'];
+				$map['eventstate']=1;
+				$add=$n->add($map);
 				$this->redirect('entrycheck');
 			}else{
 				$this->error('审核失败');
@@ -145,6 +187,7 @@ class EntryAction extends AdminCommonAction {
 		public function refuse(){
 			$m=M('Event');
 			$n=M('Event_del');
+			$t=M('Tempuser');
 			$id=$_POST['refuse_ipt'];
 			$field=$m->find($id);
 			$tem=$field;
@@ -154,6 +197,10 @@ class EntryAction extends AdminCommonAction {
 			$tem['delstate']='1';
 			$n->add($tem);
 			$m->save($field);
+			$map['uid']=$arr['uid'];
+			$map['eid']=$arr['id'];
+			$map['eventstate']=0;
+			$add=$t->add($map);
                    	$this->redirect('entrycheck');		
 		}
 
@@ -205,6 +252,7 @@ class EntryAction extends AdminCommonAction {
 		public function cancel(){
 			$m=M('Event');
 			$n=M('Event_del');
+			$t=M('Tempuser');
 			$id=$_POST['refuse_ipt'];
 			$field=$m->find($id);
 			$tem=$field;
@@ -212,6 +260,10 @@ class EntryAction extends AdminCommonAction {
 			$m->save($field);
 			$tem['delstate']='2';
 			$n->add($tem);
+			$map['uid']=$arr['uid'];
+			$map['eid']=$arr['id'];
+			$map['eventstate']=2;
+			$add=$t->add($map);
 			$this->redirect('entryview');
 		}		
 }

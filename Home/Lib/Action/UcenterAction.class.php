@@ -3,6 +3,36 @@
 		public function index(){
 			$this->display();
 		}
+
+		public function greet(){
+			$m=D('TempuserView');
+			import('ORG.Util.Page');
+			$map['uid']=$_SESSION['id'];
+			$count=$m->where($map)->count();
+			$page  = new Page($count,10);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($map)->order('id desc')->select();
+			$this->assign('list',$arr);
+			$this->assign('show',$show);
+			$this->display();
+		}
+
+		public function clean_logs(){
+			$m=M('Tempuser');
+			$map['uid']=$_SESSION['id'];
+			$count=$m->where($map)->delete();
+			var_dump($count);
+			$this->display('greet');
+		}
+
+		public function clean_log(){
+			$m=M('Tempuser');
+			$map['id']=$_GET['id'];
+			$count=$m->where($map)->delete();
+			$this->redirect('greet');
+		}
+
 		public function info(){
 			$m=M('User');
 			$where['id']=$_SESSION['id'];
@@ -27,10 +57,13 @@
 				$this->error('验证码不正确');
 			}
 			$m=M('User');
+			$n=M('Temp');
 			$where['id']=$_SESSION['id'];
 			$data = array('tel'=>$tel,'mail'=>$mail);			
 			$count=$m->where($where)->setField($data);
 			if($count>0){
+				$map['ytel']='1';
+				$add=$n->add($map);
 				$this->success('修改成功','info');
 			}else{
 				$this->error('尚未做任何修改',U('info_edit'));		
@@ -51,14 +84,17 @@
 			}
 			
 			$m=M('User');
+			$n=M('Temp');
 			$where['id']=$_SESSION['id'];
 			$arr=$m->where($where)->getField('password');
 			if($arr == $password){
 				if($password == $newpwd){
-						$this->error('请勿与原密码重复',U('info_pwd'));
+						echo"<script type='text/javascript'>alert('请勿与原密码重复！');history.back(-1);</script>";
 					}else{
 						$count=$m->where($where)->setField('password',$newpwd);
-							if($count>0){
+						if($count>0){
+								$map['ypwd']='1';
+								$add=$n->add($map);
 								$this->success('修改成功','info');
 							}else{
 								$this->error('修改失败',U('info_pwd'));		
@@ -71,14 +107,35 @@
 
 		public function event(){
 			$m=D('EventView');
+			$n=D('OrdersView');
 			import('ORG.Util.Page');
 			$where['uid']=$_SESSION['id'];
 			$count=$m->where($where)->order('id desc')->count();
 			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
-			$arr=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
-			$this->assign('event_list',$arr);
+			$arr=$m->where($where)->order('id desc')->select();
+			
+			for($i = 0; $i < $count; $i++){
+				$s=$arr[$i]['id'];
+				$map['eid']=$s;
+				$item[$i]=$n->where($map)->getField('hours');
+				$p[$i]=count($item[$i]);
+			}
+			for($k = 0; $k < $count; $k++){
+				$arr[$k]['testhours']=0;
+				for($h = 0; $h < $p[$k]; $h++){
+					$arr[$k]['testhours']=$item[$k][$h]+$arr[$k]['testhours'];
+				}
+			}
+			for($f=0;$f < $count;$f++){
+				$condition['id']=(int)$arr[$f]['id'];
+				$cond=$arr[$f]['testhours'];
+				$h=$m->where($condition)->setField('testhours',"$cond");
+				$j=$n->where($condition)->setField('testhours',"$cond");
+			}
+			$array=$m->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
+			$this->assign('event_list',$array);
 			$this->assign('show',$show);
 			$this->display();
 		}
@@ -161,9 +218,9 @@
 			$now=time();
 			$span=$field-$now;
 			if($now >= $field){
-				echo"<script type='text/javascript'>alert('预约已生效，不可删除！');history.back(-1);</script>";
+				echo"<script type='text/javascript'>alert('该预约已生效，不可删除！');history.back(-1);</script>";
 			}else if($span<3600*24 && $now < $field){
-				echo"<script type='text/javascript'>alert('24小时内相近预约不可删除,请联系管理员！');history.back(-1);</script>";
+				echo"<script type='text/javascript'>alert('不可删除已距实验时间24小时内的预约,请联系管理员！');history.back(-1);</script>";
 			}else if($span>=3600*24 && $now < $field){
 				$m->where($where)->delete();
 				$this->redirect('order');

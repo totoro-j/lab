@@ -101,15 +101,65 @@ function setSelectedBgColor()//设置选定行的背景色
 <body onLoad="document.reserveForm.reset()">
  <div id="header">
    		<div id="logo"><a href="__URL__/index">核磁共振实验室预约系统</a><div id="time"></div></div>
+       <if condition="$topshow eq 1">
         <div id="user">
    			<ul>
    				<li><em style='padding-left:15px;' class="t_user_ico1"></em>欢迎你，用户 <{$Think.session.username}></li>
-   				<li><a href="__APP__/Login/doLogout">退出登陆</a></li>
+   				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
                 <li><a href="__APP__/Ucenter/index">用户中心</a></li>
-                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
-   				<li><a href="__ROOT__/index.php/Index">实验室主页</a></li>
+   				<li><a href="#">实验室主页</a></li>
    			</ul>
    		</div>
+		<elseif condition="$topshow eq 2"/>
+			 <div id="user">
+   			<ul>
+				<li><em style='padding-left:15px;' class="t_user_ico1"></em>欢迎你，用户</span> <{$Think.session.username}></li>
+   				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
+                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
+                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
+   				<li><a href="#">实验室主页</a></li>
+   			</ul>
+   		</div>
+		<elseif condition="$topshow eq 3"/>
+			 <div id="user">
+   			<ul>
+				<li><em style='padding-left:15px;' class="t_user_ico1"></em>欢迎你，待审核用户</span> <{$Think.session.username}></li>
+   				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
+                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
+                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
+   				<li><a href="#">实验室主页</a></li>
+   			</ul>
+   		</div>
+		<elseif condition="$topshow eq 4"/>
+			 <div id="user">
+   			<ul>
+				<li><em style='padding-left:15px;' class="t_user_ico1"></em>用户</span> <{$Think.session.username}>，您的账号异常，点击 <a href="__APP__/Urefuse/detail">这里</a> 查看详情</li>
+   				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
+                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
+                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
+   				<li><a href="#">实验室主页</a></li>
+   			</ul>
+   		</div>
+		<elseif condition="$topshow eq 5"/>
+			 <div id="user">
+   			<ul>
+				<li><em style='padding-left:15px;' class="t_user_ico1"></em>用户</span> <{$Think.session.username}>，您不属于该系统</li>
+   				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
+                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
+                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
+   				<li><a href="#">实验室主页</a></li>
+   			</ul>
+   		</div>
+		<else />
+			 <div id="user">
+   			<ul>
+   				<li><em style='padding-left:15px;' class="t_user_ico1"></em><span style="margin-left:38px;font-size:15px;font-weight:bold;">您是游客，请先登录!</span></li>
+   				<li><a href="__APP__/Login/login">登录</a></li>
+                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
+   				<li><a href="#">实验室主页</a></li>
+   			</ul>
+   		</div>
+		</if>
    </div>
 		<div id="nc">
    		<div id="noteboarder">
