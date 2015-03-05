@@ -315,6 +315,7 @@ class IndexAction extends Action{
 		$m=M('orders');
 		$t=M('Temp');
 		$temp_conditon['new_order']='1';
+		$temp_conditon['yorders']='1';
 		$add=$t->add($temp_conditon);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
