@@ -1,6 +1,24 @@
 <?php
 class IndexAction extends Action{
-	public function index(){	
+	public function index(){
+		$m=M('User');
+		$nam=$_SESSION['id'];
+		$t['id']=array('eq',"$nam");
+		$myrole=$m->where($t)->getField('role');
+		if(!isset($_SESSION['username']) || $_SESSION['username']==''){
+			$topshow=0;
+		}else if($myrole=="0"){
+			$topshow=3;
+		}else if($myrole=="3"){
+			$topshow=5;
+		}else if($myrole=="1"){
+			$topshow=1;
+		}else if($myrole=="4" || $myrole=="5"){
+			$topshow=4;
+		}else{
+			$topshow=2;
+		}
+		$this->assign('topshow',$topshow);	
 		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
 		$this->assign('date',$time);
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
@@ -181,9 +199,17 @@ class IndexAction extends Action{
 		$this->assign('time',$notice_time);
 		//下载
 		$t=D('ZipView');
-		$ar=$t->select();
+		$m=M('User');
+		$nam=$_SESSION['id'];
+		$maps['id']=array('eq',"$nam");
+		$myrole=$m->where($maps)->getField('role');
+		if(!isset($_SESSION['username']) || $_SESSION['username']=='' || ($myrole != "2" && $myrole != "9" && $myrole != "1")){
+			$ar=$t->where('ziprole=0')->select();
+		}else{
+			$ar=$t->where('ziprole=1')->select();
+		}
 		$this->assign('zip',$ar);
-		$this->display();	 	
+		$this->display();	 	 	
 	}
 
 	public function download(){
