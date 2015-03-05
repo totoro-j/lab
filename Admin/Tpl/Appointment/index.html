@@ -99,7 +99,7 @@ function setSelectedBgColor()//设置选定行的背景色
 <body>
  <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">当时机时预约</h2>
 
-   		<div id="clender">
+   		<div id="clender" style="height:880px;">
    			 <div class="clearfix dome3_box">
              
              
@@ -119,35 +119,287 @@ function setSelectedBgColor()//设置选定行的背景色
     
 
   
-      		
-    		   <div style="margin-left:-150px;">
-      		<div style="padding-bottom:1px;">
-    		<form name="reserveDate"  action="__URL__/index" method="get" id="reserveDateForm" >
-           <div style="width:600px;">
-            <p style="display:block;width:120px;margin-top:10px;line-height:12px;float:left;">输入查看时间段：</p>
-            <input type="text" style="" class="showDate" name="date" value="<{$time_date}>" />
-           </div> 
-            <input type="submit" value="查看预约情况" style="border-radius:5px;float:right;margin-right:-405px;margin-top:10px;height:29px;cursor:pointe;rborder-radius:5px;argin-left:270px;padding:4px 4px;text-align:center;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;" class="subBtn" />
-			
+<!--这里是三个日历-->
+  <script type="text/javascript"> 
+var calendar = { 
+dayTable:null, 
+year:null,
+month:null,
+
+getFirstDay:function(year,month){
+var firstDay = new Date(year,month,1); 
+return firstDay.getDay();
+}, 
+getMonthLen:function(year,month){
+var nextMonth = new Date(year,month+1,1); 
+nextMonth.setHours(nextMonth.getHours() - 3);
+return nextMonth.getDate();
+}, 
+createCalendar:function(form,date,senum){ 
+calendar.year = date.getFullYear();
+calendar.month = date.getMonth()+senum-1;
+form.getElementsByTagName('th')[1].innerHTML = calendar.year + '年 ' + (calendar.month + 1) + '月'; 
+calendar.clearCalendar(form);
+var monthLen = calendar.getMonthLen(calendar.year,calendar.month);
+var firstDay = calendar.getFirstDay(calendar.year,calendar.month); 
+for(var i = 1;i <= monthLen;i++){
+    var urladd = "<a href='__URL__/index/date/"+calendar.year+"-"+(calendar.month+1)+"-"+i+"'>"+ i +"</a>";
+calendar.dayTable[i+firstDay-1].innerHTML =urladd;
+if((i+firstDay-2) == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){
+calendar.dayTable[i+firstDay-1].id = 'today'; 
+} 
+} 
+}, 
+clearCalendar:function(form){
+this.dayTable = form.getElementsByTagName('td'); 
+for(var i = 0;i < this.dayTable.length;i++){ 
+this.dayTable[i].innerHTML = ' '; 
+this.dayTable[i].id = ''; 
+} 
+}, 
+init:function(form,senum){
+this.dayTable = form.getElementsByTagName('td'); 
+this.createCalendar(form,new Date(),senum); 
+} 
+} 
+window.onload = function(){ 
+var calendars = document.getElementById('calendar'); 
+var calendars2 = document.getElementById('calendar2'); 
+var calendars3 = document.getElementById('calendar3'); 
+calendar.init(calendars,1); 
+calendar.init(calendars2,2); 
+calendar.init(calendars3,3); 
+} 
+</script> 
+<div style="width:960px;height:245px;margin:0 auto;padding-top:50px;" id="tricalendar">
+<table id="calendar" cellspacing="0"> 
+<tr>  
+<th> </th> 
+<th id="tittle" colspan="5"> </th> 
+<th> </th> 
+</tr> 
+<tr id="days"> 
+<th>日</th> 
+<th>一</th> 
+<th>二</th> 
+<th>三</th> 
+<th>四</th> 
+<th>五</th> 
+<th>六</th> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+</table> 
+<table id="calendar2" cellspacing="0"> 
+<tr>  
+<th> </th> 
+<th id="tittle" colspan="5"> </th> 
+<th> </th> 
+</tr> 
+<tr id="days"> 
+<th>日</th> 
+<th>一</th> 
+<th>二</th> 
+<th>三</th> 
+<th>四</th> 
+<th>五</th> 
+<th>六</th> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+</table> 
+<table id="calendar3" cellspacing="0"> 
+<tr>  
+<th> </th> 
+<th id="tittle" colspan="5"> </th> 
+<th> </th> 
+</tr> 
+<tr id="days"> 
+<th>日</th> 
+<th>一</th> 
+<th>二</th> 
+<th>三</th> 
+<th>四</th> 
+<th>五</th> 
+<th>六</th> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+<tr> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+<td> </td> 
+</tr> 
+</table> 
+</div>
 	    	
             
     
             
-            <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试   	<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
+            <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试    <input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
             <div id="toSubmitSelectedDate" value="">查看所选日期可预约时间</div>   -->
- 		   </form>
-           </div>
-   	   <div style="width:300px;float:left;margin-left:650px;margin-top:-38px">
-        <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
+           </form>
+       <div style="width:300px;margin:0 auto;margin-top:-30px">
+        <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
         <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
         <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
-       
        </div>
        
        
          
          
-        <form id="myForm" action="__URL__/submit">
+        <form id="myForm" action="__URL__/submit" style="margin-left:100px;">
         <input type="text"   name="toSubmitDate"  style="display:none" />
  			
             <p id="startTime">起始时间：</p>
@@ -357,9 +609,9 @@ function setSelectedBgColor()//设置选定行的背景色
    <div id="form" style="margin-top:-100px">
       <!--表格-->
         <div id="tab1">
-   			<div style="width:300px;height:20px;margin-left:320px;margin-top:120px"><div style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left"></div><a style="display:block;width:70px;height:2px;cursor:pointer;background:#FFF;color:#000;" href="__URL__/index/date/<{$last_day}>">前一天</a></div>
+   			<div style="width:300px;height:20px;margin-left:320px;margin-top:120px"><a style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left" href="__URL__/index/date/<{$last_day}>"></a><a style="display:block;width:70px;height:2px;cursor:pointer;background:#FFF;color:#000;" href="__URL__/index/date/<{$last_day}>">前一天</a></div>
             
-            <div style="width:85px;height:30px;margin-top:-20px;margin-left:550px"><a style="display:block;width:70px;height:2px;cursor:pointer;background:#FFF;color:#000;" href="__URL__/index/date/<{$next_day}>">后一天</a><div style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right"></div></div>
+            <div style="width:85px;height:30px;margin-top:-20px;margin-left:550px"><a style="display:block;width:70px;height:2px;cursor:pointer;background:#FFF;color:#000;" href="__URL__/index/date/<{$next_day}>">后一天</a><a style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right"  href="__URL__/index/date/<{$next_day}>"></a></div>
 		<h2 id="selectedDate" style="margin-top:-22px;margin-left:-7px"><{$time_date2}></h2>
             
 			<div class="table" id="tab1_1">
@@ -437,7 +689,7 @@ function setSelectedBgColor()//设置选定行的背景色
    </div>
         <!--表格结束-->
         <div class="demo">
-			<a class="demo3" style="position:relative;right:-800px;top:100px;width:130px;cursor:pointer">修改当日预约时间</a>
+			<a class="demo3" style="position:relative;right:-800px;top:50px;width:130px;cursor:pointer;margin-bottom:20px;">修改当日预约时间</a>
 			
 			</div>
       
