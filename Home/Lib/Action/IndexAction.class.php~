@@ -57,6 +57,8 @@ class IndexAction extends Action{
 		$next_day=date('Y-m-d',$tomorrowStamp);
 		$this->assign('past_day',$past_day);
 		$this->assign('next_day',$next_day);
+		var_dump($past_day);
+		var_dump($next_day);
 		//后台传值预约信息的判断
 		$m=M('orders');
 		$map['starttime']=array('like',''.$time.'%');
@@ -315,7 +317,7 @@ class IndexAction extends Action{
 		$m=M('orders');
 		$t=M('Temp');
 		$temp_conditon['new_order']='1';
-		$temp_conditon['yorders']='1'
+		$temp_conditon['yorders']='1';
 		$add=$t->add($temp_conditon);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
