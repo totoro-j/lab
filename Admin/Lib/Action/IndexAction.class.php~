@@ -17,6 +17,7 @@ class IndexAction extends AdminCommonAction {
 		$page->setConfig('header','条记录');
 		$show=$page->show();
 		$arr=$m->limit($page->firstRow.','.$page->listRows)->where($map)->order('id desc')->select();
+		var_dump($arr);
 		$this->assign('show',$show);
 		$this->assign('arr',$arr);
 		$this->assign('data',$c);
