@@ -400,7 +400,7 @@ calendar.init(calendars3,3);
          
          
         <form id="myForm" action="__URL__/submit" style="margin-left:100px;">
-        <input type="text"   name="toSubmitDate"  style="display:none" />
+        <input type="text"   name="date"  value="<{$date}>" style="display:none" />
  			
             <p id="startTime">起始时间：</p>
             <select id="mySelectStartTime" name="startTime" style="size="5"">
@@ -508,7 +508,7 @@ calendar.init(calendars3,3);
                 <option value ="23:30:00">23:30</option>
 
 			</select>    
-            
+           
             <p id="startTime" style="width:100px;margin-right:-10px">不可预约理由：</p>
             <input type="text" placeholder="请输入理由" style="border:1px solid #23a96f;height:30px;font-size:14px;padding-left:4px;float:left;display:inline-block;width:100px" name="info"/>
             
