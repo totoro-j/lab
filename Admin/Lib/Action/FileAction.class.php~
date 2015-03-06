@@ -5,8 +5,8 @@ class FileAction extends AdminCommonAction {
 		$file=D('ZipView');
 		import('ORG.Util.Page');
 		$count=$file->order('id desc')->count();
-		$page  = new Page($count,5);
-		$page->setConfig('header','条记录');
+		$page  = new Page($count,10);
+		$page->setConfig('header','个文件');
 		$show=$page->show();
     		$list=$file->order('id desc')->select();
 		$this->assign('data',$list);
@@ -25,7 +25,7 @@ class FileAction extends AdminCommonAction {
 		import('ORG.Net.UploadFile');
             	$upload = new UploadFile();
             	$upload->maxSize            = 3292200;
-            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar');
+            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf');
             	$upload->savePath           = './Public/UploadZip/';
 		$upload->saveName           = time().'_'.mt_rand();
             	$upload->saveRule           = 'uniqid';
@@ -45,6 +45,7 @@ class FileAction extends AdminCommonAction {
 		$data1['fileurl']=$_POST['savename'];
 		$data1['size']=$_POST['size'];
 		$data1['uid']=$_SESSION['id'];
+		$data1['ziprole']=$_POST['per']
 		$list=$m->add($data1);
             	if ($list !== false) 
             	{

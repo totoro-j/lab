@@ -45,6 +45,7 @@ class FileAction extends AdminCommonAction {
 		$data1['fileurl']=$_POST['savename'];
 		$data1['size']=$_POST['size'];
 		$data1['uid']=$_SESSION['id'];
+		$data1['ziprole']=$_POST['per'];
 		$list=$m->add($data1);
             	if ($list !== false) 
             	{
