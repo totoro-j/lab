@@ -66,6 +66,7 @@ span.title{background-color: #fff;font-size:15px;color:#000;font-family:"微软�
 
 .button{margin:0 auto;text-align:center;width:450px;}
 .register,.reset{
+	cursor: pointer;
                 margin-top: 20px;
                 margin-right: 100px;
 	           -moz-box-shadow:2px 2px 1px #909090;
