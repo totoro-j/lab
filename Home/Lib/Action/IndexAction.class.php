@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class IndexAction extends Action{
 	public function index(){
 		$m=M('User');
@@ -256,7 +256,6 @@ class IndexAction extends Action{
 		$Ndate=$date;//后台传到前端的值
 		$starttime=$_GET['startTime'];
 		$finaltime=$_GET['endTime'];
-		var_dump($_GET['date']);
 		list($y,$m,$d)=explode('-',$date);
 		list($sh,$sf,$ss)=explode(':',$starttime);
 		list($fh,$ff,$fs)=explode(':',$finaltime);
@@ -269,8 +268,7 @@ class IndexAction extends Action{
 		//判断是否距离现在时间没有超过2小时，未超过报错
 		$nowstamp=time();
 		if(($startstamp-$nowstamp)/3600<2){
-			var_dump(($startstamp-$nowstamp)/3600);
-			$this->error('不能预约据现在不到两小时的时间');
+			$this->error('不能预约距现在不到两小时的时间');
 		}
 		$appointment=M('orders');
 		$map['starttime']=array('like',''.$date.'%');//检索条件
