@@ -290,10 +290,12 @@ class UserAction extends AdminCommonAction {
 			$condition['job']=$_POST['job'];
 		}
 		$user=$m->where($condition_user)->find();
-		if(($user['role']==3||$user['role']==2)&&$admin['role']!=9){
-			$this->error('您的权限不够');
-		}else if($user['role']==9){
-			$this->error('您的权限不够啊');
+		if($_SESSION['id']!=$user['id']){
+			if(($user['role']==3||$user['role']==2)&&$admin['role']!=9){
+				$this->error('您的权限不够');
+			}else if($user['role']==9){
+				$this->error('您的权限不够啊');
+			}
 		}
 		$lastId=$m->where($condition_user)->save($condition);
 		if($lastId){
