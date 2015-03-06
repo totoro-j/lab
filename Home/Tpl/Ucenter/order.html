@@ -46,9 +46,9 @@
   <th>操作</th>
   <th>备注</th>
   </tr>
-  <tr><td id="notfound"  colspan="9" style="color:#999;">没有相关数据</td></tr>
-  <tr>
+  <tr><td id="notfound"  colspan="9" style="color:#999;display:none;">没有相关数据</td></tr>
 <volist name='order_list' id='vo'>
+<tr>
    <td><a href="__URL__/event_detail/id/<{$vo.eid}>"><{$vo.testname}></a></td>
    <td><{$vo.principal}></td>
    <td><{$vo.starttime}></td>
