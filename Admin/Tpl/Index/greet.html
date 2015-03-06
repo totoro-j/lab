@@ -40,7 +40,7 @@
 <tr style="background-color:#DEF8EA;">
 	<td style="padding:10px 10px 10px 10px;"align="left"><if condition="$vo.ypwd eq 1">用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次密码<elseif condition="$vo.ytel eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次联系方式<elseif condition="$vo.yorders eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 预约了一次从 <{$vo.starttime}> 到 <{$vo.finaltime}> 共计 <{$vo.hours}> 小时的实验 <{$vo.testname}><else /></if></td>
    <td align="center"><{$vo.temptime}></td>
-   <td align="center"><if condition="$vo.eid eq 1"><a href="__APP__/User/check/id/<{$vo.uid}>">用户详情</a><else /><a href="__APP__/Appointment/index/Sdate/<{$vo.starttime}>">预约详情</a></if> | <a href="__URL__/clean_log/id/<{$vo.id}>" onClick="return confirm('确定删除？')">删除</a></td>
+   <td align="center"><if condition="$vo.eid eq 1"><a href="__APP__/User/check/id/<{$vo.uid}>">用户详情<{$vo.eid}></a><else /><a href="__APP__/Appointment/index/Sdate/<{$vo.starttime}>">预约详情</a></if> | <a href="__URL__/clean_log/id/<{$vo.id}>" onClick="return confirm('确定删除？')">删除</a></td>
 </tr>
 </volist>
 <th style="padding:10px 10px 10px 10px;" ><a href="__URL__/clean_logs" onClick="return confirm('确定清空所有日志？')">清空所有日志</a></th>

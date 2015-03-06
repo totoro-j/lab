@@ -311,9 +311,13 @@ class IndexAction extends Action{
 		$data['uid']=$_SESSION['id'];
 		$data['hours']=$hour;
 		$m=M('orders');
+		$lastId=$m->add($data);
 		$t=M('Temp');
 		$temp_conditon['new_order']='1';
 		$temp_conditon['yorders']='1';
+		$temp_conditon['uid']=$_SESSION['id'];
+		$temp_conditon['eid']=$event_id[0]['id'];	
+		$temp_conditon['oid']=$lastId;	
 		$add=$t->add($temp_conditon);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
@@ -344,6 +348,8 @@ class IndexAction extends Action{
 		$data['uid']=$_SESSION['id'];
 		$lastId=$event->add($data);
 		$map['new_event']='1';
+		$map['uid']=$_SESSION['id'];
+		$map['eid']=$lastId;
 		$add=$t->add($map);
 		if($lastId && $add>0){
 			$this->success('实验申请成功，请耐心等待审核！','__URL__/index');
