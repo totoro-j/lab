@@ -11,10 +11,11 @@ class BakAction extends AdminCommonAction
 	$re[3]='lab_notice_del';
 	$re[4]='lab_orders';
 	$re[5]='lab_temp';
-	$re[6]='lab_user';
-	$re[7]='lab_user_del';
-	$re[8]='lab_zip';
-	$re[9]='lab_zip_del';
+	$re[6]='lab_tempuser';
+	$re[7]='lab_user';
+	$re[8]='lab_user_del';
+	$re[9]='lab_zip';
+	$re[10]='lab_zip_del';
 	$this->assign("re",$re);
 	$this->display();
   
