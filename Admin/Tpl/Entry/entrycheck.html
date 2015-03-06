@@ -101,7 +101,7 @@
     <td><{$vo.time}></td>
   <td><div id="check_button1" class="check_button"><a>等待通过</a></div></td>
  <td><a href="__URL__/pass/id/<{$vo.id}>"><div class="pass1">通过</div></a></td>    
-  <td><a onclick="showId(<{$vo.id}>)"><div class="refuse1" onClick="showBg()">拒绝</div></a></td>
+  <td><a href="#" onClick="showId(<{$vo.id}>)"><div class="refuse1" onClick="showBg()">拒绝</div></a></td>
 </tr>
  </volist>    
    </table>
@@ -109,7 +109,7 @@
 </div>
    <div id="fullbg"></div> 
    <div id="dialog"> 
-   <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
+   <p class="close"><a href="#" onClick="closeBg()">关闭</a></p> 
 
    <form name="myForm" method="post" action="">
    <div class="refuse_dia">

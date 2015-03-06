@@ -110,27 +110,26 @@
   <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:30px;padding-bottom:50px;">
     <form action="__URL__/ListFileIsshowupload" method="post" name='myForm' enctype="multipart/form-data">
     <input type="file" name="fileurl" style="border:none;margin-top:0px;" id="fileurl"/>
-    <div style="float:right;cursor:pointer" id="button" onClick="showBg()"><a onclick="showId(<{$vo.id}>)">上传</a></div> 
-    </form>
+    <div style="float:right;cursor:pointer" id="button" onClick="showBg()"><a onClick="showId(<{$vo.id}>)">上传</a></div> 
+
 
 
   <div id="fullbg"></div> 
    <div id="dialog"> 
-   <p class="close"><a href="#" onclick="closeBg()" style="float:right;">关闭</a></p> 
+   <p class="close"><a href="#" onClick="closeBg()" style="float:right;">关闭</a></p> 
 
-  <form name="myForm" method="post" action="">
+
    <div class="refuse_dia">
-    <input type="hidden" name="file" class="file" value="">
+   
      <br>
      <br>
 
    <p>请选择文件查看权限：</p>
    
-   <input type="radio" name="per">游客<br>
-   <input type="radio" name="per">正式用户<br>
+   <input type="radio" name="per" value="0">游客<br>
+   <input type="radio" name="per" value="1">正式用户<br>
 
-   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()" style="margin-left:50px;">确认上传</div></a>
-   </div>
+   <input type="submit" class="refuse_btn" style="margin-left:50px;"href="__URL__/ListFileIsshowupload" >
  </form> 
 </div>
 
