@@ -17,12 +17,13 @@ a:hover{
 .greet_table{
    width:960px;	
    margin-top:25px;
+   margin:auto 0;
 	}
 .greet_item{
-    width:300px;
+    width:400px;
 	float:left;
 	
-	margin-left:20px;
+	margin-left:50px;
 	margin-bottom:30px;
 	background:#DEF8EA;
 	}	

@@ -321,19 +321,19 @@ class IndexAction extends Action{
 		$m=M('orders');
 		$lastId=$m->add($data);
 		$t=M('Temp');
-		$temp_conditon['new_order']='1';
-		$temp_conditon['yorders']='1';
-		$temp_conditon['uid']=$_SESSION['id'];
-		$temp_conditon['eid']=$event_id[0]['id'];	
-		$temp_conditon['oid']=$lastId;	
-		$add=$t->add($temp_conditon);
+		$temp_condition['new_order']='1';
+		$temp_condition['yorders']='1';
+		$temp_condition['uid']=$_SESSION['id'];
+		$temp_condition['eid']=$event_id[0]['id'];	
+		$temp_condition['oid']=$lastId;	
+		$add=$t->add($temp_condition);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
 			$this->success('提交成功','index/date/'.$Ndate.'');
 		}else{
 			$this->error('提交失败');
 		}
- 
+	 
 	 
 	}
 	
