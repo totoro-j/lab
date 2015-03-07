@@ -114,12 +114,11 @@
 			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
-			$arr=$m->where($where)->order('id desc')->select();
-			
+			$arr=$m->where($where)->order('id desc')->select();			
 			for($i = 0; $i < $count; $i++){
 				$s=$arr[$i]['id'];
 				$map['eid']=$s;
-				$item[$i]=$n->where($map)->getField('hours');
+				$item[$i]=$n->where($map)->getField('hours',true);
 				$p[$i]=count($item[$i]);
 			}
 			for($k = 0; $k < $count; $k++){
