@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <style type="text/css">
     #img{height:22px; border:#000 2px solid}
-    #button{
+    .button{
       height:30px; 
       width:100px;
-      color:#219E69;
+      background-color:#23a96f;
+      text-align: center;
+      font-size: 16px;
+
     }
     span{
       padding:10px;
@@ -109,13 +112,13 @@
   <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:30px;padding-bottom:50px;">
     <form action="__URL__/ListFileIsshowupload" method="post" name='myForm' enctype="multipart/form-data">
     <input type="file" name="fileurl" style="border:none;margin-top:0px;" id="fileurl"/>
-    <div style="float:right;cursor:pointer" id="button" onClick="showBg()"><a onClick="showId(<{$vo.id}>)">上传</a></div> 
+    <div style="float:right;cursor:pointer" class="button" onClick="showBg()"><a onClick="showId(<{$vo.id}>)" style="color:#fff;">上传</a></div> 
 
 
 
   <div id="fullbg"></div> 
-   <div id="dialog"> 
-   <p class="close"><a href="#" onClick="closeBg()" style="float:right;">关闭</a></p> 
+   <div id="dialog" style="height:200px;"> 
+   <p class="close"><a href="#" onClick="closeBg()" style="float:right;margin-left:330px;font-size:17px;">关闭</a></p> 
 
 
    <div class="refuse_dia">
@@ -123,12 +126,14 @@
      <br>
      <br>
 
-   <p>请选择文件查看权限：</p>
-   
-   <input type="radio" name="per" value="0">游客<br>
-   <input type="radio" name="per" value="1">正式用户<br>
+   <p style="font-size:18px;">请选择文件查看权限：</p>
+   <br>
+   <br>
 
-   <input type="submit" class="refuse_btn" style="margin-left:50px;"href="__URL__/ListFileIsshowupload" >
+   <input type="radio" name="per" value="0" style="margin-left:25px;font-size:15px;">游客
+   <input type="radio" name="per" checked value="1" style="margin-left:25px;font-size:15px;">正式用户<br>
+
+   <input type="submit"  class="button" style="margin-left:300px;margin-top:20px;cursor:pointer" value="提交上传" href="__URL__/ListFileIsshowupload" >
  </form> 
 </div>
 
