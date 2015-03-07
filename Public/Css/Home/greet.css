@@ -36,4 +36,18 @@ a:hover{
 	text-align:center;
 	background:#15a76e;
 	color:#f0f0f0;
-	padding:3px 10px;}			
+	padding:3px 10px;}	
+.buttom{
+	position: relative;
+	float:right;
+	width:100px;
+	height: 28px;
+	text-align: center;
+	color:#fff;
+	cursor: pointer;
+	background-color:#23a96f;
+	border:1px solid #8F9BB3;
+	font-family:"微软雅黑";
+	margin-top:25px;
+	margin-right: 20px;
+}		
