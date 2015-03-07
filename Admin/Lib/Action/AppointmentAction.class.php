@@ -223,16 +223,9 @@ class AppointmentAction extends AdminCommonAction{
 
 
 		}
-		//判断是否过期；0表示时间过期；1表示当天无预约;2表示选择日期正确，且有预约
+		//判断是否过期；1表示当天无预约;2表示选择日期正确，且有预约
 		if($result==''){
 			$time_judge= '1';
-		}
-		list($y,$m,$d)=explode('-',$time);
-		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
-		$a=mktime(0,0,0,$m,$d,$y);//输入日期
-		$b=mktime(0,0,0,$w,$e,$q);//今天的日期
-		if($a<$b){
-			$time_judge= '0';
 		}
 		if($time_judge==''){
 			$time_judge= '2';
@@ -400,9 +393,11 @@ class AppointmentAction extends AdminCommonAction{
 		list($sh,$sf,$ss)=explode(':',$starttime);
 		list($fh,$ff,$fs)=explode(':',$finaltime);
 		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
+		/*
 		if(mktime(0,0,0,$m,$d,$y)<mktime(0,0,0,$w,$e,$q)){
 			$this->error('该时间段已过期');
 		}
+		 */
 		$startstamp=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间转换为时间戳
 		$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
 		$appointment=M('orders');
