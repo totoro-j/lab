@@ -234,7 +234,9 @@ function setSelectedBgColor()//设置选定行的背景色
     
         <div class="can_1">机时预约</div>
           <!--这里是三个日历-->
-  <script type="text/javascript"> 
+   <script type="text/javascript"> 
+  var monthcon=<{$month}>-1;
+  var yearcon=<{$year}>;
 var calendar = { 
 dayTable:null, 
 year:null,
@@ -250,8 +252,18 @@ nextMonth.setHours(nextMonth.getHours() - 3);
 return nextMonth.getDate();
 }, 
 createCalendar:function(form,date,senum){ 
-calendar.year = date.getFullYear();
-calendar.month = date.getMonth()+senum-1;
+calendar.year = yearcon;
+calendar.month = monthcon+senum-1;
+if(calendar.month>11){
+  var yearplus=Math.floor(calendar.month/12);
+  calendar.month=calendar.month-12*yearplus;
+  calendar.year+=yearplus;
+}
+else if(calendar.month<0){
+  var yearsub=Math.floor(calendar.month/12);
+  calendar.month=calendar.month-12*yearsub;
+  calendar.year+=yearsub;
+}
 form.getElementsByTagName('th')[1].innerHTML = calendar.year + '年 ' + (calendar.month + 1) + '月'; 
 calendar.clearCalendar(form);
 var monthLen = calendar.getMonthLen(calendar.year,calendar.month);
@@ -276,16 +288,29 @@ this.dayTable = form.getElementsByTagName('td');
 this.createCalendar(form,new Date(),senum); 
 } 
 } 
+var calnum=1;
+function monthchange(num){
+  calnum+=num;
+  var calendars = document.getElementById('calendar'); 
+var calendars2 = document.getElementById('calendar2'); 
+var calendars3 = document.getElementById('calendar3'); 
+calendar.init(calendars,calnum); 
+calendar.init(calendars2,calnum+1); 
+calendar.init(calendars3,calnum+2);  
+}
 window.onload = function(){ 
 var calendars = document.getElementById('calendar'); 
 var calendars2 = document.getElementById('calendar2'); 
 var calendars3 = document.getElementById('calendar3'); 
-calendar.init(calendars,1); 
-calendar.init(calendars2,2); 
-calendar.init(calendars3,3); 
-} 
+calendar.init(calendars,calnum); 
+calendar.init(calendars2,calnum+1); 
+calendar.init(calendars3,calnum+2); 
+}
+
+
 </script> 
 <div style="width:960px;height:245px;margin:0 auto;padding-top:50px;" id="tricalendar">
+<div style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left;cursor:pointer;" href="#" onclick="monthchange(-1)"></div>
 <table id="calendar" cellspacing="0"> 
 <tr>  
 <th> </th> 
@@ -496,6 +521,7 @@ calendar.init(calendars3,3);
 <td> </td> 
 </tr> 
 </table> 
+<div style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right;cursor:pointer;" href="#" onclick="monthchange(1)"></div>
 </div>
   
   

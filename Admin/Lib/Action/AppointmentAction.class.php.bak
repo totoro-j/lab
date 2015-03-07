@@ -154,8 +154,7 @@ class AppointmentAction extends AdminCommonAction{
 		$time.=$y;
 		$time.='-';
 		$time.=$r;
-		$this->assign('month',$y);//后台传月
-		$this->assign('year',$n);//后台传年
+		
 		//结束
 		//前一天与后一天的时间
 		$todayStamp=mktime(0,0,0,$y,$r,$n);

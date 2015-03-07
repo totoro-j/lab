@@ -56,8 +56,8 @@ class IndexAction extends Action{
 		$time.='-';
 		$time.=$r;
 		//结束
-		$this->assign('month',$y);//后台传月
-		$this->assign('year',$n);//后台传年
+		$this->assign('month',$y);
+		$this->assign('year',$n);
 		//前一天与后一天的时间
 		$todayStamp=mktime(0,0,0,$y,$r,$n);
 		$tomorrowStamp=$todayStamp+86400;
