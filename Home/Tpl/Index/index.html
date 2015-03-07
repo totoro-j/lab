@@ -196,8 +196,9 @@ function setSelectedBgColor()//设置选定行的背景色
                 var namebox = document.getElementById("namebox");
                 namebox.id = "checkedlength";
               }
-              </script>
-			  <td style="width:80px;"><{$vo.size}>KB</td>
+	      </script>
+			  <td style="width:50px;"><{$vo.size}>KB</td>
+			  <td style="width:150px;"><{$vo.date}></td>
               <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'><div style="padding:10px 4px;background:#23a96f;color:#fff;text-align:center;">下载</div></a></td>
             </tr>  
 			</volist>

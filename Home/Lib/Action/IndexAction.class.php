@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class IndexAction extends Action{
 	public function index(){
 		$m=M('User');
@@ -18,14 +18,14 @@ class IndexAction extends Action{
 		}else{
 			$topshow=2;
 		}
-		$this->assign('topshow',$topshow);	
+		$this->assign('topshow',$topshow);
 		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
 		$this->assign('date',$time);
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		//判断是不是游客，如果是0，则是游客。如果是1，则不是游客
 		if($_SESSION['id']==''){
-			$user_role=0;	
+			$user_role=0;
 		}else{
 			$user_role=1;
 		}
@@ -47,7 +47,7 @@ class IndexAction extends Action{
 		$time.=$y;
 		$time.='-';
 		$time.=$r;
-		
+
 		//结束
 		//前一天与后一天的时间
 		$todayStamp=mktime(0,0,0,$y,$r,$n);
@@ -109,15 +109,15 @@ class IndexAction extends Action{
 				$time_users_tel.=$user_content[0]['tel'];
 				$time_users_tel.=':';
 				//用户电话
-				
+
 				if($user_content[0]['job']==1){
 					$time_users_job.="学生";
 				}else if($user_content[0]['job']==2){
-					$time_users_job.="老师";	
+					$time_users_job.="老师";
 				}else if($user_content[0]['job']==3){
 					$time_users_job.="其他";
 				}
-				 
+
 				$time_users_job.=':';
 				//用户身份
 				$time_users_unit.=$user_content[0]['unit'];
@@ -132,8 +132,8 @@ class IndexAction extends Action{
 				}
 
 			}
-		
-			
+
+
 
 
 		}
@@ -152,14 +152,14 @@ class IndexAction extends Action{
 			$time_judge= '2';
 		}
 		//用户可预约的事件;role 0表示待审核；1表示通过审核；2表示未通过审核
-		
+
 		$event=M('event');
 		$user=M('user');
 		$user_condtion['id']=$_SESSION['id'];
 		$uer_role=$user->where($user_condtion)->select();
 		if($uer_role[0]['role']==2||$uer_role[0]['role']==9){
 			$user_event[0]['testname']="管理员登陆无预约实验";
-		}else{	
+		}else{
 			$event_condition['uid']=$_SESSION['id'];
 			$event_condition['state']=1;
 			$user_event=$event->field('testname')->where($event_condition)->select();
@@ -204,31 +204,45 @@ class IndexAction extends Action{
 		$maps['id']=array('eq',"$nam");
 		$myrole=$m->where($maps)->getField('role');
 		if(!isset($_SESSION['username']) || $_SESSION['username']=='' || ($myrole != "2" && $myrole != "9" && $myrole != "1")){
-			$ar=$t->where('ziprole=0')->select();
+			$ar=$t->where('ziprole=0')->order('id desc')->select();
 		}else{
-			$ar=$t->where('ziprole=1')->select();
+			$ar=$t->where('ziprole=1')->order('id desc')->select();
+		}
+		$n=count($ar);
+		for($i=0;$i<$n;$i++){
+			list($a,$b)=explode(" ",$ar[$i]['date']);
+			$ar[$i]['date']=$a;
 		}
 		$this->assign('zip',$ar);
-		$this->display();	 	 	
+		$this->display();
 	}
 
 	public function download(){
 		$uploadpath='./Public/UploadZip/';
 		$id=$_GET['id'];
-		if($id=='')
-		{$this->redirect('index');
+		$m=M('User');
+		$nam=$_SESSION['id'];
+		$maps['id']=array('eq',"$nam");
+		$myrole=$m->where($maps)->getField('role');
+		if($myrole == "2" || $myrole == "9" || $myrole == "1"){
+			if($id==''){
+				$this->redirect('index');
+			}
+			$file=M('Zip');
+			$result= $file->find($id);
+			if($result==false){
+				$this->redirect('index');
+			}
+			$savename=$result['fileurl'];
+			$showname=$result['filename'];
+			$filename=$uploadpath.$savename;
+			import('ORG.Net.Http');
+			Http::download($filename,$showname);
+			}else{
+			echo"<script type='text/javascript'>alert('您的下载操作非法！');history.back(-1);</script>";
 		}
-		$file=M('Zip');
-		$result= $file->find($id);
-		if($result==false)
-		{$this->redirect('index');
-		}
-		$savename=$result['fileurl'];
-		$showname=$result['filename'];
-		$filename=$uploadpath.$savename;
-		import('ORG.Net.Http');
-		Http::download($filename,$showname);
 	}
+
 
 	public function show(){
 		$m=M('User');
@@ -321,10 +335,10 @@ class IndexAction extends Action{
 		}else{
 			$this->error('提交失败');
 		}
- 
-	 
+
+
 	}
-	
+
 	public function application(){
 		$m=M('user');
 		$condition['id']=$_SESSION['id'];
@@ -350,7 +364,7 @@ class IndexAction extends Action{
 		}else{
 			$this->error('实验申请失败，请重试！');
 		}
-		
+
 	}
 }
 ?>

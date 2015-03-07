@@ -24,7 +24,7 @@ class FileAction extends AdminCommonAction {
      	public function  ListFileIsshow_upload(){
 		import('ORG.Net.UploadFile');
             	$upload = new UploadFile();
-            	$upload->maxSize            = 3292200;
+            	$upload->maxSize            = 329220000;
             	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf');
             	$upload->savePath           = './Public/UploadZip/';
 		$upload->saveName           = time().'_'.mt_rand();
