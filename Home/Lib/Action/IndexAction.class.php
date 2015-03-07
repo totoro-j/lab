@@ -53,10 +53,11 @@ class IndexAction extends Action{
 		$time=$n;
 		$time.='-';
 		$time.=$y;
+		$month=$time;//传给前端的月份值
 		$time.='-';
 		$time.=$r;
-
 		//结束
+		$this->assign('month',$month)
 		//前一天与后一天的时间
 		$todayStamp=mktime(0,0,0,$y,$r,$n);
 		$tomorrowStamp=$todayStamp+86400;
@@ -341,7 +342,6 @@ class IndexAction extends Action{
 		$temp_condition['eid']=$event_id[0]['id'];	
 		$temp_condition['oid']=$lastId;	
 		$add=$t->add($temp_condition);
-		$lastId=$m->add($data);
 		if($lastId && $add>0){
 			$this->success('提交成功','index/date/'.$Ndate.'');
 		}else{
