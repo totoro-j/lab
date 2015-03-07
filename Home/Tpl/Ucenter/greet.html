@@ -11,11 +11,11 @@
 
 <body>
 <div style="width:1000px;margin:0 auto;">
-  <table align="left" style="position:relative;margin-left:20px;">
+  <table align="left" style="position:relative;margin-left:20px;clear:left">
 <tr>
-  <th style="width:600px;" class="greet_title">用户操作日志</th>
+  <th style="width:500px;" class="greet_title">用户操作日志</th>
   <th style="width:200px;" class="greet_title">操作时间</th>
-  <th style="width:100px;" class="greet_title">操作</th>
+  <th style="width:200px;" class="greet_title">操作</th>
 </tr>
 <volist name='list' id='vo'>
 <tr style="background-color:#DEF8EA;">
@@ -24,9 +24,9 @@
    <td align="center"><a href="__URL__/event_detail/id/<{$vo.eid}>">点击查看实验详情</a> | <a href="__URL__/clean_log/id/<{$vo.id}>" onClick="return confirm('确定删除？')">删除</a></td>
 </tr>
 </volist>
-<th style="padding:10px 10px 10px 10px;" ><a href="__URL__/clean_logs" onClick="return confirm('确定清空所有日志？')">清空所有日志</a></th>
 </table> 
-<div style="margin-top:10px;margin-right:20px;font-size:14px;float:right;"><{$show}></div>
+<div style="margin-top:10px;margin-left:30px;font-size:14px;float:left;"><{$show}></div>
+<div class="buttom" href="__URL__/clean_logs" onClick="return confirm('确定清空所有日志？')">清空所有日志</div>
 </div>
 </body>
 </html>

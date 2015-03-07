@@ -199,6 +199,7 @@ class UserAction extends AdminCommonAction {
 		$m=M('User');
 		$arr=$m->find($id);
 		$this->assign('data',$arr);
+		var_dump($arr);
 		$this->display();
 	}
 
@@ -290,7 +291,6 @@ class UserAction extends AdminCommonAction {
 			$condition['job']=$_POST['job'];
 		}
 		$user=$m->where($condition_user)->find();
-		var_dump($user['id']);
 		if($_SESSION['id']!=$user['id']){
 			if(($user['role']==3||$user['role']==2)&&$admin['role']!=9){
 				$this->error('您的权限不够');

@@ -24,10 +24,18 @@ class IndexAction extends Action{
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		//判断是不是游客，如果是0，则是游客。如果是1，则不是游客
+		$user_m=M('User');
 		if($_SESSION['id']==''){
 			$user_role=0;
 		}else{
-			$user_role=1;
+			$con['id']=$_SESSION['id'];
+			$role=$user_m->where($con)->find();
+			$u_role=$role['role'];
+			if($u_role==4||$u_role==5||$u_role==0){
+				$user_role=0;
+			}else{	
+				$user_role=1;
+			}
 		}
 		$this->assign('user_role',$user_role);
 		//如果为单数时，改变日期格式
@@ -325,18 +333,20 @@ class IndexAction extends Action{
 		$data['uid']=$_SESSION['id'];
 		$data['hours']=$hour;
 		$m=M('orders');
+		$lastId=$m->add($data);
 		$t=M('Temp');
-		$temp_conditon['new_order']='1';
-		$temp_conditon['yorders']='1';
-		$add=$t->add($temp_conditon);
+		$temp_condition['new_order']='1';
+		$temp_condition['yorders']='1';
+		$temp_condition['uid']=$_SESSION['id'];
+		$temp_condition['eid']=$event_id[0]['id'];	
+		$temp_condition['oid']=$lastId;	
+		$add=$t->add($temp_condition);
 		$lastId=$m->add($data);
 		if($lastId && $add>0){
 			$this->success('提交成功','index/date/'.$Ndate.'');
 		}else{
 			$this->error('提交失败');
 		}
-
-
 	}
 
 	public function application(){
@@ -358,6 +368,8 @@ class IndexAction extends Action{
 		$data['uid']=$_SESSION['id'];
 		$lastId=$event->add($data);
 		$map['new_event']='1';
+		$map['uid']=$_SESSION['id'];
+		$map['eid']=$lastId;
 		$add=$t->add($map);
 		if($lastId && $add>0){
 			$this->success('实验申请成功，请耐心等待审核！','__URL__/index');

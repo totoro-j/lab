@@ -166,10 +166,10 @@ function setSelectedBgColor()//设置选定行的背景色
    			<!--公告栏-->
    			<div class="can">
 		<div class="can_1">公告栏</div>
-		<div class="canin" style="margin-top:20px;padding-top:10px;height:210px;">
+		<div class="canin" style="margin-top:20px;padding-top:10px;height:158px;">
 			
              <p><{$content}></p>
-			<h3 style="border:none; margin-top:5px;" class="canin_2"><{$time}><br></h3>
+			<h3 style="border:none; margin-top:-1px;padding-right:30px;" class="canin_2"><{$time}><br></h3>
            
     </div>
 	</div>
@@ -180,12 +180,12 @@ function setSelectedBgColor()//设置选定行的背景色
 	<load href="__PUBLIC__/Css/Home/show.css" />
     <div class="cant">
         <div class="can_1" style="float:left;width:500px;margin-top:15px;margin-left:50px;">资料下载</div>
-        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll;height:230px;">
+        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll;height:170px;">
         
         	<table border='1' align='center' class="show_check" style="width:500px;">
 			<volist name='zip' id='vo'>
             <tr>
-			  <td style="width:600px;"><abbr title='<{$vo.filename}>' id="namebox"><{$vo.filename}></abbr></td>
+			  <td style="width:500px;"><abbr title='<{$vo.filename}>' id="namebox"><{$vo.filename}></abbr></td>
               <script type="text/javascript">
               {
                 var namelength=document.getElementById("namebox").innerHTML.length;
@@ -979,7 +979,7 @@ calendar.init(calendars3,3);
 	
 	
 	//开始对 对应方框进行填色
-	
+	var user_role=document.getElementById("to_get_user_role").value;
 	var time_judge=document.getElementById("to_get_time_judge").value;
 	var time_disable_1=document.getElementById("to_get_time_disable_1").value;
 	var time_disable_2=document.getElementById("to_get_time_disable_2").value;
@@ -1021,8 +1021,10 @@ calendar.init(calendars3,3);
 			var obj2=document.getElementsByTagName("option");   
 			for(j=(start1+start2);j<(end1+end2);j++){    //从"起始时间"开始把框弄灰，直到"结束时间"
 				obj1[j].setAttribute('title',"不可选原因"+time_disabledReason[i]); 	  //鼠标放上去会显示理由
+				if(user_role==1){
 				obj1[j].setAttribute('onclick',"javascript:alert('不可选原因："+time_disabledReason[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
 				obj1[j].style.cursor="pointer";	
+				}
 				obj1[j].style.backgroundColor='#e4dfde';
 				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
 				obj2[j+50].disabled="disabled";					
@@ -1050,10 +1052,12 @@ calendar.init(calendars3,3);
 			var end2=time_disable_2[6*i+4]/30;   
 			var obj1=document.getElementsByClassName("time_period");
 			var obj2=document.getElementsByTagName("option");   
-			for(j=(start1+start2);j<(end1+end2);j++){   
+			for(j=(start1+start2);j<(end1+end2);j++){  
+			if(user_role==1){ 
 				obj1[j].setAttribute('title',"用户名:"+time_users_name[i]+"  用户电话:"+time_users_tel[i]+"  用户身份:"+time_users_job[i]+"  用户单位:"+time_users_unit[i]+"  用户学院:"+time_users_department[i]+"  课题负责人:"+time_users_principal[i]); 	  //鼠标放上去会显示理由
 				obj1[j].setAttribute('onclick',"javascript:alert('用户名："+time_users_name[i]+'\\n用户电话：'+time_users_tel[i]+'\\n用户身份：'+time_users_job[i]+'\\n用户单位：'+time_users_unit[i]+'\\n用户学院：'+time_users_department[i]+'\\n课题负责人：'+time_users_principal[i]+"');"); 	  //点击也会显示理由（通过"alert()"）
 				obj1[j].style.cursor="pointer";	
+			}
 				obj1[j].style.backgroundColor='#ffd3c3';
 				obj2[j+1].disabled="disabled";      //无效时间对应的option时间段不可选
 				obj2[j+50].disabled="disabled";					

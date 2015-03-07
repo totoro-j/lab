@@ -75,7 +75,7 @@ ul{
 
 
 #nc{
-	height: 320px;
+	height: 270px;
 	width:1080px;
 	margin:0 auto;
 	margin-top: 20px;
@@ -122,7 +122,7 @@ ul{
 /*公告栏*/
 .can{
 		width: 450px;
-		height: 300px;
+		height: 250px;
 		float: left;
 
 		margin-top:15px;
@@ -169,7 +169,7 @@ ul{
 	padding-right:0px;
 	overflow:auto;
 	width:420px;
-	height:170px;
+	height:140px;
 }	
 
 #nav li ul a{display: block; width: 156px;text-align:left;padding-left:24px; overflow:hidden} 
