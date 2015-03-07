@@ -400,7 +400,7 @@ calendar.init(calendars3,3);
          
          
         <form id="myForm" action="__URL__/submit" style="margin-left:100px;">
-        <input type="text"   name="date"  value="<{$date}>" style="display:none" />
+        <input type="text"   name="date"  value="<{$time_date}>" style="display:none" />
  			
             <p id="startTime">起始时间：</p>
             <select id="mySelectStartTime" name="startTime" style="size="5"">
@@ -836,12 +836,13 @@ calendar.init(calendars3,3);
 			
 				</ul> 
             
-                 
+                 	
                     <div class="buttons">
                     <div style="padding-left:170px;margin-top:250px"><input type="submit" value="确认提交" class="submitBtn" /></div>
                  
 			
                     </div>
+                    <input style="display:none" name="date" value="<{$time_date}>">
             </form>
 		</div><!-- HBox end -->	
 

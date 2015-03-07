@@ -167,7 +167,7 @@ class AppointmentAction extends AdminCommonAction{
 		//后台传值预约信息的判断
 		$m=M('orders');
 		$map['starttime']=array('like',''.$time.'%');
-		$result=$m->field('starttime,finaltime,eid,uid,info')->where($map)->select();//检索选择日期的预约情况
+		$result=$m->field('starttime,finaltime,eid,uid,info,id')->where($map)->select();//检索选择日期的预约情况
 		//复杂的判断过程
 		$n=count($result);
 			for($i=0;$i<$n;$i++){
@@ -264,6 +264,7 @@ class AppointmentAction extends AdminCommonAction{
 		$this->assign('time_disable_2',$time_disable_2);//其余设置的不可预约时间段
 		$this->assign('time_disable_3',$time_disable_3);//用户自己设置的不可预约时间段
 		//用户信息批量赋值
+		$this->assign('time_id',$time_id);//预约序号
 		$this->assign('time_users_name',$time_users_name);//用户名
 		$this->assign('time_users_tel',$time_users_tel);//用户电话
 		$this->assign('time_users_job',$time_users_job);//用户身份
@@ -298,7 +299,8 @@ class AppointmentAction extends AdminCommonAction{
 		$this->display();	 	 	
 	}
 	public function submit(){
-		$date=isset($_GET['to_submit_selected_time'])?$_GET['to_submit_selected_time']:date('Y-m-d',time());//判断日期
+		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//判断日期
+		$ch_date=$date;//传回去的日期
 		//转换日期格式
 		list($n,$y,$r)=explode('-',$date);
 		if(strlen($y)==1){
@@ -364,15 +366,16 @@ class AppointmentAction extends AdminCommonAction{
 		$m=M('orders');
 		$lastId=$m->add($data);
 		if($lastId)
-			$this->success('设置成功','index');
+			$this->success('设置成功','__URL__/index/date/'.$ch_date.'');
 		else
-			$this->error('提交失败');
+			$this->error('提交失败','__URL__/index/date/'.$ch_date.'');
  
 	 
 	
 	}	 	
 	public function modify(){
-		$date=isset($_GET['to_submit_selected_time'])?$_GET['to_submit_selected_time']:date('Y-m-d',time());//判断日期
+		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//判断日期
+		$ch_date=$date;//传回去的日期
 		$id=$_GET['id'];//预约序号
 		//转换日期格式
 		list($n,$y,$r)=explode('-',$date);
@@ -415,9 +418,9 @@ class AppointmentAction extends AdminCommonAction{
 				list($a,$b)=explode(" ",$result[$i]['finaltime']);
 				list($fh,$ff,$fs)=explode(':',$b);
 				$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
-				if($startstamp>=$startjudge&&$startstamp<=$finaljudge){
+				if($startstamp>$startjudge&&$startstamp<$finaljudge){
 					$this->error('输入时间与其他预约冲突，请修改1');
-				}elseif($finalstamp>=$startjudge&&$finalstamp<=$finaljudge){
+				}elseif($finalstamp>$startjudge&&$finalstamp<$finaljudge){
 					$this->error('输入时间与其它预约冲突，请修改2');
 				}elseif($startstamp<$startjudge&&$finalstamp>$finaljudge){
 					$this->error('输入时间与其他冲突，请修改3');
@@ -441,9 +444,9 @@ class AppointmentAction extends AdminCommonAction{
 		$m=M('orders');
 		$lastId=$m->save($data);
 		if($lastId)
-			$this->success('设置成功','index');
+			$this->success('设置成功','__URL__/index/date/'.$ch_date.'');
 		else
-			$this->error('提交失败');
+			$this->error('提交失败','__URL__/index/date/'.$ch_date.'');
 	}
 }
 
