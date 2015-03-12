@@ -174,7 +174,7 @@ class AppointmentAction extends AdminCommonAction{
 			for($i=0;$i<$n;$i++){
 			$user=M('user');//建立user
 			$condition['id']=$result[$i]['uid'];
-			$user_content=$user->field('role,tel,truename,id')->where($condition)->select();
+			$user_content=$user->field('role,tel,truename,id,principal')->where($condition)->select();
 			//管理员的设置
 			if($user_content[0]['role']==2||$user_content[0]['role']==9){
 				//管理员设置的不可预约时间段
@@ -212,6 +212,32 @@ class AppointmentAction extends AdminCommonAction{
 				$time_id.=$result[$i]['id'];
 				$time_id.=':';
 				//用户：id
+				$time_users_name.=$user_content[0]['truename'];
+				$time_users_name.=':';
+				//用户名
+				$time_users_tel.=$user_content[0]['tel'];
+				$time_users_tel.=':';
+				//用户电话
+
+				if($user_content[0]['job']==1){
+					$time_users_job.="学生";
+				}else if($user_content[0]['job']==2){
+					$time_users_job.="老师";
+				}else if($user_content[0]['job']==3){
+					$time_users_job.="其他";
+				}
+
+				$time_users_job.=':';
+				//用户身份
+				$time_users_unit.=$user_content[0]['unit'];
+				$time_users_unit.=':';
+				//用户单位
+				$time_users_department.=$user_content[0]['department'];
+				$time_users_department.=':';
+				//用户学院
+				$time_users_principal.=$user_content[0]['principal'];
+				$time_users_principal.=':';
+				//课题负责人
 				$ExperimentCondition['id']=$result[$i]['eid'];
 				$experiment=M('event');
 				$exName=$experiment->field('testname')->where($ExperimentCondition)->select();

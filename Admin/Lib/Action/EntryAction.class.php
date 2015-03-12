@@ -7,11 +7,31 @@ class EntryAction extends AdminCommonAction {
 
 	public function entryview(){
 		$e=D('EventView');
+		$n=D('OrdersView');
 		import('ORG.Util.Page');
 		$count=$e->where('state=1')->count();
 		$page  = new Page($count,10);
 		$page->setConfig('header','条记录');
 		$show=$page->show();
+		$arr=$e->where('state=1')->order('id desc')->select();			
+			for($i = 0; $i < $count; $i++){
+				$s=$arr[$i]['id'];
+				$map['eid']=$s;
+				$item[$i]=$n->where($map)->getField('hours',true);
+				$p[$i]=count($item[$i]);
+			}
+			for($k = 0; $k < $count; $k++){
+				$arr[$k]['testhours']=0;
+				for($h = 0; $h < $p[$k]; $h++){
+					$arr[$k]['testhours']=$item[$k][$h]+$arr[$k]['testhours'];
+				}
+			}
+			for($f=0;$f < $count;$f++){
+				$condition['id']=(int)$arr[$f]['id'];
+				$cond=$arr[$f]['testhours'];
+				$h=$e->where($condition)->setField('testhours',"$cond");
+				$j=$n->where($condition)->setField('testhours',"$cond");
+			}
 		$arr=$e->limit($page->firstRow.','.$page->listRows)->where('state=1')->order('id desc')->select();
 		$this->assign('entry_list',$arr);
 		$this->assign('show',$show);
@@ -63,7 +83,7 @@ class EntryAction extends AdminCommonAction {
 		{
 		case "principal":
 			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
-			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( User.principal LIKE '%$content%' )");
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON event.id=Orders.eid JOIN lab_user user ON user.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( user.principal LIKE '%$content%' )");
 			foreach($test as $test0){
 			$test0=join(',',$test0);
 			$temp[]=$test0;
@@ -72,7 +92,7 @@ class EntryAction extends AdminCommonAction {
 			break;
 		case "truename":
 			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
-			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( User.truename LIKE '%$content%' )");
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON event.id=Orders.eid JOIN lab_user user ON user.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( user.truename LIKE '%$content%' )");
 			foreach($test as $test0){
 			$test0=join(',',$test0);
 			$temp[]=$test0;
@@ -81,14 +101,14 @@ class EntryAction extends AdminCommonAction {
 			break;
 		default:
 			if(isset($stime) && $stime!=null && isset($ftime) && $ftime!=null && $start < $final){
-			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) )");
+			$test=$e->query("SELECT event.testname AS testname FROM lab_orders Orders JOIN lab_event event ON event.id=Orders.eid JOIN lab_user user ON user.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) )");
 			foreach($test as $test0){
 			$test0=join(',',$test0);
 			$temp[]=$test0;
 			}
 			}
 			break;
-			
+		}
 		$temp=array_unique($temp);
 		foreach($temp as $k => $test0){
 			$temp[$k]=explode(',',$test0);
@@ -97,7 +117,7 @@ class EntryAction extends AdminCommonAction {
 		for($i = 0; $i < count($temp); $i++){
 			$s=$temp[$i];
 			$ss=implode($s);
-			$item[$i]['m']=$e->query("SELECT Orders.id AS id,Orders.starttime AS starttime,Orders.finaltime AS finaltime,Orders.hours AS hours,Orders.ordertime AS ordertime,Orders.edit AS edit,Orders.info AS info,event.testname AS testname,event.state AS state,event.id AS eid,user.truename AS truename,user.principal AS principal,user.id AS uid FROM lab_orders Orders JOIN lab_event event ON Event.id=Orders.eid JOIN lab_user user ON User.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( (`testname` = '$ss') ) order by starttime desc");
+			$item[$i]['m']=$e->query("SELECT Orders.id AS id,Orders.starttime AS starttime,Orders.finaltime AS finaltime,Orders.hours AS hours,Orders.ordertime AS ordertime,Orders.edit AS edit,Orders.info AS info,event.testname AS testname,event.state AS state,event.id AS eid,user.truename AS truename,user.principal AS principal,user.id AS uid FROM lab_orders Orders JOIN lab_event event ON event.id=Orders.eid JOIN lab_user user ON user.id=Orders.uid WHERE ( (UNIX_TIMESTAMP(Orders.starttime) BETWEEN '$start' AND '$final' ) ) AND ( (UNIX_TIMESTAMP(Orders.finaltime) BETWEEN '$start' AND '$final' ) ) AND ( (`testname` = '$ss') ) order by starttime desc");
 			$p[$i]=count($item[$i]['m']);
 		}
 		for($k = 0; $k < count($temp); $k++){
@@ -119,8 +139,7 @@ class EntryAction extends AdminCommonAction {
 		}
 		$this->assign('list',$temp);
 		$this->assign('item',$item);
-		}
-		$this->display();
+		$this->display('entrytime');
 	}
 
 	public function search(){
@@ -218,8 +237,14 @@ class EntryAction extends AdminCommonAction {
 			}
 			$this->assign('data',$arr);
 			$where['eid']=$id;
-			$field=$n->where($where)->select();
+			import('ORG.Util.Page');
+			$count=$n->where($where)->count();
+			$page  = new Page($count,10);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$field=$n->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
 			$this->assign('order_list',$field);
+			$this->assign('show',$show);
 			$this->display();
 		}
 
@@ -228,14 +253,27 @@ class EntryAction extends AdminCommonAction {
 			$m=D('EventView');
 			$n=D('OrdersView');
 			$arr=$m->find($id);
+			$condition['eid']=$id;
+			$r=$n->where($condition)->order('starttime desc')->select();
+			$t=count($r);
+			$arr['testhours']=0;
+			for($i=0;$i<$t;$i++){
+				$arr['testhours']=$r[$i]["hours"]+$arr['testhours'];
+			}
 			$this->assign('data',$arr);
 			$where['eid']=$id;
-			$field=$n->where($where)->select();
+			import('ORG.Util.Page');
+			$count=$n->where($where)->count();
+			$page  = new Page($count,10);
+			$page->setConfig('header','条记录');
+			$show=$page->show();
+			$field=$n->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
 			$this->assign('order_list',$field);
+			$this->assign('show',$show);
 			$this->display();
 		}
 
-/**		public function entrystatic(){
+	/*	public function entrystatic(){
 			$m=D('Event');
 			$arr=$_POST['interface'];
 			$array=explode('^',$arr);
@@ -247,7 +285,7 @@ class EntryAction extends AdminCommonAction {
 				$u[2]=$r[$i]["hour"]+$u[2];
 			}
 			echo json_encode($u);
-}**/
+		}*/
 
 		public function cancel(){
 			$m=M('Event');

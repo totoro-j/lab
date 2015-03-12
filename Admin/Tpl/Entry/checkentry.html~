@@ -9,16 +9,27 @@
 $(document).ready(function(){
         $(".search_button").click(function(){                
                 $(".stastic_check").toggle();
+                      $(".pages").toggle();
         })
 })
 </script>
+<script type="text/javascript">
+    function validateTel(){
+    var foundResult=document.getElementById("appointment_check");
+    var notfoundResult=document.getElementById("notfound");
+    if(foundResult.rows.length==2){
+      notfoundResult.style.display='table-cell';
+      foundResult.width=1050;
+    }
+  }
+</script>
 	</head>
-	<body>
-	<h2 style="color:#219E69;margin:0 auto;"> 预约详细信息</h2>
+	<body onLoad="validateTel()">
+	<h2 style="color:#219E69;margin:0 auto;"> 实验详细信息</h2>
 	<table border='1' width="500" align='center' class="show_check">
 		<input type='hidden' name='id' value="<{$data.id}>"/>
            <tr>
-             <th colspan="4">预约信息</th>
+             <th colspan="4">实验信息</th>
            </tr>  
             <tr>
 			  <td>实验名称：<{$data.testname}></td>
@@ -35,7 +46,13 @@ $(document).ready(function(){
 			 <td colspan="2"><center>申请时间：<{$data.time}></td>
             </tr>
 	    <tr>
+		    <td colspan="2">Exam Description：<{$data.description}></td>
+	    </tr>
+	    <tr>
 		    <td colspan="2">实验描述：<{$data.testcontent}></td>
+	    </tr>
+	    <tr>
+		    <td colspan="2">目前该实验已预约总时长：<{$data.testhours}> 小时</td>
 	    </tr>
 	    <tr>
             <td class="search_button" colspan="2" style="color:#219E69;font-color:white;text-align:center;">点击查看相关预约</td>
@@ -47,8 +64,8 @@ $(document).ready(function(){
 		</table>
 	
 <!--这里是直接复制的表格，自行修改里面内容-->
-  <table class="stastic_check" style="display:none;">
-  <tr >
+  <table class="stastic_check" style="display:none; "id="appointment_check">
+  <tr>
   <th style="width:500px;">实验名称</th>
   <th>课题负责人姓名</th>
   <th>起始时间</th>
@@ -58,6 +75,8 @@ $(document).ready(function(){
   <th>实验状态</th>
   <th>备注</th>
   </tr>
+  <tr>
+  <td colspan="7" id="notfound">未找到相关数据</td></tr>
    <volist name='order_list' id='vo'>
   <tr>	 
 <td><{$vo.testname}></a></td>
@@ -72,5 +91,6 @@ $(document).ready(function(){
 </volist>
   </table>
   <!--表格结束-->
+<div class="pages" style="margin-top:10px;margin-left:30px;font-size:14px;float:left;display:none;"><{$show}></div>
 	</body>
 </html>

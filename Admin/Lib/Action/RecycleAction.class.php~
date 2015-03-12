@@ -8,7 +8,7 @@
 			$e=D('Notice_del');
 			import('ORG.Util.Page');
 			$count=$e->count();
-			$page  = new Page($count,3);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->relation(true)->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
@@ -21,7 +21,7 @@
 			$e=D('Event_delView');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=1')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=1')->order('id desc')->select();
@@ -34,7 +34,7 @@
 			$e=D('Event_delView');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=2')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=2')->order('id desc')->select();
@@ -48,7 +48,7 @@
 			import('ORG.Util.Page');
 			$where['delstate']=array('in','1,3');
 			$count=$e->where($where)->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where($where)->order('id desc')->select();
@@ -61,7 +61,7 @@
 			$e=M('User_del');
     			import('ORG.Util.Page');
 			$count=$e->where('delstate=2')->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->where('delstate=2')->order('id desc')->select();
@@ -74,7 +74,7 @@
 			$e=D('Zip_delView');
     			import('ORG.Util.Page');
 			$count=$e->count();
-			$page  = new Page($count,5);
+			$page  = new Page($count,10);
 			$page->setConfig('header','条记录');
 			$show=$page->show();
 			$arr=$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
@@ -93,6 +93,7 @@
 			$n->where($map)->delete();
 			for($i=0;$i<$t;$i++){
 				$where[$i]['id']=$field[$i]['id'];
+				$where[$i]['ntitle']=$field[$i]['ntitle'];
 				$where[$i]['content']=$field[$i]['content'];
 				$where[$i]['time']=$field[$i]['time'];
 				$where[$i]['uid']=$field[$i]['uid'];
@@ -105,20 +106,13 @@
 			$rec=$_POST['recover'];
 			$m=M('Event');
 			$n=M('Event_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['testname']=$field[$i]['testname'];
-				$where[$i]['testcontent']=$field[$i]['testcontent'];
-				$where[$i]['total']=$field[$i]['total'];
-				$where[$i]['state']='0';
-				$where[$i]['time']=$field[$i]['time'];
-				$where[$i]['uid']=$field[$i]['uid'];
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('state','0');
+			$n->where($where)->delete();
 			$this->redirect('recycle_event0');
 		}
 
@@ -126,20 +120,13 @@
 			$rec=$_POST['recover'];
 			$m=M('Event');
 			$n=M('Event_del');
-			$map['id']=array('in',$rec);
-			$field=$n->where($map)->select();
-			$t=count($field);
-			$n->where($map)->delete();
-			for($i=0;$i<$t;$i++){
-				$where[$i]['id']=$field[$i]['id'];
-				$where[$i]['testname']=$field[$i]['testname'];
-				$where[$i]['testcontent']=$field[$i]['testcontent'];
-				$where[$i]['total']=$field[$i]['total'];
-				$where[$i]['state']='1';
-				$where[$i]['time']=$field[$i]['time'];
-				$where[$i]['uid']=$field[$i]['uid'];
-			}			
-			$m->addAll($where);
+			if(is_array($rec)){
+				$where='id in('.implode(',',$rec).')';
+			}else{
+				$where='id='.$rec;
+			}
+			$m->where($where)->setField('state','1');
+			$n->where($where)->delete();
 			$this->redirect('recycle_event1');
 		}
 
@@ -148,7 +135,7 @@
 			$rec=$_POST['recover'];
 			$m=M('User');
 			$n=M('User_del');
-				if(is_array($rec)){
+			if(is_array($rec)){
 				$where='id in('.implode(',',$rec).')';
 			}else{
 				$where='id='.$rec;
@@ -319,7 +306,7 @@
 		}
 
 		public function search_event1(){
-			$e=D('Event_del');
+			$e=D('Event_delView');
 			$field=$_POST['user_search'];
 			$content=$_POST['search_input'];
 			switch ($field)
@@ -344,7 +331,14 @@
 					$where['delstate']="2";}else{
 					$where['delstate']="2";
 					}
-					break;	
+					break;
+			case "desc":
+				if(isset($content) && $content!=null){
+					$where['description']=array('like',"%{$content}%");
+					$where['delstate']="2";}else{
+					$where['delstate']="2";
+					}
+					break;		
 			case "time":
 				if(isset($content) && $content!=null){
 					$where['time']=array('like',"%{$content}%");
@@ -366,7 +360,7 @@
 		}
 
 		public function search_event0(){
-			$e=D('Event_del');
+			$e=D('Event_delView');
 			$field=$_POST['user_search'];
 			$content=$_POST['search_input'];
 			switch ($field)
@@ -392,6 +386,13 @@
 					$where['delstate']="1";
 					}
 					break;	
+			case "desc":
+				if(isset($content) && $content!=null){
+					$where['description']=array('like',"%{$content}%");
+					$where['delstate']="1";}else{
+					$where['delstate']="1";
+					}
+					break;		
 			case "time":
 				if(isset($content) && $content!=null){
 					$where['time']=array('like',"%{$content}%");
@@ -493,8 +494,12 @@
 			$rec=$_POST['recover'];
 			$n=M('Zip_del');
 			$map['id']=array('in',$rec);
-			$n->where($map)->delete();		
-			$this->redirect('recycle_zip');
+			$n->where($map)->delete();
+			$result= $n->where($map)->find();
+			$savename=$result['fileurl'];
+			unlink("/data/www/default/lab/UploadZip/$savename");
+			var_dump($savename);		
+			$this->display('recycle_zip');
 		}
 
 }

@@ -61,10 +61,10 @@ width:1180px;}
 .billboard_history h3{
 	margin-bottom:45px;}	 
 .billboard_history_detail_info{
-	background:#eee;
+	background:#effcf7;
 	padding:30px 40px; 
-	line-height:25px;
-	overflow-y:scroll;
+
+	
 }	
 .billboard_history_detail a{
 	float:right;}

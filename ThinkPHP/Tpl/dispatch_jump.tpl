@@ -84,11 +84,11 @@ img{
 <!--end header-->
 <present name="message">
 <h1> Success！</h1>
-<img src="__PUBLIC__/images/icon_check.png" />
+<img src="__ROOT__/ThinkPHP/Tpl/img/icon_check.png" />
 <p class="success"><?php echo($message); ?></p>
 <else/>
 <h1> Error！</h1>
-<img src="__PUBLIC__/images/icon_error.png" />
+<img src="__ROOT__/ThinkPHP/Tpl/img/icon_error.png" />
 <p class="error"><?php echo($error); ?></p>
 </present>
 <p class="detail"></p>

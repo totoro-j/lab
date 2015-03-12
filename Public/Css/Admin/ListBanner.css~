@@ -28,16 +28,15 @@ h3{
 	width:960px;
 	margin:0 auto;
 	padding-bottom:20px;
-	margin-top:50px;
+	margin-top:12px;
 	border-radius:5px;}
 .edit_section_pic_describ{
 	margin:0 auto;
-	background:#fff;
+	background:#54DBA1;
 	height:200px;
-	width:900px;
-	margin-top:20px;
-	padding-top:20px;
-	padding-left:20px;
+	width:960px;
+	margin-top:40px;
+	
 
 	}	
 .edit_section_pic_describ p,.edit_section_pic_describ h2{
@@ -45,8 +44,9 @@ h3{
 	margin-right:10px;
 }	
 .edit_section_pic_describ h2{
-	font-size:16px;
+	font-size:30px;
 	font-weight:bold;
+	
 }
 .edit_section_pic_describ p{
 	font-size:14px;
@@ -56,7 +56,7 @@ h3{
 	
 	width:600px;
 	height:150px;
-
+	
 	border-radius:5px;}	
 .edit_section_pic  img{
 	height:150px;}	
@@ -93,14 +93,7 @@ input[type="file"]{
 	
 .edit_section_describ_btn{margin-top:10px;}	
 
-.time_con{
-	width:100px;
-	height:21px;
-	display:block;
-	position:absolute;
-	right:140px;
-	bottom:5px;
-}
+
 .delete{
 	color:#23a96f;
 	width:50px;

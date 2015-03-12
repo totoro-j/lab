@@ -12,7 +12,7 @@
 		$this->display();
 	}
 
-	public function logoff(){
+/*	public function logoff(){
 		$m=M('User');
 		$n=M('User_del');
 		$id=$_SESSION['id'];
@@ -26,5 +26,6 @@
 		session_destroy();
 		$this->redirect('__APP__/Register/reg');	
 	}
+*/
 }
 ?>

@@ -53,7 +53,7 @@
    <td><{$vo.principal}></td>
    <td><{$vo.starttime}></td>
    <td><{$vo.finaltime}></td>
-   <td><{$vo.hours}></td>
+   <td><{$vo.hours}>小时</td>
    <td><{$vo.ordertime}></td>
    <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
    <td><a href="__URL__/cancel/id/<{$vo.id}>" onclick="return confirm('确认后将删除此次预约！')">删除预约</a></td>

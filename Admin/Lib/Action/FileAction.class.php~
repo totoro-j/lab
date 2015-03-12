@@ -8,7 +8,7 @@ class FileAction extends AdminCommonAction {
 		$page  = new Page($count,10);
 		$page->setConfig('header','个文件');
 		$show=$page->show();
-    		$list=$file->order('id desc')->select();
+    		$list=$file->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 		$this->assign('data',$list);
 		$this->assign('show',$show);
 		$this->display(); 
@@ -24,9 +24,9 @@ class FileAction extends AdminCommonAction {
      	public function  ListFileIsshow_upload(){
 		import('ORG.Net.UploadFile');
             	$upload = new UploadFile();
-            	$upload->maxSize            = 3292200;
-            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf');
-            	$upload->savePath           = './Public/UploadZip/';
+            	$upload->maxSize            = 52428800;
+            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf,ppt,pptx,png,jpeg,jpg');
+            	$upload->savePath           = './UploadZip/';
 		$upload->saveName           = time().'_'.mt_rand();
             	$upload->saveRule           = 'uniqid';
             	if (!$upload->upload()) 
@@ -45,7 +45,7 @@ class FileAction extends AdminCommonAction {
 		$data1['fileurl']=$_POST['savename'];
 		$data1['size']=$_POST['size'];
 		$data1['uid']=$_SESSION['id'];
-		$data1['ziprole']=$_POST['per']
+		$data1['ziprole']=$_POST['per'];
 		$list=$m->add($data1);
             	if ($list !== false) 
             	{

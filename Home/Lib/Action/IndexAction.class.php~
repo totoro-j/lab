@@ -23,7 +23,9 @@ class IndexAction extends Action{
 		$this->assign('date',$time);
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
 		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
-		//判断是不是游客，如果是0，则是游客。如果是1，则不是游客
+		$flag=isset($_GET['flag'])?$_GET['flag']:0;
+		$this->assign('flag',$flag);
+		//判断是不是游客，如果是0，则是游客。如果是1则不是游客
 		$user_m=M('User');
 		if($_SESSION['id']==''){
 			$user_role=0;
@@ -55,8 +57,9 @@ class IndexAction extends Action{
 		$time.=$y;
 		$time.='-';
 		$time.=$r;
-
 		//结束
+		$this->assign('month',$y);//后台传月
+		$this->assign('year',$n);//后台传年
 		//前一天与后一天的时间
 		$todayStamp=mktime(0,0,0,$y,$r,$n);
 		$tomorrowStamp=$todayStamp+86400;
@@ -173,7 +176,7 @@ class IndexAction extends Action{
 			$user_event=$event->field('testname')->where($event_condition)->select();
 		}
 		if($user_event==''){
-			$user_event[0]['testname']="暂无预约实验";
+			$user_event[0]['testname']="请先申请新实验项目";
 		}
 		$this->assign('list',$user_event);
 		//后台赋值
@@ -203,6 +206,8 @@ class IndexAction extends Action{
 		$user_list=M('user');
 		$user=$user_list->where($user_condition)->select();
 		$notice_user=$user[0]['username'];
+		$notice_title=$notice[0]['ntitle'];
+		$this->assign('ntitle',$notice_title);
 		$this->assign('content',$notice_content);
 		$this->assign('time',$notice_time);
 		//下载
@@ -214,7 +219,7 @@ class IndexAction extends Action{
 		if(!isset($_SESSION['username']) || $_SESSION['username']=='' || ($myrole != "2" && $myrole != "9" && $myrole != "1")){
 			$ar=$t->where('ziprole=0')->order('id desc')->select();
 		}else{
-			$ar=$t->where('ziprole=1')->order('id desc')->select();
+			$ar=$t->order('id desc')->select();
 		}
 		$n=count($ar);
 		for($i=0;$i<$n;$i++){
@@ -225,19 +230,37 @@ class IndexAction extends Action{
 		$this->display();
 	}
 
+	public function notice(){
+		$notice_list=M('notice');
+		import('ORG.Util.Page');
+		$count=$notice_list->order('id desc')->count();
+		$page  = new Page($count,5);
+		$page->setConfig('header','条公告');
+		$show=$page->show();
+
+		$notice=$notice_list$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
+		$n=count($notice);
+		for($i=0;$i<$n;$i++){
+			list($notice[$i]['time'],$a)=explode(" ",$notice[$i]['time']);
+		}
+		$this->assign('show',$show);
+
+		$this->assign('notice',$notice);
+		$this->display();
+	}
 	public function download(){
 		$uploadpath='./Public/UploadZip/';
 		$id=$_GET['id'];
 		$m=M('User');
+		$file=M('Zip');
+		$result= $file->find($id);
 		$nam=$_SESSION['id'];
 		$maps['id']=array('eq',"$nam");
 		$myrole=$m->where($maps)->getField('role');
-		if($myrole == "2" || $myrole == "9" || $myrole == "1"){
+		if(($myrole == "2" || $myrole == "9" || $myrole == "1") ||($result['ziprole'] == 0)){
 			if($id==''){
 				$this->redirect('index');
 			}
-			$file=M('Zip');
-			$result= $file->find($id);
 			if($result==false){
 				$this->redirect('index');
 			}
@@ -270,7 +293,7 @@ class IndexAction extends Action{
 		}else if($a['role']==2||$a['role']==9){
 			$this->error('管理员请在后台修改不可用时间');
 		}
-		if($_GET['expt_name']=="暂无预约实验"){
+		if($_GET['expt_name']=='请先申请新实验项目'){
 			$this->error('暂无实验可预约，请先申请实验');
 		}
 
@@ -283,7 +306,7 @@ class IndexAction extends Action{
 		list($fh,$ff,$fs)=explode(':',$finaltime);
 		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
 		if(mktime(0,0,0,$m,$d,$y)<mktime(0,0,0,$w,$e,$q)){
-			$this->error('该时间段无可预约实验');
+			$this->error('该时间段已过期');
 		}
 		$startstamp=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间转换为时间戳
 		$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
@@ -306,17 +329,20 @@ class IndexAction extends Action{
 			list($fh,$ff,$fs)=explode(':',$e);
 			$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
 			if($startstamp>$startjudge&&$startstamp<$finaljudge){
-				$this->error('输入时间冲突1');
+				$this->error('输入时间冲突');
 			}elseif($finalstamp>$startjudge&&$finalstamp<$finaljudge){
-				$this->error('输入时间冲突2');
+				$this->error('输入时间冲突');
 			}elseif($startstamp<$startjudge&&$finalstamp>$finaljudge){
-				$this->error('输入时间冲突3');
+				$this->error('输入时间冲突');
 			}elseif($startstamp>=$finalstamp){
-				$this->error('输入时间冲突4');
+				$this->error('输入时间冲突');
 			}
 			//判断时间冲突
 		}
-		$hour=($finalstamp-$startstamp)/3600;
+		$hour=(float)($finalstamp-$startstamp)/3600;
+		if($hour<0){
+			$this->error('输入时间有误');
+		}
 		$finaltime=$date;
 		$finaltime.=' ';
 		$finaltime.=$_GET['endTime'];
@@ -339,15 +365,20 @@ class IndexAction extends Action{
 		$temp_condition['yorders']='1';
 		$temp_condition['uid']=$_SESSION['id'];
 		$temp_condition['eid']=$event_id[0]['id'];	
-		$temp_condition['oid']=$lastId;	
+		$temp_condition['oid']=$lastId;
+		//var_dump($data['hours']);	
 		$add=$t->add($temp_condition);
 		if($lastId && $add>0){
-			$this->success('提交成功','index/date/'.$Ndate.'');
+			$this->success_submit($Ndate);
 		}else{
 			$this->error('提交失败');
 		}
+		
 	}
-
+	public function success_submit(string $n){
+		$this->assign('date',$n);
+		$this->display();
+	}
 	public function application(){
 		$m=M('user');
 		$condition['id']=$_SESSION['id'];

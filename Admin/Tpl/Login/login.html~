@@ -20,9 +20,12 @@
 			<span class="title">用户名：<input type='text' name='username' autofocus="autofocus" autocomplete="off"/></span><br/>
 			<span class="title">密　码：<input type='password' name='password'/></span><br/>
 			<span class="title">验证码：<input type='text' name='code'/></span><div class="code"><Message:code width='60' height='25' /></div>
-                <div title='submit' class="submit">
+                <div title='buttons' class="buttons">
 			<input title='login' class="login" type="submit" value="登录" />
             	</div>
 		</form>
+		<li><a href="#">实验室首页</a></li>
+		<li><a href="__ROOT__/default.php/Index/index" target="_blank" >预约系统首页</li>
+		<div class="footer"><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
 	</body>
 </html>

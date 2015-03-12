@@ -27,17 +27,17 @@
     
    </div>
    <div style="width:1000px;margin:0 auto;">
-  <table  style="position:relative;margin-left:20px;clear:left">
+  <table  style="position:relative;margin-left:20px;clear:left;">
 <tr>
   <th style="width:600px;" class="greet_title">用户操作日志</th>
   <th style="width:200px;" class="greet_title">操作时间</th>
   <th style="width:100px;" class="greet_title">操作</th>
 </tr>
 <volist name='arr' id='vo'>
-<tr style="background-color:#DEF8EA;">
-	<td style="padding:10px 10px 10px 10px;"align="left"><if condition="$vo.ypwd eq 1">用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次密码<elseif condition="$vo.ytel eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次联系方式<elseif condition="$vo.yorders eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 预约了一次从 <{$vo.starttime}> 到 <{$vo.finaltime}> 共计 <{$vo.hours}> 小时的实验 <{$vo.testname}><else /></if></td>
-   <td align="center"><{$vo.temptime}></td>
-   <td align="center"><if condition="$vo.eid eq 1"><a href="__APP__/User/check/id/<{$vo.uid}>">用户详情<{$vo.eid}></a><else /><a href="__APP__/Appointment/index/Sdate/<{$vo.starttime}>">预约详情</a></if> | <a href="__URL__/clean_log/id/<{$vo.id}>" onClick="return confirm('确定删除？')">删除</a></td>
+<tr style="border-bottom:1px solid #333;">
+	<td style="padding:10px 10px 10px 10px;width:80%;font-size:14px;"align="left"><if condition="$vo.ypwd eq 1">用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次密码<elseif condition="$vo.ytel eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 修改了一次联系方式<elseif condition="$vo.yorders eq 1"/>用户 <a href="__APP__/User/check/id/<{$vo.uid}>"><{$vo.truename}></a> 预约了一次从 <{$vo.starttime}> 到 <{$vo.finaltime}> 共计 <{$vo.hours}> 小时的实验 <{$vo.testname}><else /></if></td>
+   <td align="center" style="font-size:14px;width:10%;"><{$vo.temptime}></td>
+   <td align="center" style="font-size:14px;width:10%;"><if condition="$vo.eid eq 1"><a href="__APP__/User/check/id/<{$vo.uid}>">用户详情</a><else /><a href="__APP__/Appointment/index/Sdate/<{$vo.starttime}>">预约详情</a></if> | <a href="__URL__/clean_log/id/<{$vo.id}>" onClick="return confirm('确定删除？')">删除</a></td>
 </tr>
 </volist>
 

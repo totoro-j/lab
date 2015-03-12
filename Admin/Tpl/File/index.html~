@@ -4,13 +4,52 @@
 <meta charset="utf-8">
 <style type="text/css">
     #img{height:22px; border:#000 2px solid}
-    #button{height:30px; width:100px;}
+    .button{
+      height:30px; 
+      width:100px;
+      background-color:#23a96f;
+      text-align: center;
+      font-size: 16px;
+
+    }
+    span{
+      padding:10px;
+    }
 </style>
-<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Js/jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/Admin/user_check.css" >   
 <load href="__PUBLIC__/Css/Admin/ListBanner.css"/>
 <load href="__PUBLIC__/Css/Admin/hDialog.css"/>
 
-
+<script type="text/javascript">
+  function showBg() { 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+   $("#dialog").show(); 
+   } 
+//关闭灰色 jQuery 遮罩 
+    function closeBg() { 
+    $("#fullbg,#dialog").hide(); 
+   }      
+  $(function(){
+    if(del==1){
+      showBg();}
+      
+    })
+</script>
+<Script Language="JavaScript"> 
+    function cancel() 
+    { 
+    document.myForm.action="__URL__/refuse";
+    document.myForm.method="post"; 
+    document.myForm.submit(); 
+    } 
+</Script>
 
 <title>文件管理</title>
 
@@ -21,48 +60,89 @@
 
  <h2 style="color:#219E69;margin:0 auto;font-weight:bold;text-align:left;font-size:24px;">文件管理</h2>
 <!--container begin-->
-<div id="edit1" class="container_wrapper">
+<div id="edit1" class="container_wrapper" style="margin-top:12px;">
 <!--each edit section begin-->
 <!--section No.1 begin-->
 <!--显示已上传文件-->
 
-  <h3 style="margin-left:20px;color:#000;">上传文件管理</h3>
+  
     <table style="margin:0 auto;">
      <tr><td>
 	<h2 style="color:#0f0f0f;">已上传文件</h2>
 <volist name='data' id='vo'>
-    <div id="edit3" class="edit_section_pic_describ" style="background:#E9FAF1;margin-top:10px;padding-bottom:10px;">  
-    <div class="edit_section_pic">
-	    <{$vo.filename}>
-	    </br></br></br>
-	<{$vo.size}>KB
-		</br></br></br>
-	发布人：<{$vo.truename}>
+    <div id="edit3" class="edit_section_pic_describ" style="background:#E9FAF1;margin-top:10px;padding-bottom:10px;height:24px;width:1000px;">  
+    <div class="edit_section_pic" style="padding-top:4px;padding-left:8px;">
+	<h4 style="font-size:11px;display:inline;padding-left:10px;" id="namebox" title='<{$vo.filename}>'><{$vo.filename}></h4>
+	<span style="font-size:11px;"><{$vo.size}>KB</span>
+	<span style="font-size:11px;">发布人：<{$vo.truename}></span>
+  <span style="font-size:11px;"><{$vo.date}></span>
+  <span><a href='__URL__/download/id/<{$vo.id}>' style="color:#23a96f;float:right;
+    margin-right:-300px;float:right;">下载</a></span>
+  <span><a href="__URL__/filedel/id/<{$vo.id}>" class="delete"  onClick="return confirm('确认删除？')"style="color:#23a96f;margin-right:-360px;">删除</a></span>
+     
     </div>
-	     </br>
-	     <div><a href='__URL__/download/id/<{$vo.id}>'>下载</a></div>
-       <div ><a href="__URL__/FileDel/id/<{$vo.id}>" class="delete"  onClick="return confirm('确认删除？')">删除</a></div>
-       <div  style="width:200px;height:21px;display:block;margin-left:500px;font-size:11px;color:#666;"><{$vo.date}></div>
+       </br>
+      
+      <script type="text/javascript">
+              {
+                var namelength=document.getElementById("namebox").innerHTML.length;
+                if(namelength>20){
+                   var nowWord = document.getElementById("namebox").innerHTML.substr(0,7)+'...';
+                    document.getElementById("namebox").innerHTML=nowWord;
+                }
+                var namebox = document.getElementById("namebox");
+                namebox.id = "checkedlength";
+              }
+              </script>
+      
        </div>
 </volist>
       </td>
       </tr>
       </table>
-<div class="file_show" style="margin-left:20px;color:#666;"><{$show}></div>
+<div class="file_show" style="margin-left:20px;color:#666;background:#23a96f;color:#fff;width:990px;margin-left:0px;margin-top:20px;padding:5px;"><{$show}></div>
   
   <!--上传文件-->
-  <div id="edit2" class="edit_section_pic_describ">
-     <h2 style="font-size:23px;font-weight:bold;float:left;color:#0f0f0f;">上传新文件</h2>
+  <div id="edit2" class="edit_section_pic_describ" style="width:1000px;background-color:#fff;margin-top:24px;">
+     <h2 style="float:left;color:#0f0f0f;font-size:20px;font-weight:light;">上传新文件<small style="font-size:12px;color:#999;margin-left:10px;">(上传文件限制：.txt,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.7z,.rar,.png,.jpeg,.jpg,且文件大小限于50MB以下)</small></h2>
+
    </br>
      
         <div style="font-size:12px;color:#999;" ></div></br>
-  <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:30px;padding-bottom:50px;">
+  <div style="background:#E9FAF1;padding-left:50px;padding-right:120px;padding-top:12px;padding-bottom:42px;">
     <form action="__URL__/ListFileIsshowupload" method="post" name='myForm' enctype="multipart/form-data">
-    <input type="file" name="fileurl" style="border:none;" id="fileurl"/>
-    <input type="submit" value="上传" style="float:right;" id="button"> 
-    </form> 
+    <input type="file" name="fileurl" style="border:none;margin-top:0px;" id="fileurl"/>
+    <div style="float:right;cursor:pointer;padding-top:6px;" class="button" onClick="showBg()"><a onClick="showId(<{$vo.id}>)" style="color:#fff;">上传</a></div> 
+
+
+
+  <div id="fullbg"></div> 
+   <div id="dialog" style="height:200px;"> 
+   <p class="close"><a href="#" onClick="closeBg()" style="float:right;margin-left:330px;font-size:17px;">关闭</a></p> 
+
+
+   <div class="refuse_dia" style="jeoh">
+   
+     <br>
+     <br>
+
+   <p style="font-size:18px;">请选择文件查看权限：</p>
+   <br>
+   <br>
+
+   <input type="radio" name="per" value="0" style="margin-left:25px;font-size:15px;">游客
+   <input type="radio" name="per" checked value="1" style="margin-left:25px;font-size:15px;">正式用户<br>
+   <input type="submit"  class="button" style="margin-left:100px;margin-top:30px;cursor:pointer" value="提交上传" href="__URL__/ListFileIsshowupload" >
+ </form> 
 </div>
+
 </div>
 </div>
 </body>
+<script type="text/javascript">
+  function showId(num){
+    var numberType=num
+    $('.file').attr("value",numberType);
+  }
+</script>
 </html>

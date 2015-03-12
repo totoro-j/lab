@@ -1,68 +1,138 @@
+<load href="__PUBLIC__/Css/Admin/notice.css" />
+<load href="__PUBLIC__/Js/jquery.js" />
 
-<load href="__PUBLIC__/Css/Home/style.css"/>
-<load href="__PUBLIC__/Css/Home/animate.css"/>
-<load href="__PUBLIC__/Css/Home/animate.min.css"/>
-<load href="__PUBLIC__/Css/Home/common.css"/>
-<load href="__PUBLIC__/Js/jquery-2.0.3.min.js"/>
-<load href="__PUBLIC__/Js/index.js"/>
-<load href="__PUBLIC__/Js//tableRowCheckboxToggle.js"/>
-<load href="__PUBLIC__/Js/jquery.hDialog.js"/>
-<link rel="shortcut icon" href="__PUBLIC__/Images/logo.ico"/>
-<div id="body">
-   	<div id="nc">
-   		<div id="noteboarder">
-   			<!--公告栏-->
-   			<div class="can">
-		<div class="can_1">公告栏</div>
-		<div class="canin">
-			<article class="canin_1"></article>
-			<h3 class="canin_2"><{$time}><br>发布人：<{$editor}></h3>
-            <p ><{$content}></p>
+<style>
+#fullbg { 
+background-color:#23a96f; 
+left:0; 
+opacity:0.5; 
+position:absolute; 
+top:0; 
+z-index:3; 
+filter:alpha(opacity=50); 
+-moz-opacity:0.5; 
+-khtml-opacity:0.5; 
+} 
+
+.dialog { 
+background-color:#fff; 
+border:5px solid #23a96f; 
+height:400px; 
+left:50%; 
+margin:-200px 0 0 -200px; 
+padding:1px; 
+position:fixed !important; /* 浮动对话框 */ 
+position:absolute; 
+top:50%; 
+width:400px; 
+z-index:5; 
+border-radius:5px; 
+display:none; 
+} 
+
+#dialog p { 
+margin:0 0 12px; 
+height:24px; 
+margin-left:23px;
+line-height:24px; 
+
+} 
+
+#dialog p.close { 
+text-align:right; 
+padding-right:10px; 
+backgroud:#23a96f;
+} 
+
+#dialog p.close a { 
+color:#666; 
+text-decoration:none; 
+
+} 
+
+
+</style>
+
+
+
+<div class="billboard_history">
+     <h3>历史公告</h3>
+     <form class="billboard_history_scroll" action="">
+	<volist name="notice" id="vo">
+
+
+    <div class="billboard_history_detail">
+     <div class="billboard_history_detail_info">
+	<input style="display:none" name="id" value="<{$vo.id}>">
+
+	     <h4 onclick="showId()"><div name="ntitle" style="cursor:pointer" onClick="showBg(<{$vo.id}>)"><{$vo.ntitle}></div></h4><a class="det">详细公告</a>
+	<div name="content" id="content2" style="margin-left:20px;margin-top:10px;display:none;"> <{$vo.content}></div>
+	<p style="float:right;font-size:12px">发布于 <{$vo.time}> </p>
+	
+</div>
+<br>		
+     </div>
+						
+  <div id="fullbg"></div> 
+   <div id="<{$vo.id}>" class="dialog"> 
+   <p class="close"><a href="#" onclick="closeBg()">关闭</a></p> 
+   <div class="refuse_dia">
+
+  <h4 name="ntitle" id="ntitle2" style="margin-left:10px;margin-top:20px;"><{$vo.ntitle}></h4>
+  
+   
+   
+   
+   </div>
+ </div>
+
+
+ <script type="text/javascript">
+	function showId(){
+	alert("sddff");
+	var content=<{$vo.content}>;
+	var ntitile=<{$vo.ntitile}>;	
+      document.getElementById('ntitle2').innerHTML = ntitle; 
+      document.getElementById('content2').innerHTML = content; 
+      		
+	}
+</script>
+
+     </volist>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".det").click(function(){
+  $("#content2").toggle();
+  });
+});
+</script>
+
     </div>
-	</div>
-   		</div>
-        
-        <!--个人信息界面开始-->
-        <div id="infor">
-        <div class="can_1">个人信息</div>
-        <table>
-        <tr>
-          <th>用户名</th>
-	  <td><{$username}></td>
-        </tr>
-        <tr>
-          <th>姓名</th>
-          <td><{$truename}></td>
-        </tr>
-        <tr>
-          <th>性别</th>
-          <td><{$sex}></td>
-        </tr>
-        <tr>
-          <th>单位</th>
-          <td><{$unit}></td>
-        </tr>
-        <tr>
-          <th>院系部门</th>
-          <td><{$department}></td>
-        </tr>
-        <tr>
-          <th>身份</th>
-          <td><{$job}></td>
-        </tr>
-        <tr>
-          <th>课题组负责人</th>
-          <td><{$principal}></td>
-        </tr>
-        <tr>
-          <th>联系电话</th>
-          <td><{$tel}></td>
-        </tr>
-        <tr>
-          <th>邮箱</th>
-          <td><{$mail}></td>
-        </tr>
-        </table>
-        </div>
-        </div>
+
+<script type="text/javascript">
+
+   function showBg(num) {
+	var a=num;
+	 
+   var bh = $("body").height(); 
+   var bw = $("body").width(); 
+   $("#fullbg").css({ 
+   height:bh, 
+   width:bw, 
+   display:"block" 
+   }); 
+	
+   $("28").show(); 
+   } 
+//关闭灰色 jQuery 遮罩 
+    function closeBg() { 
+    $("#fullbg,.dialog").hide(); 
+   }  		
+
+				
+		
+</script>
+
+    
+
 

@@ -16,7 +16,17 @@ $("img").click(function(){
 
 })
 </script>
+<style type="text/css">
+.add{
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;
 
+}
+</style>
 </head>
 <body>
 
@@ -31,10 +41,11 @@ $("img").click(function(){
     </ul>
     <ul class="t_user">
     	<li><em class="t_user_ico1"></em>欢迎你，管理员 <{$Think.session.username}></li>
-	<li><a href="__ROOT__/index.php/Index/index">实验室首页</li>
-	<li><a href="__ROOT__/default.php/Index/index">预约系统首页</li>
+	<li><a href="#">实验室首页</a></li>
+	<li><a href="__ROOT__/default.php/Index/index" target="_blank" >预约系统首页</li>
     	<li><a href="__APP__/Login/doLogout" target="_top">退出登陆</a></li>
     </ul>
+
 </div>
 <div class="bod">
 <div id="menu">
@@ -45,22 +56,54 @@ $("img").click(function(){
 				<span>预约系统</span>
 			</h2>       <!--  添加各分页面链接  -->
 			<li><a class="hover" href="__URL__/greet">查看最新消息</a></li>
-            <li><a href="__APP__/Appointment/index">当前机时预约</a></li>
+            		<li><a href="__APP__/Appointment/index">当前机时预约</a></li>
 			<li><a href="__APP__/Notice/index">通知公告管理</a></li>
 			<li><a href="__APP__/Entry/entrycheck">审核实验申请</a></li>
 			<li><a href="__APP__/Entry/entryview">实验列表查询</a></li>
             <li><a href="__APP__/User/usercheck">审核注册用户</a></li>
             <li><a href="__APP__/User/userview">正式用户管理</a></li>
             <li><a href="__APP__/File/index">上传文件管理</a></li>
+	    <li><a href="__APP__/Bak/index" style="color:#f30;font-weight:bold">备份数据库</a></li>
 	        <li><a href="__APP__/Recycle/index">项目回收站<img src="__PUBLIC__/Images/detail.png" style="width:13px;height:13px;margin-bottom:-13px;margin-left:50px"/></a></li>
 	        <!--子列表-->
 	        <ul style="display:none;" class="detail">
-	        	 <li><a href="__APP__/Recycle/recycle_notice">通知公告回收站</a></li>
-                 <li><a href="__APP__/Recycle/recycle_search_apply">实验申请回收站</a></li>
-                 <li><a href="__APP__/Recycle/recycle_search_stop">停用实验回收站</a></li>
-                 <li><a href="__APP__/Recycle/recycle_user_apply">用户申请回收站</a></li>
-                 <li><a href="__APP__/Recycle/recycle_user_stop">停用用户回收站</a></li>
-		 <li><a href="__APP__/Recycle/recycle_zip">上传资料回收站</a></li>
+	        	 <li style="font-size:12px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;"href="__APP__/Recycle/recycle_notice">通知公告回收站</a></li>
+                 <li style="margin-top:-10px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;" href="__APP__/Recycle/recycle_event0">实验申请回收站</a></li>
+                 <li style="margin-top:-10px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;" href="__APP__/Recycle/recycle_event1">停用实验回收站</a></li>
+                 <li style="margin-top:-10px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;" href="__APP__/Recycle/recycle_user0">用户申请回收站</a></li>
+                 <li style="margin-top:-10px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;" href="__APP__/Recycle/recycle_user1">停用用户回收站</a></li>
+		 <li style="margin-top:-10px;border:none;"><a style="
+	height: 28px;
+	line-height: 28px;
+	text-indent: 28px;
+	color: #222;
+	font-size: 14px;"
+	href="__APP__/Recycle/recycle_zip">上传资料回收站</a></li>
 	        </ul>
 			
 		</ul>

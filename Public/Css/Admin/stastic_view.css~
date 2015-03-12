@@ -10,7 +10,7 @@ a{
 
 .check_stastic{
 	margin-top:40px;
-	width:880px;}
+	width:1050px;}
 /*搜索*/	
 .user_search
 {
@@ -37,7 +37,8 @@ a{
 	color:#fff;
 	cursor: pointer;
 	background-color:#23a96f;
-	border:1px solid #8F9BB3;
+	border:0px;
+	
 	font-family:"微软雅黑";
 	margin-left:4px;
 }
@@ -79,6 +80,7 @@ table.stastic_check td{
 table.stastic_check tr:hover td {background:#ddf9ed;
 
  }
+
 .count_button{
 	color:#eee;
 	margin-top:20px;
@@ -106,4 +108,14 @@ table.stastic_check tr:hover td {background:#ddf9ed;
 	padding-bottom:5px;
 	padding-left:15px;
 }
+#nodata{
+	color:#999;}
 	
+.article_show{
+ color:#23a96f;
+ font-size:14px;
+ margin-top:10px;	}	
+ #notfound{
+	color:#999;
+	display:none;
+}

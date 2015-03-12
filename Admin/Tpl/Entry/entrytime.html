@@ -115,7 +115,7 @@ $(document).ready(function(){
     </div>
     <!--结束时间日历结束-->
 
-<input type="text"   class="search_detail" value="二级搜索框(选填)"  id="searchtext" name="searchtext"  style="float:right;margin-top:-25px;margin-right:15%;"/>
+<input type="text"   class="search_detail" placeholder="二级搜索框(选填)"  id="searchtext" name="searchtext"  style="float:right;margin-top:-25px;margin-right:15%;"/>
     <select class="user_search" id="search2" name="search2" style="float:right;margin-top:-25px;margin-right:25px;">
     <option value="choose">-----请选择-----</option>
     <option value="truename">申请人姓名</option>
@@ -182,7 +182,7 @@ $(document).ready(function(){
      <td><{$f['principal']}></td>
      <td><{$f['starttime']}></td>
      <td><{$f['finaltime']}></td>
-     <td><{$f['hours']}></td>
+     <td><{$f['hours']}>小时</td>
      <td><{$f['ordertime']}></td>
      <td><if condition="$f['edit'] eq 1">管理员修改操作！<else />无</if></td>
      <td><!--机时统计入口--><a href="#" onClick="openwin2()">详情</a></td>

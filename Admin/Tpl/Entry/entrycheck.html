@@ -32,7 +32,7 @@
 		function(){
 		if($('#check_button1').text()=='等待通过'){
 				
-		if(confirm('确认拒绝？')){$('#check_button1').text("未通过").css("color","#F33");return true;}
+		if(confirm('确认拒绝？')){$('#check_button1').text("未通过").css("color","#F33");cancel();return true;}
 		closeBg();
 		return false;
 		}}
@@ -117,7 +117,7 @@
    <p>请输入拒绝的理由：</p>
    <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    
-   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
+   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  >确认拒绝</div></a>
    </div></form> 
    </div>
 </body>

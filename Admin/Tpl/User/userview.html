@@ -146,7 +146,7 @@
 		function(){
 		
 				
-		if(confirm('确认拒绝？'))return true;
+		if(confirm('确认拒绝？')){cancel();return true;}
 		closeBg();
 		return false;
 		}
@@ -296,7 +296,7 @@ function showBg_1() {
    <p>请输入停用的理由：</p>
    <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    
-   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认停用</div></a>
+   <a class="refuse_btn" href="#" ><div class="btn" id="rec">确认停用</div></a>
    </div></form> 
    </div>
 <!--用户权限弹出框-->

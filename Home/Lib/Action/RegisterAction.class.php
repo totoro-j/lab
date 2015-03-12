@@ -53,7 +53,7 @@
 			$map['new_user']='1';
 			$add=$m->add($map);
 				if($lastId && $add>0){
-					$this->success('注册成功，请等待审核！','__APP__/Index/index');
+					$this->success('注册成功，请等待审核！','__APP__/Login/login');
 				
 				}else{
 					$this->error('注册失败');

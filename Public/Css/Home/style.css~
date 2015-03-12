@@ -56,32 +56,33 @@ ul{
 }
 /*日历*/
 
-#reserveDateForm{margin-left:320px;width:300px;margin-top:40px;}
-#toSubmitSelectedDate{margin-left:270px;width:160px;height:32px;line-height:24px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';position:relative;top:-10px;}
+#reserveDateForm{width:300px;margin-top:60px;margin-left:130px}
+#toSubmitSelectedDate{margin-left:40px;;width:70px;height:30px;line-height:27px;background-color:#23a96f;color:#fff;font-family:'微软雅黑';float:left;cursor:pointer}
+#form{margin-top:-47px}
 
+#myForm{width:800px;height:45px;margin-top:60px;margin-left:230px;}
 
-#myForm{width:800px;height:45px;margin-top:45px;margin-left:250px;}
+#myForm p{display:block;width:80px;height:20px;line-height:30px;float:left;padding-left:23px;padding-bottom:30px;}
 
-#myForm p{display:block;width:80px;height:20px;line-height:30px;float:left;padding-left:30px;padding-bottom:30px;}
-
-#mySelectStartTime{float:left;width:100px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
-#mySelectEndTime{float:left;width:100px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
+#mySelectStartTime{float:left;width:90px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
+#mySelectEndTime{float:left;width:90px;height:30px;border:1px solid #23a96f;text-align:center;font-size:15px;}
 
 #mySelect{width:80px;height: 20pxcolor:#000;cursor: pointer;border:1px solid #23a96f;font-family:"微软雅黑";text-align:center;font-size:13px;float:left;}
 
-.showDate{float:left;position:relative;top:20px;}
+.showDate{float:left;position:relative;left:170px;}
+#expt_name{float:left;width:220px;margin-left:-30px;height:30px;border:1px solid #23a96f;text-align:left;font-size:15px;}
 
 
 
 #nc{
-	height: 360px;
+	height: 270px;
 	width:1080px;
 	margin:0 auto;
 	margin-top: 20px;
 	border-bottom:#d3d3d3 2px solid;
 }
 #clender{
-	height:750px;
+	height:950px;
 	width:1080px;
 	margin:0 auto;
 	margin-top:20px;
@@ -97,7 +98,7 @@ ul{
 .data_box p{
 	font-family:"微软雅黑";
 }
-.showDate{width:200px;height:28px;line-height:28px;padding:0 5px;border:1px solid #23a96f;color:#999;font-family:Arial,"微软雅黑";margin-top:-20px;}
+.showDate{width:200px;height:28px;line-height:28px;padding:0 5px;border:1px solid #23a96f;color:#999;font-family:Arial,"微软雅黑";margin-top:-20px;margin-left:-20px}
 
 
 
@@ -121,7 +122,7 @@ ul{
 /*公告栏*/
 .can{
 		width: 450px;
-		height: 300px;
+		height: 250px;
 		float: left;
 
 		margin-top:15px;
@@ -140,8 +141,6 @@ ul{
 
 .canin{
 		width: 450px;
-		background-color:#EFFCF7;
-
 	}
 .canin_1{
 		
@@ -161,17 +160,14 @@ ul{
 		margin-top:-30px;
 		padding-right:10px;
 		}
-.canin_2 h3{
-	border:none;
-}
 .canin p{
 	font-family:"微软雅黑";
 	font-size:15px;
 	padding-left:20px;
 	padding-right:0px;
 	overflow:auto;
-	width:420px;
-	height:170px;
+	width:410px;
+	height:140px;
 }	
 
 #nav li ul a{display: block; width: 156px;text-align:left;padding-left:24px; overflow:hidden} 
@@ -186,7 +182,7 @@ ul{
 }
 #infor>table{
 	width:320px;
-	margin-top:14px;
+	margin-top:4px;
 	font-size:14px;
 }
 #infor th,#infor td{
@@ -201,9 +197,9 @@ ul{
 #infor td{
 	width:180px;
 	border:none;
-	font-size:14px;
+	font-size:12px;
 	text-align:left;
-	padding-left:14px;
+	padding-left:2px;
 }
 .caname{
 	cursor:pointer;
@@ -255,8 +251,8 @@ ul{
 	font-size:12px;
 	color:#333;
 	font-weight:bold;
-	text-align:center;
 	margin-bottom:3px;
+	width: 100px;
 }
 #tab1 a{
 	font-family:Arial;
@@ -306,13 +302,16 @@ table{
 	text-align:center;
 	
 }
+#tricalendar a:hover{
+	color:#22A46C;
+}
 
 
 /*历史预约*/
 #history{
 	width:1080px;
 	margin:0 auto;
-	margin-top:40px;
+	margin-top:20px;
 	padding-bottom:20px;
 
 	z-index:0;

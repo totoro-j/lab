@@ -93,6 +93,7 @@
 			$n->where($map)->delete();
 			for($i=0;$i<$t;$i++){
 				$where[$i]['id']=$field[$i]['id'];
+				$where[$i]['ntitle']=$field[$i]['ntitle'];
 				$where[$i]['content']=$field[$i]['content'];
 				$where[$i]['time']=$field[$i]['time'];
 				$where[$i]['uid']=$field[$i]['uid'];
@@ -493,8 +494,11 @@
 			$rec=$_POST['recover'];
 			$n=M('Zip_del');
 			$map['id']=array('in',$rec);
-			$n->where($map)->delete();		
-			$this->redirect('recycle_zip');
+			$n->where($map)->delete();
+			$result= $n->where($map)->find();
+			$savename=$result['fileurl'];
+			unlink("/data/www/default/lab/UploadZip/$savename");	
+			$this->display('recycle_zip');
 		}
 
 }

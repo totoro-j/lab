@@ -113,12 +113,12 @@ $("document").ready(function(){
 		$(".btn").click
 		(
 		function(){
-		if($('#check_button1').text()=='等待通过'){
-				
-		if(confirm('确认拒绝？')){$('#check_button1').text("未通过").css("color","#F33");return true;}
+
+			
+		if(confirm('确认拒绝？')){cancel();return true;}
 		closeBg();
 		return false;
-		}}
+		}
 	
 		);
 		
@@ -191,6 +191,7 @@ $("document").ready(function(){
   <th>课题负责人姓名</th>
   <th>Exam Desciption</th>
   <th>实验状态</th>
+  <th>目前实验总时长</th>
   <th>实验详情</th>
   <th>停止实验</th>
 </tr>
@@ -201,6 +202,7 @@ $("document").ready(function(){
    <td><{$vo.principal}></td>
    <td><{$vo.description}></td>
    <td><switch name='vo.state'><case value="0">待审核</case><case value="1">进行中</case><case value="2">审核未通过</case><case value="3">实验已停止</case><default />未知状态</switch></td>
+   <td><{$vo.testhours}>小时</td>
    <td><!--机时统计入口--><a href="__URL__/checkentry/id/<{$vo.id}>">详情</a></
 	   td>
 	   <td class="info_correct"><a href="#" onclick="showId(<{$vo.id}>)"><div class="refuse1"  style="color:#F33;" onClick="showBg()">停止实验</div></a></td>
@@ -219,10 +221,10 @@ $("document").ready(function(){
    <form name="myForm" method="post" action="">
    <div class="refuse_dia">
 	   <input type="hidden" name="refuse_ipt" class="refuse_ipt" value="">
-   <p>请输入拒绝的理由：</p>
+   <p>请输入停止实验的理由：</p>
    <textarea name="delinfo" maxlength="100" placeholder="字数在一百字以内..."></textarea>
    
-   <a class="refuse_btn" href="#" ><div class="btn" id="rec"  onClick="cancel()">确认拒绝</div></a>
+   <a class="refuse_btn" href="#" ><div class="btn" id="rec">确认拒绝</div></a>
    </div></form> 
 </div>
 </div>

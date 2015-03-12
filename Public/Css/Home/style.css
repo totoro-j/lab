@@ -27,7 +27,7 @@ ul{
 	float: left;
 }
 #logo a{
-	font-size: 32px;
+	font-size: 30px;
 	padding: 0 auto;
 	text-decoration:none;
 	color:#23a96f;
@@ -141,8 +141,6 @@ ul{
 
 .canin{
 		width: 450px;
-		background-color:#EFFCF7;
-
 	}
 .canin_1{
 		
@@ -168,7 +166,7 @@ ul{
 	padding-left:20px;
 	padding-right:0px;
 	overflow:auto;
-	width:420px;
+	width:410px;
 	height:140px;
 }	
 
@@ -199,9 +197,9 @@ ul{
 #infor td{
 	width:180px;
 	border:none;
-	font-size:14px;
+	font-size:12px;
 	text-align:left;
-	padding-left:14px;
+	padding-left:2px;
 }
 .caname{
 	cursor:pointer;

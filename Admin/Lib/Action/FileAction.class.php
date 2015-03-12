@@ -8,7 +8,7 @@ class FileAction extends AdminCommonAction {
 		$page  = new Page($count,10);
 		$page->setConfig('header','个文件');
 		$show=$page->show();
-    		$list=$file->order('id desc')->select();
+    		$list=$file->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 		$this->assign('data',$list);
 		$this->assign('show',$show);
 		$this->display(); 
@@ -24,10 +24,10 @@ class FileAction extends AdminCommonAction {
      	public function  ListFileIsshow_upload(){
 		import('ORG.Net.UploadFile');
             	$upload = new UploadFile();
-            	$upload->maxSize            = 329220000;
-            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf');
-            	$upload->savePath           = './Public/UploadZip/';
-		$upload->saveName           = time().'_'.mt_rand();
+            	$upload->maxSize            = 52428800;
+            	$upload->allowExts          = explode(',', 'txt,doc,docx,xls,xlsx,zip,7z,rar,pdf,ppt,pptx,png,jpeg,jpg');
+            	$upload->savePath           = './UploadZip/';
+			$upload->saveName           = time().'_'.mt_rand();
             	$upload->saveRule           = 'uniqid';
             	if (!$upload->upload()) 
             	{

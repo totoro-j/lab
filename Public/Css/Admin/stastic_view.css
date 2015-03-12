@@ -10,7 +10,7 @@ a{
 
 .check_stastic{
 	margin-top:40px;
-	width:900px;}
+	width:1050px;}
 /*搜索*/	
 .user_search
 {
@@ -45,7 +45,7 @@ a{
 
 table.stastic_check{
 	font-family: verdana,arial,sans-serif;
-	font-size:14px;
+	font-size:11px;
 	color:#333333;
 	border-width: 1px;
 	border-color: #ccc;

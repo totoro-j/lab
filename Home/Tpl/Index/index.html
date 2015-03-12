@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
 <html>
 <head><meta charset="UTF-8">
-<title>机时预约界面</title>
+<title>核磁共振实验室预约系统</title>
 <load href="__PUBLIC__/Css/Home/style.css"/>
 <load href="__PUBLIC__/Css/Home/animate.css"/>
 <load href="__PUBLIC__/Css/Home/animate.min.css"/>
 <load href="__PUBLIC__/Css/Home/common.css"/>
+
 <load href="__PUBLIC__/Js/jquery.js"/>
 <load href="__PUBLIC__/Js/index.js"/>
 <load href="__PUBLIC__/Js//tableRowCheckboxToggle.js"/>
 <load href="__PUBLIC__/Js/jquery.hDialog.js"/>
 <link rel="shortcut icon" href="__PUBLIC__/Images/logo.ico"/>
+
 <!--拖动选择-->
 <script language="JavaScript">
 var curObj= null;
@@ -98,9 +100,9 @@ function setSelectedBgColor()//设置选定行的背景色
  </script>
 </head>
 
-<body onLoad="document.reserveForm.reset()">
+<body onLoad="document.reserveForm.reset()" onLoad="document.myForm.reset()">
  <div id="header">
-   		<div id="logo"><a href="__URL__/index">核磁共振实验室预约系统</a><div id="time"></div></div>
+   		<div id="logo"><a href="__URL__/index">磁共振成像研究中心预约系统</a><div id="time"></div></div>
        <if condition="$topshow eq 1">
         <div id="user">
    			<ul>
@@ -125,18 +127,15 @@ function setSelectedBgColor()//设置选定行的背景色
    			<ul>
 				<li><em style='padding-left:15px;' class="t_user_ico1"></em>欢迎你，待审核用户</span> <{$Think.session.username}></li>
    				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
-                <li><a href="__APP__/Ucenter/index">用户中心</a></li>
-                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
    				<li><a href="#">实验室主页</a></li>
    			</ul>
    		</div>
 		<elseif condition="$topshow eq 4"/>
 			 <div id="user">
    			<ul>
-				<li><em style='padding-left:15px;' class="t_user_ico1"></em>用户</span> <{$Think.session.username}>，您的账号异常，点击 <a href="__APP__/Urefuse/detail">这里</a> 查看详情</li>
+				<li><em style='padding-left:15px;' class="t_user_ico1"></em>用户<{$Think.session.username}>，您的账号异常，点击 <a style="margin:0;padding:0;float:none;"" href="__APP__/Urefuse/detail">这里</a> 查看详情</li>
    				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
                 <li><a href="__APP__/Ucenter/index">用户中心</a></li>
-                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
    				<li><a href="#">实验室主页</a></li>
    			</ul>
    		</div>
@@ -146,7 +145,6 @@ function setSelectedBgColor()//设置选定行的背景色
 				<li><em style='padding-left:15px;' class="t_user_ico1"></em>用户</span> <{$Think.session.username}>，您不属于该系统</li>
    				<li><a href="__APP__/Login/doLogout">退出登录</a></li>
                 <li><a href="__APP__/Ucenter/index">用户中心</a></li>
-                <li><a href="__ROOT__/admin.php/Index">后台管理</a></li>
    				<li><a href="#">实验室主页</a></li>
    			</ul>
    		</div>
@@ -164,33 +162,43 @@ function setSelectedBgColor()//设置选定行的背景色
 		<div id="nc">
    		<div id="noteboarder">
    			<!--公告栏-->
-   			<div class="can">
+   		<div class="can">
 		<div class="can_1">公告栏</div>
-		<div class="canin" style="margin-top:20px;padding-top:10px;height:158px;">
+		
+		<div class="canin" style="margin-top:20px;padding-top:10px;height:168px;width:430px;">
+			<h style="font-size:18px;margin-left:10px;"><{$ntitle}></h><br>
 			
-             <p><{$content}></p>
-			<h3 style="border:none; margin-top:-1px;padding-right:30px;" class="canin_2"><{$time}><br></h3>
-           
-    </div>
+                 <p><{$content}></p>
+		<h3 style="border:none; margin-top:4px;" class="canin_2">发布于 <{$time}><br></h3>
+	
+    
+	</div>	
+        
+
+	<a href="__URL__/notice" style="cursor:pointer; color:#23a96f;font-weight:bold" onClick="openwin()">历史公告</a>
+     
+   
+           </div>
 	</div>
-   		</div>
+	
+
 
         
         <!--下载界面开始-->
 	<load href="__PUBLIC__/Css/Home/show.css" />
     <div class="cant">
-        <div class="can_1" style="float:left;width:500px;margin-top:15px;margin-left:50px;">资料下载</div>
-        <div id="infor"style="height:290px;margin-left:30px;overflow-y:scroll;height:170px;">
+        <div class="can_1" style="float:left;width:520px;margin-top:15px;margin-left:50px;">资料下载</div>
+        <div id="infor"style="width:580px;;margin-left:30px;overflow-y:auto;height:200px;">
         
-        	<table border='1' align='center' class="show_check" style="width:500px;">
+        	<table border='1' align='center' class="show_check" style="width:500px;text-size:12px;">
 			<volist name='zip' id='vo'>
-            <tr>
-			  <td style="width:500px;"><abbr title='<{$vo.filename}>' id="namebox"><{$vo.filename}></abbr></td>
+            <tr style="text-size:12px;">
+			  <td style="width:200px;"><abbr title='<{$vo.filename}>' id="namebox"><{$vo.filename}></abbr></td>
               <script type="text/javascript">
               {
                 var namelength=document.getElementById("namebox").innerHTML.length;
-                if(namelength>20){
-                   var nowWord = document.getElementById("namebox").innerHTML.substr(0,19)+'...';
+                if(namelength>19){
+                   var nowWord = document.getElementById("namebox").innerHTML.substr(0,18)+'...';
                     document.getElementById("namebox").innerHTML=nowWord;
                 }
                 var namebox = document.getElementById("namebox");
@@ -198,8 +206,8 @@ function setSelectedBgColor()//设置选定行的背景色
               }
 	      </script>
 			  <td style="width:50px;"><{$vo.size}>KB</td>
-			  <td style="width:150px;"><{$vo.date}></td>
-              <td style="width:80px;"><a href='__URL__/download/id/<{$vo.id}>'><div style="padding:10px 4px;background:#23a96f;color:#fff;text-align:center;">下载</div></a></td>
+			  <td style="width:50px;"><{$vo.date}></td>
+              <td style="width:30px;"><a href='__URL__/download/id/<{$vo.id}>'><div style="padding:2px 4px;background:#23a96f;color:#fff;text-align:center;">下载</div></a></td>
             </tr>  
 			</volist>
 			
@@ -208,7 +216,7 @@ function setSelectedBgColor()//设置选定行的背景色
         </div>
         </div>
  
-   		<div id="clender">
+   		<div id="clender" style="height:830px;">
    			 <div class="clearfix dome3_box">
              
              
@@ -232,10 +240,15 @@ function setSelectedBgColor()//设置选定行的背景色
     <input style="display:none" value="<{$time_users_department}>" id="to_get_time_users_department" />
     <input style="display:none" value="<{$time_users_principal}>" id="to_get_time_users_principal" />
     
-        <div class="can_1">机时预约</div>
+        <div id="lib" class="can_1">机时预约</div>
+       <div style="margin-left:420px;margin-top:-25px">
+	 <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
+        <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
+        <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
+      </div>
           <!--这里是三个日历-->
    <script type="text/javascript"> 
-  var monthcon=<{$month}>-1;
+  var monthcon=<{$month}>-2;
   var yearcon=<{$year}>;
 var calendar = { 
 dayTable:null, 
@@ -269,7 +282,7 @@ calendar.clearCalendar(form);
 var monthLen = calendar.getMonthLen(calendar.year,calendar.month);
 var firstDay = calendar.getFirstDay(calendar.year,calendar.month); 
 for(var i = 1;i <= monthLen;i++){
-    var urladd = "<a href='__URL__/index/date/"+calendar.year+"-"+(calendar.month+1)+"-"+i+"'>"+ i +"</a>";
+    var urladd = "<a href='__URL__/index/date/"+calendar.year+"-"+(calendar.month+1)+"-"+i+"/flag/1'>"+ i +"</a>"
 calendar.dayTable[i+firstDay-1].innerHTML =urladd;
 if((i+firstDay-2) == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){
 calendar.dayTable[i+firstDay-1].id = 'today'; 
@@ -545,19 +558,19 @@ calendar.init(calendars3,calnum+2);
             
             <!--这里把原来的Submit按钮去掉了，在上面加上了ajax进行尝试   	<input type="submit" style=""  id="toSubmitSelectedDate" value="查看所选日期可预约时间"/>   
             <div id="toSubmitSelectedDate" value="">查看所选日期可预约时间</div>   -->
- 		   </form>
+ 		   </form><div style="margin-top:-150px;">
    	   <div style="width:300px;margin:0 auto;margin-top:-30px">
-        <span style="width:10px;height:22px;background:#fae0d7;display:block;float:left"></span><span style="float:left;line-height:22px;padding-left:5px;">已被预约</span>
-        <span style="width:10px;height:22px;background:#dad9d9;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">无效时间</span>
-        <span style="width:10px;height:22px;background:#52cc94;display:block;float:left;margin-left:20px;"></span><span style="float:left;line-height:22px;padding-left:5px;">您的预约</span>
+       
        </div>
        
-       <div style="width:300px;height:30px;position:relative;top:129px;left:370px"><a style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left" href="__URL__/index/date/<{$past_day}>"></a><a style="display:block;width:70px;height:20px;cursor:pointer;" href="__URL__/index/date/<{$past_day}>">前一天</a></div>
+      
         
-        <form id="myForm" action="__URL__/submit">
+
+
+        <form id="myForm" action="__URL__/submit" style="margin-top:32px" >
         <input type="text"   name="toSubmitDate"  style="display:none" />
- 			<p style="margin-left:-150px;">实验名称：</p>
-			<select name="expt_name" id="expt_name">
+ 			<p style="position:relative;left:-125px;display:block;width:80px;">实验名称：</p>
+			<select name="expt_name" id="expt_name" style="margin-left:-110px">
 				<volist name="list" id="vo">
 				<option><{$vo.testname}></option>
 				</volist>
@@ -580,7 +593,7 @@ calendar.init(calendars3,calnum+2);
  			    <option value ="06:30:00">06:30</option>
                 <option value ="07:00:00">07:00</option>
                 <option value ="07:30:00">07:30</option>
-                <option value ="08:00:00">08:00</option>
+                <option value ="08:00:00" selected = "selected" >08:00</option>
                 <option value ="08:30:00">08:30</option>
                 <option value ="09:00:00">09:00</option>
                 <option value ="09:30:00">09:30</option>
@@ -617,8 +630,7 @@ calendar.init(calendars3,calnum+2);
            
             
              <p id="startTime">结束时间：</p>
-            <select id="mySelectEndTime" name="endTime">
-				<option value ="00:00:00">00:00</option>
+            <select id="mySelectEndTime" name="endTime" >
  			    <option value ="00:30:00">00:30</option>
                 <option value ="01:00:00">01:00</option>
                 <option value ="01:30:00">01:30</option>
@@ -658,7 +670,7 @@ calendar.init(calendars3,calnum+2);
                 <option value ="18:30:00">18:30</option>
                 <option value ="19:00:00">19:00</option>
                 <option value ="19:30:00">19:30</option>
-                <option value ="20:00:00">20:00</option>
+                <option value ="20:00:00" selected = "selected">20:00</option>
                 <option value ="20:30:00">20:30</option>
                 <option value ="21:00:00">21:00</option>
  			    <option value ="21:30:00">21:30</option>
@@ -666,6 +678,8 @@ calendar.init(calendars3,calnum+2);
                 <option value ="22:30:00">22:30</option>
                 <option value ="23:00:00">23:00</option>
                 <option value ="23:30:00">23:30</option>
+			<option value ="24:00:00">24:00</option>
+
 
 			</select>    
             
@@ -715,8 +729,10 @@ calendar.init(calendars3,calnum+2);
               
         <input style="display:none" name="date" value="<{$date}>">    
        </form>
-        <div style="width:85px;height:30px;margin-top:15px;margin-left:583px"><a style="display:block;width:80px;height:1px;cursor:pointer;" href="__URL__/index/date/<{$next_day}>">后一天</a><a style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right" href="__URL__/index/date/<{$next_day}>"></a></div>
+ <div style="width:85px;height:30px;position:relative;top:25px;left:370px;z-index:0"><div style="position:relative;top:-25px"><a style="border-color:#fff #23a96f #fff #fff;border-style:solid;border-width:9px 15px 9px 0px;height:0;width:0;float:left" href="__URL__/index/date/<{$past_day}>/flag/1"></a><a style="display:block;width:70px;height:0px;cursor:pointer;" href="__URL__/index/date/<{$past_day}>/flag/1">前一天</a></div></div>
+        <div style="width:85px;height:30px;margin-top:15px;margin-left:583px"><a style="display:block;width:80px;height:1px;cursor:pointer;" href="__URL__/index/date/<{$next_day}>/flag/1">后一天</a><a style="border-color:#fff #fff #fff #23a96f;border-style:solid;border-width:9px 0px 9px 15px ;height:0;width:0;float:right" href="__URL__/index/date/<{$next_day}>/flag/1"></a></div>
         
+</div>
             <div class="sel_date dn">
                 <div class="clearfix">
                     <span class="prev_y fl">&lt;&lt;</span><span class="prev_m fl">&lt;</span>
@@ -770,10 +786,10 @@ calendar.init(calendars3,calnum+2);
       <!--表格-->
         <div id="tab1">
    			
-		<h2 id="selectedDate" style="margin:0 auto"><{$time_date2}></h2>
+		<h2 id="selectedDate" style="font-size:18px;margin-left:420px;margin-top:-53px;margin-bottom:10px;"><{$time_date2}></h2>
             
 			<div class="table" id="tab1_1">
-            <div class="table_title" style="margin-left:55px;"><a><00:00~07:00></a></div>
+            <div class="table_title" style="margin-left:55px;"><a><00:00~08:00></a></div>
              <table>
                 <tr class="odd_row"><td id="00:00" class="time_period">00:00~00:30</td></tr>
                 <tr class="even_row"><td id="00:30" class="time_period">00:30~01:00</td></tr>
@@ -796,7 +812,7 @@ calendar.init(calendars3,calnum+2);
             </div>
            
             <div class="table" id="tab1_2">
-             <div class="table_title" style="margin-left:10px;"><a style="margin-top:-24px;margin-left:340px;"><07:00~22:00></a></div>
+             <div class="table_title" style="margin-left:10px;"><a style="margin-top:-24px;margin-left:340px;"><08:00~16:00></a></div>
             <table>
    		<tr class="odd_row"><td id="08:00" class="time_period">08:00~08:30</td></tr>
                 <tr class="even_row"><td id="08:30" class="time_period">08:30~09:00</td></tr>
@@ -820,7 +836,7 @@ calendar.init(calendars3,calnum+2);
               </div>
              
             <div class="table" id="tab1_3"  for="modeCheckBox">
-             <div class="table_title" style="margin-left:-35px;"><a style="margin-top:-24px;margin-left:680px;"><22:00~24:00></a></div>
+             <div class="table_title" style="margin-left:-35px;"><a style="margin-top:-24px;margin-left:680px;"><16:00~24:00></a></div>
                <table>
                 <tr class="odd_row_b"><td id="16:00" class="time_period">16:00~16:30</td></tr>
                 <tr class="even_row_i"><td id="16:30" class="time_period">16:30~17:00</td></tr>
@@ -1227,10 +1243,18 @@ $(function(){
 })
 </script>
  
- 
+ <script language="JavaScript">
+var flag = <{$flag}>;
+
+
+if(flag==1){
+ window.location.hash = "#lib";
+}
+
+</script>
  
  	
 
-   <div id="footer"><p><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>木盒设计工作室    版权所有</small></div>
+   <div id="footer"><p><small>©  2014  MUHESTUDIO.net    All Rights Reserved.<br/>电子科技大学磁共振成像研究中心    版权所有</small></div>
   </body>
 </html>

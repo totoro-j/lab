@@ -1,12 +1,47 @@
-<load href="__PUBLIC__/Css/Admin/Notice.css" />
-<div class="billboard_history">
-     <h3>历史公告</h3>
-     <form class="billboard_history_scroll" action="__APP__/Noticechage/del">
+<load href="__PUBLIC__/Css/Admin/notice.css" />
+<style>
+.container
+{
+	margin:0 auto;
+	width:945px;
+	margin-bottom:40px;
+}
+.summary{
+	width:800px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:100px;}
+.summary_list{
+
+	border-top:solid #ccc 1px;
+	padding-bottom:10px;
+	clear:left;
+	height:auto;
+	}
+	
+.summry_list_info{	margin-bottom:30px;
+	margin-top:20px;
+	
+	width:500px;
+	float:left;
+}
+.list_show{
+	color:#15a76e;
+	clear:left;
+	margin-left:200px;
+}
+</style>
+<div class="container">
+     <h3 style="margin-left:100px;">历史公告</h3>
+
+     <div class="summary">
+     <form  action="">
 	<volist name="notice" id="vo">
-    <div class="billboard_history_detail">
-     <div class="billboard_history_detail_info">
-	<p name="content" style="float:left;font-size:20px"><{$vo.content}></p><br>
-	<p style="float:right;font-size:5px"><{$vo.editor}>发布于 <{$vo.time}> <a href="__APP__/Noticechage/del?id=<{$vo.id}>">删除</a></p>
+    <div class="summary_list">
+     <div class="summry_list_info">
+	     <h4 name="ntitle"><{$vo.ntitle}></h4><br>
+	<p name="content" style="float:left;font-size:15px"><{$vo.content}></p><br>
+	<p style="float:right;font-size:12px;margin-top:10px;">发布于 <{$vo.time}> </p>
 	
 </div>
 <br>		
@@ -14,6 +49,10 @@
      </volist>
      </form>
     </div>
+    <div class="list_show"><{$show}></div>
+    </div> 
+
+
      
 
 

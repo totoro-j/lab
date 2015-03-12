@@ -3,7 +3,7 @@ return array(
 
 	'DB_PREFIX'=>'lab_',
 	'DB_NAME'=>'lab',
-	'DB_DSN'=>'mysql://root:@localhost:3306/lab',
+	'DB_DSN'=>'mysql://root:wj4590725@localhost:3306/lab',
 	'TMPL_L_DELIM'=>'<{',
 	'TMPL_R_DELIM'=>'}>',
 	'SHOW_PAGE_TRACE'=>'true',//开启页面Trace
