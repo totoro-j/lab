@@ -19,10 +19,13 @@ class IndexAction extends Action{
 			$topshow=2;
 		}
 		$this->assign('topshow',$topshow);
-		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//输入日期，未输入则默认为今天
+		date_default_timezone_set(PRC);
+		$time=isset($_GET['date'])?$_GET['date']:date('Y-m-d');//输入日期，未输入则默认为今天
+	//	echo date_default_timezone_set(PRC);
+	//	var_dump(date('Y-m-d H:i:s',time()));
 		$this->assign('date',$time);
-		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
-		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());
+		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d');
+		$date2=isset($_GET['date'])?$_GET['date']:date('Y-m-d');
 		$flag=isset($_GET['flag'])?$_GET['flag']:0;
 		$this->assign('flag',$flag);
 		//判断是不是游客，如果是0，则是游客。如果是1则不是游客
@@ -79,24 +82,25 @@ class IndexAction extends Action{
 			$condition['id']=$result[$i]['uid'];
 			$user_content=$user->where($condition)->select();
 			//管理员的设置
+			list($a,$b)=explode(" ",$result[$i]['starttime']);
+			list($c,$d)=explode(" ",$result[$i]['finaltime']);
+			if($d=='00:00:00'){
+				$d='24:00:00';
+			}
 			if($user_content[0]['role']==2||$user_content[0]['role']==9){
 				//管理员设置的不可预约时间段
-				list($a,$b)=explode(" ",$result[$i]['starttime']);
 				$time_disable_1.=$b;
 				$time_disable_1.=':';
-				list($a,$b)=explode(" ",$result[$i]['finaltime']);
-				$time_disable_1.=$b;
+				$time_disable_1.=$d;
 				$time_disable_1.=':';
 				//管理员设置不可预约原因
 				$disable_reason.=$result[$i]['info'];
 				$disable_reason.=':';
 			}else if($user_content[0]['role']==1&&$user_content[0]['id']==$_SESSION['id']){
 				//用户自己设置的不可预约时间段
-				list($a,$b)=explode(" ",$result[$i]['starttime']);
 				$time_disable_3.=$b;
 				$time_disable_3.=':';
-				list($a,$b)=explode(" ",$result[$i]['finaltime']);
-				$time_disable_3.=$b;
+				$time_disable_3.=$d;
 				$time_disable_3.=':';
 				$ExperimentCondition['id']=$result[$i]['eid'];
 				$experiment=M('event');
@@ -105,11 +109,9 @@ class IndexAction extends Action{
 				$ExperimentName.=':';
 			}else if($user_content[0]['role']==1||$user_content[0]['role']==3){
 				//用户设置的不可预约时间段
-				list($a,$b)=explode(" ",$result[$i]['starttime']);
 				$time_disable_2.=$b;
 				$time_disable_2.=':';
-				list($a,$b)=explode(" ",$result[$i]['finaltime']);
-				$time_disable_2.=$b;
+				$time_disable_2.=$d;
 				$time_disable_2.=':';
 				//时间格式
 				//判断是否为游客
@@ -148,6 +150,7 @@ class IndexAction extends Action{
 
 
 		}
+		
 		//判断是否过期；0表示时间过期；1表示当天无预约;2表示选择日期正确，且有预约
 		if($result==''){
 			$time_judge= '1';
@@ -238,7 +241,7 @@ class IndexAction extends Action{
 		$page->setConfig('header','条公告');
 		$show=$page->show();
 
-		$notice=$notice_list$e->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
+		$notice=$notice_list->limit($page->firstRow.','.$page->listRows)->order('id desc')->select();
 		$n=count($notice);
 		for($i=0;$i<$n;$i++){
 			list($notice[$i]['time'],$a)=explode(" ",$notice[$i]['time']);
@@ -299,17 +302,25 @@ class IndexAction extends Action{
 
 		$date=isset($_GET['date'])?$_GET['date']:date('Y-m-d',time());//判断日期
 		$Ndate=$date;//后台传到前端的值
-		$starttime=$_GET['startTime'];
-		$finaltime=$_GET['endTime'];
 		list($y,$m,$d)=explode('-',$date);
+		$starttime=$_GET['startTime'];
 		list($sh,$sf,$ss)=explode(':',$starttime);
-		list($fh,$ff,$fs)=explode(':',$finaltime);
+		$startstamp=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间转换为时间戳
+		if($_GET['endTime']=='24:00:00'){
+			$finaltime='00:00:00';
+			list($fh,$ff,$fs)=explode(':',$finaltime);
+			$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
+			$finalstamp=$finalstamp+86400;
+		}else{
+			$finaltime=$_GET['endTime'];
+			list($fh,$ff,$fs)=explode(':',$finaltime);
+			$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
+		}
 		list($q,$w,$e)=explode('-',date('Y-m-d',time()));
-		if(mktime(0,0,0,$m,$d,$y)<mktime(0,0,0,$w,$e,$q)){
+		if(mktime(0,0,0,$m,$d,$y)<time()){
 			$this->error('该时间段已过期');
 		}
-		$startstamp=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间转换为时间戳
-		$finalstamp=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间转换为时间戳
+		
 		//判断是否距离现在时间没有超过2小时，未超过报错
 		$nowstamp=time();
 		if(($startstamp-$nowstamp)/3600<2){
@@ -325,9 +336,13 @@ class IndexAction extends Action{
 			list($a,$b)=explode(" ",$result[$i]['starttime']);
 			list($sh,$sf,$ss)=explode(':',$b);
 			$startjudge=mktime($sh,$sf,$ss,$m,$d,$y);//起始时间时间戳
-			list($f,$e)=explode(" ",$result[$i]['finaltime']);
-			list($fh,$ff,$fs)=explode(':',$e);
-			$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
+			list($a,$b)=explode(" ",$result[$i]['finaltime']);
+			if($b=='00:00:00'){
+				$finaljudge=(mktime(0,0,0,$m,$d,$y)+86400);
+			}else{
+				list($fh,$ff,$fs)=explode(':',$b);
+				$finaljudge=mktime($fh,$ff,$fs,$m,$d,$y);//结束时间时间戳
+			}
 			if($startstamp>$startjudge&&$startstamp<$finaljudge){
 				$this->error('输入时间冲突');
 			}elseif($finalstamp>$startjudge&&$finalstamp<$finaljudge){
@@ -343,12 +358,8 @@ class IndexAction extends Action{
 		if($hour<0){
 			$this->error('输入时间有误');
 		}
-		$finaltime=$date;
-		$finaltime.=' ';
-		$finaltime.=$_GET['endTime'];
-		$starttime=$date;
-		$starttime.=' ';
-		$starttime.=$_GET['startTime'];
+		$finaltime=date('Y-m-d, H:i:s',$finalstamp);
+		$starttime=date('Y-m-d, H:i:s',$startstamp);
 		$data['finaltime']=$finaltime;//结束时间
 		$data['starttime']=$starttime;//起始时间
 		$event_condition['testname']=$_GET['expt_name'];
@@ -369,7 +380,7 @@ class IndexAction extends Action{
 		//var_dump($data['hours']);	
 		$add=$t->add($temp_condition);
 		if($lastId && $add>0){
-			$this->success_submit($Ndate);
+		header('Location = "__URL__/index/date/'.$Ndate.'/flag/1"');	
 		}else{
 			$this->error('提交失败');
 		}

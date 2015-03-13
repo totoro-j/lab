@@ -94,9 +94,12 @@ function setSelectedBgColor()//设置选定行的背景色
 <!--时间表隐藏-->
 
 <!--页首时间段隐藏显示-->
- <script>setInterval("time.innerHTML=new Date().toLocaleString()+\'   星期\'+\'日一二三四五六\'.charAt(new Date().getDay());",1000);
- 
- 	
+ <script>
+Date.prototype.toLocaleString = function() {
+  return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 " + this.getHours() + "时" + this.getMinutes() + "分" + this.getSeconds() + "秒";
+ };
+setInterval("time.innerHTML=new Date().toLocaleString()+\'   星期\'+\'日一二三四五六\'.charAt(new Date().getDay());",1000);
+	
  </script>
 </head>
 
